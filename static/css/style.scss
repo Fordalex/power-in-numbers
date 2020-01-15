@@ -1,20 +1,19 @@
-// Theme
+// Theme, colours
+
 $aboveNav: rgb(73, 73, 73);
 $iconColour: rgb(218, 185, 154);
 $primaryBtn: rgb(241,180,77);
 $titleContainer: rgb(226, 226, 226);
+$pageContainer: rgb(206, 206, 206);
+
+// base.html
 
 .above-navigation {
     background-color: $aboveNav ;
     color: $iconColour;
 }
 
-.nav {
-    li {
-        a {
-            color:black;
-        }
-    }
+.navbar {
     background-color: $primaryBtn; 
 }
 
@@ -22,3 +21,16 @@ $titleContainer: rgb(226, 226, 226);
     background-color: $titleContainer;
     padding: 30px;
 }
+
+// home.html
+
+.page-wrapper {
+    display:flex;
+    justify-content:center;
+    .page-container {
+        background-color: $pageContainer;
+        height: 100vh;
+        width:100%;
+    }
+}
+
