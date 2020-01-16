@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="title-container">
-    <h2 class="text-center">Add Session</h2>
+    <h1 class="text-center">Add Session</h1>
 </div>
 <div class="page-wrapper">
     <div class="page-container">
@@ -29,6 +29,18 @@
                     <div class="add-button d-flex justify-content-center border align-items-center">
                         <i class="fas fa-plus icon-button text-light"></i>
                     </div>
+                </div>
+                <div class="col-12">
+                    <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
+                    <input class="form-control" placeholder="Location">
+                </div>
+                <div class="col-6">
+                    <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
+                    <input type="number" class="form-control" placeholder="hour(s)">
+                </div>
+                <div class="col-6">
+                    <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
+                    <input type="number" class="form-control" placeholder="Minute(s)">
                 </div>
             </div>
             <hr>

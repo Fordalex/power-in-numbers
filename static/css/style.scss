@@ -10,23 +10,37 @@ $pageContainer: rgb(250,250,250);
 
 // General 
 
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+p,a {
+    font-family: 'Raleway', sans-serif;
+}
+
 .page-wrapper {
     display:flex;
     justify-content:center;
     .page-container {
         background-color: $pageContainer;
-        height: 100vh;
         width:100%;
         padding:15px;
         max-width: 800px;
         border-right:solid black 1px;
         border-left:solid black 1px;
+        display:flex;
+        justify-content:center;
+
     }
 }
 
 .secondary-colour {
     color: $mainColour; 
     background-color:  $mainColour;
+}
+
+.left-border {
+    border-left:solid black 1px;
 }
 
 // base.html
@@ -41,7 +55,7 @@ $pageContainer: rgb(250,250,250);
 }
 
 .navbar {
-    background-image: linear-gradient(rgb(255, 175, 101),rgb(209, 151, 96));
+    background-image: linear-gradient(rgb(255, 175, 101),rgb(224, 125, 79));
 }
 
 .title-container {
@@ -53,7 +67,11 @@ $pageContainer: rgb(250,250,250);
 
 // home.html
 
-
+.session-card {
+    background-color:rgb(255, 255, 255);
+    border:solid lightgray 1px;
+    border-radius:5px;
+}
 
 // addsession.html
 

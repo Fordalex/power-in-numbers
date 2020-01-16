@@ -1,3 +1,11 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+p, a {
+  font-family: 'Raleway', sans-serif;
+}
+
 .page-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,17 +17,26 @@
 
 .page-wrapper .page-container {
   background-color: #fafafa;
-  height: 100vh;
   width: 100%;
   padding: 15px;
   max-width: 800px;
   border-right: solid black 1px;
   border-left: solid black 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .secondary-colour {
   color: #ffaf65;
   background-color: #ffaf65;
+}
+
+.left-border {
+  border-left: solid black 1px;
 }
 
 .fa-bars {
@@ -32,8 +49,8 @@
 }
 
 .navbar {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffaf65), to(#d19760));
-  background-image: linear-gradient(#ffaf65, #d19760);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffaf65), to(#e07d4f));
+  background-image: linear-gradient(#ffaf65, #e07d4f);
 }
 
 .title-container {
@@ -41,6 +58,12 @@
   padding: 30px;
   border-bottom: solid 1px gray;
   z-index: 5;
+}
+
+.session-card {
+  background-color: white;
+  border: solid lightgray 1px;
+  border-radius: 5px;
 }
 
 .add-button {
