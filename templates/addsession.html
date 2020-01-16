@@ -17,12 +17,9 @@
                 </div>
                 <div class="col-10 col-lg-5">
                     <label class="mb-1" for="exampleFormControlSelect1">Session Type:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select class="form-control" id="exampleFormControlSelect1" name="session_type">
                         <option>Powerlifting</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <option>Running</option>
                     </select>
                 </div>
                 <div class="col-2 col-lg-1 pl-0 d-flex justify-content-start align-items-end">
@@ -32,15 +29,15 @@
                 </div>
                 <div class="col-12">
                     <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
-                    <input class="form-control" placeholder="Location">
+                    <input class="form-control" placeholder="Location" name="location">
                 </div>
                 <div class="col-6">
                     <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
-                    <input type="number" class="form-control" placeholder="hour(s)">
+                    <input type="number" class="form-control" placeholder="hour(s)" name="length_hour">
                 </div>
                 <div class="col-6">
                     <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
-                    <input type="number" class="form-control" placeholder="Minute(s)">
+                    <input type="number" class="form-control" placeholder="Minute(s)" name="length_min">
                 </div>
             </div>
             <hr>
@@ -49,22 +46,22 @@
                     <div class="stats-container">
                         <p class="text-center">Motivated:</p>
                         <div class="d-flex justify-content-center align-item-center">
-                            <input type="number" min="0" max="10" class="number-input float-left">
-                            <p class="m-0"> / 10</p>
+                            <input type="number" min="0" max="100" class="number-input float-left" name="motivated">
+                            <p class="m-0"> / 100</p>
                         </div>
                     </div>
                     <div class="stats-container">
                         <p class="text-center">Difficulty:</p>
                         <div class="d-flex justify-content-center align-item-center">
-                            <input type="number" min="0" max="10" class="number-input float-left">
-                            <p class="m-0"> / 10</p>
+                            <input type="number" min="0" max="100" class="number-input float-left" name="difficulty">
+                            <p class="m-0"> / 100</p>
                         </div>
                     </div>
                     <div class="stats-container">
                         <p class="text-center">Effort:</p>
                         <div class="d-flex justify-content-center align-item-center">
-                            <input type="number" min="0" max="10" class="number-input float-left">
-                            <p class="m-0"> / 10</p>
+                            <input type="number" min="0" max="100" class="number-input float-left" name="effort">
+                            <p class="m-0"> / 100</p>
                         </div>
                     </div>
                 </div>

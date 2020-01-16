@@ -10,12 +10,80 @@
                 letting
                 them know there not alone. Create or start one for the many training plan's we have available. Think
                 your the best? Find out by adding your personal best's and comparing them with others.</p>
-            <hr>    
+            <hr>
             {% for session in sessions %}
-            <div class="session-card">
+            <div class="session-card my-3 p-2">
+                <div class="row m-0 p-0">
+                    <div class="col-6">
+                        <h5><u>{{ session.first_name }} {{ session.last_name }}</u></h5>
+                        <div class="row m-0 p-0">
+                            <div class="col-12 col-md-6 m-0 p-0">
+                                <p class="m-0 p-0">Age: {{ session.age }}</p>
+                                <p class="m-0 p-0">Gender: {{ session.gender }}</p>
+                            </div>
+                            <div class="col-12 col-md-6 m-0 p-0">
+                                <div>
+                                    <p class="m-0 p-0">Date: {{ session.date }}</p>
+                                    <p class="m-0 p-0">Body Weight: {{ session.body_weight }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse" id="{{ session.first_name }}">
+                            <div class="card-body">
+                                <table>
+                                    <tr>
+                                        <th>Exercise</th>
+                                        <th>Sets / Reps</th>
+                                        <th>Weight</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ session.exercise }}</td>
+                                        <td>{{ session.set_reps }}</td>
+                                        <td>{{ session.weight }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 pr-0 border-left">
+                        <i class="fas fa-dumbbell float-right"></i>
+                        <p class="m-0">Session Type: {{ session.session_type }}</p>
+                        <p class="m-0">Length: {{ session.length_hour }} : {{ session.length_min }} </p>
+                        <p class="m-0">Location: {{ session.location }}</p>
 
-                {{ session.first_name }} {{ session.last_name }}
+                        <div class="collapse" id="{{ session.first_name }}">
+                            <div class="card-body">
+                                <h5>Motivated</h5>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                                        style="width: {{ session.motivated }}%" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <h5>Difficulty</h5>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                        style="width: {{ session.difficulty }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <h5>Effort</h5>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                        style="width: {{ session.effort }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            <a class="btn secondary-colour text-light border float-right" data-toggle="collapse"
+                                href="#{{ session.first_name }}" role="button" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                Expand
+                            </a>
+                        </p>
+                    </div>
 
+                </div>
             </div>
             {% endfor %}
         </div>
