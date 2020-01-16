@@ -2,7 +2,7 @@
 
 $aboveNav: rgb(73, 73, 73);
 
-$iconColour: rgb(226, 184, 93);
+$mainColour: rgb(255, 175, 101);
 $primaryBtn: rgb(241,180,77);
 
 $titleContainer: rgb(242,242,242);
@@ -17,24 +17,31 @@ $pageContainer: rgb(250,250,250);
         background-color: $pageContainer;
         height: 100vh;
         width:100%;
-        padding:10px;
+        padding:15px;
         max-width: 800px;
+        border-right:solid black 1px;
+        border-left:solid black 1px;
     }
 }
 
 .secondary-colour {
-    color: $iconColour; 
+    color: $mainColour; 
+    background-color:  $mainColour;
 }
 
 // base.html
 
+.fa-bars {
+    font-size: 30px;
+}
+
 .above-navigation {
     background-color: $aboveNav ;
-    color: $iconColour;
+    color: $mainColour;
 }
 
 .navbar {
-    background-color: $primaryBtn; 
+    background-image: linear-gradient(rgb(255, 175, 101),rgb(209, 151, 96));
 }
 
 .title-container {
@@ -50,6 +57,33 @@ $pageContainer: rgb(250,250,250);
 
 // addsession.html
 
-.add-icon {
-    font-size:37px;
+.add-button {
+    background-color: rgb(255, 175, 101);
+    width: 100%;
+    height: 100%;
+    height: 38px;
+    font-size: 22px; 
+    border-radius: 5px;
+    border: solid lightgray 1px;
+}
+
+.number-input {
+    width: 50px;
+    background-color: rgb(255, 255, 255);
+    border:solid lightgray 1px;
+    border-radius: 5px;
+    margin-right: 3px;
+}
+
+.stats-container {
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    border: solid lightgray 1px;
+    border-radius:5px;
+}
+
+.session-table tr th,td {
+    border:solid black 1px;
+    width:50%; 
+    background-color: white;
 }

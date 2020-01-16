@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="title-container">
-    <h3 class="text-center">Add Session</h3>
+    <h2 class="text-center">Add Session</h2>
 </div>
 <div class="page-wrapper">
     <div class="page-container">
         <form>
-            <div class="row my-2">
+            <div class="row my-2 p-0">
                 <div class="col-12 col-lg-3">
                     <label class="mb-1">First Name:</label>
                     <input type="text" class="form-control" placeholder="John">
@@ -18,20 +18,71 @@
                 <div class="col-10 col-lg-5">
                     <label class="mb-1" for="exampleFormControlSelect1">Session Type:</label>
                     <select class="form-control" id="exampleFormControlSelect1">
-                      <option>Powerlifting</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                        <option>Powerlifting</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
                     </select>
                 </div>
-                <div class="col-2 col-lg-1 d-flex justify-content-start align-items-end">
-                    <i class="fas fa-plus-square add-icon secondary-colour"></i>
+                <div class="col-2 col-lg-1 pl-0 d-flex justify-content-start align-items-end">
+                    <div class="add-button d-flex justify-content-center border align-items-center">
+                        <i class="fas fa-plus icon-button text-light"></i>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-
+            <hr>
+            <div class="row m-0 p-0">
+                <div class="col-12 d-flex justify-content-around">
+                    <div class="stats-container">
+                        <p class="text-center">Motivated:</p>
+                        <div class="d-flex justify-content-center align-item-center">
+                            <input type="number" min="0" max="10" class="number-input float-left">
+                            <p class="m-0"> / 10</p>
+                        </div>
+                    </div>
+                    <div class="stats-container">
+                        <p class="text-center">Difficulty:</p>
+                        <div class="d-flex justify-content-center align-item-center">
+                            <input type="number" min="0" max="10" class="number-input float-left">
+                            <p class="m-0"> / 10</p>
+                        </div>
+                    </div>
+                    <div class="stats-container">
+                        <p class="text-center">Somthing:</p>
+                        <div class="d-flex justify-content-center align-item-center">
+                            <input type="number" min="0" max="10" class="number-input float-left">
+                            <p class="m-0"> / 10</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr>
+            <div>
+                <h3 class="my-3">Training Session</h3>
+                <table class="session-table mb-3">
+                    <tr>
+                        <th>Exercise:</th>
+                        <th>Sets / Reps:</th>
+                        <th>Weight (KG):</th>
+                    </tr>
+                    <tr>
+                      <td>+</td>
+                      <td>+</td>
+                      <td>+</td>
+                    </tr>
+                </table>
+                <div class="row m-0 p-0">
+                    <div class="col-6 m-0 p-0">
+                        <button class="btn btn-primary d-flex justify-content-end secondary-colour text-light border">Add Row +</button>
+                    </div>
+                    <div class="col-6 m-0 p-0 d-flex justify-content-end">
+                        <button class="btn btn-primary secondary-colour text-light border">Done</button>
+                    </div>
+                </div>
+                
+            </div>
+
         </form>
     </div>
 </div>

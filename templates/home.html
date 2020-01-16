@@ -1,11 +1,15 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="title-container">
-    <h3 class="text-center">Power In Numbers</h3>
+    <h2 class="text-center">Power In Numbers</h2>
 </div>
 <div class="page-wrapper">
     <div class="page-container">
+        {% for session in sessions %}
 
+        {{ session.first_name }} {{ session.last_name }}
+
+        {% endfor %}
     </div>
 </div>
 

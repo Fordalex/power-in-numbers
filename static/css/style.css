@@ -11,21 +11,29 @@
   background-color: #fafafa;
   height: 100vh;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   max-width: 800px;
+  border-right: solid black 1px;
+  border-left: solid black 1px;
 }
 
 .secondary-colour {
-  color: #e2b85d;
+  color: #ffaf65;
+  background-color: #ffaf65;
+}
+
+.fa-bars {
+  font-size: 30px;
 }
 
 .above-navigation {
   background-color: #494949;
-  color: #e2b85d;
+  color: #ffaf65;
 }
 
 .navbar {
-  background-color: #f1b44d;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffaf65), to(#d19760));
+  background-image: linear-gradient(#ffaf65, #d19760);
 }
 
 .title-container {
@@ -35,7 +43,34 @@
   z-index: 5;
 }
 
-.add-icon {
-  font-size: 37px;
+.add-button {
+  background-color: #ffaf65;
+  width: 100%;
+  height: 100%;
+  height: 38px;
+  font-size: 22px;
+  border-radius: 5px;
+  border: solid lightgray 1px;
+}
+
+.number-input {
+  width: 50px;
+  background-color: white;
+  border: solid lightgray 1px;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+
+.stats-container {
+  padding: 10px;
+  background-color: white;
+  border: solid lightgray 1px;
+  border-radius: 5px;
+}
+
+.session-table tr th, td {
+  border: solid black 1px;
+  width: 50%;
+  background-color: white;
 }
 /*# sourceMappingURL=style.css.map */
