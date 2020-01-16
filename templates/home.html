@@ -10,54 +10,14 @@
                 letting
                 them know there not alone. Create or start one for the many training plan's we have available. Think
                 your the best? Find out by adding your personal best's and comparing them with others.</p>
-            <hr>
+            <hr>    
+            {% for session in sessions %}
             <div class="session-card">
-                <div class="row m-0 p-0">
-                    <div class="col-6 ">
-                        <h3>First Last</h3>
-                        <div class="row m-0 p-0">
-                            <div class="col-6">
-                                <p class="m-0">Age:</p>
-                                <p class="m-0">Gender:</p>
-                            </div>
-                            <div class="col-6d-flex justify-content-end">
-                                <div>
-                                    <p class="m-0">Date:</p>
-                                    <p class="m-0">Body Weight:</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 left-border">
-                        <p class="m-0">Session: </p>
-                        <p class="m-0">Session: </p>
-                        <p class="m-0">Session: </p>
-                        <div class="expand-content">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%"
-                                    aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                                    style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                    style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                    style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                    style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+                {{ session.first_name }} {{ session.last_name }}
+
             </div>
+            {% endfor %}
         </div>
 
 
