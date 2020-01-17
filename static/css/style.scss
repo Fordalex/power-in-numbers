@@ -1,11 +1,10 @@
 // Theme, colours
 
 $aboveNav: rgb(73, 73, 73);
-
 $mainColour: rgb(255, 175, 101);
 $primaryBtn: rgb(241,180,77);
-
-$titleContainer: rgb(242,242,242);
+$mainGradient: linear-gradient(rgb(255, 175, 101),rgb(224, 125, 79));
+$titleContainer: #fffeef;
 $pageContainer: rgb(250,250,250);
 
 // General 
@@ -43,6 +42,12 @@ p,a {
     border-left:solid black 1px;
 }
 
+// session table
+
+.session-header th {
+    background-image:$mainGradient ;
+}
+
 // base.html
 
 .fa-bars {
@@ -55,7 +60,7 @@ p,a {
 }
 
 .navbar {
-    background-image: linear-gradient(rgb(255, 175, 101),rgb(224, 125, 79));
+    background-image: $mainGradient;
 }
 
 .title-container {
@@ -98,10 +103,4 @@ p,a {
     background-color: rgb(255, 255, 255);
     border: solid lightgray 1px;
     border-radius:5px;
-}
-
-.session-table tr th,td {
-    border:solid black 1px;
-    width:50%; 
-    background-color: white;
 }
