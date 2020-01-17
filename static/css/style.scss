@@ -48,6 +48,11 @@ p,a {
     background-image:$mainGradient ;
 }
 
+.session-table tr td input {
+    background-color: rgba(0,0,0,0);
+    border:solid lightgray 1px;
+}
+
 // base.html
 
 .fa-bars {

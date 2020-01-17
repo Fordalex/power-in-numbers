@@ -5,13 +5,13 @@
 </div>
 <div class="page-wrapper">
     <div class="page-container">
-        <form action="{{ url_for('insert_session') }}" method="POST">
+        <form action="{{ url_for('insert_session') }}" method="POST" class="container-fluid">
             <div class="row my-2 p-0">
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-6">
                     <label class="mb-1">First Name:</label>
                     <input type="text" class="form-control" placeholder="John" name="first_name">
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-6">
                     <label class="mb-1">Last Name:</label>
                     <input type="text" class="form-control" placeholder="Smith" name="last_name">
                 </div>
@@ -99,23 +99,22 @@
             <hr>
             <div>
                 <h3 class="my-3">Training Session</h3>
-                <table class="session-table mb-3 container-fluid">
+                <table class="session-table mb-3 container-fluid" id="addSessionTable">
                     <tr>
                         <th>Exercise:</th>
                         <th>Sets / Reps:</th>
                         <th>Weight (KG):</th>
                     </tr>
                     <tr>
-                        <td>+</td>
-                        <td>+</td>
-                        <td>+</td>
+                        <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
+                        <td><input class="container-fluid" type="type" name="session_sets_1"></td>
+                        <td><input class="container-fluid" type="type" name="session_weight_1"></td>
                     </tr>
                 </table>
+                <textarea name="notes"></textarea>
                 <div class="row m-0 p-0">
                     <div class="col-6 m-0 p-0">
-                        <button
-                            class="btn btn-primary d-flex justify-content-end secondary-colour text-light border">Add
-                            Row +</button>
+                        <a class="btn secondary-colour text-light border" onclick="createRow()">Add Row +</a>
                     </div>
                     <div class="col-6 m-0 p-0 d-flex justify-content-end">
                         <button class="btn secondary-colour text-light border" type="submit" name="action">Done</button>

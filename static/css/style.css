@@ -44,6 +44,11 @@ p, a {
   background-image: linear-gradient(#ffaf65, #e07d4f);
 }
 
+.session-table tr td input {
+  background-color: rgba(0, 0, 0, 0);
+  border: solid lightgray 1px;
+}
+
 .fa-bars {
   font-size: 30px;
 }
