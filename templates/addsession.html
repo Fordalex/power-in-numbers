@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="row m-0 p-0">
-                <div class="col-4">
+                <div class="col-4 p-0">
                     <label class="mb-1" for="exampleFormControlSelect1">Age:</label>
                     <input type="number" class="form-control" placeholder="23" name="age">
                 </div>
@@ -28,7 +28,7 @@
                         <option>Female</option>
                     </select>
                 </div>
-                <div class="col-4">
+                <div class="col-4 p-0">
                     <label class="mb-1" for="exampleFormControlSelect1">BW: (KG)</label>
                     <input type="number" class="form-control" placeholder="body weight" name="body_weight">
                 </div>
@@ -36,43 +36,43 @@
             </div>
             <hr>
             <div class="row m-0 p-0">
-                <div class="col-6">
+                <div class="col-6 p-0 pr-3">
                     <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
                     <input class="form-control" placeholder="Location" name="location">
                 </div>
-                <div class="col-6">
+                <div class="col-6 p-0">
                     <label class="mb-1" for="exampleFormControlSelect1">Date:</label>
                     <input type="date" class="form-control" placeholder="Date" name="date">
                 </div>
             </div>
-            <div class="row m-0 p-0">
-                <div class="col-6">
+            <div class="row m-0 p-0 ">
+                <div class="col-6 p-0 pr-3">
                     <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
                     <input type="number" class="form-control" placeholder="hour(s)" name="length_hour">
                 </div>
-                <div class="col-6">
+                <div class="col-6 p-0">
                     <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
                     <input type="number" class="form-control" placeholder="Minute(s)" name="length_min">
                 </div>
             </div>
             <hr>
-            <div class="col-12 d-flex justify-content-around">
-                <div>
+            <div class="row">
+                <div class="col-10">
                     <label class="mb-1" for="exampleFormControlSelect1">Session Type:</label>
-                    <div class="d-flex justify-content-center">
-                        <select class="form-control" id="exampleFormControlSelect1" name="session_type">
-                            <option>Powerlifting</option>
-                            <option>Running</option>
-                        </select>
-                        <div class="add-button d-flex justify-content-center border align-items-center">
-                            <i class="fas fa-plus icon-button text-light"></i>
-                        </div>
+                    <select class="form-control" id="exampleFormControlSelect1" name="session_type">
+                        <option>Powerlifting</option>
+                        <option>Running</option>
+                    </select>
+                </div>
+                <div class="col-2 m-0 p-0 pr-3 d-flex justify-content-end align-items-end">
+                    <div class="add-button d-flex justify-content-center border align-items-center">
+                        <i class="fas fa-plus icon-button text-light"></i>
                     </div>
                 </div>
             </div>
             <hr>
             <div class="row m-0 p-0">
-                <div class="col-12 d-flex justify-content-around">
+                <div class="col-12 p-0 d-flex justify-content-around">
                     <div class="stats-container">
                         <p class="text-center">Motivated:</p>
                         <div class="d-flex justify-content-center align-item-center">
@@ -99,7 +99,7 @@
             <hr>
             <div>
                 <h3 class="my-3">Training Session</h3>
-                <table class="session-table mb-3 container-fluid" id="addSessionTable">
+                <table class="session-table container-fluid" id="addSessionTable">
                     <tr>
                         <th>Exercise:</th>
                         <th>Sets / Reps:</th>
@@ -111,16 +111,9 @@
                         <td><input class="container-fluid" type="type" name="session_weight_1"></td>
                     </tr>
                 </table>
-                <textarea name="notes"></textarea>
-                <div class="row m-0 p-0">
-                    <div class="col-6 m-0 p-0">
-                        <a class="btn secondary-colour text-light border" onclick="createRow()">Add Row +</a>
-                    </div>
-                    <div class="col-6 m-0 p-0 d-flex justify-content-end">
-                        <button class="btn secondary-colour text-light border" type="submit" name="action">Done</button>
-                    </div>
-                </div>
-
+                <a class="btn secondary-colour text-light border my-2" onclick="createRow()">Add Row +</a>
+                <textarea name="notes" class="container-fluid my-2"></textarea>
+                <button class="btn secondary-colour text-light border float-right" type="submit" name="action">Done</button>
             </div>
 
         </form>

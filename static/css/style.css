@@ -31,8 +31,11 @@ p, a {
 }
 
 .secondary-colour {
-  color: #ffaf65;
   background-color: #ffaf65;
+}
+
+.secondary-colour-text {
+  color: #ffaf65;
 }
 
 .left-border {
