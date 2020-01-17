@@ -14,25 +14,22 @@
 </head>
 
 <body>
-  <div class="above-navigation p-1 d-flex justify-content-start">
-    <div class="d-flex justify-content-center align-items-center">
-      <i class="fas fa-dumbbell text-light mr-1"></i>
-      <p class="m-0">PIN</p>
-    </div>
-
-  </div>
   <nav class="navbar navbar-expand-lg navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="fas fa-dumbbell text-light mr-1"></i>
+      <p class="m-0 mx-1">PIN</p>
+    </div>
     <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
       <ul class="navbar-nav mt-2 mt-lg-0">
         <li class="nav-item active">
           <a class="nav-link" href="{{url_for('home')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="{{url_for('addsession')}}">Add A Session</a>
+          <a class="nav-link text-light" href="{{url_for('add_session')}}">Add A Session</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">Training Plans</a>
@@ -41,10 +38,10 @@
           <a class="nav-link text-light" href="#">Add A Training Plan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Training Records</a>
+          <a class="nav-link" href="{{url_for('records')}}">Training Records</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">Add A Personal Best</a>
+          <a class="nav-link text-light" href="{{url_for('add_record')}}">Add A Personal Best</a>
         </li>
       </ul>
     </div>
