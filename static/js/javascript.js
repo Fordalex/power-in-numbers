@@ -45,3 +45,10 @@ $('.expand-button').on('click', function() {
         $(this).html('Expand');
     }
 })
+
+// save the user's unit choice to the local storage
+$('#unit').on('click', function() {
+    var unit = $('#unit').val();
+    localStorage.setItem('unit', unit);
+})
+

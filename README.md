@@ -10,7 +10,7 @@ This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.her
 
 After getting the form completed, I soon realized that not everyone will fill this out the same way... 
 
-![User Testing]("User testing")
+![User Testing]('https://github.com/Fordalex/power-in-numbers/blob/master/readme/user_testing.png', "User testing")
 
 I need to add a unit dropdown box to give me more control on how the user's input the data. This will allow me to perform unit conversions on the given values.
 

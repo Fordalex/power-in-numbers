@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, make_response
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
@@ -13,6 +13,17 @@ app.config["MONGO_DBNAME"] = 'task_manager'
 app.config["MONGO_URI"] = pinDB
 
 mongo = PyMongo(app)
+
+@app.route('/unit/<unitValue>')
+def set_unit(unitValue):
+    response = make_response('Setting cookie')
+    response.set_cookie('unit ', unitValue)
+    return response
+
+@app.route('/unit/show')
+def show_unit():
+    unit = request.cookies.get('unit')
+    return 'The unit is' + unit
 
 @app.route('/')
 def home():
