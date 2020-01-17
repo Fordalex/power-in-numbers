@@ -1,3 +1,4 @@
+// Adds a row for the tables with changing name attribute
 var rowIndex = 1;
 
 function createRow() {
@@ -33,3 +34,14 @@ function tableColour(num) {
 for (k = 0; k < newYearTable.length; k++) {
     tableColour(k);
 }
+
+// changing the expand text
+$('.expand-button').html('Expand')
+$('.expand-button').on('click', function() {
+    console.log(this.text)
+    if (this.text == 'Expand') {
+        $(this).html('Close');
+    } else {
+        $(this).html('Expand');
+    }
+})
