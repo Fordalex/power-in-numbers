@@ -13,3 +13,7 @@ After getting the form completed, I soon realized that not everyone will fill th
 ![User Testing]("User testing")
 
 I need to add a unit dropdown box to give me more control on how the user's input the data. This will allow me to perform unit conversions on the given values.
+
+## Bugs
+
+Still trying to work out how to get the correct amount of rows in the session table to be displayed.

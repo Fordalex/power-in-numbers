@@ -60,7 +60,7 @@
                 </div>
                 <div class="row m-0 p-0 mx-2">
                     <div class="col-12 p-0 m-0">
-                        <div class="collapse  mt-4" id="{{ record.first_name }}">
+                        <div class="collapse  mt-4" id="{{ record.first_name }}{{ loop.index }}">
                             <div class="card-body m-0 p-0">
                                 <div class="d-flex justify-content-center">
                                     <table class="session-table container-fluid">
@@ -94,7 +94,7 @@
                             <div class="col-6 p-0">
                                 <p>
                                     <a class="btn secondary-colour text-light border float-right expand-button" data-toggle="collapse"
-                                        href="#{{ record.first_name }}" role="button" aria-expanded="false"
+                                        href="#{{ record.first_name }}{{ loop.index }}" role="button" aria-expanded="false"
                                         aria-controls="collapseExample">
                                         Expand
                                     </a>
