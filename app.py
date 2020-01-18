@@ -17,17 +17,19 @@ mongo = PyMongo(app)
 @app.route('/unit/<unitValue>')
 def set_unit(unitValue):
     response = make_response('Setting cookie')
-    response.set_cookie('unit ', unitValue)
+    response.set_cookie('unit', unitValue)
     return response
 
 @app.route('/unit/show')
 def show_unit():
     unit = request.cookies.get('unit')
-    return 'The unit is' + unit
+    return 'The unit is ' + unit
 
 @app.route('/')
 def home():
-    return render_template("home.html", sessions=mongo.db.sessions.find())
+    unitVar = request.cookies.get('unit')
+    print(unitVar)
+    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar)
 
 @app.route('/add_session')
 def add_session():

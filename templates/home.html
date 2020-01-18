@@ -6,7 +6,9 @@
 <div class="page-wrapper">
     <div class="page-container">
         <div>
-            <select class="form-control mb-2" id="unit">
+            <h6 class="m-0 mb-1 p-0">Unit:</h6>
+            <select class="form-control mb-2" id="unit" value="kg">
+                <option>none</option>
                 <option>lb</option>
                 <option>kg</option>
             </select>
@@ -15,11 +17,11 @@
                 them know there not alone. Create or start one for the many training plan's we have available. Think
                 your the best? Find out by adding your personal best's and comparing them with others.</p>
             <hr>
-            {% for session in sessions %} {% if loop.index % 2 != 0 %}
+            {% for session in sessions %}
             <div class="session-card my-3 p-2">
                 <div class="row m-0 p-0">
                     <div class="col-6 pl-1">
-                        <h5><u>{{ loop.index }}. {{ session.first_name }} <span
+                        <h5><u>{{ loop.index }}. {{ session.first_name }}<span
                                     class="secondary-colour-text">{{ session.last_name }}</span></u></h5>
                         <div class="row m-0 p-0">
                             <div class="col-12 col-md-6 m-0 p-0">
@@ -27,12 +29,14 @@
                                 <p class="m-0 p-0"><b>Gender:</b> {{ session.gender }}</p>
                             </div>
                             <div class="col-12 col-md-6 m-0 p-0">
-                              
+
                                 <div>
-                                    {% if session.bw_unit == 'lb' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b> {{ session.body_weight }}lb</p>
+                                    {% if unit == 'lb'  %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b> {{ session.body_weight * 2 }} lb</p>
+                                    {% elif unit == 'kg'  %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b> {{ session.body_weight }} kg</p>
                                     {% else %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b> {{ session.body_weight / 2 }}kg</p>
+                                    <p class="m-0 p-0"><b>Body Weight:</b> {{ session.body_weight }} {{ session.bw_unit }}</p>
                                     {% endif %}
                                 </div>
                             </div>
@@ -141,11 +145,11 @@
                                     <div class="col-12 col-md-9 m-0">
                                         <p class="m-0 p-0 ml-2"><small><b>Logged:</b> 12/01/2020 - 15:32</small></p>
                                     </div>
-                                    <div  class="col-12 col-md-3 m-0">
+                                    <div class="col-12 col-md-3 m-0">
                                         <p>
                                             <a class="btn secondary-colour expand-button text-light border float-right"
-                                                data-toggle="collapse" href="#{{ session.first_name }}{{ loop.index }}" role="button"
-                                                aria-expanded="false" aria-controls="collapseExample">
+                                                data-toggle="collapse" href="#{{ session.first_name }}{{ loop.index }}"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 Expand
                                             </a>
                                         </p>
@@ -156,143 +160,6 @@
                     </div>
                 </div>
             </div>
-            {% else %}
-            <div class="session-card my-3 p-2">
-                <div class="row m-0 p-0">
-                    <div class="col-6 pl-1">
-                        <h5><u>{{ loop.index }}. {{ session.first_name }} <span
-                                    class="secondary-colour-text">{{ session.last_name }}</span></u></h5>
-                        <div class="row m-0 p-0">
-                            <div class="col-12 col-md-6 m-0 p-0">
-                                <p class="m-0 p-0"><b>Age:</b> {{ session.age }}</p>
-                                <p class="m-0 p-0"><b>Gender:</b> {{ session.gender }}</p>
-                            </div>
-                            <div class="col-12 col-md-6 m-0 p-0">
-                                <div>
-                                    <p class="m-0 p-0"><b>Body Weight:</b> {{ session.body_weight }}KG</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 pr-0 border-left">
-                        <i class="fas fa-dumbbell float-right"></i>
-
-                        <p class="m-0 mt-4"><b>Location:</b> {{ session.location }}</p>
-                        <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
-                        <div class="collapse d-none" id="{{ session.first_name }}">
-                            <div class="card-body">
-                                <h5>Motivated</h5>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                        style="width: {{ session.motivated }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <h5>Difficulty</h5>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: {{ session.difficulty }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <h5>Effort</h5>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                        style="width: {{ session.effort }}%" aria-valuenow="100" aria-valuemin="0"
-                                        aria-valuemax="100">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row m-0 p-0 mx-2">
-                    <div class="col-12 p-0 m-0">
-                        <div class="collapse  mt-4" id="{{ session.first_name }}{{ loop.index }}">
-                            <div class="card-body m-0 p-0">
-                                <div class="d-flex justify-content-center">
-                                    <table class="session-table container-fluid">
-                                        <tr>
-                                            <th>Exercise</th>
-                                            <th>Sets / Reps</th>
-                                            <th>Weight</th>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ session.session_exercise_1 }}</td>
-                                            <td>{{ session.session_sets_1 }}</td>
-                                            <td>{{ session.session_weight_1 }}KG</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ session.session_exercise_2 }}</td>
-                                            <td>{{ session.session_sets_2 }}</td>
-                                            <td>{{ session.session_weight_2 }}KG</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ session.session_exercise_3 }}</td>
-                                            <td>{{ session.session_sets_3 }}</td>
-                                            <td>{{ session.session_weight_3 }}KG</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ session.session_exercise_4 }}</td>
-                                            <td>{{ session.session_sets_4 }}</td>
-                                            <td>{{ session.session_weight_4 }}KG</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-body m-0 p-0 mt-3">
-                                <h5>Motivated</h5>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                        style="width: {{ session.motivated }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <h5>Difficulty</h5>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: {{ session.difficulty }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <h5>Effort</h5>
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                        style="width: {{ session.effort }}%" aria-valuenow="100" aria-valuemin="0"
-                                        aria-valuemax="100">
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="m-0 mt-4"><b>Session Type:</b> {{ session.session_type }}</p>
-                            <p class="m-0"><b>Length:</b> {{ session.length_hour }} Hour(s) {{ session.length_min }}
-                                Min(s)
-                            </p>
-                        </div>
-                        <div class="row m-0 mt-3 p-0">
-                            <div class="col-6 p-0">
-                                <p><b>Notes:</b> {{ session.notes }}</p>
-                            </div>
-                            <div class="col-6 p-0">
-                                <div class="row">
-                                    <div class="col-12 col-md-9 m-0">
-                                        <p class="m-0 p-0 ml-2"><small><b>Logged:</b> 12/01/2020 - 15:32</small></p>
-                                    </div>
-                                    <div  class="col-12 col-md-3 m-0">
-                                        <p>
-                                            <a class="btn secondary-colour expand-button text-light border float-right"
-                                                data-toggle="collapse" href="#{{ session.first_name }}{{ loop.index }}" role="button"
-                                                aria-expanded="false" aria-controls="collapseExample">
-                                                Expand
-                                            </a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
             {% endfor %}
         </div>
 
