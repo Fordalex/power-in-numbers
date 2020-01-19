@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-1 m-0 px-3 p-0">
                     <label>Unit:</label>
-                    <select  class="form-control" name="bw_unit">
+                    <select class="form-control" name="bw_unit">
                         <option>lb</option>
                         <option>kg</option>
                     </select>
@@ -105,12 +105,24 @@
             </div>
             <hr>
             <div>
-                <h3 class="my-3">Training Session</h3>
-                <table class="session-table container-fluid" id="addSessionTable">
+                <div class="row p-0 m-0">
+                    <div class="col-9">
+                        <h3 class="my-3">Training Session</h3>
+                    </div>
+                    <div class="col-3">
+                        <label>Unit:</label>
+                        <select class="form-control" name="weight_unit">
+                            <option id="training-session-id">lb</option>
+                            <option>kg</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="session-table container-fluid mt-3" id="addSessionTable">
                     <tr>
                         <th>Exercise:</th>
                         <th>Sets / Reps:</th>
-                        <th>Weight (KG):</th>
+                        <th>Weight:</th>
+                        <th id="weight-table">:</th>
                     </tr>
                     <tr>
                         <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
@@ -119,9 +131,10 @@
                     </tr>
                 </table>
                 <a class="btn secondary-colour text-light border my-2" onclick="createRow()">Add Row +</a>
-                <p class="m-0 p-0">Notes:  {{ session.notes }}</p>
+                <p class="m-0 p-0">Notes: {{ session.notes }}</p>
                 <textarea name="notes" class="container-fluid my-2"></textarea>
-                <button class="btn secondary-colour text-light border float-right" type="submit" name="action">Done</button>
+                <button class="btn secondary-colour text-light border float-right" type="submit"
+                    name="action">Done</button>
             </div>
         </form>
     </div>

@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    fixFloat()
+})
+
 // Adds a row for the tables with changing name attribute
 var rowIndex = 1;
 
@@ -52,3 +56,16 @@ $('#unit').on('click', function() {
     localStorage.setItem('unit', unit);
 })
 
+// convert a float into an interger
+var numberUnit = document.getElementsByClassName('check-number-float')
+
+function fixFloat() {
+    for(i=0; i < numberUnit.length; i++) {
+        unitNum = numberUnit[i].textContent
+        numberUnit[i].innerHTML = parseInt(unitNum);
+    }
+}
+
+$('#training-session-id').on('click', function() {
+    console.log('working2222')
+})

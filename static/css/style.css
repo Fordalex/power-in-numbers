@@ -30,6 +30,11 @@ p, a, td, th, option {
           justify-content: center;
 }
 
+.unit-button {
+  padding: 0px 10px;
+  height: 38px;
+}
+
 .secondary-colour {
   background-color: #ffaf65;
 }

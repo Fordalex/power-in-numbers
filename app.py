@@ -14,22 +14,18 @@ app.config["MONGO_URI"] = pinDB
 
 mongo = PyMongo(app)
 
-@app.route('/unit/<unitValue>')
-def set_unit(unitValue):
-    response = make_response('Setting cookie')
-    response.set_cookie('unit', unitValue)
-    return response
-
-@app.route('/unit/show')
-def show_unit():
-    unit = request.cookies.get('unit')
-    return 'The unit is ' + unit
-
 @app.route('/')
 def home():
     unitVar = request.cookies.get('unit')
-    print(unitVar)
     return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar)
+
+@app.route('/add_unit',  methods=['POST'])
+def add_unit():
+    unitVar = request.cookies.get('unit')
+    unitValue = request.form["unit"]
+    res = make_response(redirect(url_for('home')))
+    res.set_cookie('unit', unitValue)
+    return res
 
 @app.route('/add_session')
 def add_session():

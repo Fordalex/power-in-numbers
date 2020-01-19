@@ -17,3 +17,4 @@ I need to add a unit dropdown box to give me more control on how the user's inpu
 ## Bugs
 
 Still trying to work out how to get the correct amount of rows in the session table to be displayed.
+I would like the user to be able to specify what unit of weight they would like to be displayed, managed to get the unit to save in a cookie.

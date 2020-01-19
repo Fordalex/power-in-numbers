@@ -7,20 +7,41 @@
     <div class="page-container">
         <div class="container-fluid m-0 p-0">
             <div class="row m-0 p-0">
-                <div class="col-6">
-                    <label>Search</label>
-                    <input>
+                <div class="col-12 col-md-3 d-flex justify-content-end align-items-end">
+                    <div>
+                        <label>Search</label>
+                        <input class="form-control">
+                    </div>
                 </div>
-                <div class="col-6 d-flex justify-content-end">
+                <div class="col-12 col-md-3 d-flex justify-content-end align-items-end">
+                    <select class="form-control" name="unit">
+                        {% if unit == 'kg' %}
+                        <option value="kg">kg</option>
+                        <option value="lb">lb</option>
+                        <option value="none">none</option>
+                        {% elif unit == 'lb'%}
+                        <option value="lb">lb</option>
+                        <option value="kg">kg</option>
+                        <option value="none">none</option>
+                        {% else %}
+                        <option value="none">none</option>
+                        <option value="kg">kg</option>
+                        <option value="lb">lb</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="col-12 col-md-3 d-flex justify-content-end align-items-end">
                     <div class="d-flex align-items-center">
                         <label class="m-0 p-0 mr-2">Filter</label>
-                        <select>
+                        <select class="form-control">
                             <option>Age</option>
                             <option>Date</option>
                             <option>Weight</option>
                         </select>
                     </div>
-
+                </div>
+                <div class="col-12 col-md-3 d-flex justify-content-end align-items-end">
+                    <button class="btn btn-dark unit-button" name="unit">Done</button>
                 </div>
             </div>
             <hr>
