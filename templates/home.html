@@ -45,6 +45,10 @@
                         <i class="fas fa-dumbbell float-right"></i>
                         {% elif session.session_type == 'Running' %}
                         <i class="fas fa-shoe-prints float-right"></i>
+                        {% elif session.session_type == 'Body Weight' %}
+                        <i class="fas fa-child float-right"></i>
+                        {% elif session.session_type == 'Olympic Lifting' %}
+                        <i class="fas fa-dumbbell float-right"></i>
                         {% endif %}
                         <h5><u>{{ loop.index }}. {{ session.first_name }}<span
                                     class="secondary-colour-text"> {{ session.last_name }}</span></u></h5>
