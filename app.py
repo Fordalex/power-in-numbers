@@ -37,6 +37,11 @@ def insert_session():
     sessions.insert_one(request.form.to_dict())
     return redirect(url_for('home'))
 
+@app.route('/delete_session/<session_id>')
+def delete_session(session_id):
+    mongo.db.sessions.remove({'_id': ObjectId(session_id)})
+    return redirect(url_for('home'))
+
 @app.route('/records')
 def records():
     return render_template("records.html", records=mongo.db.records.find())

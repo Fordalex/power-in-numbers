@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="col-6 pr-0 border-left">
-                        <i class="fas fa-edit float-right"></i>
+                        <i class="fas fa-edit float-right" data-toggle="collapse" href="#{{ session.last_name }}{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseExample"></i>
                         <p class="m-0 mt-4"><b>Location:</b> {{ session.location }}</p>
                         <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
                         <div class="collapse d-none" id="{{ session.first_name }}">
@@ -83,21 +83,21 @@
                                 <h5>Motivated</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                        style="width: {{ session.motivated }}%" aria-valuenow="75" aria-valuemin="0"
+                                        style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
                                         aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Difficulty</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: {{ session.difficulty }}%" aria-valuenow="75" aria-valuemin="0"
+                                        style="width: {{ session.difficulty | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
                                         aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Effort</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                        style="width: {{ session.effort }}%" aria-valuenow="100" aria-valuemin="0"
+                                        style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100" aria-valuemin="0"
                                         aria-valuemax="100">
                                     </div>
                                 </div>
@@ -144,6 +144,20 @@
                                             <td>{{ session.session_weight_4 }}KG</td>
                                         </tr>
                                         {% endif %}
+                                        {% if session.session_exercise_5 != null %}
+                                        <tr>
+                                            <td>{{ session.session_exercise_5 }}</td>
+                                            <td>{{ session.session_sets_5 }}</td>
+                                            <td>{{ session.session_weight_5 }}KG</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if session.session_exercise_6 != null %}
+                                        <tr>
+                                            <td>{{ session.session_exercise_6 }}</td>
+                                            <td>{{ session.session_sets_6 }}</td>
+                                            <td>{{ session.session_weight_6 }}KG</td>
+                                        </tr>
+                                        {% endif %}
                                     </table>
                                 </div>
                             </div>
@@ -151,21 +165,21 @@
                                 <h5>Motivated</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                        style="width: {{ session.motivated }}%" aria-valuenow="75" aria-valuemin="0"
+                                        style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
                                         aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Difficulty</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: {{ session.difficulty }}%" aria-valuenow="75" aria-valuemin="0"
+                                        style="width: {{ session.difficulty | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
                                         aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Effort</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                        style="width: {{ session.effort }}%" aria-valuenow="100" aria-valuemin="0"
+                                        style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100" aria-valuemin="0"
                                         aria-valuemax="100">
                                     </div>
                                 </div>
@@ -196,6 +210,15 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                          <div class="collapse" id="{{ session.last_name }}{{ loop.index }}">
+                            <div class="card card-body p-2 mt-2">
+                              <a href="{{url_for('delete_session', session_id=session._id)}}"><button class="btn btn-danger container-fluid">Delete</button></a>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>
