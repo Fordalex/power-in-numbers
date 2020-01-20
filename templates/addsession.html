@@ -17,29 +17,28 @@
                 </div>
             </div>
             <div class="row m-0 p-0">
-                <div class="col-4 p-0">
+                <div class="col-3 p-0 m-0">
                     <label class="mb-1" for="exampleFormControlSelect1">Age:</label>
                     <input type="number" class="form-control" placeholder="23" name="age">
                 </div>
-                <div class="col-4">
+                <div class="col-4 m-0">
                     <label class="mb-1" for="exampleFormControlSelect1">Gender:</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="gender">
                         <option>Male</option>
                         <option>Female</option>
                     </select>
                 </div>
-                <div class="col-3 p-0">
+                <div class="col-3 p-0 m-0">
                     <label class="mb-1" for="exampleFormControlSelect1">BW:</label>
                     <input type="number" class="form-control" placeholder="body weight" name="body_weight">
                 </div>
-                <div class="col-1 m-0 px-3 p-0">
-                    <label>Unit:</label>
+                <div class="col-2 m-0 px-3 p-0">
+                    <label class="mb-1 p-0">Unit:</label>
                     <select class="form-control" name="bw_unit">
                         <option>lb</option>
                         <option>kg</option>
                     </select>
                 </div>
-
             </div>
             <hr>
             <div class="row m-0 p-0">
@@ -116,18 +115,20 @@
                             <option>kg</option>
                         </select>
                     </div>
+
                 </div>
                 <table class="session-table container-fluid mt-3" id="addSessionTable">
                     <tr>
                         <th>Exercise:</th>
                         <th>Sets / Reps:</th>
                         <th>Weight:</th>
-                        <th id="weight-table">:</th>
+                        <th id="" class="unit-td"><i class="fas fa-balance-scale"></i></th>
                     </tr>
                     <tr>
                         <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
                         <td><input class="container-fluid" type="type" name="session_sets_1"></td>
                         <td><input class="container-fluid" type="type" name="session_weight_1"></td>
+                        <td class="unit-td"></td>
                     </tr>
                 </table>
                 <a class="btn secondary-colour text-light border my-2" onclick="createRow()">Add Row +</a>

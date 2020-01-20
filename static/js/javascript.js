@@ -10,7 +10,8 @@ function createRow() {
     $('#addSessionTable').append(` <tr>
     <td><input class="container-fluid" type="text" name="session_exercise_${rowIndex}"></td>
     <td><input class="container-fluid" type="type" name="session_sets_${rowIndex}"></td>
-    <td><input class="container-fluid" type="type" name="session_weight_${rowIndex}"></td>
+    <td><input class="container-fluid d-flex justify-content-end" type="type" name="session_weight_${rowIndex}"></td>
+    <td class="unit-td">lb</td>
 </tr>`)
     for (k = 0; k < newYearTable.length; k++) {
         tableColour(k);
