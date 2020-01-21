@@ -70,3 +70,5 @@ function fixFloat() {
 $('#training-session-id').on('click', function() {
     console.log('working2222')
 })
+
+

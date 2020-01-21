@@ -120,7 +120,7 @@
                                             <th>Sets / Reps</th>
                                             <th>Weight</th>
                                         </tr>
-                                        {% if session.session_exercise_1 != '' %}
+                                        {% if session.session_exercise_1 != null %}
                                         <tr>
                                             <td>{{ session.session_exercise_1 }}</td>
                                             <td>{{ session.session_sets_1 }}</td>
@@ -228,10 +228,6 @@
             </div>
             {% endfor %}
         </div>
-
-
     </div>
 </div>
-
-
 {% endblock %}

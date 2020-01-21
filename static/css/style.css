@@ -35,8 +35,12 @@ p, a, td, th, option {
   height: 38px;
 }
 
-.secondary-colour {
+.main-colour {
   background-color: #ffaf65;
+}
+
+.secondary-colour {
+  background-color: #f5caa3;
 }
 
 .secondary-colour-text {
@@ -81,7 +85,7 @@ p, a, td, th, option {
 }
 
 .fa-edit:hover {
-  color: lightsalmon;
+  color: #f5caa3;
   cursor: pointer;
 }
 

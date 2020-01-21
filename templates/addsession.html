@@ -7,37 +7,22 @@
     <div class="page-container">
         <form action="{{ url_for('insert_session') }}" method="POST" class="container-fluid">
             <div class="row my-2 p-0">
-                <div class="col-12 col-lg-6">
-                    <label class="mb-1">First Name:</label>
-                    <input type="text" class="form-control" placeholder="John" name="first_name">
+                <div class="col-md-4">
+                    <p>First Name:</p>
                 </div>
-                <div class="col-12 col-lg-6">
-                    <label class="mb-1">Last Name:</label>
-                    <input type="text" class="form-control" placeholder="Smith" name="last_name">
+                <div class=" col-md-4">
+                    <p>Last Name:</p>
+                </div>
+                <div class="col-md-4">
+                    <p>Age:</p>
                 </div>
             </div>
-            <div class="row m-0 p-0">
-                <div class="col-3 p-0 m-0">
-                    <label class="mb-1" for="exampleFormControlSelect1">Age:</label>
-                    <input type="number" class="form-control" placeholder="23" name="age">
+            <div class="row">
+                <div class="col-6">
+                    <p>Gender:</p>
                 </div>
-                <div class="col-4 m-0">
-                    <label class="mb-1" for="exampleFormControlSelect1">Gender:</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
-                <div class="col-3 p-0 m-0">
-                    <label class="mb-1" for="exampleFormControlSelect1">BW:</label>
-                    <input type="number" class="form-control" placeholder="body weight" name="body_weight">
-                </div>
-                <div class="col-2 m-0 px-3 p-0">
-                    <label class="mb-1 p-0">Unit:</label>
-                    <select class="form-control" name="bw_unit">
-                        <option>lb</option>
-                        <option>kg</option>
-                    </select>
+                <div class="col-6">
+                    <p>Body weight:</p>
                 </div>
             </div>
             <hr>
@@ -61,8 +46,7 @@
                     <input type="number" class="form-control" placeholder="Minute(s)" name="length_min">
                 </div>
             </div>
-            <hr>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-10">
                     <label class="mb-1" for="exampleFormControlSelect1">Session Type:</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="session_type">
@@ -78,7 +62,7 @@
                         <i class="fas fa-plus icon-button text-light"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <hr>
             <div class="row m-0 p-0">
                 <div class="col-12 p-0 d-flex justify-content-around">

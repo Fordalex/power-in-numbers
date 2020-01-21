@@ -2,6 +2,7 @@
 
 $aboveNav: rgb(73, 73, 73);
 $mainColour: rgb(255, 175, 101);
+$mainColourLight: rgb(245, 202, 163);
 $primaryBtn: rgb(241,180,77);
 $mainGradient: linear-gradient(rgb(255, 175, 101),rgb(224, 125, 79));
 $titleContainer: #fffeef;
@@ -38,8 +39,12 @@ p,a,td,th,option {
     height:38px;
 }
 
-.secondary-colour {
+.main-colour {
     background-color:  $mainColour;
+}
+
+.secondary-colour {
+    background-color:  $mainColourLight;
 }
 
 .secondary-colour-text {
@@ -88,7 +93,7 @@ p,a,td,th,option {
 }
 
 .fa-edit:hover {
-    color: lightsalmon;
+    color: $mainColourLight;
     cursor: pointer;
 }
 
