@@ -43,17 +43,19 @@ def register_insert():
             hashpass = sha256_crypt.encrypt(request.form['password'])
             username = request.form['username']
             age = request.form['age']
+            first_name = request.form['first_name']
+            last_name = request.form['last_name']
             gender = request.form['gender']
             body_weight = request.form['body_weight']
             bw_unit = request.form['bw_unit']
             location = request.form['location']
-            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'bodyweight': body_weight, 'bw_unit': bw_unit, 'location': location})
+            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'bodyweight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
             session['username'] = request.form['username']
             return redirect(url_for('home'))
-        
+
         return render_template('index.html')
 
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -74,6 +76,15 @@ def add_unit():
     res = make_response(redirect(url_for('home')))
     res.set_cookie('unit', unitValue)
     return res
+
+@app.route('/add_session')
+def add_session():
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    return render_template('addsession.html', user=login_user)
+
+##########################################
 
 @app.route('/insert_session', methods=['POST'])
 def insert_session():
@@ -119,14 +130,18 @@ def insert_session():
     sessions.insert_one(sessionDict)
     return redirect(url_for('home'))
 
+############################################
+
 @app.route('/delete_session/<session_id>')
 def delete_session(session_id):
     mongo.db.sessions.remove({'_id': ObjectId(session_id)})
     return redirect(url_for('home'))
 
-@app.route('/users_details')
-def users_details():
-    return render_template('addsession.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'

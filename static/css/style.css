@@ -65,6 +65,10 @@ p, a, td, th, option {
   max-width: 400px;
 }
 
+.register-width {
+  max-width: 500px;
+}
+
 .above-navigation {
   background-color: #494949;
   color: #ffaf65;

@@ -7,22 +7,19 @@
     <div class="page-container">
         <form action="{{ url_for('insert_session') }}" method="POST" class="container-fluid">
             <div class="row my-2 p-0">
-                <div class="col-md-4">
-                    <p>First Name:</p>
+                <div class="col-6 col-md-4">
+                    <p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
                 </div>
-                <div class=" col-md-4">
-                    <p>Last Name:</p>
-                </div>
-                <div class="col-md-4">
-                    <p>Age:</p>
+                <div class="col-6 col-md-4">
+                    <p><b>Age:</b> {{ user.age }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <p>Gender:</p>
+            <div class="row my-2 p-0">
+                <div class="col-6 col-md-4">
+                    <p><b>Gender:</b> {{ user.gender }}</p>
                 </div>
-                <div class="col-6">
-                    <p>Body weight:</p>
+                <div class="col-6 col-md-4">
+                    <p><b>BW:</b> {{ user.bodyweight }}{{ user.bw_unit }}</p>
                 </div>
             </div>
             <hr>
@@ -118,10 +115,10 @@
                         <td class="unit-td"></td>
                     </tr>
                 </table>
-                <a class="btn secondary-colour text-light border my-2" onclick="createRow()">Add Row +</a>
+                <a class="btn main-colour text-light border my-2" onclick="createRow()">Add Row +</a>
                 <p class="m-0 p-0">Notes: {{ session.notes }}</p>
                 <textarea name="notes" class="container-fluid my-2"></textarea>
-                <button class="btn secondary-colour text-light border float-right" type="submit"
+                <button class="btn main-colour text-light border float-right" type="submit"
                     name="action">Done</button>
             </div>
         </form>

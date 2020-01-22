@@ -29,7 +29,7 @@
           <a class="nav-link" href="{{url_for('home')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="{{ url_for('users_details') }}">Add A Session</a>
+          <a class="nav-link text-light" href="{{ url_for('add_session') }}">Add A Session</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#">Training Plans</a>
@@ -42,6 +42,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link text-light" href="">Add A Personal Best</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{{ url_for('logout') }}">Log out</a>
         </li>
       </ul>
     </div>
