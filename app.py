@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, make_respo
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
-import bcrypt
+from passlib.hash import sha256_crypt
 
 if path.exists("env.py"):
     import env
@@ -19,7 +19,7 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     if 'username' in session:
-        return 'You are logged in as ' + session['username']
+        return render_template('home.html')
 
     return render_template('index.html')
 
@@ -37,10 +37,10 @@ def register():
 def register_insert():
     if request.method == 'POST':
         users = mongo.db.users
-        existing_user = users.find_one({'' : request.form['username']})
+        existing_user = users.find_one({'username' : request.form['username']})
 
         if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
+            hashpass = sha256_crypt.encrypt(request.form['password'])
             username = request.form['username']
             age = request.form['age']
             gender = request.form['gender']
@@ -51,7 +51,7 @@ def register_insert():
             session['username'] = request.form['username']
             return redirect(url_for('home'))
         
-        return 'That username already exists!'
+        return render_template('index.html')
 
     return render_template('home.html')
 
@@ -61,9 +61,8 @@ def login():
     login_user = users.find_one({'username' : request.form['username']})
 
     if login_user:
-        password = request.form['password']
-        dbpassword = login_user['password']
-        if bcrypt.checkpw(password.encode('utf-8'), dbpassword.encode('utf-8')):
+        if sha256_crypt.verify(request.form['password'], login_user['password']):
+            session['username'] = request.form['username']
             return redirect(url_for('home'))
         else:
             return redirect(url_for('index'))
@@ -132,4 +131,4 @@ def users_details():
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host=os.getenv("IP", "0.0.0.0"),
-            port=int(os.getenv("PORT", "5000")), debug=True)
+            port=int(os.getenv("PORT", "5000")), debug=False)
