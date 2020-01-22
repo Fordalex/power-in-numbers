@@ -61,6 +61,10 @@ p, a, td, th, option {
   border: solid lightgray 1px;
 }
 
+.login-container {
+  max-width: 400px;
+}
+
 .above-navigation {
   background-color: #494949;
   color: #ffaf65;

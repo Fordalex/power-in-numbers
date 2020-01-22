@@ -2,6 +2,21 @@ $(document).ready(function () {
     fixFloat()
 })
 
+ // Welcome message
+ var today = new Date();
+ var hourNow = today.getHours();
+ var greeting;
+
+ if (hourNow > 20) {
+     greeting = 'Good Evening'
+ } else if (hourNow > 12) {
+     greeting = 'Good Afternoon'
+ } else {
+     greeting = 'Good Morning'
+ };
+
+ $('#greetingMessage').html(greeting);
+
 // Adds a row for the tables with changing name attribute
 var rowIndex = 1;
 

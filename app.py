@@ -1,8 +1,10 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, make_response
+from flask import Flask, render_template, redirect, request, url_for, make_response, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from os import path
+import bcrypt
+
 if path.exists("env.py"):
     import env
 
@@ -15,9 +17,55 @@ app.config["MONGO_URI"] = pinDB
 mongo = PyMongo(app)
 
 @app.route('/')
+def index():
+    if 'username' in session:
+        return 'You are logged in as ' + session['username']
+
+    return render_template('index.html')
+
+@app.route('/home')
 def home():
     unitVar = request.cookies.get('unit')
     return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar)
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/register_insert', methods=['POST', 'GET'])
+def register_insert():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'' : request.form['username']})
+
+        if existing_user is None:
+            hashpass = request.form['password']
+            username = request.form['username']
+            age = request.form['age']
+            gender = request.form['gender']
+            body_weight = request.form['body_weight']
+            bw_unit = request.form['bw_unit']
+            location = request.form['location']
+            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'bodyweight': body_weight, 'bw_unit': bw_unit, 'location': location})
+            session['username'] = request.form['username']
+            return redirect(url_for('home'))
+        
+        return 'That username already exists!'
+
+    return render_template('home.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    users = mongo.db.users
+    login_user = users.find_one({'username' : request.form['username']})
+
+    if login_user:
+        password = request.form['password']
+        if password == login_user['password']:
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('index'))
 
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
@@ -81,5 +129,6 @@ def users_details():
     return render_template('addsession.html')
 
 if __name__ == '__main__':
+    app.secret_key = 'mysecret'
     app.run(host=os.getenv("IP", "0.0.0.0"),
             port=int(os.getenv("PORT", "5000")), debug=True)
