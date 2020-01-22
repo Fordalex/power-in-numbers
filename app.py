@@ -40,7 +40,7 @@ def register_insert():
         existing_user = users.find_one({'' : request.form['username']})
 
         if existing_user is None:
-            hashpass = request.form['password']
+            hashpass = bcrypt.hashpw(request.form['password'], bcrypt.gensalt())
             username = request.form['username']
             age = request.form['age']
             gender = request.form['gender']
@@ -62,7 +62,8 @@ def login():
 
     if login_user:
         password = request.form['password']
-        if password == login_user['password']:
+        dbpassword = login_user['password']
+        if bcrypt.checkpw(password.encode('utf-8'), dbpassword.encode('utf-8')):
             return redirect(url_for('home'))
         else:
             return redirect(url_for('index'))
