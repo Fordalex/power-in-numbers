@@ -93,45 +93,8 @@ def add_session():
 @app.route('/insert_session', methods=['POST'])
 def insert_session():
     sessions = mongo.db.sessions
-    age = request.form['age']
-    body_weight = request.form['body_weight']
-    bw_unit = request.form['bw_unit']
-    date = request.form['date']
-    difficulty = request.form['difficulty']
-    effort = request.form['effort']
-    first_name = request.form['first_name']
-    gender = request.form['gender']
-    last_name = request.form['last_name']
-    length_hour = request.form['length_hour']
-    length_min = request.form['length_min']
-    location = request.form['location']
-    motivated = request.form['motivated']
-    notes = request.form['notes']
-    session_type = request.form['session_type']
-    session_exercise_1 = request.form['session_exercise_1']
-    session_sets_1 = request.form['session_sets_1']
-    session_weight_1 = request.form['session_weight_1']
-    weight_unit = request.form['weight_unit']
-    sessionDict = {
-                    "age": age, 
-                    "body_weight": body_weight, 
-                    "bw_unit": bw_unit, 
-                    "date": date, 
-                    "difficulty": difficulty, 
-                    "effort": effort, 
-                    "first_name": first_name, 
-                    "gender": gender, 
-                    "last_name": last_name, 
-                    "length_hour": length_hour, 
-                    "length_min": length_min, 
-                    "location": location, 
-                    "motivated": motivated, 
-                    "notes": notes, 
-                    "session_exercise": [{'session_exercise_1' : session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1': session_weight_1 },{'session_exercise_2' : session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1': session_weight_1 }],
-                    "session_type": "Powerlifting", 
-                    "weight_unit": "lb"
-}
-    sessions.insert_one(sessionDict)
+    sessionForm = request.form.to_dict()
+    sessions.insert_one(sessionForm)
     return redirect(url_for('home'))
 
 ############################################

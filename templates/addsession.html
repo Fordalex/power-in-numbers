@@ -84,55 +84,33 @@
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="row m-0 p-0">
+            <div class="row m-0 p-0" id="chooseTable">
+                <hr>
                 <div class="col-2 p-0">
                     <label>Unit:</label>
-                    <select class="form-control container-fluid" id="exampleFormControlSelect1" name="session_type">
-                        <option>LB</option>
-                        <option>KG</option>
+                    <select id="session-unit-option" class="form-control container-fluid">
+                        <option value="lb">LB</option>
+                        <option value="kg">KG</option>
                     </select>
                 </div>
                 <div class="col-7">
                     <label>Session Type:</label>
-                    <select class="form-control container-fluid" id="exampleFormControlSelect1" name="session_type">
-                        <option>Powerlifting</option>
-                        <option>Olympic Lifting</option>
-                        <option>Strong Man</option>
-                        <option>Strong Woman</option>
-                        <option>Body Weight</option>
-                        <option>Running</option>
+                    <select id="session-type-option" class="form-control container-fluid">
+                        <option value="powerlifting">Powerlifting</option>
+                        <option value="olympiclifting">Olympic Lifting</option>
+                        <option value="strongman">Strong Man</option>
+                        <option value="strongwoman">Strong Woman</option>
+                        <option value="bodyweight">Body Weight</option>
+                        <option value="running">Running</option>
                     </select>
                 </div>
                 <div class="col-3 d-flex align-items-end p-0">
-                    <button class="btn main-colour container-fluid">Continue</button>
+                    <div class="btn main-colour container-fluid" onclick="addSessionTable()">Continue</div>
                 </div>
             </div>
             <hr>
-            <div>
-                <div class="row p-0 m-0">
-                    <div class="col-12">
-                        <h3 class="my-3">Training Session</h3>
-                    </div>
-                </div>
-                <table class="session-table container-fluid mt-3" id="addSessionTable">
-                    <tr>
-                        <th>Exercise:</th>
-                        <th>Sets / Reps:</th>
-                        <th>Weight:</th>
-                        <th id="" class="unit-td"><i class="fas fa-balance-scale"></i></th>
-                    </tr>
-                    <tr>
-                        <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
-                        <td><input class="container-fluid" type="type" name="session_sets_1"></td>
-                        <td><input class="container-fluid" type="type" name="session_weight_1"></td>
-                        <td class="unit-td"></td>
-                    </tr>
-                </table>
-                <a class="btn main-colour text-dark border my-2" onclick="createRow()">Add Row +</a>
-                <p class="m-0 p-0">Notes: {{ session.notes }}</p>
-                <textarea name="notes" class="container-fluid form-control my-2"></textarea>
-                <button class="btn main-colour text-dark border float-right" type="submit" name="action">Done</button>
+            <div id="addSessionTable">
+                
             </div>
         </form>
     </div>
