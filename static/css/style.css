@@ -1,9 +1,40 @@
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Squada One', cursive;
+}
+
+h1 {
+  font-size: 55px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 45px;
+}
+
+h4 {
+  font-size: 40px;
+}
+
+h5 {
+  font-size: 35px;
+}
+
+h6 {
+  font-size: 40px;
 }
 
 p, a, td, th, option {
   font-family: 'Raleway', sans-serif;
+}
+
+.main-title {
+  font-size: 60px;
+  background: -webkit-linear-gradient(#eee, #ababab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .page-wrapper {
@@ -19,7 +50,7 @@ p, a, td, th, option {
   background-color: #fafafa;
   width: 100%;
   padding: 15px;
-  max-width: 800px;
+  max-width: 950px;
   border-right: solid black 1px;
   border-left: solid black 1px;
   display: -webkit-box;
@@ -36,7 +67,7 @@ p, a, td, th, option {
 }
 
 .main-colour {
-  background-color: #ffaf65;
+  background-color: #69add6;
 }
 
 .secondary-colour {
@@ -44,7 +75,7 @@ p, a, td, th, option {
 }
 
 .secondary-colour-text {
-  color: #ffaf65;
+  color: #69add6;
 }
 
 .left-border {
@@ -52,8 +83,8 @@ p, a, td, th, option {
 }
 
 .session-header th {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffaf65), to(#e07d4f));
-  background-image: linear-gradient(#ffaf65, #e07d4f);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#89c3e7), to(#69add6));
+  background-image: linear-gradient(#89c3e7, #69add6);
 }
 
 .session-table tr td input {
@@ -71,16 +102,17 @@ p, a, td, th, option {
 
 .above-navigation {
   background-color: #494949;
-  color: #ffaf65;
+  color: #69add6;
 }
 
 .navbar {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffaf65), to(#e07d4f));
-  background-image: linear-gradient(#ffaf65, #e07d4f);
+  background-color: white;
 }
 
 .title-container {
-  background-color: #fffeef;
+  background-image: url("../img/bar-end-background.jpg");
+  background-position: center;
+  background-size: cover;
   padding: 30px;
   border-bottom: solid 1px gray;
   z-index: 5;

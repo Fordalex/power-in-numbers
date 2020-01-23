@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="title-container">
-    <h1 class="text-center">Power In Numbers</h1>
+    <h1 class="text-center main-title">Power In Numbers</h1>
 </div>
 <div class="page-wrapper">
     <div class="page-container">
@@ -9,25 +9,26 @@
             <h6 class="m-0 mb-1 p-0">Unit:</h6>
             <form action="{{ url_for('add_unit') }}" method="POST">
                 <div class="row m-0 p-0">
-                    <div class="col-10 col-md-11 m-0 p-0">
-                        <select class="form-control mb-2" name="unit">
-                            {% if unit == 'kg' %}
-                            <option value="kg">kg</option>
-                            <option value="lb">lb</option>
-                            <option value="none">none</option>
-                            {% elif unit == 'lb'%}
-                            <option value="lb">lb</option>
-                            <option value="kg">kg</option>
-                            <option value="none">none</option>
-                            {% else %}  
-                            <option value="none">none</option>
-                            <option value="kg">kg</option>
-                            <option value="lb">lb</option>
-                            {% endif %}
-                        </select>
-                    </div>
-                    <div class="col-2 col-md-1 m-0 p-0 d-flex justify-content-center">
-                        <button class="btn btn-dark unit-button" name="unit"><i class="fas fa-balance-scale"></i></button>
+                    <div class="col-12 col-md-11 m-0 p-0">
+                        <div class="d-flex justify-content-center">
+                            <select class="form-control mb-2" name="unit">
+                                {% if unit == 'kg' %}
+                                <option value="kg">kg</option>
+                                <option value="lb">lb</option>
+                                <option value="none">none</option>
+                                {% elif unit == 'lb'%}
+                                <option value="lb">lb</option>
+                                <option value="kg">kg</option>
+                                <option value="none">none</option>
+                                {% else %}
+                                <option value="none">none</option>
+                                <option value="kg">kg</option>
+                                <option value="lb">lb</option>
+                                {% endif %}
+                            </select>
+                            <button class="btn ml-3 btn-dark unit-button" name="unit"><i
+                                    class="fas fa-balance-scale text-light"></i></button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -50,8 +51,8 @@
                         {% elif session.session_type == 'Olympic Lifting' %}
                         <i class="fas fa-dumbbell float-right"></i>
                         {% endif %}
-                        <h5><u>{{ loop.index }}. {{ session.first_name }}<span
-                                    class="secondary-colour-text"> {{ session.last_name }}</span></u></h5>
+                        <h5><u>{{ loop.index }}. {{ session.first_name }}<span class="secondary-colour-text">
+                                    {{ session.last_name }}</span></u></h5>
                         <div class="row m-0 p-0">
                             <div class="col-12 col-md-6 m-0 p-0">
                                 <p class="m-0 p-0"><b>Age:</b> {{ session.age }}</p>
@@ -60,26 +61,41 @@
                             <div class="col-12 col-md-6 m-0 p-0">
                                 <div>
                                     {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b><p class="check-number-float float-left">{{ session.body_weight | int }}</p> kg</p>
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p> kg
+                                    </p>
                                     {% endif %}
                                     {% if session.bw_unit == 'lb' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b><p class="check-number-float float-left">{{ session.body_weight | int * 10 / 22 }}</p>kg</p>
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">
+                                            {{ session.body_weight | int * 10 / 22 }}</p>kg
+                                    </p>
                                     {% endif %}
                                     {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b><p class="check-number-float float-left">{{ session.body_weight | int }}</p> lb</p>
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p> lb
+                                    </p>
                                     {% endif %}
                                     {% if session.bw_unit == 'kg' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b><p class="check-number-float float-left">{{ session.body_weight | int * 22 / 10 }}</p>lb</p>
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">
+                                            {{ session.body_weight | int * 22 / 10 }}</p>lb
+                                    </p>
                                     {% endif %}
                                     {% else %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b><p class="check-number-float float-left">{{ session.body_weight | int }}</p> {{ session.bw_unit }}</p>
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p>
+                                        {{ session.bw_unit }}
+                                    </p>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 pr-0 border-left">
-                        <i class="fas fa-edit float-right" data-toggle="collapse" href="#{{ session.last_name }}{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseExample"></i>
+                        <i class="fas fa-edit float-right" data-toggle="collapse"
+                            href="#{{ session.last_name }}{{ loop.index }}" role="button" aria-expanded="false"
+                            aria-controls="collapseExample"></i>
                         <p class="m-0 mt-4"><b>Location:</b> {{ session.location }}</p>
                         <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
                         <div class="collapse d-none" id="{{ session.first_name }}">
@@ -87,22 +103,22 @@
                                 <h5>Motivated</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                        style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Difficulty</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: {{ session.difficulty | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        style="width: {{ session.difficulty | int * 10 }}%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Effort</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                        style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100" aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </div>
@@ -169,22 +185,22 @@
                                 <h5>Motivated</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                        style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Difficulty</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                        style="width: {{ session.difficulty | int * 10 }}%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        style="width: {{ session.difficulty | int * 10 }}%" aria-valuenow="75"
+                                        aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <h5>Effort</h5>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                        style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100" aria-valuemin="0"
-                                        aria-valuemax="100">
+                                        style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100"
+                                        aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                             </div>
@@ -218,11 +234,12 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                          <div class="collapse" id="{{ session.last_name }}{{ loop.index }}">
+                        <div class="collapse" id="{{ session.last_name }}{{ loop.index }}">
                             <div class="card card-body p-2 mt-2">
-                              <a href="{{url_for('delete_session', session_id=session._id)}}"><button class="btn btn-danger container-fluid">Delete</button></a>
+                                <a href="{{url_for('delete_session', session_id=session._id)}}"><button
+                                        class="btn btn-danger container-fluid">Delete</button></a>
                             </div>
-                          </div>
+                        </div>
                     </div>
                 </div>
             </div>

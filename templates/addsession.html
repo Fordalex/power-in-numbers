@@ -1,24 +1,22 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="title-container">
-    <h1 class="text-center">Add Session</h1>
+    <h1 class="text-center main-title">Add Session</h1>
 </div>
 <div class="page-wrapper">
     <div class="page-container">
         <form action="{{ url_for('insert_session') }}" method="POST" class="container-fluid">
             <div class="row my-2 p-0">
-                <div class="col-6 col-md-4">
+                <div class="col-6 col-sm-3">
                     <p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-6 col-sm-3">
                     <p><b>Age:</b> {{ user.age }}</p>
                 </div>
-            </div>
-            <div class="row my-2 p-0">
-                <div class="col-6 col-md-4">
+                <div class="col-6 col-sm-3">
                     <p><b>Gender:</b> {{ user.gender }}</p>
                 </div>
-                <div class="col-6 col-md-4">
+                <div class="col-6 col-sm-3">
                     <p><b>BW:</b> {{ user.bodyweight }}{{ user.bw_unit }}</p>
                 </div>
             </div>
@@ -87,19 +85,35 @@
                 </div>
             </div>
             <hr>
+            <div class="row m-0 p-0">
+                <div class="col-2 p-0">
+                    <label>Unit:</label>
+                    <select class="form-control container-fluid" id="exampleFormControlSelect1" name="session_type">
+                        <option>LB</option>
+                        <option>KG</option>
+                    </select>
+                </div>
+                <div class="col-7">
+                    <label>Session Type:</label>
+                    <select class="form-control container-fluid" id="exampleFormControlSelect1" name="session_type">
+                        <option>Powerlifting</option>
+                        <option>Olympic Lifting</option>
+                        <option>Strong Man</option>
+                        <option>Strong Woman</option>
+                        <option>Body Weight</option>
+                        <option>Running</option>
+                    </select>
+                </div>
+                <div class="col-3 d-flex align-items-end p-0">
+                    <button class="btn main-colour container-fluid">Continue</button>
+                </div>
+            </div>
+            <hr>
             <div>
                 <div class="row p-0 m-0">
-                    <div class="col-9">
+                    <div class="col-12">
                         <h3 class="my-3">Training Session</h3>
                     </div>
-                    <div class="col-3">
-                        <label>Unit:</label>
-                        <select class="form-control" name="weight_unit">
-                            <option id="training-session-id">lb</option>
-                            <option>kg</option>
-                        </select>
-                    </div>
-
                 </div>
                 <table class="session-table container-fluid mt-3" id="addSessionTable">
                     <tr>
@@ -115,11 +129,10 @@
                         <td class="unit-td"></td>
                     </tr>
                 </table>
-                <a class="btn main-colour text-light border my-2" onclick="createRow()">Add Row +</a>
+                <a class="btn main-colour text-dark border my-2" onclick="createRow()">Add Row +</a>
                 <p class="m-0 p-0">Notes: {{ session.notes }}</p>
-                <textarea name="notes" class="container-fluid my-2"></textarea>
-                <button class="btn main-colour text-light border float-right" type="submit"
-                    name="action">Done</button>
+                <textarea name="notes" class="container-fluid form-control my-2"></textarea>
+                <button class="btn main-colour text-dark border float-right" type="submit" name="action">Done</button>
             </div>
         </form>
     </div>

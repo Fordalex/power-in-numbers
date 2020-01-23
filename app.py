@@ -21,6 +21,10 @@ def index():
     if 'username' in session:
         return render_template('home.html')
 
+    return redirect(url_for('login_page'))
+
+@app.route('/login_page')
+def login_page():
     return render_template('index.html')
 
 @app.route('/home')
@@ -103,9 +107,9 @@ def insert_session():
     location = request.form['location']
     motivated = request.form['motivated']
     notes = request.form['notes']
+    session_type = request.form['session_type']
     session_exercise_1 = request.form['session_exercise_1']
     session_sets_1 = request.form['session_sets_1']
-    session_type = request.form['session_type']
     session_weight_1 = request.form['session_weight_1']
     weight_unit = request.form['weight_unit']
     sessionDict = {
@@ -114,16 +118,16 @@ def insert_session():
                     "bw_unit": bw_unit, 
                     "date": date, 
                     "difficulty": difficulty, 
-                    "effort": "", 
-                    "first_name": "John", 
-                    "gender": "Male", 
-                    "last_name": "Smith", 
-                    "length_hour": "", 
-                    "length_min": "", 
-                    "location": "", 
-                    "motivated": "", 
-                    "notes": "", 
-                    "session_exercise": [{'session_exercise_1' : session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1': session_weight_1 },{'session_exercise_1' : session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1': session_weight_1 }],
+                    "effort": effort, 
+                    "first_name": first_name, 
+                    "gender": gender, 
+                    "last_name": last_name, 
+                    "length_hour": length_hour, 
+                    "length_min": length_min, 
+                    "location": location, 
+                    "motivated": motivated, 
+                    "notes": notes, 
+                    "session_exercise": [{'session_exercise_1' : session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1': session_weight_1 },{'session_exercise_2' : session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1': session_weight_1 }],
                     "session_type": "Powerlifting", 
                     "weight_unit": "lb"
 }
