@@ -6,7 +6,7 @@ $mainColourLight: rgb(245, 202, 163);
 $primaryBtn: rgb(241,180,77);
 $mainGradient: linear-gradient(rgb(137, 195, 231),rgb(105, 173, 214));
 $titleContainer: #fffeef;
-$pageContainer: rgb(250,250,250);
+$pageContainer: rgb(255, 255, 255);
 
 // General 
 
@@ -57,8 +57,8 @@ p,a,td,th,option {
         width:100%;
         padding:15px;
         max-width: 950px;
-        border-right:solid black 1px;
-        border-left:solid black 1px;
+        border-right:solid rgb(196, 196, 196) 1px;
+        border-left:solid rgb(196, 196, 196) 1px;
         display:flex;
         justify-content:center;
 
@@ -112,7 +112,7 @@ p,a,td,th,option {
 .login-wrapper {
     margin-top:20px;
     max-width: 420px;
-    border:solid rgb(235, 235, 235) 1px;
+    border:solid rgb(196, 196, 196) 1px;
     border-radius:1px;
     background-color: #ffffff;
 }

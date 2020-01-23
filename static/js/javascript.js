@@ -112,9 +112,9 @@ function addSessionTable() {
         <td class="unit-td">${unitSelected}</td>
     </tr>
     </table>
-    <a class="btn btn-dark text-light border my-2" onclick="createRow()">Add Row +</a>
+    <a class="btn btn-dark text-light border my-3" onclick="createRow()">Add Row +</a>
     <p class="m-0 p-0">Notes:</p>
-    <textarea name="notes" class="container-fluid form-control my-2"></textarea>
+    <textarea name="notes" class="container-fluid form-control my-3"></textarea>
     <button class="btn main-colour text-dark border float-right" type="submit" name="action">Done</button>`
     console.log(typeSelected)
     console.log(unitSelected)

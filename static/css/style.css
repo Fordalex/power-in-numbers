@@ -47,12 +47,12 @@ p, a, td, th, option {
 }
 
 .page-wrapper .page-container {
-  background-color: #fafafa;
+  background-color: white;
   width: 100%;
   padding: 15px;
   max-width: 950px;
-  border-right: solid black 1px;
-  border-left: solid black 1px;
+  border-right: solid #c4c4c4 1px;
+  border-left: solid #c4c4c4 1px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,7 +104,7 @@ p, a, td, th, option {
 .login-wrapper {
   margin-top: 20px;
   max-width: 420px;
-  border: solid #ebebeb 1px;
+  border: solid #c4c4c4 1px;
   border-radius: 1px;
   background-color: #ffffff;
 }
