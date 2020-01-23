@@ -74,7 +74,12 @@ p, a, td, th, option {
   background-color: #f5caa3;
 }
 
-.secondary-colour-text {
+.main-gradient {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#89c3e7), to(#69add6));
+  background-image: linear-gradient(#89c3e7, #69add6);
+}
+
+.main-colour-text {
   color: #69add6;
 }
 
@@ -90,6 +95,18 @@ p, a, td, th, option {
 .session-table tr td input {
   background-color: rgba(0, 0, 0, 0);
   border: solid lightgray 1px;
+}
+
+.login-background {
+  background-color: whitesmoke;
+}
+
+.login-wrapper {
+  margin-top: 20px;
+  max-width: 420px;
+  border: solid #ebebeb 1px;
+  border-radius: 1px;
+  background-color: #ffffff;
 }
 
 .login-container {

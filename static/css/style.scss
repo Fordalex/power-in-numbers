@@ -70,16 +70,21 @@ p,a,td,th,option {
     height:38px;
 }
 
+// colours
+
 .main-colour {
     background-color:  $mainColour;
 }
-
 
 .secondary-colour {
     background-color:  $mainColourLight;
 }
 
-.secondary-colour-text {
+.main-gradient {
+    background-image:  $mainGradient;
+}
+
+.main-colour-text {
     color: $mainColour; 
 }
 
@@ -99,6 +104,18 @@ p,a,td,th,option {
 }
 
 // index.html
+
+.login-background {
+    background-color: rgb(245, 245, 245);
+}
+
+.login-wrapper {
+    margin-top:20px;
+    max-width: 420px;
+    border:solid rgb(235, 235, 235) 1px;
+    border-radius:1px;
+    background-color: #ffffff;
+}
 
 .login-container {
     max-width: 400px;
