@@ -4,7 +4,7 @@ This app was thought of because I'm always trying to find ways to track my train
 
 ## link
 
-This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/)
+This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login)
 
 ## Testing
 
