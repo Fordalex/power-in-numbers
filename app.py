@@ -51,7 +51,7 @@ def register_insert():
             body_weight = request.form['body_weight']
             bw_unit = request.form['bw_unit']
             location = request.form['location']
-            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'bodyweight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
+            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
             session['username'] = request.form['username']
             return redirect(url_for('home'))
 
@@ -86,10 +86,9 @@ def add_session():
     login_user = users.find_one({'username' : currentUser})
     return render_template('addsession.html', user=login_user)
 
-##########################################
-
 @app.route('/insert_session', methods=['POST'])
 def insert_session():
+    # current users data
     currentUser = session['username']
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
@@ -97,7 +96,10 @@ def insert_session():
     gender = login_user.get('gender')
     age = login_user.get('age')
     location = login_user.get('location')
+    body_weight = login_user.get('body_weight')
+    bw_unit = login_user.get('bw_unit')
     sessions = mongo.db.sessions
+    # the data from the form
     date = request.form['date']
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
@@ -106,19 +108,19 @@ def insert_session():
     difficulty = request.form['difficulty']
     session_type = request.form['session_type']
     notes = request.form['notes']
+    # Changed the date being send to mongoDB, will change depending on the session_type and the row in the table
     def training_session_rows():
         session_exercise_1 = request.form['session_exercise_1']
         session_sets_1 = request.form['session_sets_1']
         if request.form['session_type'] == 'running':
             return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1}]
+        session_weight_1 = request.form['session_weight_1']
         return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1':session_weight_1}]
-        
+
     training_session = training_session_rows()
-    sessionDict = {'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('home'))
-
-############################################
 
 @app.route('/delete_session/<session_id>')
 def delete_session(session_id):

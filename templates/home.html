@@ -60,15 +60,41 @@
                             </div>
                             <div class="col-12 col-md-6 m-0 p-0">
                                 <div>
-                        
+                                    {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p> kg
+                                    </p>
+                                    {% endif %}
+                                    {% if session.bw_unit == 'lb' %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">
+                                            {{ session.body_weight | int * 10 / 22 }}</p>kg
+                                    </p>
+                                    {% endif %}
+                                    {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p> lb
+                                    </p>
+                                    {% endif %}
+                                    {% if session.bw_unit == 'kg' %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">
+                                            {{ session.body_weight | int * 22 / 10 }}</p>lb
+                                    </p>
+                                    {% endif %}
+                                    {% else %}
+                                    <p class="m-0 p-0"><b>Body Weight:</b>
+                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p>
+                                        {{ session.bw_unit }}
+                                    </p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 pr-0 border-left">
-                        <i class="fas fa-edit float-right" data-toggle="collapse"
-                            href="#edit{{ loop.index }}" role="button" aria-expanded="false"
-                            aria-controls="collapseExample"></i>
+                        <i class="fas fa-edit float-right" data-toggle="collapse" href="#edit{{ loop.index }}"
+                            role="button" aria-expanded="false" aria-controls="collapseExample"></i>
                         <p class="m-0 mt-4"><b>Location:</b> {{ session.location }}</p>
                         <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
                         <div class="collapse d-none" id="{{ session.first_name }}">
@@ -160,8 +186,8 @@
                                     <div class="col-12 col-md-3 m-0">
                                         <p>
                                             <a class="btn main-colour mt-2 expand-button text-dark border float-right"
-                                                data-toggle="collapse" href="#expand{{ loop.index }}"
-                                                role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                data-toggle="collapse" href="#expand{{ loop.index }}" role="button"
+                                                aria-expanded="false" aria-controls="collapseExample">
                                                 Expand
                                             </a>
                                         </p>
