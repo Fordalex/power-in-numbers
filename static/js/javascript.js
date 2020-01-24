@@ -112,9 +112,16 @@ function addSessionTable() {
         <td class="unit-td">${unitSelected}</td>
     </tr>
     </table>
-    <a class="btn btn-dark text-light border my-3" onclick="createRow()">Add Row +</a>
-    <p class="m-0 p-0">Notes:</p>
-    <textarea name="notes" class="container-fluid float-left form-control my-3"></textarea>
+    <div class="row">
+        <div class="col-6 d-flex align-items-end">
+        <p class="m-0 p-0">Notes:</p>
+        </div>
+        <div class="col-6">
+        <a class="btn btn-dark text-light border my-3 float-right" onclick="createRow()">Add Row +</a>
+        </div>
+    </div>
+    
+    <textarea name="notes" class="container-fluid float-left form-control mb-3"></textarea>
     <div class="row">
     <div class="col-6 pr-0">
     <select class="form-control mb-2 " name="session_type">
@@ -126,10 +133,48 @@ function addSessionTable() {
     <button class="btn main-colour container-fluid text-dark border float-right" type="submit" name="action">Done</button>
     </div>
     </div>`
+    var runningTable = `<div class="row p-0 m-0">
+    <div class="col-12">
+        <h3 class="my-3">Training Session</h3>
+    </div>
+    </div>
+    <table class="session-table container-fluid mt-3" id="addSessionTable">
+    <tr>
+        <th>Distance:</th>
+        <th>Time:</th>
+    </tr>
+    <tr>
+        <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
+        <td><input class="container-fluid" type="type" name="session_sets_1"></td>
+    </tr>
+    </table>
+    <div class="row">
+        <div class="col-6 d-flex align-items-end">
+        <p class="m-0 p-0">Notes:</p>
+        </div>
+        <div class="col-6">
+        <a class="btn btn-dark text-light border my-3 float-right" onclick="createRow()">Add Row +</a>
+        </div>
+    </div>
+    
+    <textarea name="notes" class="container-fluid float-left form-control mb-3"></textarea>
+    <div class="row">
+    <div class="col-6 pr-0">
+    <select class="form-control mb-2 " name="session_type">
+        <option value="running">Running</option>
+        <option value="olympiclifting">Olympic Lifting</option>
+    </select>
+    </div>
+    <div class="col-6">
+    <button class="btn main-colour container-fluid text-dark border float-right" type="submit" name="action">Done</button>
+    </div>
+    </div>`
     console.log(typeSelected)
     console.log(unitSelected)
     if (typeSelected == 'Powerlifting') {
         $('#addSessionTable').append(powerliftingTable)
+    } else if (typeSelected == 'Running') {
+        $('#addSessionTable').append(runningTable)
     }
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);

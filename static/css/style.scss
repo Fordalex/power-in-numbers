@@ -6,7 +6,8 @@ $mainColourLight: rgb(163, 200, 245);
 $primaryBtn: rgb(77, 145, 241);
 $mainGradient: linear-gradient(rgb(137, 195, 231),rgb(105, 173, 214));
 $titleContainer: #fffeef;
-$pageContainer: rgb(255, 255, 255);
+$pageContainer: rgb(250, 250, 250);
+$pageWrapper: rgb(240, 240, 240);
 
 // General 
 
@@ -52,6 +53,7 @@ p,a,td,th,option {
 .page-wrapper {
     display:flex;
     justify-content:center;
+    background-color: $pageWrapper;
     .page-container {
         background-color: $pageContainer;
         width:100%;

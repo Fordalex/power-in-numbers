@@ -94,22 +94,27 @@ def insert_session():
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
     username = login_user.get('username')
+    gender = login_user.get('gender')
+    age = login_user.get('age')
+    location = login_user.get('location')
     sessions = mongo.db.sessions
-    location = request.form['location']
     date = request.form['date']
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
     motivated = request.form['motivated']
     effort = request.form['effort']
     difficulty = request.form['difficulty']
+    session_type = request.form['session_type']
     notes = request.form['notes']
     def training_session_rows():
         session_exercise_1 = request.form['session_exercise_1']
         session_sets_1 = request.form['session_sets_1']
-        session_weight_1 = request.form['session_weight_1']
+        if request.form['session_type'] == 'running':
+            return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1}]
         return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1':session_weight_1}]
+        
     training_session = training_session_rows()
-    sessionDict = {'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('home'))
 

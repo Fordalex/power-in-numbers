@@ -44,10 +44,11 @@ p, a, td, th, option {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background-color: #f0f0f0;
 }
 
 .page-wrapper .page-container {
-  background-color: white;
+  background-color: #fafafa;
   width: 100%;
   padding: 15px;
   max-width: 950px;

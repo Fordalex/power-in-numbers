@@ -28,24 +28,26 @@
             </div>
             <hr>
             <div class="row m-0 p-0">
-                <div class="col-6 col-md-3 p-0 pr-3">
-                    <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
-                    <input class="form-control" placeholder="Location" name="location">
+                <div class="col-12 d-flex align-items-end col-md-2 p-0 pr-3">
+                    <div class="container-fluid p-0">
+                        <label class="mb-1" for="exampleFormControlSelect1">Date:</label>
+                        <input type="date" class="form-control" placeholder="Date" name="date">
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 p-0 pr-3">
-                    <label class="mb-1" for="exampleFormControlSelect1">Date:</label>
-                    <input type="date" class="form-control" placeholder="Date" name="date">
+                <div class="col-6 d-flex align-items-end col-md-2 p-0 pr-3">
+                    <div class="container-fluid p-0">
+                        <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
+                        <input type="number" class="form-control" placeholder="hour(s)" name="length_hour">
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 p-0 pr-3">
-                    <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
-                    <input type="number" class="form-control" placeholder="hour(s)" name="length_hour">
+                <div class="col-6 d-flex align-items-end col-md-2 p-0 pr-3">
+                    <div class="container-fluid p-0">
+                        <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
+                        <input type="number" class="form-control" placeholder="Minute(s)" name="length_min">
+                    </div>
                 </div>
-                <div class="col-6 col-md-3 p-0">
-                    <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
-                    <input type="number" class="form-control" placeholder="Minute(s)" name="length_min">
-                </div>
-            </div>
-            <!-- <div class="row">
+
+                <!-- <div class="row">
                 <div class="col-10">
                     <label class="mb-1" for="exampleFormControlSelect1">Session Type:</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="session_type">
@@ -62,24 +64,26 @@
                     </div>
                 </div>
             </div> -->
-            <hr>
-            <div class="row m-0 p-0">
-                <div class="col-12 p-0 d-flex justify-content-around">
-                    <div class="stats-container">
+                <div class="d-block d-md-none col-12 p-0">
+                    <hr class="my-3">
+                </div>
+
+                <div class="col-12 col-md-6 p-0 d-flex justify-content-around">
+                    <div class="stats-container container-fluid">
                         <p class="text-center">Motivated:</p>
                         <div class="d-flex justify-content-center align-item-center">
                             <input type="number" min="0" max="10" class="number-input float-left" name="motivated">
                             <p class="m-0"> / 10</p>
                         </div>
                     </div>
-                    <div class="stats-container">
+                    <div class="stats-container container-fluid mx-3">
                         <p class="text-center">Difficulty:</p>
                         <div class="d-flex justify-content-center align-item-center">
                             <input type="number" min="0" max="10" class="number-input float-left" name="difficulty">
                             <p class="m-0"> / 10</p>
                         </div>
                     </div>
-                    <div class="stats-container">
+                    <div class="stats-container container-fluid">
                         <p class="text-center">Effort:</p>
                         <div class="d-flex justify-content-center align-item-center">
                             <input type="number" min="0" max="10" class="number-input float-left" name="effort">
@@ -88,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row m-0 p-0" id="chooseTable">
+            <div class="row m-0 mt-3 p-0" id="chooseTable">
                 <hr>
                 <div class="col-2 p-0">
                     <label>Unit:</label>

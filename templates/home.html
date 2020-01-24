@@ -4,7 +4,7 @@
 <div class="title-container">
     <h1 class="text-center main-title">Power In Numbers</h1>
 </div>
-<div class="page-wrapper bg-light">
+<div class="page-wrapper">
     <div class="page-container">
         <div>
             <h6 class="m-0 mb-1 p-0">Unit:</h6>
@@ -43,16 +43,16 @@
             <div class="session-card my-3 p-2">
                 <div class="row m-0 p-0">
                     <div class="col-6 pl-1 pr-2">
-                        {% if session.session_type == 'Powerlifting' %}
+                        {% if session.session_type == 'powerlifting' %}
                         <i class="fas fa-dumbbell float-right"></i>
-                        {% elif session.session_type == 'Running' %}
+                        {% elif session.session_type == 'running' %}
                         <i class="fas fa-shoe-prints float-right"></i>
                         {% elif session.session_type == 'Body Weight' %}
                         <i class="fas fa-child float-right"></i>
-                        {% elif session.session_type == 'Olympic Lifting' %}
+                        {% elif session.session_type == 'olympiclifting' %}
                         <i class="fas fa-dumbbell float-right"></i>
                         {% endif %}
-                        <h5><u>{{ loop.index }}. <span class="secondary-colour-text"></span></u></h5>
+                        <h5><u>{{ loop.index }}. <span class="main-colour-text">{{ session.username }} </span></u></h5>
                         <div class="row m-0 p-0">
                             <div class="col-12 col-md-6 m-0 p-0">
                                 <p class="m-0 p-0"><b>Age:</b> {{ session.age }}</p>
@@ -104,11 +104,19 @@
                             <div class="card-body m-0 p-0">
                                 <div class="d-flex justify-content-center">
                                     <table class="session-table container-fluid">
+                                        {% if session.session_type == 'powerlifting' %}
                                         <tr>
                                             <th>Exercise</th>
                                             <th>Sets / Reps</th>
                                             <th>Weight</th>
                                         </tr>
+                                        {% elif session.session_type == 'running' %}
+                                        <tr>
+                                            <th>Distance</th>
+                                            <th>Time</th>
+                                            <th>Average Speed</th>
+                                        </tr>
+                                        {% endif %}
                                     </table>
                                 </div>
                             </div>
@@ -151,7 +159,7 @@
                                     </div>
                                     <div class="col-12 col-md-3 m-0">
                                         <p>
-                                            <a class="btn main-gradient expand-button text-dark border float-right"
+                                            <a class="btn main-colour mt-2 expand-button text-dark border float-right"
                                                 data-toggle="collapse" href="#expand{{ loop.index }}"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 Expand
