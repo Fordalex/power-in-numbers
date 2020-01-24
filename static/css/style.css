@@ -3,27 +3,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 55px;
-}
-
-h2 {
-  font-size: 50px;
-}
-
-h3 {
   font-size: 45px;
 }
 
-h4 {
+h2 {
   font-size: 40px;
 }
 
-h5 {
+h3 {
   font-size: 35px;
 }
 
+h4 {
+  font-size: 30px;
+}
+
+h5 {
+  font-size: 25px;
+}
+
 h6 {
-  font-size: 40px;
+  font-size: 20px;
 }
 
 p, a, td, th, option {
@@ -71,7 +71,7 @@ p, a, td, th, option {
 }
 
 .secondary-colour {
-  background-color: #f5caa3;
+  background-color: #a3c8f5;
 }
 
 .main-gradient {
@@ -142,7 +142,7 @@ p, a, td, th, option {
 }
 
 .fa-edit:hover {
-  color: #f5caa3;
+  color: #a3c8f5;
   cursor: pointer;
 }
 

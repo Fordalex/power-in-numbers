@@ -114,8 +114,18 @@ function addSessionTable() {
     </table>
     <a class="btn btn-dark text-light border my-3" onclick="createRow()">Add Row +</a>
     <p class="m-0 p-0">Notes:</p>
-    <textarea name="notes" class="container-fluid form-control my-3"></textarea>
-    <button class="btn main-colour text-dark border float-right" type="submit" name="action">Done</button>`
+    <textarea name="notes" class="container-fluid float-left form-control my-3"></textarea>
+    <div class="row">
+    <div class="col-6 pr-0">
+    <select class="form-control mb-2 " name="session_type">
+        <option value="powerlifting">Powerlifting</option>
+        <option value="olympiclifting">Olympic Lifting</option>
+    </select>
+    </div>
+    <div class="col-6">
+    <button class="btn main-colour container-fluid text-dark border float-right" type="submit" name="action">Done</button>
+    </div>
+    </div>`
     console.log(typeSelected)
     console.log(unitSelected)
     if (typeSelected == 'Powerlifting') {

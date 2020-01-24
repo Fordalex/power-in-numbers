@@ -2,8 +2,8 @@
 
 $aboveNav: rgb(73, 73, 73);
 $mainColour: rgb(105, 173, 214);
-$mainColourLight: rgb(245, 202, 163);
-$primaryBtn: rgb(241,180,77);
+$mainColourLight: rgb(163, 200, 245);
+$primaryBtn: rgb(77, 145, 241);
 $mainGradient: linear-gradient(rgb(137, 195, 231),rgb(105, 173, 214));
 $titleContainer: #fffeef;
 $pageContainer: rgb(255, 255, 255);
@@ -15,27 +15,27 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-    font-size:55px;
-}
-
-h2 {
-    font-size:50px;
-}
-
-h3 {
     font-size:45px;
 }
 
-h4 {
+h2 {
     font-size:40px;
 }
 
-h5 {
+h3 {
     font-size:35px;
 }
 
+h4 {
+    font-size:30px;
+}
+
+h5 {
+    font-size:25px;
+}
+
 h6 {
-    font-size:40px;
+    font-size:20px;
 }
 
 p,a,td,th,option {

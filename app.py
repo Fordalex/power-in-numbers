@@ -18,10 +18,8 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    if 'username' in session:
-        return render_template('home.html')
-
     return redirect(url_for('login_page'))
+
 
 @app.route('/login_page')
 def login_page():
@@ -92,9 +90,27 @@ def add_session():
 
 @app.route('/insert_session', methods=['POST'])
 def insert_session():
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    username = login_user.get('username')
     sessions = mongo.db.sessions
-    sessionForm = request.form.to_dict()
-    sessions.insert_one(sessionForm)
+    location = request.form['location']
+    date = request.form['date']
+    length_hour = request.form['length_hour']
+    length_min = request.form['length_min']
+    motivated = request.form['motivated']
+    effort = request.form['effort']
+    difficulty = request.form['difficulty']
+    notes = request.form['notes']
+    def training_session_rows():
+        session_exercise_1 = request.form['session_exercise_1']
+        session_sets_1 = request.form['session_sets_1']
+        session_weight_1 = request.form['session_weight_1']
+        return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1':session_weight_1}]
+    training_session = training_session_rows()
+    sessionDict = {'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessions.insert_one(sessionDict)
     return redirect(url_for('home'))
 
 ############################################
@@ -113,4 +129,4 @@ def logout():
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host=os.getenv("IP", "0.0.0.0"),
-            port=int(os.getenv("PORT", "5000")), debug=False)
+            port=int(os.getenv("PORT", "5000")), debug=True)

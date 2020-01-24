@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
+
 <div class="title-container">
     <h1 class="text-center main-title">Power In Numbers</h1>
 </div>
@@ -51,8 +52,7 @@
                         {% elif session.session_type == 'Olympic Lifting' %}
                         <i class="fas fa-dumbbell float-right"></i>
                         {% endif %}
-                        <h5><u>{{ loop.index }}. {{ session.first_name }}<span class="secondary-colour-text">
-                                    {{ session.last_name }}</span></u></h5>
+                        <h5><u>{{ loop.index }}. <span class="secondary-colour-text"></span></u></h5>
                         <div class="row m-0 p-0">
                             <div class="col-12 col-md-6 m-0 p-0">
                                 <p class="m-0 p-0"><b>Age:</b> {{ session.age }}</p>
@@ -60,41 +60,14 @@
                             </div>
                             <div class="col-12 col-md-6 m-0 p-0">
                                 <div>
-                                    {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b>
-                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p> kg
-                                    </p>
-                                    {% endif %}
-                                    {% if session.bw_unit == 'lb' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b>
-                                        <p class="check-number-float float-left">
-                                            {{ session.body_weight | int * 10 / 22 }}</p>kg
-                                    </p>
-                                    {% endif %}
-                                    {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b>
-                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p> lb
-                                    </p>
-                                    {% endif %}
-                                    {% if session.bw_unit == 'kg' %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b>
-                                        <p class="check-number-float float-left">
-                                            {{ session.body_weight | int * 22 / 10 }}</p>lb
-                                    </p>
-                                    {% endif %}
-                                    {% else %}
-                                    <p class="m-0 p-0"><b>Body Weight:</b>
-                                        <p class="check-number-float float-left">{{ session.body_weight | int }}</p>
-                                        {{ session.bw_unit }}
-                                    </p>
-                                    {% endif %}
+                        
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 pr-0 border-left">
                         <i class="fas fa-edit float-right" data-toggle="collapse"
-                            href="#{{ session.last_name }}{{ loop.index }}" role="button" aria-expanded="false"
+                            href="#edit{{ loop.index }}" role="button" aria-expanded="false"
                             aria-controls="collapseExample"></i>
                         <p class="m-0 mt-4"><b>Location:</b> {{ session.location }}</p>
                         <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
@@ -127,7 +100,7 @@
                 </div>
                 <div class="row m-0 p-0 mx-2">
                     <div class="col-12 p-0 m-0">
-                        <div class="collapse  mt-4" id="{{ session.first_name }}{{ loop.index }}">
+                        <div class="collapse  mt-4" id="expand{{ loop.index }}">
                             <div class="card-body m-0 p-0">
                                 <div class="d-flex justify-content-center">
                                     <table class="session-table container-fluid">
@@ -136,48 +109,6 @@
                                             <th>Sets / Reps</th>
                                             <th>Weight</th>
                                         </tr>
-                                        {% if session.session_exercise_1 != null %}
-                                        <tr>
-                                            <td>{{ session.session_exercise_1 }}</td>
-                                            <td>{{ session.session_sets_1 }}</td>
-                                            <td>{{ session.session_weight_1 }}KG</td>
-                                        </tr>
-                                        {% endif %}
-                                        {% if session.session_exercise_2 != null %}
-                                        <tr>
-                                            <td>{{ session.session_exercise_2 }}</td>
-                                            <td>{{ session.session_sets_2 }}</td>
-                                            <td>{{ session.session_weight_2 }}KG</td>
-                                        </tr>
-                                        {% endif %}
-                                        {% if session.session_exercise_3 != null %}
-                                        <tr>
-                                            <td>{{ session.session_exercise_3 }}</td>
-                                            <td>{{ session.session_sets_3 }}</td>
-                                            <td>{{ session.session_weight_3 }}KG</td>
-                                        </tr>
-                                        {% endif %}
-                                        {% if session.session_exercise_4 != null %}
-                                        <tr>
-                                            <td>{{ session.session_exercise_4 }}</td>
-                                            <td>{{ session.session_sets_4 }}</td>
-                                            <td>{{ session.session_weight_4 }}KG</td>
-                                        </tr>
-                                        {% endif %}
-                                        {% if session.session_exercise_5 != null %}
-                                        <tr>
-                                            <td>{{ session.session_exercise_5 }}</td>
-                                            <td>{{ session.session_sets_5 }}</td>
-                                            <td>{{ session.session_weight_5 }}KG</td>
-                                        </tr>
-                                        {% endif %}
-                                        {% if session.session_exercise_6 != null %}
-                                        <tr>
-                                            <td>{{ session.session_exercise_6 }}</td>
-                                            <td>{{ session.session_sets_6 }}</td>
-                                            <td>{{ session.session_weight_6 }}KG</td>
-                                        </tr>
-                                        {% endif %}
                                     </table>
                                 </div>
                             </div>
@@ -220,8 +151,8 @@
                                     </div>
                                     <div class="col-12 col-md-3 m-0">
                                         <p>
-                                            <a class="btn secondary-colour expand-button text-light border float-right"
-                                                data-toggle="collapse" href="#{{ session.first_name }}{{ loop.index }}"
+                                            <a class="btn main-gradient expand-button text-dark border float-right"
+                                                data-toggle="collapse" href="#expand{{ loop.index }}"
                                                 role="button" aria-expanded="false" aria-controls="collapseExample">
                                                 Expand
                                             </a>
@@ -234,7 +165,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <div class="collapse" id="{{ session.last_name }}{{ loop.index }}">
+                        <div class="collapse" id="edit{{ loop.index }}">
                             <div class="card card-body p-2 mt-2">
                                 <a href="{{url_for('delete_session', session_id=session._id)}}"><button
                                         class="btn btn-danger container-fluid">Delete</button></a>
@@ -247,4 +178,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
