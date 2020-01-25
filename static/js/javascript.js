@@ -95,8 +95,9 @@ function addSessionTable() {
     var typeSelected = $('#session-type-option option:selected').text()
     unitSelected = $('#session-unit-option option:selected').text()
     var powerliftingTable = `<div class="row p-0 m-0">
-    <div class="col-12">
-        <h3 class="my-3">Training Session</h3>
+    <div class="col-12 d-flex align-items-end">
+        <h3 class="float-left mr-3">Training Session</h3>
+        <h5 class="main-colour-text">Powerlifting</h5>
     </div>
     </div>
     <table class="session-table container-fluid mt-3" id="please">
@@ -123,20 +124,16 @@ function addSessionTable() {
     </div>
     
     <textarea name="notes" class="container-fluid float-left form-control mb-3"></textarea>
-    <div class="row">
-    <div class="col-6 pr-0">
-    <select class="form-control mb-2 " name="session_type">
-        <option value="powerlifting">Powerlifting</option>
-        <option value="olympiclifting">Olympic Lifting</option>
-    </select>
-    </div>
+    <div class="row d-flex justify-content-end">
+
     <div class="col-6">
     <button class="btn main-colour container-fluid text-dark border float-right" type="submit" name="action">Done</button>
     </div>
     </div>`
     var runningTable = `<div class="row p-0 m-0">
-    <div class="col-12">
-        <h3 class="my-3">Training Session</h3>
+    <div class="col-12 d-flex align-items-end">
+    <h3 class="float-left mr-3">Training Session</h3>
+    <h5 class="main-colour-text">Running</h5>
     </div>
     </div>
     <table class="session-table container-fluid mt-3" id="addSessionTable">
@@ -173,12 +170,11 @@ function addSessionTable() {
     console.log(typeSelected)
     console.log(unitSelected)
     if (typeSelected == 'Powerlifting') {
-        $('#addSessionTable').append(powerliftingTable)
+        $('#addSessionTable').html(powerliftingTable)
     } else if (typeSelected == 'Running') {
-        $('#addSessionTable').append(runningTable)
+        $('#addSessionTable').html(runningTable)
     }
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
     }
-    $('#chooseTable').remove()
 }

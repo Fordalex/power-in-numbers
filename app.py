@@ -109,17 +109,23 @@ def insert_session():
     session_type = request.form['session_type']
     notes = request.form['notes']
     # Changed the date being send to mongoDB, will change depending on the session_type and the row in the table
-    def training_session_rows():
+
+    def counting_rows():
         row_count = 0
         while True:
-            row_count =+ 1
-            session_exercise_ = 'session_exercise_' + str(row_count)
-            if request.form[session_exercise_]:
-                continue
-            break
-
+            sessionExercise = 'session_exercise_' + str(row_count + 1)
+            try:
+                if request.form[sessionExercise]:
+                    row_count += 1
+                    continue
+            except:
+                break
+        return row_count
+    
+    def training_to_dict():    
+        row_count = counting_rows()
         session_row_return = []
-        for row in row_count:
+        for row in range(1, row_count + 1):
             exercise = 'session_exercise_' + str(row)
             sets = 'session_sets_' + str(row)
             weight = 'session_weight_' + str(row)
@@ -129,11 +135,12 @@ def insert_session():
             sessionDict = { exercise: session_exercise, sets : session_sets, weight : session_weight }
             session_row_return.append(sessionDict)
 
+
         return session_row_return
 
-    
-    training_session = training_session_rows()
-    sessionDict = {'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    row_count = counting_rows()
+    training_session = training_to_dict()
+    sessionDict = {'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('home'))
 

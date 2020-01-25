@@ -144,6 +144,14 @@
                                             <th>Sets / Reps</th>
                                             <th>Weight</th>
                                         </tr>
+                                        {% for row in range(session.session_rows | int) %}
+                                        {% set rowIndex = row + 1 %}
+                                        <tr>
+                                            <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}</td>
+                                            <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}</td>
+                                            <td>{{ session.training_session[row]['session_weight_' + rowIndex | string ] }}</td>
+                                        </tr>
+                                        {% endfor %}
                                         {% elif session.session_type == 'running' %}
                                         <tr>
                                             <th>Distance</th>
