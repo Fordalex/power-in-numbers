@@ -13,77 +13,85 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway|Squada+One&display=swap" rel="stylesheet">
 </head>
 
-<body class="login-background">
-    <div class="login-wrapper p-0 d-flex justify-content-center container-fluid">
-        <div class="row m-0 p-0 d-flex justify-content-center ">
-            <div class="register-width">
-                <div class="col-12 d-flex justify-content-center">
+<body>
+    <div class="login-background py-5">
+        <div class="login-wrapper p-0 d-flex justify-content-center container-fluid">
+            <div class="row m-0 p-0 d-flex justify-content-center ">
+                <div class="register-width">
+                    <div class="col-12 d-flex justify-content-center">
+                    </div>
+                    <h4 class="text-center my-3">Register</h4>
+                    <form action="{{ url_for('register_insert') }}" method="POST" class="container-fluid">
+                        <div class="row my-2 p-0">
+                            <div class="col-12 col-lg-6">
+                                <label class="mb-1">First Name:</label>
+                                <input type="text" class="form-control" placeholder="John" name="first_name">
+                            </div>
+                            <div class="col-12 pl-3 col-lg-6">
+                                <label class="mb-1">Last Name:</label>
+                                <input type="text" class="form-control" placeholder="Smith" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+                            <div class="col-2 p-0">
+                                <label class="mb-1" for="exampleFormControlSelect1">Age:</label>
+                                <input type="number" class="form-control" placeholder="23" name="age">
+                            </div>
+                            <div class="col-4">
+                                <label class="mb-1" for="exampleFormControlSelect1">Gender:</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="gender">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                            </div>
+                            <div class="col-3 p-0">
+                                <label class="mb-1" for="exampleFormControlSelect1">BW:</label>
+                                <input type="number" class="form-control" placeholder="body weight" name="body_weight">
+                            </div>
+                            <div class="col-3 m-0 pl-3 pr-0">
+                                <label class="mb-1 p-0">Unit:</label>
+                                <select class="form-control" name="bw_unit">
+                                    <option>lb</option>
+                                    <option>kg</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row my-2 p-0">
+                            <div class="col-12">
+                                <label class="mb-1">Username:</label>
+                                <input type="text" class="form-control" placeholder="john23smith" name="username">
+                            </div>
+                            <div class="col-12 col-lg-6 pl-3">
+                                <label class="mb-1">Password:</label>
+                                <input type="password" class="form-control" placeholder="********" name="password">
+                            </div>
+                            <div class="col-12 col-lg-6 pl-3">
+                                <label class="mb-1">Re-type Password:</label>
+                                <input type="password" class="form-control" placeholder="********" name="password">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0">
+                                <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
+                                <input class="form-control" placeholder="Location" name="location">
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0 d-flex justify-content-end mt-3">
+                                <a href="{{ url_for('register_insert') }}"></a><button
+                                    class="btn main-colour text-light container-fluid mb-3 main-gradient">Create
+                                    Account</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <h4 class="text-center my-3">Register</h4>
-                <form action="{{ url_for('register_insert') }}" method="POST" class="container-fluid">
-                    <div class="row my-2 p-0">
-                        <div class="col-12 pr-0 col-lg-6">
-                            <label class="mb-1">First Name:</label>
-                            <input type="text" class="form-control" placeholder="John" name="first_name">
-                        </div>
-                        <div class="col-12 pl-3 col-lg-6">
-                            <label class="mb-1">Last Name:</label>
-                            <input type="text" class="form-control" placeholder="Smith" name="last_name">
-                        </div>
-                    </div>
-                    <div class="row m-0 p-0">
-                        <div class="col-2 p-0">
-                            <label class="mb-1" for="exampleFormControlSelect1">Age:</label>
-                            <input type="number" class="form-control" placeholder="23" name="age">
-                        </div>
-                        <div class="col-4">
-                            <label class="mb-1" for="exampleFormControlSelect1">Gender:</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="gender">
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                        </div>
-                        <div class="col-3 p-0">
-                            <label class="mb-1" for="exampleFormControlSelect1">BW:</label>
-                            <input type="number" class="form-control" placeholder="body weight" name="body_weight">
-                        </div>
-                        <div class="col-3 m-0 pl-3 pr-0">
-                            <label class="mb-1 p-0">Unit:</label>
-                            <select class="form-control" name="bw_unit">
-                                <option>lb</option>
-                                <option>kg</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row my-2 p-0">
-                        <div class="col-12 col-lg-6 pr-0">
-                            <label class="mb-1">Username:</label>
-                            <input type="text" class="form-control" placeholder="john23smith" name="username">
-                        </div>
-                        <div class="col-12 col-lg-6 pl-3">
-                            <label class="mb-1">Password:</label>
-                            <input type="text" class="form-control" placeholder="********" name="password">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row m-0 p-0">
-                        <div class="col-12 p-0">
-                            <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
-                            <input class="form-control" placeholder="Location" name="location">
-                        </div>
-                    </div>
-                    <div class="row m-0 p-0">
-                        <div class="col-12 p-0 d-flex justify-content-end mt-3">
-                            <a href="{{ url_for('register_insert') }}"></a><button
-                                class="btn main-colour text-light container-fluid mb-3 main-gradient">Create
-                                Account</button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
-
     </div>
+    <footer class="border py-5">
+        <p class="text-center">© 2020 Power In Numbers</p>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

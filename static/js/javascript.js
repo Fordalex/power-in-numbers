@@ -22,13 +22,14 @@ var rowIndex = 1;
 
 function createRow() {
     rowIndex++;
-    $('#addSessionTable').append(` <tr>
+    $('#please').append(` <tr>
     <td><input class="container-fluid" type="text" name="session_exercise_${rowIndex}"></td>
     <td><input class="container-fluid" type="type" name="session_sets_${rowIndex}"></td>
     <td><input class="container-fluid d-flex justify-content-end" type="type" name="session_weight_${rowIndex}"></td>
-    <td class="unit-td">lb</td>
+    <td class="unit-td">${unitSelected}</td>
 </tr>`)
-    for (k = 0; k < newYearTable.length; k++) {
+console.log('working')
+    for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
     }
 };
@@ -98,12 +99,12 @@ function addSessionTable() {
         <h3 class="my-3">Training Session</h3>
     </div>
     </div>
-    <table class="session-table container-fluid mt-3" id="addSessionTable">
+    <table class="session-table container-fluid mt-3" id="please">
     <tr>
         <th>Exercise:</th>
         <th>Sets / Reps:</th>
         <th>Weight:</th>
-        <th id="" class="unit-td"><i class="fas fa-balance-scale"></i></th>
+        <th class="unit-td"><i class="fas fa-balance-scale"></i></th>
     </tr>
     <tr>
         <td><input class="container-fluid" type="text" name="session_exercise_1"></td>

@@ -7,37 +7,45 @@
 <div class="page-wrapper">
     <div class="page-container">
         <div>
-            <h6 class="m-0 mb-1 p-0">Unit:</h6>
-            <form action="{{ url_for('add_unit') }}" method="POST">
-                <div class="row m-0 p-0">
-                    <div class="col-12 col-md-11 m-0 p-0">
-                        <div class="d-flex justify-content-center">
-                            <select class="form-control mb-2" name="unit">
-                                {% if unit == 'kg' %}
-                                <option value="kg">kg</option>
-                                <option value="lb">lb</option>
-                                <option value="none">none</option>
-                                {% elif unit == 'lb'%}
-                                <option value="lb">lb</option>
-                                <option value="kg">kg</option>
-                                <option value="none">none</option>
-                                {% else %}
-                                <option value="none">none</option>
-                                <option value="kg">kg</option>
-                                <option value="lb">lb</option>
-                                {% endif %}
-                            </select>
-                            <button class="btn ml-3 btn-dark unit-button" name="unit"><i
-                                    class="fas fa-balance-scale text-light"></i></button>
+            <div class="row m-0 p-0">
+                <div class="col-12 px-3">
+                    <h6 class="m-0 mb-1 p-0">Unit:</h6>
+                    <form action="{{ url_for('add_unit') }}" method="POST">
+                        <div class="row m-0 p-0">
+                            <div class="col-12 col-md-11 m-0 p-0">
+                                <div class="d-flex justify-content-center">
+                                    <select class="form-control mb-2" name="unit">
+                                        {% if unit == 'kg' %}
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                        <option value="none">none</option>
+                                        {% elif unit == 'lb'%}
+                                        <option value="lb">lb</option>
+                                        <option value="kg">kg</option>
+                                        <option value="none">none</option>
+                                        {% else %}
+                                        <option value="none">none</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                        {% endif %}
+                                    </select>
+                                    <button class="btn ml-3 btn-dark unit-button" name="unit"><i
+                                            class="fas fa-balance-scale text-light"></i></button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+                <div class="col-12 px-3">
+                    <p>Feel free to add your own training session! This page is designed to help people stay motivated, by
+                        letting
+                        them know there not alone. Create or start one for the many training plan's we have available. Think
+                        your the best? Find out by adding your personal best's and comparing them with others.</p>
+                </div>
+            </div>
 
-            <p>Feel free to add your own training session! This page is designed to help people stay motivated, by
-                letting
-                them know there not alone. Create or start one for the many training plan's we have available. Think
-                your the best? Find out by adding your personal best's and comparing them with others.</p>
+
+          
             <hr>
             {% for session in sessions %}
             <div class="session-card my-3 p-2">
@@ -200,7 +208,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="collapse" id="edit{{ loop.index }}">
-                            <div class="card card-body p-2 mt-2">
+                            <div class="card card-body p-0 mt-2">
                                 <a href="{{url_for('delete_session', session_id=session._id)}}"><button
                                         class="btn btn-danger container-fluid">Delete</button></a>
                             </div>
