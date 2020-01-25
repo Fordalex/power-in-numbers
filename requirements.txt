@@ -12,8 +12,6 @@ keyring==10.6.0
 keyrings.alt==3.0
 MarkupSafe==1.1.1
 passlib==1.7.2
-pygobject==3.26.1
 pymongo==3.10.1
 SecretStorage==2.3.1
-six==1.11.0
 Werkzeug==0.16.0

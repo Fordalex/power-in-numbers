@@ -110,13 +110,28 @@ def insert_session():
     notes = request.form['notes']
     # Changed the date being send to mongoDB, will change depending on the session_type and the row in the table
     def training_session_rows():
-        session_exercise_1 = request.form['session_exercise_1']
-        session_sets_1 = request.form['session_sets_1']
-        if request.form['session_type'] == 'running':
-            return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1}]
-        session_weight_1 = request.form['session_weight_1']
-        return [{'session_exercise_1':session_exercise_1,'session_sets_1':session_sets_1,'session_weight_1':session_weight_1}]
+        row_count = 0
+        while True:
+            row_count =+ 1
+            session_exercise_ = 'session_exercise_' + str(row_count)
+            if request.form[session_exercise_]:
+                continue
+            break
 
+        session_row_return = []
+        for row in row_count:
+            exercise = 'session_exercise_' + str(row)
+            sets = 'session_sets_' + str(row)
+            weight = 'session_weight_' + str(row)
+            session_exercise = request.form[exercise]
+            session_sets = request.form[sets]
+            session_weight = request.form[weight]
+            sessionDict = { exercise: session_exercise, sets : session_sets, weight : session_weight }
+            session_row_return.append(sessionDict)
+
+        return session_row_return
+
+    
     training_session = training_session_rows()
     sessionDict = {'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
