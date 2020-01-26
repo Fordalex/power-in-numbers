@@ -52,7 +52,7 @@ p, a, td, th, option {
   width: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
-  max-width: 950px;
+  max-width: 1000px;
   border-right: solid #c4c4c4 1px;
   border-left: solid #c4c4c4 1px;
   display: -webkit-box;
@@ -184,6 +184,6 @@ p, a, td, th, option {
 }
 
 footer {
-  background-color: #f8fdff;
+  background-color: #fdffff;
 }
 /*# sourceMappingURL=style.css.map */

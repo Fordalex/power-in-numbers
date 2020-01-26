@@ -6,44 +6,23 @@
 <div class="page-wrapper bg-light">
     <div class="page-container p-3">
         <form action="{{ url_for('insert_session') }}" method="POST" class="container-fluid p-0">
-            <div class="row my-2 p-0">
-                <div class="col-6 col-sm-2">
-                    <p><b>Name:</b> {{ user.first_name }} {{ user.last_name }}</p>
-                </div>
-                <div class="col-6 col-sm-2">
-                    <p><b>Age:</b> {{ user.age }}</p>
-                </div>
-                <div class="col-6 col-sm-2">
-                    <p><b>Gender:</b> {{ user.gender }}</p>
-                </div>
-                <div class="col-6 col-sm-2">
-                    <p><b>BW:</b> {{ user.bodyweight }}{{ user.bw_unit }}</p>
-                </div>
-                <div class="col-6 col-sm-2">
-                    <p><b>Something:</b></p>
-                </div>
-                <div class="col-6 col-sm-2">
-                    <p><b>Logged:</b> </p>
-                </div>
-            </div>
-            <hr>
             <div class="row m-0 p-0">
                 <div class="col-12 d-flex align-items-end col-md-2 p-0 pr-3">
                     <div class="container-fluid p-0">
                         <label class="mb-1" for="exampleFormControlSelect1">Date:</label>
-                        <input type="date" class="form-control" placeholder="Date" name="date">
+                        <input type="date" class="form-control" value="" name="date" id="date" required> 
                     </div>
                 </div>
                 <div class="col-6 d-flex align-items-end col-md-2 p-0 pr-3">
                     <div class="container-fluid p-0">
                         <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
-                        <input type="number" class="form-control" placeholder="hour(s)" name="length_hour">
+                        <input type="number" class="form-control" placeholder="hour(s)" name="length_hour" required>
                     </div>
                 </div>
                 <div class="col-6 d-flex align-items-end col-md-2 p-0 pr-3">
                     <div class="container-fluid p-0">
                         <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
-                        <input type="number" class="form-control" placeholder="Minute(s)" name="length_min">
+                        <input type="number" class="form-control" placeholder="Minute(s)" name="length_min" required>
                     </div>
                 </div>
 
@@ -72,21 +51,21 @@
                     <div class="stats-container container-fluid">
                         <p class="text-center">Motivated:</p>
                         <div class="d-flex justify-content-center align-item-center">
-                            <input type="number" min="0" max="10" class="number-input float-left" name="motivated">
+                            <input type="number" min="0" max="10" class="number-input float-left" name="motivated" required>
                             <p class="m-0"> / 10</p>
                         </div>
                     </div>
                     <div class="stats-container container-fluid mx-3">
                         <p class="text-center">Difficulty:</p>
                         <div class="d-flex justify-content-center align-item-center">
-                            <input type="number" min="0" max="10" class="number-input float-left" name="difficulty">
+                            <input type="number" min="0" max="10" class="number-input float-left" name="difficulty" required>
                             <p class="m-0"> / 10</p>
                         </div>
                     </div>
                     <div class="stats-container container-fluid">
                         <p class="text-center">Effort:</p>
                         <div class="d-flex justify-content-center align-item-center">
-                            <input type="number" min="0" max="10" class="number-input float-left" name="effort">
+                            <input type="number" min="0" max="10" class="number-input float-left" name="effort" required>
                             <p class="m-0"> / 10</p>
                         </div>
                     </div>
@@ -96,14 +75,14 @@
                 <hr>
                 <div class="col-2 p-0">
                     <label>Unit:</label>
-                    <select id="session-unit-option" class="form-control container-fluid">
+                    <select id="session-unit-option" name="session_unit" class="form-control container-fluid" required>
                         <option value="kg">KG</option>
                         <option value="lb">LB</option>
                     </select>
                 </div>
                 <div class="col-7">
                     <label>Session Type:</label>
-                    <select id="session-type-option" class="form-control container-fluid">
+                    <select id="session-type-option" name="session_type" class="form-control container-fluid" required>
                         <option value="powerlifting">Powerlifting</option>
                         <option value="olympiclifting">Olympic Lifting</option>
                         <option value="strongman">Strong Man</option>

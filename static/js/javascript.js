@@ -1,5 +1,6 @@
 $(document).ready(function () {
     fixFloat()
+    $('#date').attr('value', min_date)
 })
 
 // Welcome message
@@ -15,6 +16,9 @@ if (hourNow > 20) {
     greeting = 'Good Morning'
 };
 
+var min_date = today.toISOString().slice(0,10)
+console.log(min_date)
+
 $('#greetingMessage').html(greeting);
 
 // Adds a row for the tables with changing name attribute
@@ -22,10 +26,10 @@ var rowIndex = 1;
 
 function createRow() {
     rowIndex++;
-    $('#please').append(` <tr>
-    <td><input class="container-fluid" type="text" name="session_exercise_${rowIndex}"></td>
-    <td><input class="container-fluid" type="type" name="session_sets_${rowIndex}"></td>
-    <td><input class="container-fluid d-flex justify-content-end" type="type" name="session_weight_${rowIndex}"></td>
+    $('#session_table').append(` <tr>
+    <td><input class="container-fluid" type="text" name="session_exercise_${rowIndex}" required></td>
+    <td><input class="container-fluid" type="type" name="session_sets_${rowIndex}" required></td>
+    <td><input class="container-fluid d-flex justify-content-end" type="type" name="session_weight_${rowIndex}" required></td>
     <td class="unit-td">${unitSelected}</td>
 </tr>`)
 console.log('working')
@@ -100,7 +104,7 @@ function addSessionTable() {
         <h5 class="main-colour-text">Powerlifting</h5>
     </div>
     </div>
-    <table class="session-table container-fluid mt-3" id="please">
+    <table class="session-table container-fluid mt-3" id="session_table">
     <tr>
         <th>Exercise:</th>
         <th>Sets / Reps:</th>
@@ -108,9 +112,9 @@ function addSessionTable() {
         <th class="unit-td"><i class="fas fa-balance-scale"></i></th>
     </tr>
     <tr>
-        <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
-        <td><input class="container-fluid" type="type" name="session_sets_1"></td>
-        <td><input class="container-fluid" type="type" name="session_weight_1"></td>
+        <td><input class="container-fluid" type="text" name="session_exercise_1" required></td>
+        <td><input class="container-fluid" type="type" name="session_sets_1" required></td>
+        <td><input class="container-fluid" type="type" name="session_weight_1" required></td>
         <td class="unit-td">${unitSelected}</td>
     </tr>
     </table>

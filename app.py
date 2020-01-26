@@ -67,9 +67,19 @@ def login():
     if login_user:
         if sha256_crypt.verify(request.form['password'], login_user['password']):
             session['username'] = request.form['username']
-            return redirect(url_for('home'))
+            return redirect(url_for('profile'))
         else:
             return redirect(url_for('index'))
+
+@app.route('/profile')
+def profile():
+    unitVar = request.cookies.get('unit')
+    currentUser = session['username']
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    sessions = mongo.db.sessions
+    login_user = sessions.find({'username': currentUser})
+    return render_template("profile.html", sessions=login_user, unit=unitVar, user=currentUsersAccount)
 
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
@@ -107,9 +117,9 @@ def insert_session():
     effort = request.form['effort']
     difficulty = request.form['difficulty']
     session_type = request.form['session_type']
+    session_unit = request.form['session_unit']
     notes = request.form['notes']
     # Changed the date being send to mongoDB, will change depending on the session_type and the row in the table
-
     def counting_rows():
         row_count = 0
         while True:
@@ -134,20 +144,23 @@ def insert_session():
             session_weight = request.form[weight]
             sessionDict = { exercise: session_exercise, sets : session_sets, weight : session_weight }
             session_row_return.append(sessionDict)
-
-
         return session_row_return
 
     row_count = counting_rows()
     training_session = training_to_dict()
-    sessionDict = {'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
-    return redirect(url_for('home'))
+    return redirect(url_for('profile'))
 
 @app.route('/delete_session/<session_id>')
 def delete_session(session_id):
     mongo.db.sessions.remove({'_id': ObjectId(session_id)})
     return redirect(url_for('home'))
+
+@app.route('/settings')
+def settings():
+    unitVar = request.cookies.get('unit')
+    return render_template('settings.html', unit=unitVar)
 
 
 @app.route('/logout')

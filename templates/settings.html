@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block content %}
+
+
+
+
+<div class="login-background py-5">
+    <div class="login-wrapper p-0 d-flex justify-content-center container-fluid">
+        <div class="row m-0 p-0 d-flex justify-content-center ">
+            <div class="register-width">
+                <div class="col-12 d-flex justify-content-center">
+                </div>
+                <h4 class="text-center my-3">Settings</h4>
+                <div class="col-12 px-3">
+                    <h6 class="m-0 mb-1 p-0">Unit:</h6>
+                    <form action="{{ url_for('add_unit') }}" method="POST">
+                        <div class="row m-0 p-0">
+                            <div class="col-12 col-md-11 m-0 p-0">
+                                <div class="d-flex justify-content-center">
+                                    <select class="form-control mb-2" name="unit">
+                                        {% if unit == 'kg' %}
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                        <option value="none">none</option>
+                                        {% elif unit == 'lb'%}
+                                        <option value="lb">lb</option>
+                                        <option value="kg">kg</option>
+                                        <option value="none">none</option>
+                                        {% else %}
+                                        <option value="none">none</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                        {% endif %}
+                                    </select>
+                                    <button class="btn ml-3 btn-dark unit-button" name="unit"><i
+                                            class="fas fa-balance-scale text-light"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
