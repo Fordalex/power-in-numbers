@@ -44,7 +44,7 @@ p, a, td, th, option {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: #fafafa;
+  background-image: url("../img/background.png");
 }
 
 .page-wrapper .page-container {

@@ -89,6 +89,8 @@ def add_unit():
     res.set_cookie('unit', unitValue)
     return res
 
+# adding session to mongoDB and the session page.
+
 @app.route('/add_session')
 def add_session():
     currentUser = session['username']
@@ -152,10 +154,17 @@ def insert_session():
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 
+# add records to mongoDB and records page.
+
+@app.route('/records')
+def records():
+    return render_template('records.html')
+
+
 @app.route('/delete_session/<session_id>')
 def delete_session(session_id):
     mongo.db.sessions.remove({'_id': ObjectId(session_id)})
-    return redirect(url_for('home'))
+    return redirect(url_for('profile'))
 
 @app.route('/settings')
 def settings():

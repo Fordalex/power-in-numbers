@@ -53,7 +53,7 @@ p,a,td,th,option {
 .page-wrapper {
     display:flex;
     justify-content:center;
-    background-color: $pageWrapper;
+    background-image: url('../img/background.png');
     .page-container {
         background-color: $pageContainer;
         width:100%;
