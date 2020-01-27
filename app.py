@@ -51,7 +51,7 @@ def register_insert():
             body_weight = request.form['body_weight']
             bw_unit = request.form['bw_unit']
             location = request.form['location']
-            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
+            users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': '0', 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
             session['username'] = request.form['username']
             return redirect(url_for('home'))
 
@@ -110,7 +110,26 @@ def insert_session():
     location = login_user.get('location')
     body_weight = login_user.get('body_weight')
     bw_unit = login_user.get('bw_unit')
+    password = login_user.get('password')
+    first_name = login_user.get('first_name')
+    last_name = login_user.get('last_name')
     sessions = mongo.db.sessions
+    # add the amount of the sessions that the user has logged.
+    currentSessionsLogged = login_user.get('sessions_logged')
+    currentLogged = int(currentSessionsLogged) + 1
+    mongo.db.users.update({'username' : currentUser},
+    {
+        'username' : username, 
+        'password' : password, 
+        'age': age, 
+        'gender': gender, 
+        'body_weight': body_weight, 
+        'bw_unit': bw_unit, 
+        'location': location, 
+        'first_name': first_name, 
+        'last_name': last_name,
+        'sessions_logged': currentLogged,
+    })
     # the data from the form
     date = request.form['date']
     length_hour = request.form['length_hour']
