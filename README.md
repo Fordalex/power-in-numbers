@@ -17,3 +17,5 @@ I need to add a unit dropdown box to give me more control on how the user's inpu
 ## Bugs
 
 When a user is deleted from the Data base the sessions are not removed.
+
+I think it will be best to added the users filter options to the local storage.

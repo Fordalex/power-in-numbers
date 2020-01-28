@@ -23,16 +23,27 @@
             <hr>
             <div class="row m-0 p-0">
                 <div class="col-12">
-                    <form>
+                    <form action="{{ url_for('filter_home') }}" method="POST">
                         <div class="row m-0 p-0">
                             <div class="col-12">
                                 <h6>Filter</h6>
                             </div>
                             <div class="col-3">
-                                <label>Age:</label>
-                                <select class="form-control" name="length">
-                                    <option value="longest">Oldest</option>
-                                    <option value="shortest">Youngest</option>
+                                <label>Session Type:</label>
+                                <select class="form-control" name="filter_session_type">
+                                    {% if filter_session_type == 'all' %}
+                                    <option value="all">All</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="running">Running</option>
+                                    {% elif filter_session_type == 'powerlifting' %}
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="running">Running</option>
+                                    <option value="all">All</option>
+                                    {% elif filter_session_type == 'running' %}
+                                    <option value="running">Running</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="all">All</option>
+                                    {% endif %}
                                 </select>
                             </div>
                             <div class="col-3">
@@ -48,7 +59,6 @@
                     </form>
                 </div>
             </div>
-
             <hr>
             <div class="row">
                 <div class="col-12">
@@ -57,7 +67,7 @@
             </div>
             <div class="row m-0 p-0 px-1">
                 {% for session in sessions %}
-
+                {% if session.session_type == filter_session_type or filter_session_type == 'all' %}
                 <div class="col-12 col-lg-6 px-3">
                     <div class="session-card my-3 p-2">
                         <div class="row m-0 p-0">
@@ -76,7 +86,7 @@
                                 </h5>
                                 <div class="row m-0 p-0">
                                     <div class="col-12 col-md-6 m-0 p-0">
-                                        <p class="m-0 p-0"><b>Age:</b> {{ session.age }}</p>
+                                        <p class="m-0 p-0"><b>Age:</b> {{ session.age }} </p>
                                         <p class="m-0 p-0">{{ session.gender }}</p>
                                     </div>
                                     <div class="col-12 col-md-6 m-0 p-0">
@@ -233,8 +243,8 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
-
             </div>
         </div>
     </div>

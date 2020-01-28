@@ -2,7 +2,7 @@
 
 
 <div class="title-container">
-    <p class="m-0 p-0 text-center text-light">Home</p>
+    <p class="m-0 p-0 text-center text-light">Records</p>
     <h1 class="text-center main-title">Power In Numbers</h1>
 </div>
 <div class="page-wrapper">
@@ -16,10 +16,11 @@
                                 <h6>Filter</h6>
                             </div>
                             <div class="col-3">
-                                <label>Age:</label>
+                                <label>Session Type:</label>
                                 <select class="form-control" name="length">
-                                    <option value="longest">Oldest</option>
-                                    <option value="shortest">Youngest</option>
+                                    <option value="all">All</option>
+                                    <option value="longest">Powerlifting</option>
+                                    <option value="shortest">Running</option>
                                 </select>
                             </div>
                             <div class="col-3">
@@ -38,7 +39,6 @@
             <hr>
             <div class="row m-0 p-0 px-1">
                 {% for session in sessions %}
-
                 <div class="col-12 col-lg-6 px-3">
                     <div class="session-card my-3 p-2">
                         <div class="row m-0 p-0">

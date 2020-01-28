@@ -28,7 +28,8 @@ def login_page():
 @app.route('/home')
 def home():
     unitVar = request.cookies.get('unit')
-    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar)
+    filter_session_type = request.cookies.get('filter_session_type')
+    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar, filter_session_type=filter_session_type)
 
 
 @app.route('/register')
@@ -51,7 +52,7 @@ def register_insert():
             body_weight = request.form['body_weight']
             bw_unit = request.form['bw_unit']
             location = request.form['location']
-            users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': '0', 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
+            users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': 0, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
             session['username'] = request.form['username']
             return redirect(url_for('home'))
 
@@ -81,13 +82,22 @@ def profile():
     login_user = sessions.find({'username': currentUser})
     return render_template("profile.html", sessions=login_user, unit=unitVar, user=currentUsersAccount)
 
+# saving to local storage
+
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
-    unitVar = request.cookies.get('unit')
     unitValue = request.form["unit"]
-    res = make_response(redirect(url_for('home')))
+    res = make_response(redirect(url_for('settings')))
     res.set_cookie('unit', unitValue)
     return res
+
+@app.route('/filter_home', methods=['POST'])
+def filter_home():
+    filter_session_type = request.form["filter_session_type"]
+    res = make_response(redirect(url_for('home')))
+    res.set_cookie('filter_session_type', filter_session_type)
+    return res
+
 
 # adding session to mongoDB and the session page.
 
@@ -97,6 +107,7 @@ def add_session():
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
     return render_template('addsession.html', user=login_user)
+
 
 @app.route('/insert_session', methods=['POST'])
 def insert_session():
@@ -116,7 +127,7 @@ def insert_session():
     sessions = mongo.db.sessions
     # add the amount of the sessions that the user has logged.
     currentSessionsLogged = login_user.get('sessions_logged')
-    currentLogged = int(currentSessionsLogged) + 1
+    currentLogged = currentSessionsLogged + 1
     mongo.db.users.update({'username' : currentUser},
     {
         'username' : username, 
@@ -183,6 +194,47 @@ def records():
 @app.route('/delete_session/<session_id>')
 def delete_session(session_id):
     mongo.db.sessions.remove({'_id': ObjectId(session_id)})
+     # current users data
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    username = login_user.get('username')
+    gender = login_user.get('gender')
+    age = login_user.get('age')
+    location = login_user.get('location')
+    body_weight = login_user.get('body_weight')
+    bw_unit = login_user.get('bw_unit')
+    password = login_user.get('password')
+    first_name = login_user.get('first_name')
+    last_name = login_user.get('last_name')
+    # add the amount of the sessions that the user has logged.
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    username = login_user.get('username')
+    gender = login_user.get('gender')
+    age = login_user.get('age')
+    location = login_user.get('location')
+    body_weight = login_user.get('body_weight')
+    bw_unit = login_user.get('bw_unit')
+    password = login_user.get('password')
+    first_name = login_user.get('first_name')
+    last_name = login_user.get('last_name')
+    login_user = users.find_one({'username' : currentUser})
+    currentSessionsLogged = login_user.get('sessions_logged')
+    currentLogged = currentSessionsLogged - 1
+    mongo.db.users.update({'username' : currentUser},
+    {
+        'username' : username, 
+        'password' : password, 
+        'age': age, 
+        'gender': gender, 
+        'body_weight': body_weight, 
+        'bw_unit': bw_unit, 
+        'location': location, 
+        'first_name': first_name, 
+        'last_name': last_name,
+        'sessions_logged': currentLogged,
+    })
     return redirect(url_for('profile'))
 
 @app.route('/settings')
