@@ -73,23 +73,16 @@
             </div>
             <div class="row m-0 mt-3 p-0" id="chooseTable">
                 <hr>
-                <div class="col-2 p-0">
-                    <label>Unit:</label>
-                    <select id="session-unit-option" name="session_unit" class="form-control container-fluid" required>
-                        <option value="kg">KG</option>
-                        <option value="lb">LB</option>
-                    </select>
-                </div>
-                <div class="col-7">
+                <div class="col-7 p-0">
                     <label>Session Type:</label>
                     <select id="session-type-option" name="session_type" class="form-control container-fluid" required>
+                        <option></option>
                         <option value="powerlifting">Powerlifting</option>
-                        <option value="olympiclifting">Olympic Lifting</option>
-                        <option value="strongman">Strong Man</option>
-                        <option value="strongwoman">Strong Woman</option>
-                        <option value="bodyweight">Body Weight</option>
                         <option value="running">Running</option>
                     </select>
+                </div>
+                <div class="col-2 px-3" id="unitOrDistance">
+                    
                 </div>
                 <div class="col-3 d-flex align-items-end p-0">
                     <div class="btn main-colour container-fluid" onclick="addSessionTable()">Continue</div>

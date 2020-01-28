@@ -16,7 +16,7 @@ if (hourNow > 20) {
     greeting = 'Good Morning'
 };
 
-var min_date = today.toISOString().slice(0,10)
+var min_date = today.toISOString().slice(0, 10)
 console.log(min_date)
 
 $('#greetingMessage').html(greeting);
@@ -32,7 +32,7 @@ function createRow() {
     <td><input class="container-fluid d-flex justify-content-end" type="type" name="session_weight_${rowIndex}" required></td>
     <td class="unit-td">${unitSelected}</td>
 </tr>`)
-console.log('working')
+    console.log('working')
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
     }
@@ -91,13 +91,14 @@ $('#training-session-id').on('click', function () {
     console.log('working2222')
 })
 
-
 // add session table
-var unitSelected = $('#session-unit-option option:selected').text()
+var unitSelected;
+var distanceSelected;
 
 function addSessionTable() {
     var typeSelected = $('#session-type-option option:selected').text()
     unitSelected = $('#session-unit-option option:selected').text()
+    distanceSelected = $('#session-distance-option option:selected').text()
     var powerliftingTable = `<div class="row p-0 m-0">
     <div class="col-12 d-flex align-items-end">
         <h3 class="float-left mr-3">Training Session</h3>
@@ -142,12 +143,10 @@ function addSessionTable() {
     </div>
     <table class="session-table container-fluid mt-3" id="addSessionTable">
     <tr>
-        <th>Distance:</th>
-        <th>Time:</th>
+        <th>Distance (${distanceSelected}) :</th>
     </tr>
     <tr>
         <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
-        <td><input class="container-fluid" type="type" name="session_sets_1"></td>
     </tr>
     </table>
     <div class="row">
@@ -182,3 +181,26 @@ function addSessionTable() {
         tableColour(k);
     }
 }
+
+// change to unit or distance depending on the users choice of session type
+
+$('#session-type-option').on('click', function  () {
+    usersChoice = $(this).val();
+    if (usersChoice == 'powerlifting') {
+        $('#unitOrDistance').html(`
+        <label>Unit:</label>
+        <select id="session-unit-option" name="session_unit" class="form-control container-fluid" required>
+            <option value="kg">KG</option>
+            <option value="lb">LB</option>
+        </select>
+        `)
+    } else if (usersChoice == 'running') {
+        $('#unitOrDistance').html(`
+        <label>Distance:</label>
+        <select id="session-distance-option" name="session_unit" class="form-control container-fluid" required>
+            <option value="miles">Miles</option>
+            <option value="km">km</option>
+        </select>
+        `)
+    }
+});

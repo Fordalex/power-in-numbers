@@ -75,14 +75,18 @@ def login():
 @app.route('/profile')
 def profile():
     unitVar = request.cookies.get('unit')
-    currentUser = session['username']
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     sessions = mongo.db.sessions
     login_user = sessions.find({'username': currentUser})
     return render_template("profile.html", sessions=login_user, unit=unitVar, user=currentUsersAccount)
+    
 
-# saving to local storage
+# saving settings and filter in a session cookie
 
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
@@ -97,7 +101,6 @@ def filter_home():
     res = make_response(redirect(url_for('home')))
     res.set_cookie('filter_session_type', filter_session_type)
     return res
-
 
 # adding session to mongoDB and the session page.
 
@@ -164,7 +167,7 @@ def insert_session():
                 break
         return row_count
     
-    def training_to_dict():    
+    def powerlifting_to_dict():    
         row_count = counting_rows()
         session_row_return = []
         for row in range(1, row_count + 1):
@@ -178,8 +181,22 @@ def insert_session():
             session_row_return.append(sessionDict)
         return session_row_return
 
+    def running_to_dict():    
+        row_count = counting_rows()
+        session_row_return = []
+        for row in range(1, row_count + 1):
+            exercise = 'session_exercise_' + str(row)
+            session_exercise = request.form[exercise]
+            sessionDict = { exercise: session_exercise}
+            session_row_return.append(sessionDict)
+        return session_row_return
+
     row_count = counting_rows()
-    training_session = training_to_dict()
+    if session_type == 'powerlifting':
+        training_session = powerlifting_to_dict()
+    elif session_type == 'running':
+        training_session = running_to_dict()
+
     sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
