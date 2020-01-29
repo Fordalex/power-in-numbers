@@ -161,10 +161,7 @@ function addSessionTable() {
     <textarea name="notes" class="container-fluid float-left form-control mb-3"></textarea>
     <div class="row">
     <div class="col-6 pr-0">
-    <select class="form-control mb-2 " name="session_type">
-        <option value="running">Running</option>
-        <option value="olympiclifting">Olympic Lifting</option>
-    </select>
+  
     </div>
     <div class="col-6">
     <button class="btn main-colour container-fluid text-dark border float-right" type="submit" name="action">Done</button>

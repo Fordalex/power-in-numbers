@@ -29,7 +29,8 @@ def login_page():
 def home():
     unitVar = request.cookies.get('unit')
     filter_session_type = request.cookies.get('filter_session_type')
-    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar, filter_session_type=filter_session_type)
+    filter_length = request.cookies.get('filter_length')
+    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar, filter_session_type=filter_session_type, filter_length=filter_length)
 
 
 @app.route('/register')
@@ -98,8 +99,10 @@ def add_unit():
 @app.route('/filter_home', methods=['POST'])
 def filter_home():
     filter_session_type = request.form["filter_session_type"]
+    filter_length = request.form['filter_length']
     res = make_response(redirect(url_for('home')))
     res.set_cookie('filter_session_type', filter_session_type)
+    res.set_cookie('filter_length', filter_length)
     return res
 
 # adding session to mongoDB and the session page.
@@ -197,7 +200,7 @@ def insert_session():
     elif session_type == 'running':
         training_session = running_to_dict()
 
-    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': length_hour, 'length_min': length_min, 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 
