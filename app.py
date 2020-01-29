@@ -23,15 +23,15 @@ def index():
 
 @app.route('/login_page')
 def login_page():
-    return render_template('index.html')
+    return render_template('loginpage.html')
 
 @app.route('/home')
 def home():
     unitVar = request.cookies.get('unit')
     filter_session_type = request.cookies.get('filter_session_type')
     filter_length = request.cookies.get('filter_length')
-    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar, filter_session_type=filter_session_type, filter_length=filter_length)
-
+    filter_date = request.cookies.get('filter_date')
+    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar, filter_session_type=filter_session_type, filter_length=filter_length, filter_date=filter_date )
 
 @app.route('/register')
 def register():
@@ -100,9 +100,11 @@ def add_unit():
 def filter_home():
     filter_session_type = request.form["filter_session_type"]
     filter_length = request.form['filter_length']
+    filter_date = request.form['filter_date']
     res = make_response(redirect(url_for('home')))
     res.set_cookie('filter_session_type', filter_session_type)
     res.set_cookie('filter_length', filter_length)
+    res.set_cookie('filter_date', filter_date)
     return res
 
 # adding session to mongoDB and the session page.

@@ -87,10 +87,6 @@ function fixFloat() {
     }
 }
 
-$('#training-session-id').on('click', function () {
-    console.log('working2222')
-})
-
 // add session table
 var unitSelected;
 var distanceSelected;
@@ -181,7 +177,7 @@ function addSessionTable() {
 
 // change to unit or distance depending on the users choice of session type
 
-$('#session-type-option').on('click', function  () {
+$('#session-type-option').on('mouseleave', function  () {
     usersChoice = $(this).val();
     if (usersChoice == 'powerlifting') {
         $('#unitOrDistance').html(`
