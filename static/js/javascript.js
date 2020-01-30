@@ -79,11 +79,18 @@ $('#unit').on('click', function () {
 
 // convert a float into an interger
 var numberUnit = document.getElementsByClassName('check-number-float')
+var distance_convertion = document.getElementsByClassName('distance_convertion')
 
 function fixFloat() {
     for (i = 0; i < numberUnit.length; i++) {
         unitNum = numberUnit[i].textContent
-        numberUnit[i].innerHTML = parseInt(unitNum);
+        unitNum = parseFloat(unitNum).toFixed(1)
+        numberUnit[i].innerHTML = unitNum;
+    }
+    for (i = 0; i < distance_convertion.length; i++) {
+        unitDistance = distance_convertion[i].textContent
+        unitDistance = parseFloat(unitDistance).toFixed(2)
+        distance_convertion[i].innerHTML = unitDistance;
     }
 }
 

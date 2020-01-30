@@ -204,7 +204,7 @@
                                                 <tr>
                                                     <td>{{ session.training_session }}
                                                     </td>
-                                                    <td>{{ session.length_min / session.training_session | int }} mins per {{ session.session_unit }}</td>
+                                                    <td><span class="distance_convertion">{{ session.length_min / session.training_session | int }}</span> mins per {{ session.session_unit }}</td>
                                                 </tr>
                                                 {% endif %}
                                             </table>
@@ -245,7 +245,7 @@
                                     </div>
                                     <div class="col-5 p-0">
                                         <div class="row m-0 p-0">
-                                            <div class="col-12 m-0">
+                                            <div class="col-12 m-0 p-0">
                                                 <p>
                                                     <a class="btn main-colour mt-2 expand-button text-dark border float-right"
                                                         data-toggle="collapse" href="#expand{{ loop.index }}"
@@ -261,7 +261,7 @@
                             </div>
                         </div>
                         <div class="row m-0 p-0">
-                            <div class="col-12">
+                            <div class="col-12 p-0">
                                 <div class="collapse" id="edit{{ loop.index }}">
                                     <div class="card card-body p-0 mt-2">
                                         <a href="{{url_for('delete_session', session_id=session._id)}}"><button

@@ -186,9 +186,8 @@
                                                     <th>Average Speed</th>
                                                 </tr>
                                                 <tr>
-                                                    <td>{{ session.training_session }}
-                                                    </td>
-                                                    <td>{{ session.length_min / session.training_session | int }} mins per {{ session.session_unit }}</td>
+                                                    <td>{{ session.training_session }}</td>
+                                                    <td><span class="distance_convertion">{{ session.length_min / session.training_session | int }}</span> mins per {{ session.session_unit }}</td>
                                                 </tr>
                                                 {% endif %}
                                             </table>

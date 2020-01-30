@@ -30,6 +30,7 @@ def home():
     unitVar = request.cookies.get('unit')
     filter_date = request.cookies.get('filter_date')
     filter_session_type = request.cookies.get('filter_session_type')
+    unit_distance = request.cookies.get('unit_distance')
     def filter():
         filter_dictionary = {}
         if filter_date:
@@ -39,7 +40,7 @@ def home():
                 filter_dictionary.update({'session_type': filter_session_type})
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-    return render_template("home.html", sessions=sessions, unit=unitVar, filter_session_type=filter_session_type, filter_date=filter_date )
+    return render_template("home.html", sessions=sessions, unit=unitVar, filter_session_type=filter_session_type, filter_date=filter_date, unit_distance=unit_distance )
 
 @app.route('/register')
 def register():
@@ -113,8 +114,10 @@ def profile():
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
     unitValue = request.form["unit"]
+    unit_distance = request.form["unit_distance"]
     res = make_response(redirect(url_for('settings')))
     res.set_cookie('unit', unitValue)
+    res.set_cookie('unit_distance', unit_distance)
     return res
 
 @app.route('/filter_home', methods=['POST'])
@@ -281,7 +284,8 @@ def delete_session(session_id):
 @app.route('/settings')
 def settings():
     unitVar = request.cookies.get('unit')
-    return render_template('settings.html', unit=unitVar)
+    unit_distance = request.cookies.get('unit_distance')
+    return render_template('settings.html', unit=unitVar, unit_distance=unit_distance)
 
 
 @app.route('/logout')

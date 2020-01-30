@@ -7,32 +7,54 @@
     <div class="login-wrapper p-0 d-flex justify-content-center container-fluid">
         <div class="row m-0 p-0 d-flex justify-content-center container-fluid">
             <div class="container-fluid">
-                <h4 class="text-center my-3">Settings</h4>
+                <h3 class="text-center my-3">Settings</h3>
                 <div class="row">
 
                     <div class="col-12 px-3">
-                        <h6 class="m-0 mb-1 p-0">Unit:</h6>
+
                         <form action="{{ url_for('add_unit') }}" method="POST">
                             <div class="row m-0 p-0">
-                                <div class="col-12 col-md-11 m-0 p-0">
-                                    <div class="d-flex justify-content-center">
-                                        <select class="form-control mb-2" name="unit">
-                                            {% if unit == 'kg' %}
-                                            <option value="kg">kg</option>
-                                            <option value="lb">lb</option>
-                                            <option value="none">none</option>
-                                            {% elif unit == 'lb'%}
-                                            <option value="lb">lb</option>
-                                            <option value="kg">kg</option>
-                                            <option value="none">none</option>
-                                            {% else %}
-                                            <option value="none">none</option>
-                                            <option value="kg">kg</option>
-                                            <option value="lb">lb</option>
-                                            {% endif %}
-                                        </select>
-                                        <button class="btn ml-3 btn-dark unit-button container-fluid px-0" name="unit">Make Changes</button>
-                                    </div>
+                                <div class="col-6 col-md-6 m-0 p-0 pr-3">
+
+                                    <h6 class="m-0 mb-1 p-0">Weight:</h6>
+                                    <select class="form-control mb-2" name="unit">
+                                        {% if unit == 'kg' %}
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                        <option value="none">none</option>
+                                        {% elif unit == 'lb'%}
+                                        <option value="lb">lb</option>
+                                        <option value="kg">kg</option>
+                                        <option value="none">none</option>
+                                        {% else %}
+                                        <option value="none">none</option>
+                                        <option value="kg">kg</option>
+                                        <option value="lb">lb</option>
+                                        {% endif %}
+                                    </select>
+
+                                </div>
+                                <div class="col-6 col-md-6 m-0 p-0">
+                                    <h6 class="m-0 mb-1 p-0 ">Distance:</h6>
+                                    <select class="form-control mb-2" name="unit_distance">
+                                        {% if unit_distance == 'mile' %}
+                                        <option value="mile">Mile</option>
+                                        <option value="km">km</option>
+                                        <option value="none">none</option>
+                                        {% elif unit_distance == 'km' %}
+                                        <option value="km">km</option>
+                                        <option value="mile">Mile</option>
+                                        <option value="none">none</option>
+                                        {% else %}
+                                        <option value="none">none</option>
+                                        <option value="mile">Mile</option>
+                                        <option value="km">km</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <div class="col-12 p-0 my-3">
+                                    <button class="btn btn-dark unit-button container-fluid px-0" name="unit">Make
+                                        Changes</button>
                                 </div>
                             </div>
                         </form>
