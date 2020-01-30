@@ -82,10 +82,10 @@ To create Power In Numbers i used the following:
 ## Testing
 
 After getting the form completed, I soon realized that not everyone will fill this out the same way... 
-
-![User Testing]('https://github.com/Fordalex/power-in-numbers/blob/master/readme/user_testing.png', "User testing")
-
+![User Testing](https://github.com/Fordalex/power-in-numbers/blob/master/readme/user_testing.png)
 I need to add a unit dropdown box to give me more control on how the user's input the data. This will allow me to perform unit conversions on the given values.
+
+I spent a few days trying to get the filter system to work using jinja and a few if statements... Bad choice. I soon realised that the for loop index wasn't giving the correct numbers in order, also the search result wasn't giving back the correct number of sessions shown, but was returning the full amount of the iterations that the loop was undergoing. I've started saving the users inputs into a session cookie and filtering the data before sending it through to the home page.
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
 

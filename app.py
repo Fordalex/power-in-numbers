@@ -28,10 +28,18 @@ def login_page():
 @app.route('/home')
 def home():
     unitVar = request.cookies.get('unit')
-    filter_session_type = request.cookies.get('filter_session_type')
-    filter_length = request.cookies.get('filter_length')
     filter_date = request.cookies.get('filter_date')
-    return render_template("home.html", sessions=mongo.db.sessions.find(), unit=unitVar, filter_session_type=filter_session_type, filter_length=filter_length, filter_date=filter_date )
+    filter_session_type = request.cookies.get('filter_session_type')
+    def filter():
+        filter_dictionary = {}
+        if filter_date:
+            filter_dictionary.update({'date': filter_date})
+        if filter_session_type:
+            if filter_session_type != 'all':
+                filter_dictionary.update({'session_type': filter_session_type})
+        return filter_dictionary
+    sessions = mongo.db.sessions.find(filter())
+    return render_template("home.html", sessions=sessions, unit=unitVar, filter_session_type=filter_session_type, filter_date=filter_date )
 
 @app.route('/register')
 def register():
@@ -99,11 +107,9 @@ def add_unit():
 @app.route('/filter_home', methods=['POST'])
 def filter_home():
     filter_session_type = request.form["filter_session_type"]
-    filter_length = request.form['filter_length']
     filter_date = request.form['filter_date']
     res = make_response(redirect(url_for('home')))
     res.set_cookie('filter_session_type', filter_session_type)
-    res.set_cookie('filter_length', filter_length)
     res.set_cookie('filter_date', filter_date)
     return res
 
@@ -187,13 +193,8 @@ def insert_session():
         return session_row_return
 
     def running_to_dict():    
-        row_count = counting_rows()
+
         session_row_return = []
-        for row in range(1, row_count + 1):
-            exercise = 'session_exercise_' + str(row)
-            session_exercise = request.form[exercise]
-            sessionDict = { exercise: session_exercise}
-            session_row_return.append(sessionDict)
         return session_row_return
 
     row_count = counting_rows()
