@@ -185,14 +185,11 @@
                                                     <th>Distance ({{ session.session_unit }})</th>
                                                     <th>Average Speed</th>
                                                 </tr>
-                                                {% for row in range(session.session_rows | int) %}
-                                                {% set rowIndex = row + 1 %}
                                                 <tr>
-                                                    <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
+                                                    <td>{{ session.training_session }}
                                                     </td>
-                                                    <td>min per {{ session.session_unit }} </td>
+                                                    <td>{{ session.length_min / session.training_session | int }} mins per {{ session.session_unit }}</td>
                                                 </tr>
-                                                {% endfor %}
                                                 {% endif %}
                                             </table>
                                         </div>

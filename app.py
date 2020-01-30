@@ -214,16 +214,12 @@ def insert_session():
             session_row_return.append(sessionDict)
         return session_row_return
 
-    def running_to_dict():    
-
-        session_row_return = []
-        return session_row_return
 
     row_count = counting_rows()
     if session_type == 'powerlifting':
         training_session = powerlifting_to_dict()
     elif session_type == 'running':
-        training_session = running_to_dict()
+        training_session = request.form['distance']
 
     sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)

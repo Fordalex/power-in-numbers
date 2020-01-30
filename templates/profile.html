@@ -198,9 +198,13 @@
                                                 {% endfor %}
                                                 {% elif session.session_type == 'running' %}
                                                 <tr>
-                                                    <th>Distance</th>
-                                                    <th>Time</th>
+                                                    <th>Distance ({{ session.session_unit }})</th>
                                                     <th>Average Speed</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>{{ session.training_session }}
+                                                    </td>
+                                                    <td>{{ session.length_min / session.training_session | int }} mins per {{ session.session_unit }}</td>
                                                 </tr>
                                                 {% endif %}
                                             </table>
@@ -268,6 +272,11 @@
                         </div>
                     </div>
                 </div>
+                {% if loop.last %}
+                <div class="col-12">
+                    <p class="text-secondary">Search Result: {{ loop.index }}</p>
+                </div>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

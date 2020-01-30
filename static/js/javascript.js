@@ -142,7 +142,7 @@ function addSessionTable() {
         <th>Distance (${distanceSelected}) :</th>
     </tr>
     <tr>
-        <td><input class="container-fluid" type="text" name="session_exercise_1"></td>
+        <td><input class="container-fluid" type="text" name="distance"></td>
     </tr>
     </table>
     <div class="row">
