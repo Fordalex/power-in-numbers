@@ -90,9 +90,22 @@ def profile():
         return redirect(url_for('login'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
-    sessions = mongo.db.sessions
-    login_user = sessions.find({'username': currentUser})
-    return render_template("profile.html", sessions=login_user, unit=unitVar, user=currentUsersAccount)
+    filter_date = request.cookies.get('filter_date_profile')
+    filter_session_type = request.cookies.get('filter_session_type_profile')
+
+    def filter():
+        filter_dictionary = {'username': currentUser}
+        if filter_date:
+            filter_dictionary.update({'date': filter_date})
+        if filter_session_type:
+            if filter_session_type != 'all':
+                filter_dictionary.update({'session_type': filter_session_type})
+        
+        return filter_dictionary
+
+    sessions = mongo.db.sessions.find(filter())
+
+    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date)
     
 
 # saving settings and filter in a session cookie
@@ -111,6 +124,15 @@ def filter_home():
     res = make_response(redirect(url_for('home')))
     res.set_cookie('filter_session_type', filter_session_type)
     res.set_cookie('filter_date', filter_date)
+    return res
+
+@app.route('/filter_profile', methods=['POST'])
+def filter_profile():
+    filter_session_type = request.form["filter_session_type"]
+    filter_date = request.form['filter_date']
+    res = make_response(redirect(url_for('profile')))
+    res.set_cookie('filter_session_type_profile', filter_session_type)
+    res.set_cookie('filter_date_profile', filter_date)
     return res
 
 # adding session to mongoDB and the session page.

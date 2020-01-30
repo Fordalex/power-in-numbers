@@ -43,6 +43,49 @@
             </div>
             <hr class="mt-0">
             <div class="row m-0 p-0">
+                <div class="col-12 p-0">
+                    <form action="{{ url_for('filter_profile') }}" method="POST">
+                        <div class="row m-0 p-0">
+                            <div class="col-6 col-md-4">
+                                <h6>Filter</h6>
+                                <label>Session Type:</label>
+                                <select class="form-control" name="filter_session_type">
+                                    {% if filter_session_type == 'powerlifting' %}
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="running">Running</option>
+                                    <option value="all">All</option>
+                                    {% elif filter_session_type == 'running' %}
+                                    <option value="running">Running</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="all">All</option>
+                                    {% else %}
+                                    <option value="all">All</option>
+                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="running">Running</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                            <div class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
+                                <div class="container-fluid">
+                                    <label>Date:</label>
+                                    <input type="date" class="form-control" value="{{ filter_date }}"
+                                        name="filter_date">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
+                                <button class="main-gradient btn container-fluid">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row m-0 p-0" id="session_title">
+                <div class="col-12">
+                    <h4 class="text-center">Your Training Sessions</h4>
+                </div>
+            </div>
+            <div class="row m-0 p-0">
                 {% for session in sessions %}
                 <div class="col-12 col-lg-6">
                     <div class="session-card my-3 p-2">
