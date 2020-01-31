@@ -187,7 +187,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>{{ session.training_session }}</td>
-                                                    <td><span class="distance_convertion">{{ session.length_min / session.training_session | int }}</span> mins per {{ session.session_unit }}</td>
+                                                    {% set hoursToMins = session.length_hour * 60 %}
+                                                    {% set totalMins = hoursToMins | int + session.length_min | int %}
+                                                    <td><span class="distance_convertion">{{ totalMins / session.training_session | int }}</span> mins per {{ session.session_unit }}</td>
                                                 </tr>
                                                 {% endif %}
                                             </table>
