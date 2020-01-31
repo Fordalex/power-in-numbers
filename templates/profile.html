@@ -23,6 +23,22 @@
                         <div class="col-6 col-md-2">
                             <p class="m-0 p-0"><b>Session's: {{ user.sessions_logged }}</b></p>
                         </div>
+                        <div class="col-12 d-sm-block d-md-none p-0">
+                            <hr>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            {% if user.sessions_logged > 100 %}
+                            <p class="m-0 p-0 main-colour-text"><b>Master</b></p>
+                            {% elif user.sessions_logged > 50 %}
+                            <p class="m-0 p-0 main-colour-text"><b>Advanced</b></p>
+                            {% elif user.sessions_logged > 25 %}
+                            <p class="m-0 p-0 main-colour-text"><b>Novice</b></p>
+                            {% elif user.sessions_logged > 10 %}
+                            <p class="m-0 p-0 main-colour-text"><b>Rookie</b></p>
+                            {% else %}
+                            <p class="m-0 p-0 main-colour-text"><b>Beginner</b></p>
+                            {% endif %}
+                        </div>
                         <div class="col-6 col-md-2">
                             <ul class="nav">
                                 <li class="nav-item dropdown">

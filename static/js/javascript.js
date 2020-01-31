@@ -89,7 +89,7 @@ function fixFloat() {
     }
     for (i = 0; i < distance_convertion.length; i++) {
         unitDistance = distance_convertion[i].textContent
-        unitDistance = parseFloat(unitDistance).toFixed(2)
+        unitDistance = parseFloat(unitDistance).toFixed(1)
         distance_convertion[i].innerHTML = unitDistance;
     }
 }
