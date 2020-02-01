@@ -106,7 +106,7 @@ def profile():
         return filter_dictionary
 
     sessions = mongo.db.sessions.find(filter())
-     # The total distance the the users how traveled by foot
+     # The total distance the users has traveled by foot
     currentUser = session['username']
     allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'miles'})
     allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'km'})
