@@ -40,7 +40,8 @@ def home():
                 filter_dictionary.update({'session_type': filter_session_type})
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-    return render_template("home.html", sessions=sessions, unit=unitVar, filter_session_type=filter_session_type, filter_date=filter_date, unit_distance=unit_distance )
+
+    return render_template("home.html", sessions=sessions, unit=unitVar, filter_session_type=filter_session_type, filter_date=filter_date, unit_distance=unit_distance)
 
 @app.route('/register')
 def register():
@@ -105,8 +106,40 @@ def profile():
         return filter_dictionary
 
     sessions = mongo.db.sessions.find(filter())
-
-    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date)
+     # The total distance the the users how traveled by foot
+    currentUser = session['username']
+    allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'miles'})
+    allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'km'})
+    # count the miles traveled on foot
+    def countDistanceOnFootMiles():
+        distanceCount = 0
+        for distance in allDistanceByFootMiles:
+            distanceCount = int(distance["training_session"]) + distanceCount
+        return distanceCount
+    # count the km traveled on foot
+    def countDistanceOnFootKm():
+        distanceCount = 0
+        for distance in allDistanceByFootKm:
+            distanceCount = int(distance["training_session"]) + distanceCount
+        return distanceCount
+    # convert the kms into miles then add them together
+    distanceOnFootMiles = countDistanceOnFootMiles()
+    distanceOnFootKm = countDistanceOnFootKm() 
+    kmToMiles = distanceOnFootKm * 0.6213
+    # convert the distance traveled to the users selected choice.
+    totalDistanceOnFootMiles = kmToMiles + distanceOnFootMiles
+    distanceByFootUnit = request.cookies.get('unit_distance')
+    if distanceByFootUnit == 'km':
+        totalDistanceOnFootMiles = totalDistanceOnFootMiles * 1.6093
+    # total powerlifting sessions
+    totalPowerliftingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'powerlifting'})
+    def powerliftingCount():
+        count = 0
+        for session in totalPowerliftingSessions:
+            count = count + 1
+        return count
+    totalPowerliftingSessions = powerliftingCount()
+    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceByFootUnit=distanceByFootUnit, totalPowerliftingSessions=totalPowerliftingSessions)
     
 
 # saving settings and filter in a session cookie

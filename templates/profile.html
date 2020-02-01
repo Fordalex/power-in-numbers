@@ -9,9 +9,27 @@
     <div class="page-container p-0">
         <div class="container-fluid p-0">
             <div class="row m-0 p-0 ">
-                <div class="col-12 my-3">
+                <div class="col-12 my-3 px-1 px-sm-3">
                     <div class="row m-0 p-0">
-                        <div class="col-6 col-sm-2">
+                        <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                            <ul class="nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-light p-1 btn main-gradient" data-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">Add Data</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ url_for('add_session') }}">Training
+                                            Session</a>
+                                        <a class="dropdown-item" href="#">Personal Record</a>
+                                        <a class="dropdown-item" href="#">Training Plan</a>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+
+
+                        <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
                             {% if user.sessions_logged > 100 %}
                             <p class="m-0 p-0 main-colour-text"><b>Master</b></p>
                             {% elif user.sessions_logged > 50 %}
@@ -24,33 +42,34 @@
                             <p class="m-0 p-0 main-colour-text"><b>Beginner</b></p>
                             {% endif %}
                         </div>
-                        <div class="col-6 col-sm-2 d-flex justify-content-end justify-content-sm-start">
+                        <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                            <p class="m-0 p-0"> <i class="fas fa-shoe-prints"></i> </b><b>Ran:</b> {{ allDistanceByFoot }}{{ distanceByFootUnit }}s</p>
+                        </div>
+                        <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                            <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled:</b></p>
+                        </div>
+                        <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                            <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Weights: {{ totalPowerliftingSessions }}</b></p>
+                        </div>
+                        <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                            <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Logged:</b> {{ user.sessions_logged }}</p>
+                        </div>
+
+                      
+                        <!-- <div class="col-6 col-sm-2 d-flex justify-content-end justify-content-sm-start">
                             <p class="m-0 p-0"><b>Age:</b> {{ user.age }}</p>
+                            
                         </div>
                         <div class="col-6 col-sm-2">
                             <p class="m-0 p-0"><b>Gender:</b> {{ user.gender }}</p>
                         </div>
+
+                   
                         <div class="col-6 col-sm-2 d-flex justify-content-end justify-content-sm-start">
                             <p class="m-0 p-0"><b>BW:</b> {{ user.body_weight }}{{ user.bw_unit }}</p>
-                        </div>
-                        <div class="col-6 col-sm-2">
-                            <p class="m-0 p-0"><b>Session's: {{ user.sessions_logged }}</b></p>
-                        </div>
-                        <div class="col-6 col-sm-2 d-flex justify-content-end justify-content-sm-start">
-                            <ul class="nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark p-1 btn main-gradient" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="true" aria-expanded="false">Add Data</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url_for('add_session') }}">Training
-                                            Session</a>
-                                        <a class="dropdown-item" href="#">Personal Record</a>
-                                        <a class="dropdown-item" href="#">Training Plan</a>
+                        </div> -->
 
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
