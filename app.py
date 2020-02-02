@@ -302,6 +302,8 @@ def insert_session():
         training_session = powerlifting_to_dict()
     elif session_type == 'running':
         training_session = request.form['distance']
+    elif session_type == 'cycling':
+        training_session = request.form['distance']
 
     sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)

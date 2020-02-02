@@ -101,6 +101,8 @@
                                                 <i class="fas fa-shoe-prints float-right"></i>
                                                 {% elif session.session_type == 'Body Weight' %}
                                                 <i class="fas fa-child float-right"></i>
+                                                {% elif session.session_type == 'cycling' %}
+                                                <i class="fas fa-biking float-right"></i>
                                                 {% elif session.session_type == 'olympiclifting' %}
                                                 <i class="fas fa-dumbbell float-right"></i>
                                                 {% endif %}
@@ -212,7 +214,8 @@
                                                                     <td>{{ weight_lifted }}{{ unit }}
                                                                     </td>
                                                                     {% endif %}{% if session.session_unit == 'lb' %}
-                                                                    <td><span class="toFixed1">{{ weight_lifted * 10 / 22 }}</span>{{ unit }}
+                                                                    <td><span
+                                                                            class="toFixed1">{{ weight_lifted * 10 / 22 }}</span>{{ unit }}
                                                                     </td>
                                                                     {% endif %}
                                                                     {% endif %}
@@ -221,13 +224,14 @@
                                                                     <td>{{ weight_lifted }}{{ unit }}
                                                                     </td>
                                                                     {% endif %}{% if session.session_unit == 'kg' %}
-                                                                    <td><span class="toFixed1">{{ weight_lifted * 22 / 10 }}</span>{{ unit }}
+                                                                    <td><span
+                                                                            class="toFixed1">{{ weight_lifted * 22 / 10 }}</span>{{ unit }}
                                                                     </td>
                                                                     {% endif %}
                                                                     {% endif %}
                                                                 </tr>
                                                                 {% endfor %}
-                                                                {% elif session.session_type == 'running' %}
+                                                                {% elif session.session_type == 'running' or session.session_type == 'cycling' %}
                                                                 <tr>
                                                                     <th>Distance ({{ distanceUnit }})</th>
                                                                     <th>Average Speed</th>
@@ -241,17 +245,20 @@
                                                                     {% if session.session_unit == 'km' %}
                                                                     {% set distance_traveled = session.training_session | int * 0.62 %}
                                                                     <td><span class="toFixed2">
-                                                                        {{ distance_traveled }}</span> {{ distanceUnit }}</td>
+                                                                            {{ distance_traveled }}</span>
+                                                                        {{ distanceUnit }}</td>
                                                                     {% endif %}
                                                                     {% endif %}
                                                                     {% if distanceUnit == 'km' %}{% if session.session_unit == 'km' %}
-                                                                    {% set distance_traveled = session.training_session %}   
+                                                                    {% set distance_traveled = session.training_session %}
                                                                     <td>{{ distance_traveled }} {{ distanceUnit }}
                                                                     </td>
                                                                     {% endif %}
                                                                     {% if session.session_unit == 'mile' %}
-                                                                    {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %} 
-                                                                    <td><span class="toFixed2">{{ distance_traveled }}</span> {{ distanceUnit }}</td>
+                                                                    {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
+                                                                    <td><span
+                                                                            class="toFixed2">{{ distance_traveled }}</span>
+                                                                        {{ distanceUnit }}</td>
                                                                     {% endif %}
                                                                     {% endif %}
 
@@ -403,39 +410,7 @@
                                     </div>
 
                                 </div>
-                                <script>
-                                    var transactionsData = [
-                                        { "name": "Powerlifting", "label": "Total", "spend": {{ totalPowerliftingSessions }}},
-                                    { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }}},
-                                    { "name": "Cycling", "label": "Total", "spend": 0 },
-                                    ];
-                                    var ndx = crossfilter(transactionsData);
-
-                                    var store_dim = ndx.dimension(dc.pluck('name'));
-                                    var total_spend_per_store = store_dim.group().reduceSum(dc.pluck('spend'));
-                                    dc.pieChart('#sessionTypePie')
-                                        .height(210)
-                                        .radius(90)
-                                        .transitionDuration(1500)
-                                        .dimension(store_dim)
-                                        .group(total_spend_per_store);
-
-                                    var total_dim = ndx.dimension(dc.pluck('label'));
-                                    var total_spend_per_total = total_dim.group().reduceSum(dc.pluck('spend'));
-                                    dc.barChart('#totalSessionBar')
-                                        .width(150)
-                                        .height(210)
-                                        .margins({ top: 15, right: 50, bottom: 30, left: 50 })
-                                        .dimension(total_dim)
-                                        .group(total_spend_per_total)
-                                        .transitionDuration(500)
-                                        .x(d3.scale.ordinal())
-                                        .xUnits(dc.units.ordinal)
-                                        .xAxisLabel("Store")
-                                        .yAxis().ticks(4);
-
-                                    dc.renderAll();
-                                </script>
+                         
 
 
                                 <div class="row m-0 p-0">
@@ -445,6 +420,9 @@
                                 </div>
 
                                 <div class="row m-0 p-0">
+                                    <div class="col-12 p-0">
+                                        <h3 class="text-center mb-3">Total Distance Traveled</h3>
+                                    </div>
                                     <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
                                         <p class="m-0 p-0"> <i class="fas fa-shoe-prints"></i> </b><b>Ran:</b>
                                             {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
@@ -453,8 +431,90 @@
                                         <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled:</b></p>
                                     </div>
                                 </div>
+                                <div class="row m-0 p-0">
+                                    <div class="col-12 p-0">
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 ">
+                                    <div class="col-6  col-md-6 d-flex justify-content-center">
+                                        <div>
+                                            <h6 class="text-center">Travel Type</h6>
+                                            <div id="distancePie"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-6 d-flex justify-content-center">
+                                        <div>
+                                            <h6 class="text-center">Total Distance</h6>
+                                            <div id="distanceBar"></div>
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <script>
+                                    // The pie and bar chart for the distance travelled
+                                    var transactionsData = [
+                                    { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
+                                    { "name": "Cycling", "label": "Total", "spend": 5 },
+                                    ];
+                                    var ndx = crossfilter(transactionsData);
 
+                                    var store_dim = ndx.dimension(dc.pluck('name'));
+                                    var total_spend_per_store = store_dim.group().reduceSum(dc.pluck('spend'));
+                                    dc.pieChart('#distancePie')
+                                        .height(210)
+                                        .radius(90)
+                                        .transitionDuration(1500)
+                                        .dimension(store_dim)
+                                        .group(total_spend_per_store);
+
+                                    var total_dim = ndx.dimension(dc.pluck('label'));
+                                    var total_spend_per_total = total_dim.group().reduceSum(dc.pluck('spend'));
+                                    dc.barChart('#distanceBar')
+                                        .width(150)
+                                        .height(210)
+                                        .margins({ top: 15, right: 50, bottom: 30, left: 50 })
+                                        .dimension(total_dim)
+                                        .group(total_spend_per_total)
+                                        .transitionDuration(500)
+                                        .x(d3.scale.ordinal())
+                                        .xUnits(dc.units.ordinal)
+                                        .xAxisLabel("Sessions")
+                                        .yAxis().ticks(4);
+
+                                    // The pie and bar chart for the session logged.
+                                        var Data = [
+                                        { "name": "Powerlifting", "label": "Total", "spend": {{ totalPowerliftingSessions }}},
+                                    { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }} },
+                                    { "name": "Cycling", "label": "Total", "spend": 0 },
+                                    ];
+                                    var ndx = crossfilter(Data);
+
+                                    var store_di = ndx.dimension(dc.pluck('name'));
+                                    var total_spend_per_stor = store_di.group().reduceSum(dc.pluck('spend'));
+                                    dc.pieChart('#sessionTypePie')
+                                        .height(210)
+                                        .radius(90)
+                                        .transitionDuration(1500)
+                                        .dimension(store_di)
+                                        .group(total_spend_per_stor);
+
+                                    var total_di = ndx.dimension(dc.pluck('label'));
+                                    var total_spend_per_tota = total_di.group().reduceSum(dc.pluck('spend'));
+                                    dc.barChart('#totalSessionBar')
+                                        .width(150)
+                                        .height(210)
+                                        .margins({ top: 15, right: 50, bottom: 30, left: 50 })
+                                        .dimension(total_di)
+                                        .group(total_spend_per_tota)
+                                        .transitionDuration(500)
+                                        .x(d3.scale.ordinal())
+                                        .xUnits(dc.units.ordinal)
+                                        .xAxisLabel("Sessions")
+                                        .yAxis().ticks(4);
+
+                                    dc.renderAll();
+                                </script>
 
 
 
