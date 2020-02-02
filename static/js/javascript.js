@@ -78,19 +78,22 @@ $('#unit').on('click', function () {
 })
 
 // convert a float into an interger
-var numberUnit = document.getElementsByClassName('check-number-float')
-var distance_convertion = document.getElementsByClassName('distance_convertion')
+var toFixed1 = document.getElementsByClassName('toFixed1')
+var toFixed2 = document.getElementsByClassName('toFixed2')
 
 function fixFloat() {
-    for (i = 0; i < numberUnit.length; i++) {
-        unitNum = numberUnit[i].textContent
+    for (i = 0; i < toFixed1.length; i++) {
+        unitNum = toFixed1[i].textContent
         unitNum = parseFloat(unitNum).toFixed(1)
-        numberUnit[i].innerHTML = unitNum;
+        toFixed1[i].innerHTML = unitNum;
     }
-    for (i = 0; i < distance_convertion.length; i++) {
-        unitDistance = distance_convertion[i].textContent
-        unitDistance = parseFloat(unitDistance).toFixed(1)
-        distance_convertion[i].innerHTML = unitDistance;
+    for (i = 0; i < toFixed2.length; i++) {
+        unitDistance = toFixed2[i].textContent
+        console.log(unitDistance)
+        unitDistance = parseFloat(unitDistance).toFixed(2)
+        console.log(unitDistance)
+        toFixed2[i].innerHTML = unitDistance;
+        console.log('next')
     }
 }
 
@@ -206,7 +209,7 @@ function addSessionFirstNext() {
         <div id="unitContainer">
             <label>Distance:</label>
             <select onclick="unitContinueButton()" id="session-distance-option" name="session_unit" class="form-control container-fluid" required>
-                <option value="miles">Miles</option>
+                <option value="mile">Mile</option>
                 <option value="km">km</option>
             </select>
             <div id="secondNextContainer">

@@ -27,10 +27,13 @@ def login_page():
 
 @app.route('/home')
 def home():
-    unitVar = request.cookies.get('unit')
+    currentUser = session['username']
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    unitVar = currentUsersAccount.get('selected_unit')
     filter_date = request.cookies.get('filter_date')
     filter_session_type = request.cookies.get('filter_session_type')
-    unit_distance = request.cookies.get('unit_distance')
+    unit_distance = currentUsersAccount.get('selected_distance')
     def filter():
         filter_dictionary = {}
         if filter_date:
@@ -63,7 +66,7 @@ def register_insert():
             body_weight = request.form['body_weight']
             bw_unit = request.form['bw_unit']
             location = request.form['location']
-            users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': 0, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name})
+            users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': 0, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name,  'selected_unit': 'kg', 'selected_distance': 'mile',})
             session['username'] = request.form['username']
             return redirect(url_for('home'))
 
@@ -85,16 +88,16 @@ def login():
 
 @app.route('/profile')
 def profile():
-    unitVar = request.cookies.get('unit')
+    # to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
         return redirect(url_for('login'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
+    # get filter info from cookies
     filter_date = request.cookies.get('filter_date_profile')
     filter_session_type = request.cookies.get('filter_session_type_profile')
-
     def filter():
         filter_dictionary = {'username': currentUser}
         if filter_date:
@@ -104,11 +107,11 @@ def profile():
                 filter_dictionary.update({'session_type': filter_session_type})
         
         return filter_dictionary
-
     sessions = mongo.db.sessions.find(filter())
      # The total distance the users has traveled by foot
+    unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
-    allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'miles'})
+    allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'mile'})
     allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'km'})
     # count the miles traveled on foot
     def countDistanceOnFootMiles():
@@ -128,8 +131,8 @@ def profile():
     kmToMiles = distanceOnFootKm * 0.6213
     # convert the distance traveled to the users selected choice.
     totalDistanceOnFootMiles = kmToMiles + distanceOnFootMiles
-    distanceByFootUnit = request.cookies.get('unit_distance')
-    if distanceByFootUnit == 'km':
+    distanceUnit = currentUsersAccount.get('selected_distance')
+    if distanceUnit == 'km':
         totalDistanceOnFootMiles = totalDistanceOnFootMiles * 1.6093
     # total powerlifting sessions
     totalPowerliftingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'powerlifting'})
@@ -139,19 +142,58 @@ def profile():
             count = count + 1
         return count
     totalPowerliftingSessions = powerliftingCount()
-    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceByFootUnit=distanceByFootUnit, totalPowerliftingSessions=totalPowerliftingSessions)
+    # total running sessions
+    totalRunningSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running'})
+    def runningCount():
+        count = 0
+        for session in totalRunningSessions:
+            count = count + 1
+        return count
+    totalRunningSessions = runningCount()
+    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions)
     
 
-# saving settings and filter in a session cookie
+# save the users setting preferences to mongoDB
 
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
     unitValue = request.form["unit"]
     unit_distance = request.form["unit_distance"]
     res = make_response(redirect(url_for('settings')))
-    res.set_cookie('unit', unitValue)
-    res.set_cookie('unit_distance', unit_distance)
+ # current users data
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    username = login_user.get('username')
+    gender = login_user.get('gender')
+    age = login_user.get('age')
+    location = login_user.get('location')
+    body_weight = login_user.get('body_weight')
+    bw_unit = login_user.get('bw_unit')
+    password = login_user.get('password')
+    first_name = login_user.get('first_name')
+    last_name = login_user.get('last_name')
+    login_user = users.find_one({'username' : currentUser})
+    currentSessionsLogged = login_user.get('sessions_logged')
+    currentLogged = currentSessionsLogged
+    mongo.db.users.update({'username' : currentUser},
+    {
+        'username' : username, 
+        'password' : password, 
+        'age': age, 
+        'gender': gender, 
+        'body_weight': body_weight, 
+        'bw_unit': bw_unit, 
+        'location': location, 
+        'first_name': first_name, 
+        'last_name': last_name,
+        'sessions_logged': currentLogged,
+        'selected_unit': unitValue,
+        'selected_distance': unit_distance,
+    })
     return res
+
+# saving settings and filter in a session cookie
 
 @app.route('/filter_home', methods=['POST'])
 def filter_home():
@@ -196,6 +238,8 @@ def insert_session():
     password = login_user.get('password')
     first_name = login_user.get('first_name')
     last_name = login_user.get('last_name')
+    unitValue = login_user.get('selected_unit')
+    unit_distance = login_user.get('selected_distance')
     sessions = mongo.db.sessions
     # add the amount of the sessions that the user has logged.
     currentSessionsLogged = login_user.get('sessions_logged')
@@ -212,6 +256,8 @@ def insert_session():
         'first_name': first_name, 
         'last_name': last_name,
         'sessions_logged': currentLogged,
+        'selected_unit': str(unitValue),
+        'selected_distance': str(unit_distance),
     })
     # the data from the form
     date = request.form['date']
@@ -223,7 +269,7 @@ def insert_session():
     session_type = request.form['session_type']
     session_unit = request.form['session_unit']
     notes = request.form['notes']
-    # Changed the date being send to mongoDB, will change depending on the session_type and the row in the table
+    # Changed the data being send to mongoDB, will change depending on the session_type and the rows in the table
     def counting_rows():
         row_count = 0
         while True:
@@ -284,20 +330,9 @@ def delete_session(session_id):
     password = login_user.get('password')
     first_name = login_user.get('first_name')
     last_name = login_user.get('last_name')
-    # add the amount of the sessions that the user has logged.
-    users = mongo.db.users
-    login_user = users.find_one({'username' : currentUser})
-    username = login_user.get('username')
-    gender = login_user.get('gender')
-    age = login_user.get('age')
-    location = login_user.get('location')
-    body_weight = login_user.get('body_weight')
-    bw_unit = login_user.get('bw_unit')
-    password = login_user.get('password')
-    first_name = login_user.get('first_name')
-    last_name = login_user.get('last_name')
-    login_user = users.find_one({'username' : currentUser})
     currentSessionsLogged = login_user.get('sessions_logged')
+    unitValue = login_user.get('selected_unit')
+    unit_distance = login_user.get('selected_distance')
     currentLogged = currentSessionsLogged - 1
     mongo.db.users.update({'username' : currentUser},
     {
@@ -311,13 +346,18 @@ def delete_session(session_id):
         'first_name': first_name, 
         'last_name': last_name,
         'sessions_logged': currentLogged,
+        'selected_unit': str(unitValue),
+        'selected_distance': str(unit_distance),
     })
     return redirect(url_for('profile'))
 
 @app.route('/settings')
 def settings():
-    unitVar = request.cookies.get('unit')
-    unit_distance = request.cookies.get('unit_distance')
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    unitVar = login_user.get('selected_unit')
+    unit_distance = login_user.get('selected_distance')
     return render_template('settings.html', unit=unitVar, unit_distance=unit_distance)
 
 
