@@ -108,6 +108,7 @@ def profile():
         
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
+    #
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
@@ -134,6 +135,34 @@ def profile():
     distanceUnit = currentUsersAccount.get('selected_distance')
     if distanceUnit == 'km':
         totalDistanceOnFootMiles = totalDistanceOnFootMiles * 1.6093
+    #
+    # The total distance the users has traveled by bike
+    unitVar = currentUsersAccount.get('selected_unit')
+    currentUser = session['username']
+    allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'cycling', 'session_unit': 'mile'})
+    allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'cycling', 'session_unit': 'km'})
+    # count the miles traveled on bike
+    def countDistanceOnFootMiles():
+        distanceCount = 0
+        for distance in allDistanceByFootMiles:
+            distanceCount = int(distance["training_session"]) + distanceCount
+        return distanceCount
+    # count the km traveled on bike
+    def countDistanceOnFootKm():
+        distanceCount = 0
+        for distance in allDistanceByFootKm:
+            distanceCount = int(distance["training_session"]) + distanceCount
+        return distanceCount
+    # convert the kms into miles then add them together
+    distanceOnFootMiles = countDistanceOnFootMiles()
+    distanceOnFootKm = countDistanceOnFootKm() 
+    kmToMiles = distanceOnFootKm * 0.6213
+    # convert the distance traveled to the users selected choice.
+    totalDistanceOnBikeMiles = kmToMiles + distanceOnFootMiles
+    distanceUnit = currentUsersAccount.get('selected_distance')
+    if distanceUnit == 'km':
+        totalDistanceOnBikeMiles = totalDistanceOnBikeMiles * 1.6093
+    #
     # total powerlifting sessions
     totalPowerliftingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'powerlifting'})
     def powerliftingCount():
@@ -150,7 +179,55 @@ def profile():
             count = count + 1
         return count
     totalRunningSessions = runningCount()
-    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions)
+    # total cycling sessions
+    totalCyclingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'cycling'})
+    def cyclingCount():
+        count = 0
+        for session in totalCyclingSessions:
+            count = count + 1
+        return count
+    totalCyclingSessions = cyclingCount()
+    # average motivated option
+    def averageMotivation():
+        allSessions = mongo.db.sessions.find({'username': currentUser})
+        motivatedList = []
+        for session in allSessions:
+            motivatedValue = session.get('motivated')
+            motivatedList.append(motivatedValue)
+        totalNumber = 0
+        for num in motivatedList:
+            totalNumber = totalNumber + int(num)
+        averageNumber = totalNumber / len(motivatedList)
+        return averageNumber
+    # average difficulty option
+    def averageDifficulty():
+        allSessions = mongo.db.sessions.find({'username': currentUser})
+        difficultyList = []
+        for session in allSessions:
+            difficultyValue = session.get('difficulty')
+            difficultyList.append(difficultyValue)
+        totalNumber = 0
+        for num in difficultyList:
+            totalNumber = totalNumber + int(num)
+        averageNumber = totalNumber / len(difficultyList)
+        return averageNumber
+    # average effort option
+    def averageEffort():
+        allSessions = mongo.db.sessions.find({'username': currentUser})
+        effortList = []
+        for session in allSessions:
+            effortValue = session.get('effort')
+            effortList.append(effortValue)
+        totalNumber = 0
+        for num in effortList:
+            totalNumber = totalNumber + int(num)
+        averageNumber = totalNumber / len(effortList)
+        return averageNumber
+
+    average_motivation = averageMotivation()
+    average_difficulty = averageDifficulty()
+    average_effort = averageEffort()
+    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort)
     
 
 # save the users setting preferences to mongoDB

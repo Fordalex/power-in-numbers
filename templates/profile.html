@@ -40,9 +40,37 @@
 
                     <div class="tab-content" id="myTabContent">
                         <!-- add sessions, training plans and personal records -->
-                        <div class="tab-pane fade row m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
-                            <div class="col-12 col-md-3">
-                                <a class="btn main-colour" href="{{ url_for('add_session') }}">Add Session</a>
+                        <div class="tab-pane fade m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
+                            <div class="row m-0 p-5">
+                                <div class="col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center">
+                                    <div class="card my-3" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Training Sessions</h5>
+                                            <p class="card-text">Add a workout to your profile and watch your stats
+                                                grow.</p>
+                                            <a class="btn btn-dark text-light" href="{{ url_for('add_session') }}">Log
+                                                session</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center">
+                                    <div class="card my-3 container-fluid" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Personal Record</h5>
+                                            <p class="card-text">Add a personal record and see if your the best...</p>
+                                            <a class="btn main-colour text-dark" href="{{ url_for('add_session') }}">Add Best</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center">
+                                    <div class="card my-3" style="width: 18rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Training Program</h5>
+                                            <p class="card-text">Create your own training program and share them with others.</p>
+                                            <a class="btn btn-dark text-light" href="{{ url_for('add_session') }}">Create Program</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- Section with all the sessions -->
@@ -58,8 +86,15 @@
                                                 {% if filter_session_type == 'powerlifting' %}
                                                 <option value="powerlifting">Powerlifting</option>
                                                 <option value="running">Running</option>
+                                                <option value="cycling">Cycling</option>
                                                 <option value="all">All</option>
                                                 {% elif filter_session_type == 'running' %}
+                                                <option value="running">Running</option>
+                                                <option value="powerlifting">Powerlifting</option>
+                                                <option value="cycling">Cycling</option>
+                                                <option value="all">All</option>
+                                                {% elif filter_session_type == 'cycling' %}
+                                                <option value="cycling">Cycling</option>
                                                 <option value="running">Running</option>
                                                 <option value="powerlifting">Powerlifting</option>
                                                 <option value="all">All</option>
@@ -67,6 +102,7 @@
                                                 <option value="all">All</option>
                                                 <option value="powerlifting">Powerlifting</option>
                                                 <option value="running">Running</option>
+                                                <option value="cycling">Cycling</option>
                                                 {% endif %}
                                             </select>
                                         </div>
@@ -244,7 +280,7 @@
                                                                     {% endif %}
                                                                     {% if session.session_unit == 'km' %}
                                                                     {% set distance_traveled = session.training_session | int * 0.62 %}
-                                                                    <td><span class="toFixed2">
+                                                                    <td><span class="toFixed1">
                                                                             {{ distance_traveled }}</span>
                                                                         {{ distanceUnit }}</td>
                                                                     {% endif %}
@@ -257,7 +293,7 @@
                                                                     {% if session.session_unit == 'mile' %}
                                                                     {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
                                                                     <td><span
-                                                                            class="toFixed2">{{ distance_traveled }}</span>
+                                                                            class="toFixed1">{{ distance_traveled }}</span>
                                                                         {{ distanceUnit }}</td>
                                                                     {% endif %}
                                                                     {% endif %}
@@ -359,17 +395,17 @@
                                     <div class="col-12 p-0">
                                         <h3 class="text-center mb-3">Total sessions logged</h3>
                                     </div>
-                                    <div class="col-12 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                                    <div class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3">
                                         {% if user.sessions_logged > 100 %}
-                                        <p class="m-0 p-0 main-colour-text"><b>Master</b></p>
+                                        <p class="m-0 p-0 main-colour-text text-center"><b>Master</b></p>
                                         {% elif user.sessions_logged > 50 %}
-                                        <p class="m-0 p-0 main-colour-text"><b>Advanced</b></p>
+                                        <p class="m-0 p-0 main-colour-text text-center"><b>Advanced</b></p>
                                         {% elif user.sessions_logged > 25 %}
-                                        <p class="m-0 p-0 main-colour-text"><b>Novice</b></p>
+                                        <p class="m-0 p-0 main-colour-text text-center"><b>Novice</b></p>
                                         {% elif user.sessions_logged > 10 %}
-                                        <p class="m-0 p-0 main-colour-text"><b>Rookie</b></p>
+                                        <p class="m-0 p-0 main-colour-text text-center"><b>Rookie</b></p>
                                         {% else %}
-                                        <p class="m-0 p-0 main-colour-text"><b>Beginner</b></p>
+                                        <p class="m-0 p-0 main-colour-text text-center"><b>Beginner</b></p>
                                         {% endif %}
                                     </div>
                                     <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
@@ -387,7 +423,7 @@
                                     </div>
                                     <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
                                         <p class="m-0 p-0"><i class="fas fa-biking"></i></b><b>Cycling:
-                                                0</b></p>
+                                                {{ totalCyclingSessions }}</b></p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0">
@@ -395,7 +431,7 @@
                                         <hr>
                                     </div>
                                 </div>
-                                <div class="row m-0 p-0">
+                                <div class="row m-0 p-0 px-4">
                                     <div class="col-6 col-md-6 d-flex justify-content-center">
                                         <div>
                                             <h6 class="text-center">Session Type</h6>
@@ -410,7 +446,7 @@
                                     </div>
 
                                 </div>
-                         
+
 
 
                                 <div class="row m-0 p-0">
@@ -419,43 +455,130 @@
                                     </div>
                                 </div>
 
-                                <div class="row m-0 p-0">
+                                <div class="row m-0 p-0 px-3">
                                     <div class="col-12 p-0">
-                                        <h3 class="text-center mb-3">Total Distance Traveled</h3>
+                                        <h3 class="text-center mb-3">Total Distance Traveled ({{distanceUnit}}s)</h3>
                                     </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-shoe-prints"></i> </b><b>Ran:</b>
-                                            {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                    <div class="col-12 d-flex mx-3 justify-content-center">
+                                        <div class="py-1 p-sm-0 d-flex align-items-center">
+                                            <p class="m-0 p-0"> <i class="fas fa-shoe-prints"></i> </b><b>Ran:</b>
+                                                {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                        </div>
+                                        <div class="py-1 p-sm-0 mx-3 d-flex align-items-center">
+                                            <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled: </b><span
+                                                    class="toFixed1"> {{ totalDistanceOnBike }}</span>{{ distanceUnit }}s
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled:</b></p>
-                                    </div>
+
                                 </div>
                                 <div class="row m-0 p-0">
                                     <div class="col-12 p-0">
                                         <hr>
                                     </div>
                                 </div>
-                                <div class="row m-0 p-0 ">
+                                <div class="row m-0 p-0 px-4">
+                                    <div class="col-6 col-md-6 d-flex justify-content-center">
+                                        <div>
+                                            <h6 class="text-center">Total Distance ({{distanceUnit}}s)</h6>
+                                            <div id="distanceBar"></div>
+                                        </div>
+                                    </div>
                                     <div class="col-6  col-md-6 d-flex justify-content-center">
                                         <div>
                                             <h6 class="text-center">Travel Type</h6>
                                             <div id="distancePie"></div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 d-flex justify-content-center">
-                                        <div>
-                                            <h6 class="text-center">Total Distance</h6>
-                                            <div id="distanceBar"></div>
+                                 
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-12 m-0 p-0">
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 px-3">
+                                    <div class="col-12 p-0">
+                                        <h3 class="text-center mb-3">Total Time Spent</h3>
+                                    </div>
+                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                                        <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Powerlifting:</b>
+                                            {{ user.sessions_logged }}
+                                        </p>
+                                    </div>
+                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                                        <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Running:
+                                                {{ totalPowerliftingSessions }}</b></p>
+                                    </div>
+                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                                        <p class="m-0 p-0"> <i class="fas fa-shoe-prints"></i> </b><b>Cycling:
+                                                {{ totalRunningSessions }}</b></p>
+                                    </div>
+                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
+                                        <p class="m-0 p-0"><i class="fas fa-biking"></i></b><b>Somthing Else:
+                                                {{ totalCyclingSessions }}</b></p>
+                                    </div>
+                                </div>
+                                <div class="row m-0">
+                                    <div class="col-12 m-0 p-0">
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0">
+                                    <div class="col-12  mb-4 p-0 d-flex justify-content-center align-items-center">
+                                        <h3 class="m-0 p-0">Mental Game</h3><i class="fas ml-2 fa-brain"></i>
+                                    </div>
+                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                        <div class="container-fluid">
+                                            <h6>Motivated</h6>
+                                            <div class="d-flex justify-content-center">
+                                                <i class="far mr-2 text-primary fa-smile-beam"></i>
+                                                <p class="m-0">{{ average_motivation }}</p> 
+                                            </div>
+                                           <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                                                style="width: {{ average_motivation | int * 10 }}%" aria-valuenow="100"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
-
+                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                        <div class="container-fluid">
+                                            <h6>Difficulty</h6>
+                                            <div class="d-flex justify-content-center">
+                                                <i class="far mr-2 text-warning fa-tired"></i>
+                                                <p class="m-0">{{ average_difficulty }}</p> 
+                                            </div>
+                                           <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                                                style="width: {{ average_difficulty | int * 10 }}%" aria-valuenow="100"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                        <div class="container-fluid">
+                                            <h6>Effort</h6>
+                                            <div class="d-flex justify-content-center">
+                                                <i class="fas fa-fist-raised mr-2 text-danger"></i>
+                                                <p class="m-0">{{ average_effort }}</p> 
+                                            </div>
+                                           <div class="progress">
+                                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                                                style="width: {{ average_effort | int * 10 }}%" aria-valuenow="100"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <script>
                                     // The pie and bar chart for the distance travelled
                                     var transactionsData = [
-                                    { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
-                                    { "name": "Cycling", "label": "Total", "spend": 5 },
+                                        { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
+                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }}},
                                     ];
                                     var ndx = crossfilter(transactionsData);
 
@@ -483,10 +606,10 @@
                                         .yAxis().ticks(4);
 
                                     // The pie and bar chart for the session logged.
-                                        var Data = [
+                                    var Data = [
                                         { "name": "Powerlifting", "label": "Total", "spend": {{ totalPowerliftingSessions }}},
-                                    { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }} },
-                                    { "name": "Cycling", "label": "Total", "spend": 0 },
+                                    { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }}},
+                                    { "name": "Cycling", "label": "Total", "spend": {{ totalCyclingSessions }}},
                                     ];
                                     var ndx = crossfilter(Data);
 
