@@ -21,27 +21,30 @@
                     <ul class="nav nav-tabs pl-1" id="myTab" role="tablist">
 
                         <li class="nav-item">
-                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#add" role="tab"
+                            <a class="nav-link main-colour-text" id="home-tab" data-toggle="tab" href="#add" role="tab"
                                 aria-controls="add" aria-selected="true">Add</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            <a class="nav-link main-colour-text active" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                 aria-controls="home" aria-selected="true">Sessions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                            <a class="nav-link main-colour-text" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                                 aria-controls="profile" aria-selected="false">Stats</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#info" role="tab"
+                            <a class="nav-link main-colour-text" id="contact-tab" data-toggle="tab" href="#info" role="tab"
                                 aria-controls="info" aria-selected="false">Details</a>
                         </li>
                     </ul>
 
-                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-content " id="myTabContent">
                         <!-- add sessions, training plans and personal records -->
                         <div class="tab-pane fade m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
                             <div class="row m-0">
+                                <div class="col-12 p-0 m-0">
+                                    
+                                </div>
                                 <div
                                     class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
                                     <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
@@ -411,13 +414,13 @@
                                     </div>
                                     <div
                                         class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3">
-                                        {% if user.sessions_logged > 100 %}
+                                        {% if user.sessions_logged >= 100 %}
                                         <p class="m-0 p-0 main-colour-text text-center"><b>Master</b></p>
-                                        {% elif user.sessions_logged > 50 %}
+                                        {% elif user.sessions_logged >= 50 %}
                                         <p class="m-0 p-0 main-colour-text text-center"><b>Advanced</b></p>
-                                        {% elif user.sessions_logged > 25 %}
+                                        {% elif user.sessions_logged >= 25 %}
                                         <p class="m-0 p-0 main-colour-text text-center"><b>Novice</b></p>
-                                        {% elif user.sessions_logged > 10 %}
+                                        {% elif user.sessions_logged >= 10 %}
                                         <p class="m-0 p-0 main-colour-text text-center"><b>Rookie</b></p>
                                         {% else %}
                                         <p class="m-0 p-0 main-colour-text text-center"><b>Beginner</b></p>
@@ -437,7 +440,7 @@
                                                 {{ totalRunningSessions }}</b></p>
                                     </div>
                                     <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"><i class="fas fa-biking"></i></b><b>Cycling:
+                                        <p class="m-0 p-0"><i class="fas fa-biking mr-1"></i></b><b>Cycling:
                                                 {{ totalCyclingSessions }}</b></p>
                                     </div>
                                 </div>
@@ -596,68 +599,249 @@
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                        {% if user.sessions_logged | int >= 10 %}
                                         <div class="badge-container first-badge">
                                             <p class="m-0">+ 10</p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ 10</p>
+                                        </div>
+                                        {% endif %}
+                                        {% if user.sessions_logged | int >= 25 %}
                                         <div class="badge-container second-badge">
                                             <p class="m-0">+ 25</p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ 25</p>
+                                        </div>
+                                        {% endif %}
+                                        {% if user.sessions_logged | int >= 50 %}
+                                        <div class="badge-container third-badge">
+                                            <p class="m-0">+ 50</p>
+                                        </div>
+                                        {% else %}
                                         <div class="badge-container badge-locked">
                                             <p class="m-0">+ 50</p>
                                         </div>
+                                        {% endif %}
+                                        {% if user.sessions_logged | int >= 75 %}
+                                        <div class="badge-container forth-badge">
+                                            <p class="m-0">+ 75</p>
+                                        </div>
+                                        {% else %}
                                         <div class="badge-container badge-locked">
                                             <p class="m-0">+ 75</p>
                                         </div>
+                                        {% endif %}
+                                        {% if user.sessions_logged | int >= 100 %}
+                                        <div class="badge-container fifth-badge">
+                                            <p class="m-0">+ 100</p>
+                                        </div>
+                                        {% else %}
                                         <div class="badge-container badge-locked">
                                             <p class="m-0">+ 100</p>
                                         </div>
+                                        {% endif %}
+                                        {% if user.sessions_logged | int >= 200 %}
+                                        <div class="badge-container sixth-badge">
+                                            <p class="m-0">+ 200</p>
+                                        </div>
+                                        {% else %}
                                         <div class="badge-container badge-locked">
                                             <p class="m-0">+ 200</p>
                                         </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0  ">
                                     <div class="col-12 m-0">
                                         <h6>Distance By Foot</h6>
-                                        <p><b>Total</b>: {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                        <p><b>Total</b>: {{ allDistanceByFoot }} {{ distanceUnit }}s</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set firstValue = 20 %}
+                                        {% else %}
+                                        {% set firstValue = 32 %}
+                                        {% endif %}
+                                        {% if allDistanceByFoot | int >= firstValue %}
                                         <div class="badge-container first-badge">
-                                            <p class="m-0">+ 20 </p>
+                                            <p class="m-0">+ {{ firstValue }} </p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container  badge-locked">
+                                            <p class="m-0">+ {{ firstValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set secondValue = 100 %}
+                                        {% else %}
+                                        {% set secondValue = 160 %}
+                                        {% endif %}
+                                        {% if allDistanceByFoot | int >= secondValue %}
                                         <div class="badge-container second-badge">
-                                            <p class="m-0">+ 100</p>
+                                            <p class="m-0">+ {{ secondValue }}</p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container  badge-locked">
+                                            <p class="m-0">+ {{ secondValue }}</p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set thirdValue = 250 %}
+                                        {% else %}
+                                        {% set thirdValue = 402 %}
+                                        {% endif %}
+                                        {% if allDistanceByFoot | int >= thirdValue %}
                                         <div class="badge-container third-badge">
-                                            <p class="m-0">+ 250 </p>
+                                            <p class="m-0">+ {{ thirdValue }} </p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container  badge-locked">
+                                            <p class="m-0">+ {{ thirdValue }}</p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set forthValue = 500 %}
+                                        {% else %}
+                                        {% set forthValue = 804 %}
+                                        {% endif %}
+                                        {% if allDistanceByFoot | int >= forthValue %}
                                         <div class="badge-container forth-badge">
-                                            <p class="m-0">+ 500 </p>
+                                            <p class="m-0">+ {{ forthValue }} </p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container  badge-locked">
+                                            <p class="m-0">+ {{ forthValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set fifthValue = 1000 %}
+                                        {% else %}
+                                        {% set fifthValue = 1609 %}
+                                        {% endif %}
+                                        {% if allDistanceByFoot | int >= fifthValue %}
                                         <div class="badge-container fifth-badge">
-                                            <p class="m-0">+ 1000 </p>
+                                            <p class="m-0">+ {{ fifthValue }}</p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container  badge-locked">
+                                            <p class="m-0">+ {{ fifthValue }}</p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set sixthValue = 2000 %}
+                                        {% else %}
+                                        {% set sixthValue = 3218 %}
+                                        {% endif %}
+                                        {% if allDistanceByFoot | int >= sixthValue %}
                                         <div class="badge-container sixth-badge">
-                                            <p class="m-0">+ 2000 </p>
+                                            <p class="m-0">+ {{ sixthValue }}</p>
                                         </div>
+                                        {% else %}
+                                        <div class="badge-container  badge-locked">
+                                            <p class="m-0">+ {{ sixthValue }}</p>
+                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0">
                                     <div class="col-12 m-0">
                                         <h6>Distance Cycled</h6>
-                                        <p><b>Total</b>:</p>
+                                        <p><b>Total</b>: <span class="toFixed1">{{ totalDistanceOnBike }}</span>
+                                            {{ distanceUnit }}s</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set firstValue = 20 %}
+                                        {% else %}
+                                        {% set firstValue = 32 %}
+                                        {% endif %}
+                                        {% if totalDistanceOnBike | int >= firstValue %}
+                                        <div class="badge-container first-badge">
+                                            <p class="m-0">+ {{ firstValue }} </p>
+                                        </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ {{ firstValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set secondValue = 100 %}
+                                        {% else %}
+                                        {% set secondValue = 160 %}
+                                        {% endif %}
+                                        {% if totalDistanceOnBike | int >= secondValue %}
+                                        <div class="badge-container second-badge">
+                                            <p class="m-0">+ {{ secondValue }} </p>
+                                        </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ {{ secondValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set thirdValue = 200 %}
+                                        {% else %}
+                                        {% set thirdValue = 321 %}
+                                        {% endif %}
+                                        {% if totalDistanceOnBike | int >= thirdValue %}
+                                        <div class="badge-container third-badge">
+                                            <p class="m-0">+ {{ thirdValue }} </p>
+                                        </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ {{ thirdValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set forthValue = 500 %}
+                                        {% else %}
+                                        {% set forthValue = 804 %}
+                                        {% endif %}
+                                        {% if totalDistanceOnBike | int >= forthValue %}
+                                        <div class="badge-container forth-badge">
+                                            <p class="m-0">+ {{ forthValue }} </p>
+                                        </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ {{ forthValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set fifthValue = 1000 %}
+                                        {% else %}
+                                        {% set fifthValue = 1609 %}
+                                        {% endif %}
+                                        {% if totalDistanceOnBike | int >= fifthValue %}
+                                        <div class="badge-container fifth-badge">
+                                            <p class="m-0">+ {{ fifthValue }} </p>
+                                        </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ {{ fifthValue }} </p>
+                                        </div>
+                                        {% endif %}
+                                        {% if distanceUnit == 'mile' %}
+                                        {% set sixthValue = 2500 %}
+                                        {% else %}
+                                        {% set sixthValue = 4023 %}
+                                        {% endif %}
+                                        {% if totalDistanceOnBike | int >= sixthValue %}
+                                        <div class="badge-container sixth-badge">
+                                            <p class="m-0">+ {{ sixthValue }} </p>
+                                        </div>
+                                        {% else %}
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ {{ sixthValue }} </p>
+                                        </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 ">
@@ -736,7 +920,8 @@
                                     var total_spend_per_store = store_dim.group().reduceSum(dc.pluck('spend'));
                                     dc.pieChart('#distancePie')
                                         .height(210)
-                                        .radius(90)
+                                        .radius(90) 
+                                        .innerRadius(40)
                                         .transitionDuration(1500)
                                         .dimension(store_dim)
                                         .group(total_spend_per_store);
@@ -768,6 +953,7 @@
                                     dc.pieChart('#sessionTypePie')
                                         .height(210)
                                         .radius(90)
+                                        .innerRadius(40)
                                         .transitionDuration(1500)
                                         .dimension(store_di)
                                         .group(total_spend_per_stor);
