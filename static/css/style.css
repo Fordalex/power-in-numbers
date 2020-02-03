@@ -129,7 +129,65 @@ p, a, td, th, option {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: solid black 1px;
+}
+
+.badge-locked {
+  background-color: white;
+}
+
+.first-badge {
+  background-color: #69add6;
+  border: none;
+}
+
+.second-badge {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#bae1fa), to(#42acee));
+  background-image: linear-gradient(#bae1fa, #42acee);
+  border: none;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(123, 198, 245, 0.65);
+          box-shadow: 0px 0px 2px 2px rgba(123, 198, 245, 0.65);
+}
+
+.third-badge {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fae4cc), color-stop(#f8be42), to(#f0dd90));
+  background-image: linear-gradient(#fae4cc, #f8be42, #f0dd90);
+  border: none;
+  -webkit-box-shadow: 0px 0px 4px 4px rgba(255, 219, 58, 0.4);
+          box-shadow: 0px 0px 4px 4px rgba(255, 219, 58, 0.4);
+}
+
+.forth-badge {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#daf8fd), color-stop(#bed0dc), to(#d1e7f5));
+  background-image: linear-gradient(#daf8fd, #bed0dc, #d1e7f5);
+  border: none;
+  -webkit-box-shadow: 0px 0px 6px 6px rgba(179, 223, 250, 0.65);
+          box-shadow: 0px 0px 6px 6px rgba(179, 223, 250, 0.65);
+}
+
+.fifth-badge {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffbef), color-stop(#f1e183), to(#faf05f));
+  background-image: linear-gradient(#fffbef, #f1e183, #faf05f);
+  border: none;
+  -webkit-box-shadow: 0px 0px 8px 8px rgba(255, 241, 46, 0.612);
+          box-shadow: 0px 0px 8px 8px rgba(255, 241, 46, 0.612);
+}
+
+.sixth-badge {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f9fdff), color-stop(#88f5e8), to(#b4fff6));
+  background-image: linear-gradient(#f9fdff, #88f5e8, #b4fff6);
+  border: none;
+  -webkit-box-shadow: 0px 0px 10px 10px rgba(169, 255, 238, 0.612);
+          box-shadow: 0px 0px 10px 10px rgba(169, 255, 238, 0.612);
 }
 
 .above-navigation {

@@ -136,14 +136,47 @@ p,a,td,th,option {
     max-width:500px;
 }
 // profile.html
-
 .badge-container {
     width:50px;
     height:50px;
     border-radius:50%;
-    border: solid black 1px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    border:solid black 1px;
 }
-
+.badge-locked {
+    background-color:white;
+}
+.first-badge {
+    background-color:$mainColour;
+    border:none;
+}
+.second-badge {
+    background-image:linear-gradient(rgb(186, 225, 250),rgb(66, 172, 238));
+    border:none;
+    box-shadow:0px 0px 2px 2px rgba(123, 198, 245, 0.65);
+}
+.third-badge {
+    background-image:linear-gradient(rgb(250, 228, 204),rgb(248, 190, 66),rgb(240, 221, 144));
+    border:none;
+    box-shadow:0px 0px 4px 4px rgba(255, 219, 58, 0.4);
+}
+.forth-badge {
+    background-image:linear-gradient(rgb(218, 248, 253),rgb(190, 208, 220),rgb(209, 231, 245));
+    border:none;
+    box-shadow:0px 0px 6px 6px rgba(179, 223, 250, 0.65);
+}
+.fifth-badge {
+    background-image:linear-gradient(rgb(255, 251, 239),rgb(241, 225, 131),rgb(250, 240, 95));
+    border:none;
+    box-shadow:0px 0px 8px 8px rgba(255, 241, 46, 0.612);
+}
+.sixth-badge {
+    background-image:linear-gradient(rgb(249, 253, 255),rgb(136, 245, 232),rgb(180, 255, 246));
+    border:none;
+    box-shadow:0px 0px 10px 10px rgba(169, 255, 238, 0.612);
+}
 
 // base.html
 

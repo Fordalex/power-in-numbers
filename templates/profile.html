@@ -42,7 +42,8 @@
                         <!-- add sessions, training plans and personal records -->
                         <div class="tab-pane fade m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
                             <div class="row m-0">
-                                <div class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
+                                <div
+                                    class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
                                     <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
                                         <div class="container-fluid">
                                             <div class="card-body">
@@ -56,7 +57,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
+                                <div
+                                    class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
                                     <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
                                         <div class="container-fluid">
                                             <div class="card-body">
@@ -68,7 +70,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
+                                <div
+                                    class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
                                     <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
                                         <div class="container-fluid">
                                             <div class="card-body">
@@ -588,120 +591,144 @@
                                 <div class="row m-0 p-0  ">
                                     <div class="col-12 m-0">
                                         <h6>Sessions Logged</h6>
-                                    <p><b>Total</b>: {{ user.sessions_logged }}</p>
+                                        <p><b>Total</b>: {{ user.sessions_logged }}</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
-                                   <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                   </div>
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                        <div class="badge-container first-badge">
+                                            <p class="m-0">+ 10</p>
+                                        </div>
+                                        <div class="badge-container second-badge">
+                                            <p class="m-0">+ 25</p>
+                                        </div>
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ 50</p>
+                                        </div>
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ 75</p>
+                                        </div>
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ 100</p>
+                                        </div>
+                                        <div class="badge-container badge-locked">
+                                            <p class="m-0">+ 200</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row m-0 p-0  ">
                                     <div class="col-12 m-0">
                                         <h6>Distance By Foot</h6>
-                                    <p><b>Total</b>: {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                        <p><b>Total</b>: {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
-                                   <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                    <div class="badge-container"></div>
-                                   </div>
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                        <div class="badge-container first-badge">
+                                            <p class="m-0">+ 20 </p>
+                                        </div>
+                                        <div class="badge-container second-badge">
+                                            <p class="m-0">+ 100</p>
+                                        </div>
+                                        <div class="badge-container third-badge">
+                                            <p class="m-0">+ 250 </p>
+                                        </div>
+                                        <div class="badge-container forth-badge">
+                                            <p class="m-0">+ 500 </p>
+                                        </div>
+                                        <div class="badge-container fifth-badge">
+                                            <p class="m-0">+ 1000 </p>
+                                        </div>
+                                        <div class="badge-container sixth-badge">
+                                            <p class="m-0">+ 2000 </p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row m-0 p-0">
                                     <div class="col-12 m-0">
                                         <h6>Distance Cycled</h6>
-                                    <p><b>Total</b>:</p>
+                                        <p><b>Total</b>:</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
                                     </div>
-                                 </div>
-                                 <div class="row m-0 p-0 ">
+                                </div>
+                                <div class="row m-0 p-0 ">
                                     <div class="col-12 m-0">
                                         <h6>Time Logged</h6>
-                                    <p><b>Total</b>:</p>
+                                        <p><b>Total</b>:</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
                                     </div>
-                                 </div>
-                                 <div class="row m-0 p-0 ">
+                                </div>
+                                <div class="row m-0 p-0 ">
                                     <div class="col-12 m-0">
                                         <h6>Bench Press repetitions</h6>
-                                    <p><b>Total</b>:</p>
+                                        <p><b>Total</b>:</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
                                     </div>
-                                 </div>
-                                 <div class="row m-0 p-0 ">
+                                </div>
+                                <div class="row m-0 p-0 ">
                                     <div class="col-12 m-0">
                                         <h6>Squat repetitions</h6>
-                                    <p><b>Total</b>:</p>
+                                        <p><b>Total</b>:</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
                                     </div>
-                                 </div>
-                                 <div class="row m-0 p-0">
+                                </div>
+                                <div class="row m-0 p-0">
                                     <div class="col-12 m-0">
                                         <h6>Deadlift repetitions</h6>
-                                    <p><b>Total</b>: </p>
+                                        <p><b>Total</b>: </p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
-                                     <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
+                                        <div class="badge-container"></div>
                                     </div>
-                                 </div>
+                                </div>
                                 <script>
                                     // The pie and bar chart for the distance travelled
                                     var transactionsData = [
                                         { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
-                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }} },
+                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }}},
                                     ];
                                     var ndx = crossfilter(transactionsData);
 
