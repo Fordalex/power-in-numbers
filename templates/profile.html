@@ -41,37 +41,48 @@
                     <div class="tab-content" id="myTabContent">
                         <!-- add sessions, training plans and personal records -->
                         <div class="tab-pane fade m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
-                            <div class="row m-0 p-5">
-                                <div class="col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center">
-                                    <div class="card my-3" style="width: 18rem;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Training Sessions</h5>
-                                            <p class="card-text">Add a workout to your profile and watch your stats
-                                                grow.</p>
-                                            <a class="btn btn-dark text-light" href="{{ url_for('add_session') }}">Log
-                                                session</a>
+                            <div class="row m-0">
+                                <div class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
+                                    <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
+                                        <div class="container-fluid">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Training Sessions</h5>
+                                                <p class="card-text">Add a workout to your profile and watch your stats
+                                                    grow.</p>
+                                                <a class="btn btn-dark text-light"
+                                                    href="{{ url_for('add_session') }}">Add
+                                                    session</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center">
-                                    <div class="card my-3 container-fluid" style="width: 18rem;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Personal Record</h5>
-                                            <p class="card-text">Add a personal record and see if your the best...</p>
-                                            <a class="btn main-colour text-dark" href="{{ url_for('add_session') }}">Add Best</a>
+                                <div class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
+                                    <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
+                                        <div class="container-fluid">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Personal Record</h5>
+                                                <p class="card-text">Add a personal record and see if your the best.</p>
+                                                <a class="btn main-colour text-dark"
+                                                    href="{{ url_for('add_session') }}">Save Best</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-4 p-0 d-flex justify-content-center">
-                                    <div class="card my-3" style="width: 18rem;">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Training Program</h5>
-                                            <p class="card-text">Create your own training program and share them with others.</p>
-                                            <a class="btn btn-dark text-light" href="{{ url_for('add_session') }}">Create Program</a>
+                                <div class="login-wrapper p-0 d-flex justify-content-center container-fluid my-2 my-md-4">
+                                    <div class="row m-0 p-0 d-flex justify-content-center container-fluid ">
+                                        <div class="container-fluid">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Training Program</h5>
+                                                <p class="card-text">Create your own training program and share them
+                                                    with others.</p>
+                                                <a class="btn btn-dark text-light"
+                                                    href="{{ url_for('add_session') }}">Create Plan</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <!-- Section with all the sessions -->
                         <div class="tab-pane fade show active row m-0 p-0" id="home" role="tabpanel"
@@ -395,7 +406,8 @@
                                     <div class="col-12 p-0">
                                         <h3 class="text-center mb-3">Total sessions logged</h3>
                                     </div>
-                                    <div class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3">
+                                    <div
+                                        class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3">
                                         {% if user.sessions_logged > 100 %}
                                         <p class="m-0 p-0 main-colour-text text-center"><b>Master</b></p>
                                         {% elif user.sessions_logged > 50 %}
@@ -466,7 +478,8 @@
                                         </div>
                                         <div class="py-1 p-sm-0 mx-3 d-flex align-items-center">
                                             <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled: </b><span
-                                                    class="toFixed1"> {{ totalDistanceOnBike }}</span>{{ distanceUnit }}s
+                                                    class="toFixed1">
+                                                    {{ totalDistanceOnBike }}</span>{{ distanceUnit }}s
                                             </p>
                                         </div>
                                     </div>
@@ -490,33 +503,76 @@
                                             <div id="distancePie"></div>
                                         </div>
                                     </div>
-                                 
+
                                 </div>
                                 <div class="row m-0">
                                     <div class="col-12 m-0 p-0">
                                         <hr>
                                     </div>
                                 </div>
-                                <div class="row m-0 p-0 px-3">
-                                    <div class="col-12 p-0">
-                                        <h3 class="text-center mb-3">Total Time Spent</h3>
+
+                                <div class="row m-0 p-0">
+                                    <div class="col-12  mb-4 p-0 d-flex justify-content-center align-items-center">
+                                        <h3 class="m-0 p-0">Mental Game</h3>
                                     </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Powerlifting:</b>
-                                            {{ user.sessions_logged }}
-                                        </p>
+                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                        <div class="container-fluid">
+                                            <h6>Motivated</h6>
+                                            <div class="d-flex justify-content-center">
+                                                <i class="far mr-2 text-primary fa-smile-beam"></i>
+                                                <p class="m-0 toFixed1">{{ average_motivation }}</p>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped bg-info"
+                                                    role="progressbar"
+                                                    style="width: {{ average_motivation | int * 10 }}%"
+                                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Running:
-                                                {{ totalPowerliftingSessions }}</b></p>
+                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                        <div class="container-fluid">
+                                            <h6>Difficulty</h6>
+                                            <div class="d-flex justify-content-center">
+                                                <i class="far mr-2 text-warning fa-tired"></i>
+                                                <p class="m-0 toFixed1">{{ average_difficulty }}</p>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped bg-warning"
+                                                    role="progressbar"
+                                                    style="width: {{ average_difficulty | int * 10 }}%"
+                                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-shoe-prints"></i> </b><b>Cycling:
-                                                {{ totalRunningSessions }}</b></p>
+                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                        <div class="container-fluid">
+                                            <h6>Effort</h6>
+                                            <div class="d-flex justify-content-center">
+                                                <i class="fas fa-fist-raised mr-2 text-danger"></i>
+                                                <p class="m-0 toFixed1">{{ average_effort }}</p>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped bg-danger"
+                                                    role="progressbar" style="width: {{ average_effort | int * 10 }}%"
+                                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"><i class="fas fa-biking"></i></b><b>Somthing Else:
-                                                {{ totalCyclingSessions }}</b></p>
+                                </div>
+                                <div class="row m-0 mt-4 mb-2">
+                                    <div class="col-12 py-1 pt-4 p-sm-0 d-flex justify-content-center">
+                                        <div>
+                                            <div class="d-flex align-items-center">
+                                                <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total Time
+                                                        Tracked:</b></p>
+                                            </div>
+                                            <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }} </b> Hours
+                                                <b>{{totalTimeMins }}</b> Mins </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row m-0">
@@ -525,60 +581,127 @@
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0">
-                                    <div class="col-12  mb-4 p-0 d-flex justify-content-center align-items-center">
-                                        <h3 class="m-0 p-0">Mental Game</h3><i class="fas ml-2 fa-brain"></i>
-                                    </div>
-                                    <div class="col-4 p-0 d-flex justify-content-center">
-                                        <div class="container-fluid">
-                                            <h6>Motivated</h6>
-                                            <div class="d-flex justify-content-center">
-                                                <i class="far mr-2 text-primary fa-smile-beam"></i>
-                                                <p class="m-0">{{ average_motivation }}</p> 
-                                            </div>
-                                           <div class="progress">
-                                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                                style="width: {{ average_motivation | int * 10 }}%" aria-valuenow="100"
-                                                aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 p-0 d-flex justify-content-center">
-                                        <div class="container-fluid">
-                                            <h6>Difficulty</h6>
-                                            <div class="d-flex justify-content-center">
-                                                <i class="far mr-2 text-warning fa-tired"></i>
-                                                <p class="m-0">{{ average_difficulty }}</p> 
-                                            </div>
-                                           <div class="progress">
-                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                style="width: {{ average_difficulty | int * 10 }}%" aria-valuenow="100"
-                                                aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 p-0 d-flex justify-content-center">
-                                        <div class="container-fluid">
-                                            <h6>Effort</h6>
-                                            <div class="d-flex justify-content-center">
-                                                <i class="fas fa-fist-raised mr-2 text-danger"></i>
-                                                <p class="m-0">{{ average_effort }}</p> 
-                                            </div>
-                                           <div class="progress">
-                                            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                                style="width: {{ average_effort | int * 10 }}%" aria-valuenow="100"
-                                                aria-valuemin="0" aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                        </div>
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <h3>Badges</h3>
                                     </div>
                                 </div>
+                                <div class="row m-0 p-0  ">
+                                    <div class="col-12 m-0">
+                                        <h6>Sessions Logged</h6>
+                                    <p><b>Total</b>: {{ user.sessions_logged }}</p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                   <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                   </div>
+                                </div>
+                                <div class="row m-0 p-0  ">
+                                    <div class="col-12 m-0">
+                                        <h6>Distance By Foot</h6>
+                                    <p><b>Total</b>: {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                   <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                    <div class="badge-container"></div>
+                                   </div>
+                                </div>
+                                <div class="row m-0 p-0">
+                                    <div class="col-12 m-0">
+                                        <h6>Distance Cycled</h6>
+                                    <p><b>Total</b>:</p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                    </div>
+                                 </div>
+                                 <div class="row m-0 p-0 ">
+                                    <div class="col-12 m-0">
+                                        <h6>Time Logged</h6>
+                                    <p><b>Total</b>:</p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                    </div>
+                                 </div>
+                                 <div class="row m-0 p-0 ">
+                                    <div class="col-12 m-0">
+                                        <h6>Bench Press repetitions</h6>
+                                    <p><b>Total</b>:</p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                    </div>
+                                 </div>
+                                 <div class="row m-0 p-0 ">
+                                    <div class="col-12 m-0">
+                                        <h6>Squat repetitions</h6>
+                                    <p><b>Total</b>:</p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                    </div>
+                                 </div>
+                                 <div class="row m-0 p-0">
+                                    <div class="col-12 m-0">
+                                        <h6>Deadlift repetitions</h6>
+                                    <p><b>Total</b>: </p>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 mb-3">
+                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                     <div class="badge-container"></div>
+                                    </div>
+                                 </div>
                                 <script>
                                     // The pie and bar chart for the distance travelled
                                     var transactionsData = [
                                         { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
-                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }}},
+                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }} },
                                     ];
                                     var ndx = crossfilter(transactionsData);
 

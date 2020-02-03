@@ -125,6 +125,13 @@ p, a, td, th, option {
   max-width: 500px;
 }
 
+.badge-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid black 1px;
+}
+
 .above-navigation {
   background-color: #494949;
   color: #69add6;

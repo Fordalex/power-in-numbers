@@ -223,11 +223,55 @@ def profile():
             totalNumber = totalNumber + int(num)
         averageNumber = totalNumber / len(effortList)
         return averageNumber
-
     average_motivation = averageMotivation()
     average_difficulty = averageDifficulty()
     average_effort = averageEffort()
-    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort)
+    # count the time of the session taken into minutes
+    def totalTimeSpentTrainingMins():
+        allSessions = mongo.db.sessions.find({'username': currentUser})
+        minList = []
+        hourList = []
+        for session in allSessions:
+            time = session.get('length_min')
+            minList.append(time)
+        allSessions = mongo.db.sessions.find({'username': currentUser})
+        for session in allSessions:
+            time = session.get('length_hour')
+            hourList.append(time)
+        totalMins = 0 
+        totalHours = 0
+        for time in minList:
+            totalMins = totalMins + time
+        for time in hourList:
+            totalHours = totalHours + time
+        HoursToMin = totalHours * 60
+        returnTimeMins = totalMins + HoursToMin
+        return returnTimeMins
+    # Format the mins into D5:H20:M30
+    def formatTimeSpent():
+        timeInMins = totalTimeSpentTrainingMins()
+        dayCount = 0
+        hourCount = 0
+        minCount = 0
+        while timeInMins >= 60:
+            timeInMins = timeInMins - 60
+            hourCount += 1
+        while hourCount >= 24:
+            hourCount = hourCount - 24
+            dayCount += 1
+        minCount = timeInMins
+        listOfTheCount = []
+        listOfTheCount.append(minCount)
+        listOfTheCount.append(hourCount)
+        listOfTheCount.append(dayCount)
+        
+        return listOfTheCount
+
+    totalTimeList = formatTimeSpent()
+    totalTimeDays = totalTimeList[2]
+    totalTimeHours = totalTimeList[1]
+    totalTimeMins = totalTimeList[0]
+    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins)
     
 
 # save the users setting preferences to mongoDB
