@@ -10,8 +10,8 @@
 </script>
 
 <div class="title-container">
-    <p class="m-0 p-0 text-center text-light">Profile</p>
-    <h1 class="text-center main-title">{{ user.first_name }} {{ user.last_name }}</h1>
+    <p class="m-0 p-0 text-center text-light animated fadeIn">Profile</p>
+    <h1 class="text-center main-title  animated fadeIn">{{ user.first_name }} {{ user.last_name }}</h1>
 </div>
 <div class="page-wrapper">
     <div class="page-container p-0">
@@ -44,7 +44,8 @@
                             <div class="row m-0">
                                 <div class="col-12 p-0 m-0">
                                     <div class="row m-0 p-0 mb-3">
-                                        <div class="col-12 col-sm-6 col-md-4 m-0 p-0 py-2 p-sm-2 ">
+                                        <div
+                                            class="col-12 col-sm-6 col-md-4 m-0 p-0 py-2 p-sm-2 animated bounceInLeft faster">
                                             <div
                                                 class="login-wrapper col-12 p-0 d-flex justify-content-center container-fluid my-2 height-full ">
                                                 <div class="row m-0 p-0 d-flex justify-content-center container-fluid">
@@ -62,7 +63,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-sm-6 col-md-4 m-0 p-0 py-2 p-sm-2">
+                                        <div
+                                            class="col-12 col-sm-6 col-md-4 m-0 p-0 py-2 p-sm-2 animated zoomIn faster">
                                             <div
                                                 class="login-wrapper col-12 p-0 d-flex justify-content-center container-fluid my-2 height-full">
                                                 <div class="row m-0 p-0 d-flex justify-content-center container-fluid">
@@ -78,7 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-4 m-0 p-0 py-2 p-sm-2">
+                                        <div class="col-12 col-md-4 m-0 p-0 py-2 p-sm-2 animated bounceInRight faster">
                                             <div
                                                 class="login-wrapper col-12 p-0 d-flex justify-content-center container-fluid my-2 height-full ">
                                                 <div class="row m-0 p-0 d-flex justify-content-center container-fluid">
@@ -95,16 +97,11 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
-
                             </div>
-
                         </div>
                         <!-- Section with all the sessions -->
-                        <div class="tab-pane fade show active row m-0 p-0" id="home" role="tabpanel"
+                        <div class="tab-pane fade show active row m-0 p-0 " id="home" role="tabpanel"
                             aria-labelledby="home-tab">
                             <div class="col-12 p-0">
                                 <form action="{{ url_for('filter_profile') }}" method="POST">
@@ -157,7 +154,7 @@
                             </div>
                             <div class="row m-0 p-0">
                                 {% for session in sessions %}
-                                <div class="col-12 col-lg-6 p-0 px-md-3">
+                                <div class="col-12 col-lg-6 p-0 px-md-3 animated fadeInUp">
                                     <div class="session-card my-1 my-md-3 p-2">
                                         <div class="row m-0 p-0">
                                             <div class="col-6 pl-1 pr-2">
@@ -181,33 +178,33 @@
                                                         <div>
                                                             {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
                                                             <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 float-left">
+                                                                <p class="toFixed1 m-0 float-left">
                                                                     {{ session.body_weight }}</p>
                                                                 kg
                                                             </p>
                                                             {% endif %}
                                                             {% if session.bw_unit == 'lb' %}
                                                             <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 float-left">
+                                                                <p class="toFixed1 m-0 float-left">
                                                                     {{ session.body_weight | int * 10 / 22 }}</p>kg
                                                             </p>
                                                             {% endif %}
                                                             {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
                                                             <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 float-left">
+                                                                <p class="toFixed1 m-0 float-left">
                                                                     {{ session.body_weight }}</p>
                                                                 lb
                                                             </p>
                                                             {% endif %}
                                                             {% if session.bw_unit == 'kg' %}
                                                             <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 float-left">
+                                                                <p class="toFixed1 m-0 float-left">
                                                                     {{ session.body_weight | int * 22 / 10 }}</p>lb
                                                             </p>
                                                             {% endif %}
                                                             {% else %}
                                                             <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 float-left">
+                                                                <p class="toFixed1 m-0 float-left">
                                                                     {{ session.body_weight | int }}
                                                                 </p>
                                                                 {{ session.bw_unit }}
@@ -377,13 +374,13 @@
                                                 </div>
                                                 <div class="row m-0 p-0">
                                                     <div class="col-7 p-0">
-                                                        <p><b>Notes:</b> {{ session.notes }}</p>
+                                                        <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
                                                     </div>
                                                     <div class="col-5 p-0">
                                                         <div class="row m-0 p-0">
                                                             <div class="col-12 m-0 p-0">
                                                                 <p>
-                                                                    <a class="btn main-colour mt-2 expand-button text-dark border float-right"
+                                                                    <a class="btn main-colour expand-button text-dark py-1 border float-right"
                                                                         data-toggle="collapse"
                                                                         href="#expand{{ loop.index }}" role="button"
                                                                         aria-expanded="false"
@@ -410,7 +407,7 @@
                                     </div>
                                 </div>
                                 {% if loop.last %}
-                                <div class="col-12">
+                                <div class="col-12 animated fadeInUp">
                                     <p class="text-secondary">Search Result: {{ loop.index }}</p>
                                 </div>
                                 {% endif %}
@@ -421,200 +418,226 @@
                         <!-- Stats section -->
                         <div class="tab-pane fade row m-0 p-0" id="profile" role="tabpanel"
                             aria-labelledby="profile-tab">
-                            <div class="col-12 my-3 p-0">
-                                <div class="row m-0 px-3">
-                                    <div class="col-12 p-0">
-                                        <h3 class="text-center mb-3">Total sessions logged</h3>
-                                    </div>
-                                    <div
-                                        class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3">
-                                        {% if user.sessions_logged >= 100 %}
-                                        <p class="m-0 p-0 main-colour-text text-center"><b>Master</b></p>
-                                        {% elif user.sessions_logged >= 50 %}
-                                        <p class="m-0 p-0 main-colour-text text-center"><b>Advanced</b></p>
-                                        {% elif user.sessions_logged >= 25 %}
-                                        <p class="m-0 p-0 main-colour-text text-center"><b>Novice</b></p>
-                                        {% elif user.sessions_logged >= 10 %}
-                                        <p class="m-0 p-0 main-colour-text text-center"><b>Rookie</b></p>
-                                        {% else %}
-                                        <p class="m-0 p-0 main-colour-text text-center"><b>Beginner</b></p>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Logged:</b>
-                                            {{ user.sessions_logged }}
-                                        </p>
-                                    </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Powerlifting:
-                                                {{ totalPowerliftingSessions }}</b></p>
-                                    </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i> </b><b>Running:
-                                                {{ totalRunningSessions }}</b></p>
-                                    </div>
-                                    <div class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center">
-                                        <p class="m-0 p-0"><i class="fas fa-biking mr-1"></i></b><b>Cycling:
-                                                {{ totalCyclingSessions }}</b></p>
-                                    </div>
-                                </div>
+                            <div class="col-12 m-0 p-0">
                                 <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 px-4">
-                                    <div class="col-6 col-md-6 d-flex justify-content-center">
-                                        <div>
-                                            <h6 class="text-center">Session Type</h6>
-                                            <div id="sessionTypePie"></div>
+                                    <div class="col-12 col-lg-6 m-0 p-3">
+                                        <div class="row m-0 p-0">
+                                            <div class="col-12 p-0">
+                                                <h3 class="text-center my-3">Total sessions logged</h3>
+                                            </div>
+                                            <div
+                                                class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3 animated fadeIn">
+                                                {% if user.sessions_logged >= 100 %}
+                                                <p class="m-0 p-0 main-colour-text text-center"><b>Master</b></p>
+                                                {% elif user.sessions_logged >= 50 %}
+                                                <p class="m-0 p-0 main-colour-text text-center"><b>Advanced</b></p>
+                                                {% elif user.sessions_logged >= 25 %}
+                                                <p class="m-0 p-0 main-colour-text text-center"><b>Novice</b></p>
+                                                {% elif user.sessions_logged >= 10 %}
+                                                <p class="m-0 p-0 main-colour-text text-center"><b>Rookie</b></p>
+                                                {% else %}
+                                                <p class="m-0 p-0 main-colour-text text-center"><b>Beginner</b></p>
+                                                {% endif %}
+                                            </div>
+                                            <div
+                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Logged:</b>
+                                                    {{ user.sessions_logged }}
+                                                </p>
+                                            </div>
+                                            <div
+                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Powerlifting:
+                                                        {{ totalPowerliftingSessions }}</b></p>
+                                            </div>
+                                            <div
+                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i> </b><b>Running:
+                                                        {{ totalRunningSessions }}</b></p>
+                                            </div>
+                                            <div
+                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"><i class="fas fa-biking mr-1"></i></b><b>Cycling:
+                                                        {{ totalCyclingSessions }}</b></p>
+                                            </div>
+                                            <div
+                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"><i class="fas fa-shoe-prints"></i></b><b>Walking:
+                                                    </b></p>
+                                            </div>
+
+                                            <div class="col-12 p-0">
+                                                <hr>
+                                            </div>
+
+
+                                            <div class="col-6 col-md-6 d-flex justify-content-center animated fadeIn">
+                                                <div>
+                                                    <h6 class="text-center">Session Type</h6>
+                                                    <div id="sessionTypePie"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-6 d-flex justify-content-center animated fadeIn">
+                                                <div>
+                                                    <h6 class="text-center">Total Sessions</h6>
+                                                    <div id="totalSessionBar"></div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-6 d-flex justify-content-center">
-                                        <div>
-                                            <h6 class="text-center">Total Sessions</h6>
-                                            <div id="totalSessionBar"></div>
+                                    <div class="col-12 col-lg-6 m-0 p-3 animated fadeIn border">
+                                        <div class="row m-0 p-0 px-3">
+                                            <div class="col-12 p-0">
+                                                <h3 class="text-center my-3">Total Distance Traveled ({{distanceUnit}}s)
+                                                </h3>
+                                            </div>
+                                            <div class="col-6 col-md-4 p-0">
+                                                <div class="py-1 p-sm-0 d-flex align-items-center">
+                                                    <p class="m-0 p-0"> <i
+                                                            class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b>
+                                                        {{ distanceUnit }}s</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-4 p-0">
+                                                <div class="py-1 p-sm-0 d-flex align-items-center">
+                                                    <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i>
+                                                        </b><b>Ran:</b>
+                                                        {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4 p-0">
+                                                <div class="py-1 p-sm-0 d-flex align-items-center">
+                                                    <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled:
+                                                        </b><span class="toFixed1">
+                                                            {{ totalDistanceOnBike }}</span>{{ distanceUnit }}s
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0 p-0">
+                                            <div class="col-12 p-0">
+                                                <hr>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0 p-0 px-4">
+                                            <div id="bounceInLeft" class="col-6 col-md-6 d-flex justify-content-center">
+                                                <div>
+                                                    <h6 class="text-center">Total Distance ({{distanceUnit}}s)</h6>
+                                                    <div id="distanceBar"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6  col-md-6 d-flex justify-content-center">
+                                                <div>
+                                                    <h6 class="text-center">Travel Type</h6>
+                                                    <div id="distancePie"></div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
-
                                 </div>
 
+
+
+
+
+                   
 
 
                                 <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
+                                    <div class="col-12 col-md-6 p-0 border">
+                                        <div class="row m-0 p-0">
+                                            <div class="col-12 p-0 d-flex justify-content-center">
+                                                <h3 class="text-center my-3">Achievements</h3>
+                                            </div>
+                                            <div class="col-12 py-1 pt-4 p-sm-0 d-flex justify-content-center">
+                                                <div>
+                                                    <div class="d-flex align-items-center">
+                                                        <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total Time
+                                                                Tracked:</b></p>
+                                                    </div>
+                                                    <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }} </b> Hours
+                                                        <b>{{totalTimeMins }}</b> Mins </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+
+                                        <div class="row m-0 p-3 animated fadeIn">
+                                            <div
+                                                class="col-12   p-0 d-flex justify-content-center align-items-center">
+                                                <h3 class="text-center my-3">Mental Stats</h3>
+                                            </div>
+                                            <div class="col-4 p-0 d-flex justify-content-center">
+                                                <div class="container-fluid">
+                                                    <h6>Motivated</h6>
+                                                    <div class="d-flex justify-content-center">
+                                                        <i class="far mr-2 text-primary fa-smile-beam"></i>
+                                                        <p class="m-0 toFixed1">{{ average_motivation }}</p>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped bg-info"
+                                                            role="progressbar"
+                                                            style="width: {{ average_motivation | int * 10 }}%"
+                                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 p-0 d-flex justify-content-center">
+                                                <div class="container-fluid">
+                                                    <h6>Difficulty</h6>
+                                                    <div class="d-flex justify-content-center">
+                                                        <i class="far mr-2 text-warning fa-tired"></i>
+                                                        <p class="m-0 toFixed1">{{ average_difficulty }}</p>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped bg-warning"
+                                                            role="progressbar"
+                                                            style="width: {{ average_difficulty | int * 10 }}%"
+                                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 p-0 d-flex justify-content-center">
+                                                <div class="container-fluid">
+                                                    <h6>Effort</h6>
+                                                    <div class="d-flex justify-content-center">
+                                                        <i class="fas fa-fist-raised mr-2 text-danger"></i>
+                                                        <p class="m-0 toFixed1">{{ average_effort }}</p>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-striped bg-danger"
+                                                            role="progressbar"
+                                                            style="width: {{ average_effort | int * 10 }}%"
+                                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="row m-0 p-0 px-3">
-                                    <div class="col-12 p-0">
-                                        <h3 class="text-center mb-3">Total Distance Traveled ({{distanceUnit}}s)</h3>
-                                    </div>
-                                    <div class="col-6 col-md-4 p-0">
-                                        <div class="py-1 p-sm-0 d-flex align-items-center">
-                                            <p class="m-0 p-0"> <i class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b>
-                                                {{ distanceUnit }}s</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-4 p-0">
-                                        <div class="py-1 p-sm-0 d-flex align-items-center">
-                                            <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i> </b><b>Ran:</b>
-                                                {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4 p-0">
-                                        <div class="py-1 p-sm-0 d-flex align-items-center">
-                                            <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled: </b><span
-                                                    class="toFixed1">
-                                                    {{ totalDistanceOnBike }}</span>{{ distanceUnit }}s
-                                            </p>
-                                        </div>
-                                    </div>
 
 
 
 
 
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 px-4">
-                                    <div class="col-6 col-md-6 d-flex justify-content-center">
-                                        <div>
-                                            <h6 class="text-center">Total Distance ({{distanceUnit}}s)</h6>
-                                            <div id="distanceBar"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6  col-md-6 d-flex justify-content-center">
-                                        <div>
-                                            <h6 class="text-center">Travel Type</h6>
-                                            <div id="distancePie"></div>
-                                        </div>
-                                    </div>
 
-                                </div>
+
+                             
                                 <div class="row m-0">
                                     <div class="col-12 m-0 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-
-                                <div class="row m-0 p-0">
-                                    <div class="col-12  mb-4 p-0 d-flex justify-content-center align-items-center">
-                                        <h3 class="m-0 p-0">Mental Stats</h3>
-                                    </div>
-                                    <div class="col-4 p-0 d-flex justify-content-center">
-                                        <div class="container-fluid">
-                                            <h6>Motivated</h6>
-                                            <div class="d-flex justify-content-center">
-                                                <i class="far mr-2 text-primary fa-smile-beam"></i>
-                                                <p class="m-0 toFixed1">{{ average_motivation }}</p>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped bg-info"
-                                                    role="progressbar"
-                                                    style="width: {{ average_motivation | int * 10 }}%"
-                                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 p-0 d-flex justify-content-center">
-                                        <div class="container-fluid">
-                                            <h6>Difficulty</h6>
-                                            <div class="d-flex justify-content-center">
-                                                <i class="far mr-2 text-warning fa-tired"></i>
-                                                <p class="m-0 toFixed1">{{ average_difficulty }}</p>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped bg-warning"
-                                                    role="progressbar"
-                                                    style="width: {{ average_difficulty | int * 10 }}%"
-                                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4 p-0 d-flex justify-content-center">
-                                        <div class="container-fluid">
-                                            <h6>Effort</h6>
-                                            <div class="d-flex justify-content-center">
-                                                <i class="fas fa-fist-raised mr-2 text-danger"></i>
-                                                <p class="m-0 toFixed1">{{ average_effort }}</p>
-                                            </div>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-striped bg-danger"
-                                                    role="progressbar" style="width: {{ average_effort | int * 10 }}%"
-                                                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row m-0 mt-4 mb-2">
-                                    <div class="col-12 py-1 pt-4 p-sm-0 d-flex justify-content-center">
-                                        <div>
-                                            <div class="d-flex align-items-center">
-                                                <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total Time
-                                                        Tracked:</b></p>
-                                            </div>
-                                            <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }} </b> Hours
-                                                <b>{{totalTimeMins }}</b> Mins </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row m-0">
-                                    <div class="col-12 m-0 p-0">
-                                        <hr>
+                                        <hr class="mt-0">
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0">
                                     <div class="col-12 d-flex justify-content-center">
-                                        <h2>Badges</h2>
+                                        <h1>Badges</h1>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0">

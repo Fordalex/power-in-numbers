@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('#date').attr('value', min_date)
 })
 
+
 // Welcome message
 var today = new Date();
 var hourNow = today.getHours();
@@ -106,7 +107,7 @@ function addSessionTable() {
     var typeSelected = $('#session-type-option option:selected').text()
     unitSelected = $('#session-unit-option option:selected').text()
     distanceSelected = $('#session-distance-option option:selected').text()
-    var powerliftingTable = `<div class="row p-0 m-0"  id="sessionTable">
+    var powerliftingTable = `<div class="row p-0 m-0 animated fadeInUp faster"  id="sessionTable">
                                 <div class="col-12 d-flex align-items-end p-0">
                                     <h3 class="float-left mr-3">Training Session</h3>
                                     <h5 class="main-colour-text">Powerlifting</h5>
@@ -140,7 +141,7 @@ function addSessionTable() {
                                     <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                                 </div>
                             </div>`
-    var runningTable = `<div class="row p-0 m-0" id="sessionTable">
+    var runningTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
                         <div class="col-12 d-flex align-items-end p-0">
                             <h3 class="float-left mr-3">Training Session</h3>
                             <h5 class="main-colour-text">Running</h5>
@@ -166,7 +167,7 @@ function addSessionTable() {
                         </div>
                     </div>`
 
-    var cyclingTable = `<div class="row p-0 m-0" id="sessionTable">
+    var cyclingTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
                     <div class="col-12 d-flex align-items-end p-0">
                         <h3 class="float-left mr-3">Training Session</h3>
                         <h5 class="main-colour-text">Cycling</h5>
@@ -220,27 +221,27 @@ function addSessionFirstNext() {
     usersChoice = $('#session-type-option').val();
     if (usersChoice == 'powerlifting') {
         $('#unitOrDistance').html(`
-        <div id="unitContainer">
+        <div id="unitContainer" class="animated fadeIn faster">
             <label>Unit:</label>
             <select onclick="unitContinueButton()" id="session-unit-option" name="session_unit" class="form-control container-fluid" required>
                 <option value="kg">KG</option>
                 <option value="lb">LB</option>
             </select>
             <div id="secondNextContainer">
-                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Next</div>
+                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Continue</div>
             </div>
         </div>
         `)
     } else if (usersChoice == 'running' || usersChoice == 'cycling') {
         $('#unitOrDistance').html(`
-        <div id="unitContainer">
+        <div id="unitContainer" class="animated fadeIn faster">
             <label>Distance:</label>
             <select onclick="unitContinueButton()" id="session-distance-option" name="session_unit" class="form-control container-fluid" required>
                 <option value="mile">Mile</option>
                 <option value="km">km</option>
             </select>
             <div id="secondNextContainer">
-                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Next</div>
+                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Continue</div>
             </div>
         </div>
         `)
