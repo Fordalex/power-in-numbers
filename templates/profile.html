@@ -113,14 +113,23 @@
                                                 {% if filter_session_type == 'powerlifting' %}
                                                 <option value="powerlifting">Powerlifting</option>
                                                 <option value="running">Running</option>
+                                                <option value="walking">Walking</option>
                                                 <option value="cycling">Cycling</option>
                                                 <option value="all">All</option>
                                                 {% elif filter_session_type == 'running' %}
                                                 <option value="running">Running</option>
                                                 <option value="powerlifting">Powerlifting</option>
+                                                <option value="walking">Walking</option>
                                                 <option value="cycling">Cycling</option>
                                                 <option value="all">All</option>
                                                 {% elif filter_session_type == 'cycling' %}
+                                                <option value="cycling">Cycling</option>
+                                                <option value="running">Running</option>
+                                                <option value="walking">Walking</option>
+                                                <option value="powerlifting">Powerlifting</option>
+                                                <option value="all">All</option>
+                                                {% elif filter_session_type == 'walking' %}
+                                                <option value="walking">Walking</option>
                                                 <option value="cycling">Cycling</option>
                                                 <option value="running">Running</option>
                                                 <option value="powerlifting">Powerlifting</option>
@@ -130,6 +139,7 @@
                                                 <option value="powerlifting">Powerlifting</option>
                                                 <option value="running">Running</option>
                                                 <option value="cycling">Cycling</option>
+                                                <option value="walking">Walking</option>
                                                 {% endif %}
                                             </select>
                                         </div>
@@ -166,8 +176,8 @@
                                                 <i class="fas fa-child float-right"></i>
                                                 {% elif session.session_type == 'cycling' %}
                                                 <i class="fas fa-biking float-right"></i>
-                                                {% elif session.session_type == 'olympiclifting' %}
-                                                <i class="fas fa-dumbbell float-right"></i>
+                                                {% elif session.session_type == 'walking' %}
+                                                <i class="fas fa-shoe-prints float-right"></i>
                                                 {% endif %}
                                                 <h5><u>{{ loop.index }}. <span
                                                             class="main-colour-text">{{ session.username }}
@@ -295,7 +305,7 @@
                                                                     {% endif %}
                                                                 </tr>
                                                                 {% endfor %}
-                                                                {% elif session.session_type == 'running' or session.session_type == 'cycling' %}
+                                                                {% elif session.session_type == 'running' or session.session_type == 'cycling' or session.session_type == 'walking' %}
                                                                 <tr>
                                                                     <th>Distance ({{ distanceUnit }})</th>
                                                                     <th>Average Speed</th>
@@ -440,29 +450,29 @@
                                                 {% endif %}
                                             </div>
                                             <div
-                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Logged:</b>
                                                     {{ user.sessions_logged }}
                                                 </p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
-                                                <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Powerlifting:
+                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Weightlifting:
                                                         {{ totalPowerliftingSessions }}</b></p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i> </b><b>Running:
                                                         {{ totalRunningSessions }}</b></p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"><i class="fas fa-biking mr-1"></i></b><b>Cycling:
                                                         {{ totalCyclingSessions }}</b></p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-3 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
-                                                <p class="m-0 p-0"><i class="fas fa-shoe-prints"></i></b><b>Walking:
+                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                <p class="m-0 p-0"><i class="fas fa-shoe-prints mr-1"></i></b><b>Walking: {{ totalWalkingSessions }}
                                                     </b></p>
                                             </div>
 
@@ -495,22 +505,22 @@
                                             <div class="col-6 col-md-4 p-0">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i
-                                                            class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b>
-                                                        {{ distanceUnit }}s</p>
+                                                            class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b><span class="toFixed1">{{ totalDistanceByWalking }}</span>
+                                                        </p>
                                                 </div>
                                             </div>
                                             <div class="col-6 col-md-4 p-0">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i>
                                                         </b><b>Ran:</b>
-                                                        {{ allDistanceByFoot }}{{ distanceUnit }}s</p>
+                                                        {{ allDistanceByFoot }}</p>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4 p-0">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i class="fas fa-biking"></i> </b><b>Cycled:
                                                         </b><span class="toFixed1">
-                                                            {{ totalDistanceOnBike }}</span>{{ distanceUnit }}s
+                                                            {{ totalDistanceOnBike }}</span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -551,7 +561,7 @@
                                             <div class="col-12 p-0 d-flex justify-content-center">
                                                 <h3 class="text-center my-3">Achievements</h3>
                                             </div>
-                                            <div class="col-12 py-1 pt-4 p-sm-0 d-flex justify-content-center">
+                                            <div class="col-12 py-1 p-sm-0 d-flex justify-content-center">
                                                 <div>
                                                     <div class="d-flex align-items-center">
                                                         <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total Time
@@ -565,7 +575,7 @@
                                     </div>
                                     <div class="col-12 col-md-6">
 
-                                        <div class="row m-0 p-3 animated fadeIn">
+                                        <div class="row m-0 p-0 pb-5 animated fadeIn">
                                             <div
                                                 class="col-12   p-0 d-flex justify-content-center align-items-center">
                                                 <h3 class="text-center my-3">Mental Stats</h3>
@@ -997,6 +1007,7 @@
                                     var transactionsData = [
                                         { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
                                     { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }}},
+                                    { "name": "Walking", "label": "Total", "spend": {{ totalDistanceByWalking }}}
                                     ];
                                     var ndx = crossfilter(transactionsData);
 
@@ -1026,9 +1037,10 @@
 
                                     // The pie and bar chart for the session logged.
                                     var Data = [
-                                        { "name": "Powerlifting", "label": "Total", "spend": {{ totalPowerliftingSessions }}},
+                                        { "name": "Weightlifting", "label": "Total", "spend": {{ totalPowerliftingSessions }}},
                                     { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }}},
                                     { "name": "Cycling", "label": "Total", "spend": {{ totalCyclingSessions }}},
+                                    { "name": "Walking", "label": "Total", "spend": {{ totalWalkingSessions }}},
                                     ];
                                     var ndx = crossfilter(Data);
 

@@ -166,11 +166,10 @@ function addSessionTable() {
                             <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                         </div>
                     </div>`
-
-    var cyclingTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
+    var walkingTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
                     <div class="col-12 d-flex align-items-end p-0">
                         <h3 class="float-left mr-3">Training Session</h3>
-                        <h5 class="main-colour-text">Cycling</h5>
+                        <h5 class="main-colour-text">Walking</h5>
                     </div>
                     <div class="col-12 p-0">
                         <table class="session-table container-fluid mt-3" id="addSessionTable">
@@ -192,6 +191,31 @@ function addSessionTable() {
                         <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                     </div>
                 </div>`
+                var cyclingTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
+                <div class="col-12 d-flex align-items-end p-0">
+                    <h3 class="float-left mr-3">Training Session</h3>
+                    <h5 class="main-colour-text">Cycling</h5>
+                </div>
+                <div class="col-12 p-0">
+                    <table class="session-table container-fluid mt-3" id="addSessionTable">
+                        <tr>
+                            <th>Distance (${distanceSelected}) :</th>
+                        </tr>
+                        <tr>
+                            <td><input class="container-fluid" type="text" name="distance"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-6 d-flex align-items-end">
+                    <p class="m-0 p-0 mt-2">Notes:</p>
+                </div>
+                <div class="col-12 p-0">
+                    <textarea name="notes" class="container-fluid float-left form-control mb-3"></textarea>
+                </div>
+                <div class="col-12 p-0">
+                    <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
+                </div>
+            </div>`
     console.log(typeSelected)
     console.log(unitSelected)
     if (typeSelected == 'Powerlifting') {
@@ -200,6 +224,8 @@ function addSessionTable() {
         $('#addSessionTable').html(runningTable)
     } else if (typeSelected == 'Cycling') {
         $('#addSessionTable').html(cyclingTable)
+    } else if (typeSelected == 'Walking') {
+        $('#addSessionTable').html(walkingTable)
     }
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
@@ -232,7 +258,7 @@ function addSessionFirstNext() {
             </div>
         </div>
         `)
-    } else if (usersChoice == 'running' || usersChoice == 'cycling') {
+    } else if (usersChoice == 'running' || usersChoice == 'cycling' || usersChoice == 'walking') {
         $('#unitOrDistance').html(`
         <div id="unitContainer" class="animated fadeIn faster">
             <label>Distance:</label>
