@@ -26,7 +26,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link main-colour-text active" id="home-tab" data-toggle="tab" href="#home"
-                                role="tab" aria-controls="home" aria-selected="true">Sessions</a>
+                                role="tab" aria-controls="home" aria-selected="true">Log</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link main-colour-text" id="profile-tab" data-toggle="tab" href="#profile"
@@ -41,6 +41,7 @@
                     <div class="tab-content " id="myTabContent">
                         <!-- add sessions, training plans and personal records -->
                         <div class="tab-pane fade m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
+                           
                             <div class="row m-0">
                                 <div class="col-12 p-0 m-0">
                                     <div class="row m-0 p-0 mb-3">
@@ -103,326 +104,346 @@
                         <!-- Section with all the sessions -->
                         <div class="tab-pane fade show active row m-0 p-0 " id="home" role="tabpanel"
                             aria-labelledby="home-tab">
-                            <div class="col-12 p-0">
-                                <form action="{{ url_for('filter_profile') }}" method="POST">
-                                    <div class="row m-0 p-0">
-                                        <div class="col-6 col-md-4 pt-3">
-                                            <h6>Filter</h6>
-                                            <label>Session Type:</label>
-                                            <select class="form-control" name="filter_session_type">
-                                                {% if filter_session_type == 'powerlifting' %}
-                                                <option value="powerlifting">Powerlifting</option>
-                                                <option value="running">Running</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="all">All</option>
-                                                {% elif filter_session_type == 'running' %}
-                                                <option value="running">Running</option>
-                                                <option value="powerlifting">Powerlifting</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="all">All</option>
-                                                {% elif filter_session_type == 'cycling' %}
-                                                <option value="cycling">Cycling</option>
-                                                <option value="running">Running</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="powerlifting">Powerlifting</option>
-                                                <option value="all">All</option>
-                                                {% elif filter_session_type == 'walking' %}
-                                                <option value="walking">Walking</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="running">Running</option>
-                                                <option value="powerlifting">Powerlifting</option>
-                                                <option value="all">All</option>
-                                                {% else %}
-                                                <option value="all">All</option>
-                                                <option value="powerlifting">Powerlifting</option>
-                                                <option value="running">Running</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="walking">Walking</option>
-                                                {% endif %}
-                                            </select>
-                                        </div>
-                                        <div class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
-                                            <div class="container-fluid">
-                                                <label>Date:</label>
-                                                <input type="date" class="form-control" value="{{ filter_date }}"
-                                                    name="filter_date">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
-                                            <button class="main-gradient btn container-fluid">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <hr>
-                            <div class="row m-0 p-0" id="session_title">
-                                <div class="col-12">
-                                    <h4 class="text-center">Your Training Sessions</h4>
-                                </div>
-                            </div>
-                            <div class="row m-0 p-0">
-                                {% for session in sessions %}
-                                <div class="col-12 col-lg-6 p-0 px-md-3 animated fadeInUp">
-                                    <div class="session-card my-1 my-md-3 p-2">
-                                        <div class="row m-0 p-0">
-                                            <div class="col-6 pl-1 pr-2">
-                                                {% if session.session_type == 'powerlifting' %}
-                                                <i class="fas fa-dumbbell float-right"></i>
-                                                {% elif session.session_type == 'running' %}
-                                                <i class="fas fa-running float-right mr-1"></i>
-                                                {% elif session.session_type == 'Body Weight' %}
-                                                <i class="fas fa-child float-right"></i>
-                                                {% elif session.session_type == 'cycling' %}
-                                                <i class="fas fa-biking float-right"></i>
-                                                {% elif session.session_type == 'walking' %}
-                                                <i class="fas fa-shoe-prints float-right"></i>
-                                                {% endif %}
-                                                <h5><u>{{ loop.index }}. <span
-                                                            class="main-colour-text">{{ session.username }}
-                                                        </span></u></h5>
-
+                            <div class="col-12">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#sessions" role="tab" aria-controls="home" aria-selected="true">Sessions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#records" role="tab" aria-controls="profile" aria-selected="false">Records</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#plans" role="tab" aria-controls="contact" aria-selected="false">Plans</a>
+                                    </li>
+                                  </ul>
+                                  <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="sessions" role="tabpanel" aria-labelledby="sessions-tab">
+                                        <div class="col-12 p-0">
+                                            <form action="{{ url_for('filter_profile') }}" method="POST">
                                                 <div class="row m-0 p-0">
-                                                    <div class="col-12 col-md-6 m-0 p-0">
-                                                        <div>
-                                                            {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ session.body_weight }}</p>
-                                                                kg
-                                                            </p>
-                                                            {% endif %}
-                                                            {% if session.bw_unit == 'lb' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ session.body_weight | int * 10 / 22 }}</p>kg
-                                                            </p>
-                                                            {% endif %}
-                                                            {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ session.body_weight }}</p>
-                                                                lb
-                                                            </p>
-                                                            {% endif %}
-                                                            {% if session.bw_unit == 'kg' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ session.body_weight | int * 22 / 10 }}</p>lb
-                                                            </p>
-                                                            {% endif %}
+                                                    <div class="col-6 col-md-4 pt-3">
+                                                        <h6>Filter</h6>
+                                                        <label>Session Type:</label>
+                                                        <select class="form-control" name="filter_session_type">
+                                                            {% if filter_session_type == 'powerlifting' %}
+                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="running">Running</option>
+                                                            <option value="walking">Walking</option>
+                                                            <option value="cycling">Cycling</option>
+                                                            <option value="all">All</option>
+                                                            {% elif filter_session_type == 'running' %}
+                                                            <option value="running">Running</option>
+                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="walking">Walking</option>
+                                                            <option value="cycling">Cycling</option>
+                                                            <option value="all">All</option>
+                                                            {% elif filter_session_type == 'cycling' %}
+                                                            <option value="cycling">Cycling</option>
+                                                            <option value="running">Running</option>
+                                                            <option value="walking">Walking</option>
+                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="all">All</option>
+                                                            {% elif filter_session_type == 'walking' %}
+                                                            <option value="walking">Walking</option>
+                                                            <option value="cycling">Cycling</option>
+                                                            <option value="running">Running</option>
+                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="all">All</option>
                                                             {% else %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ session.body_weight | int }}
-                                                                </p>
-                                                                {{ session.bw_unit }}
-                                                            </p>
+                                                            <option value="all">All</option>
+                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="running">Running</option>
+                                                            <option value="cycling">Cycling</option>
+                                                            <option value="walking">Walking</option>
                                                             {% endif %}
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
+                                                        <div class="container-fluid">
+                                                            <label>Date:</label>
+                                                            <input type="date" class="form-control" value="{{ filter_date }}"
+                                                                name="filter_date">
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 pr-0 border-left">
-                                                <i class="fas fa-edit float-right" data-toggle="collapse"
-                                                    href="#edit{{ loop.index }}" role="button" aria-expanded="false"
-                                                    aria-controls="collapseExample"></i>
-                                                <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
-                                                <p class="m-0"><b>Location:</b> {{ session.location }}</p>
-                                                <div class="collapse d-none" id="{{ session.first_name }}">
-                                                    <div class="card-body">
-                                                        <h5>Motivated</h5>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped bg-info"
-                                                                role="progressbar"
-                                                                style="width: {{ session.motivated | int * 10 }}%"
-                                                                aria-valuenow="75" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div>
-                                                        <h5>Difficulty</h5>
-                                                        <div class="progress">
-
-                                                            <div class="progress-bar progress-bar-striped bg-warning"
-                                                                role="progressbar"
-                                                                style="width: {{ session.difficulty | int * 10 }}%"
-                                                                aria-valuenow="75" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div>
-                                                        <h5>Effort</h5>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped bg-danger"
-                                                                role="progressbar"
-                                                                style="width: {{ session.effort | int * 10 }}%"
-                                                                aria-valuenow="100" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
+                                                        <button class="main-gradient btn container-fluid">Search</button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
-                                        <div class="row m-0 p-0 mx-2">
-                                            <div class="col-12 p-0 m-0">
-                                                <div class="collapse  mt-4" id="expand{{ loop.index }}">
-                                                    <div class="card-body m-0 p-0">
-                                                        <div class="d-flex justify-content-center">
-                                                            <table class="session-table container-fluid">
-                                                                {% if session.session_type == 'powerlifting' %}
-                                                                <tr>
-                                                                    <th>Exercise</th>
-                                                                    <th>Sets / Reps</th>
-                                                                    <th>Weight</th>
-                                                                </tr>
-                                                                {% for row in range(session.session_rows | int) %}
-                                                                {% set rowIndex = row + 1 %}
-                                                                <tr>
-                                                                    <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
-                                                                    </td>
-                                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
-                                                                    </td>
-                                                                    {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | int %}
-                                                                    {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
-                                                                    <td>{{ weight_lifted }}{{ unit }}
-                                                                    </td>
-                                                                    {% endif %}{% if session.session_unit == 'lb' %}
-                                                                    <td><span
-                                                                            class="toFixed1">{{ weight_lifted * 10 / 22 }}</span>{{ unit }}
-                                                                    </td>
-                                                                    {% endif %}
-                                                                    {% endif %}
-
-                                                                    {% if unit == 'lb' %}{% if session.session_unit == 'lb' %}
-                                                                    <td>{{ weight_lifted }}{{ unit }}
-                                                                    </td>
-                                                                    {% endif %}{% if session.session_unit == 'kg' %}
-                                                                    <td><span
-                                                                            class="toFixed1">{{ weight_lifted * 22 / 10 }}</span>{{ unit }}
-                                                                    </td>
-                                                                    {% endif %}
-                                                                    {% endif %}
-                                                                </tr>
-                                                                {% endfor %}
-                                                                {% elif session.session_type == 'running' or session.session_type == 'cycling' or session.session_type == 'walking' %}
-                                                                <tr>
-                                                                    <th>Distance ({{ distanceUnit }})</th>
-                                                                    <th>Average Speed</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    {% if distanceUnit == 'mile'%}{% if session.session_unit == 'mile' %}
-                                                                    {% set distance_traveled = session.training_session %}
-                                                                    <td>{{ distance_traveled }} {{ distanceUnit }}
-                                                                    </td>
-                                                                    {% endif %}
-                                                                    {% if session.session_unit == 'km' %}
-                                                                    {% set distance_traveled = session.training_session | int * 0.62 %}
-                                                                    <td><span class="toFixed1">
-                                                                            {{ distance_traveled }}</span>
-                                                                        {{ distanceUnit }}</td>
-                                                                    {% endif %}
-                                                                    {% endif %}
-                                                                    {% if distanceUnit == 'km' %}{% if session.session_unit == 'km' %}
-                                                                    {% set distance_traveled = session.training_session %}
-                                                                    <td>{{ distance_traveled }} {{ distanceUnit }}
-                                                                    </td>
-                                                                    {% endif %}
-                                                                    {% if session.session_unit == 'mile' %}
-                                                                    {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
-                                                                    <td><span
-                                                                            class="toFixed1">{{ distance_traveled }}</span>
-                                                                        {{ distanceUnit }}</td>
-                                                                    {% endif %}
-                                                                    {% endif %}
-
-                                                                    {% set hoursToMins = session.length_hour * 60 %}
-                                                                    {% set totalMins = hoursToMins | int + session.length_min | int %}
-                                                                    <td><span
-                                                                            class="toFixed2">{{ totalMins / distance_traveled | int }}</span>
-                                                                        mins per {{ distanceUnit }}</td>
-                                                                </tr>
-                                                                {% endif %}
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-body m-0 p-0 mt-3">
-                                                        <h5>Motivated</h5>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped bg-info"
-                                                                role="progressbar"
-                                                                style="width: {{ session.motivated | int * 10 }}%"
-                                                                aria-valuenow="75" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div>
-                                                        <h5>Difficulty</h5>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped bg-warning"
-                                                                role="progressbar"
-                                                                style="width: {{ session.difficulty | int * 10 }}%"
-                                                                aria-valuenow="75" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div>
-                                                        <h5>Effort</h5>
-                                                        <div class="progress">
-                                                            <div class="progress-bar progress-bar-striped bg-danger"
-                                                                role="progressbar"
-                                                                style="width: {{ session.effort | int * 10 }}%"
-                                                                aria-valuenow="100" aria-valuemin="0"
-                                                                aria-valuemax="100">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="m-0 mt-4"><b>Session Type:</b> {{ session.session_type }}
-                                                    </p>
-                                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }} Hour(s)
-                                                        {{ session.length_min }}
-                                                        Min(s)
-                                                    </p>
-                                                </div>
-                                                <div class="row m-0 p-0">
-                                                    <div class="col-7 p-0">
-                                                        <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
-                                                    </div>
-                                                    <div class="col-5 p-0">
-                                                        <div class="row m-0 p-0">
-                                                            <div class="col-12 m-0 p-0">
-                                                                <p>
-                                                                    <a class="btn main-colour expand-button text-dark py-1 border float-right"
-                                                                        data-toggle="collapse"
-                                                                        href="#expand{{ loop.index }}" role="button"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="collapseExample">
-                                                                        Expand
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        <hr>
+                                        <div class="row m-0 p-0" id="session_title">
+                                            <div class="col-12">
+                                                <h4 class="text-center">Your Training Sessions</h4>
                                             </div>
                                         </div>
                                         <div class="row m-0 p-0">
-                                            <div class="col-12 p-0">
-                                                <div class="collapse" id="edit{{ loop.index }}">
-                                                    <div class="card card-body p-0 mt-2">
-                                                        <a href="{{url_for('delete_session', session_id=session._id)}}"><button
-                                                                class="btn btn-danger container-fluid">Delete</button></a>
+                                            {% for session in sessions %}
+                                            <div class="col-12 col-lg-6 p-0 px-md-3 animated fadeInUp delay-{{ loop.index }}s">
+                                                <div class="session-card my-1 my-md-3 p-2">
+                                                    <div class="row m-0 p-0">
+                                                        <div class="col-6 pl-1 pr-2">
+                                                            {% if session.session_type == 'powerlifting' %}
+                                                            <i class="fas fa-dumbbell float-right"></i>
+                                                            {% elif session.session_type == 'running' %}
+                                                            <i class="fas fa-running float-right mr-1"></i>
+                                                            {% elif session.session_type == 'Body Weight' %}
+                                                            <i class="fas fa-child float-right"></i>
+                                                            {% elif session.session_type == 'cycling' %}
+                                                            <i class="fas fa-biking float-right"></i>
+                                                            {% elif session.session_type == 'walking' %}
+                                                            <i class="fas fa-shoe-prints float-right"></i>
+                                                            {% endif %}
+                                                            <h5><u>{{ loop.index }}. <span
+                                                                        class="main-colour-text">{{ session.username }}
+                                                                    </span></u></h5>
+            
+                                                            <div class="row m-0 p-0">
+                                                                <div class="col-12 col-md-6 m-0 p-0">
+                                                                    <div>
+                                                                        {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
+                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                            <p class="toFixed1 m-0 float-left">
+                                                                                {{ session.body_weight }}</p>
+                                                                            kg
+                                                                        </p>
+                                                                        {% endif %}
+                                                                        {% if session.bw_unit == 'lb' %}
+                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                            <p class="toFixed1 m-0 float-left">
+                                                                                {{ session.body_weight | int * 10 / 22 }}</p>kg
+                                                                        </p>
+                                                                        {% endif %}
+                                                                        {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
+                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                            <p class="toFixed1 m-0 float-left">
+                                                                                {{ session.body_weight }}</p>
+                                                                            lb
+                                                                        </p>
+                                                                        {% endif %}
+                                                                        {% if session.bw_unit == 'kg' %}
+                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                            <p class="toFixed1 m-0 float-left">
+                                                                                {{ session.body_weight | int * 22 / 10 }}</p>lb
+                                                                        </p>
+                                                                        {% endif %}
+                                                                        {% else %}
+                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                            <p class="toFixed1 m-0 float-left">
+                                                                                {{ session.body_weight | int }}
+                                                                            </p>
+                                                                            {{ session.bw_unit }}
+                                                                        </p>
+                                                                        {% endif %}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 pr-0 border-left">
+                                                            <i class="fas fa-edit float-right" data-toggle="collapse"
+                                                                href="#edit{{ loop.index }}" role="button" aria-expanded="false"
+                                                                aria-controls="collapseExample"></i>
+                                                            <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
+                                                            <p class="m-0"><b>Location:</b> {{ session.location }}</p>
+                                                            <div class="collapse d-none" id="{{ session.first_name }}">
+                                                                <div class="card-body">
+                                                                    <h5>Motivated</h5>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-striped bg-info"
+                                                                            role="progressbar"
+                                                                            style="width: {{ session.motivated | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                    <h5>Difficulty</h5>
+                                                                    <div class="progress">
+            
+                                                                        <div class="progress-bar progress-bar-striped bg-warning"
+                                                                            role="progressbar"
+                                                                            style="width: {{ session.difficulty | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                    <h5>Effort</h5>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-striped bg-danger"
+                                                                            role="progressbar"
+                                                                            style="width: {{ session.effort | int * 10 }}%"
+                                                                            aria-valuenow="100" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row m-0 p-0 mx-2">
+                                                        <div class="col-12 p-0 m-0">
+                                                            <div class="collapse  mt-4" id="expand{{ loop.index }}">
+                                                                <div class="card-body m-0 p-0">
+                                                                    <div class="d-flex justify-content-center">
+                                                                        <table class="session-table container-fluid">
+                                                                            {% if session.session_type == 'powerlifting' %}
+                                                                            <tr>
+                                                                                <th>Exercise</th>
+                                                                                <th>Sets / Reps</th>
+                                                                                <th>Weight</th>
+                                                                            </tr>
+                                                                            {% for row in range(session.session_rows | int) %}
+                                                                            {% set rowIndex = row + 1 %}
+                                                                            <tr>
+                                                                                <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
+                                                                                </td>
+                                                                                <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
+                                                                                </td>
+                                                                                {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | int %}
+                                                                                {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
+                                                                                <td>{{ weight_lifted }}{{ unit }}
+                                                                                </td>
+                                                                                {% endif %}{% if session.session_unit == 'lb' %}
+                                                                                <td><span
+                                                                                        class="toFixed1">{{ weight_lifted * 10 / 22 }}</span>{{ unit }}
+                                                                                </td>
+                                                                                {% endif %}
+                                                                                {% endif %}
+            
+                                                                                {% if unit == 'lb' %}{% if session.session_unit == 'lb' %}
+                                                                                <td>{{ weight_lifted }}{{ unit }}
+                                                                                </td>
+                                                                                {% endif %}{% if session.session_unit == 'kg' %}
+                                                                                <td><span
+                                                                                        class="toFixed1">{{ weight_lifted * 22 / 10 }}</span>{{ unit }}
+                                                                                </td>
+                                                                                {% endif %}
+                                                                                {% endif %}
+                                                                            </tr>
+                                                                            {% endfor %}
+                                                                            {% elif session.session_type == 'running' or session.session_type == 'cycling' or session.session_type == 'walking' %}
+                                                                            <tr>
+                                                                                <th>Distance ({{ distanceUnit }})</th>
+                                                                                <th>Average Speed</th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                {% if distanceUnit == 'mile'%}{% if session.session_unit == 'mile' %}
+                                                                                {% set distance_traveled = session.training_session %}
+                                                                                <td>{{ distance_traveled }} {{ distanceUnit }}
+                                                                                </td>
+                                                                                {% endif %}
+                                                                                {% if session.session_unit == 'km' %}
+                                                                                {% set distance_traveled = session.training_session | int * 0.62 %}
+                                                                                <td><span class="toFixed1">
+                                                                                        {{ distance_traveled }}</span>
+                                                                                    {{ distanceUnit }}</td>
+                                                                                {% endif %}
+                                                                                {% endif %}
+                                                                                {% if distanceUnit == 'km' %}{% if session.session_unit == 'km' %}
+                                                                                {% set distance_traveled = session.training_session %}
+                                                                                <td>{{ distance_traveled }} {{ distanceUnit }}
+                                                                                </td>
+                                                                                {% endif %}
+                                                                                {% if session.session_unit == 'mile' %}
+                                                                                {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
+                                                                                <td><span
+                                                                                        class="toFixed1">{{ distance_traveled }}</span>
+                                                                                    {{ distanceUnit }}</td>
+                                                                                {% endif %}
+                                                                                {% endif %}
+            
+                                                                                {% set hoursToMins = session.length_hour * 60 %}
+                                                                                {% set totalMins = hoursToMins | int + session.length_min | int %}
+                                                                                <td><span
+                                                                                        class="toFixed2">{{ totalMins / distance_traveled | int }}</span>
+                                                                                    mins per {{ distanceUnit }}</td>
+                                                                            </tr>
+                                                                            {% endif %}
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-body m-0 p-0 mt-3">
+                                                                    <h5>Motivated</h5>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-striped bg-info"
+                                                                            role="progressbar"
+                                                                            style="width: {{ session.motivated | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                    <h5>Difficulty</h5>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-striped bg-warning"
+                                                                            role="progressbar"
+                                                                            style="width: {{ session.difficulty | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                    <h5>Effort</h5>
+                                                                    <div class="progress">
+                                                                        <div class="progress-bar progress-bar-striped bg-danger"
+                                                                            role="progressbar"
+                                                                            style="width: {{ session.effort | int * 10 }}%"
+                                                                            aria-valuenow="100" aria-valuemin="0"
+                                                                            aria-valuemax="100">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <p class="m-0 mt-4"><b>Session Type:</b> {{ session.session_type }}
+                                                                </p>
+                                                                <p class="m-0"><b>Length:</b> {{ session.length_hour }} Hour(s)
+                                                                    {{ session.length_min }}
+                                                                    Min(s)
+                                                                </p>
+                                                            </div>
+                                                            <div class="row m-0 p-0">
+                                                                <div class="col-7 p-0">
+                                                                    <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
+                                                                </div>
+                                                                <div class="col-5 p-0">
+                                                                    <div class="row m-0 p-0">
+                                                                        <div class="col-12 m-0 p-0">
+                                                                            <p>
+                                                                                <a class="btn main-colour expand-button text-dark py-1 border float-right"
+                                                                                    data-toggle="collapse"
+                                                                                    href="#expand{{ loop.index }}" role="button"
+                                                                                    aria-expanded="false"
+                                                                                    aria-controls="collapseExample">
+                                                                                    Expand
+                                                                                </a>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row m-0 p-0">
+                                                        <div class="col-12 p-0">
+                                                            <div class="collapse" id="edit{{ loop.index }}">
+                                                                <div class="card card-body p-0 mt-2">
+                                                                    <a href="{{url_for('delete_session', session_id=session._id)}}"><button
+                                                                            class="btn btn-danger container-fluid">Delete</button></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            {% if loop.last %}
+                                            <div class="col-12 animated fadeInUp">
+                                                <p class="text-secondary">Search Result: {{ loop.index }}</p>
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
                                         </div>
                                     </div>
-                                </div>
-                                {% if loop.last %}
-                                <div class="col-12 animated fadeInUp">
-                                    <p class="text-secondary">Search Result: {{ loop.index }}</p>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
+                                    <div class="tab-pane fade" id="records" role="tabpanel" aria-labelledby="records-tab">.2</div>
+                                    <div class="tab-pane fade" id="plans" role="tabpanel" aria-labelledby="plans-tab">.3</div>
+                                  </div>
                             </div>
+                            
 
                         </div>
                         <!-- Stats section -->
