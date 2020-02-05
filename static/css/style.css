@@ -153,33 +153,78 @@ option {
 }
 
 .animated.delay-1 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+
+.animated.delay-2 {
   -webkit-animation-delay: 0.2s;
   animation-delay: 0.2s;
 }
 
-.animated.delay-2 {
+.animated.delay-3 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.animated.delay-4 {
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
 }
 
-.animated.delay-3 {
+.animated.delay-5 {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.animated.delay-6 {
   -webkit-animation-delay: 0.6s;
   animation-delay: 0.6s;
 }
 
-.animated.delay-4 {
-  -webkit-animation-delay: 0.8s;
-  animation-delay: 0.8s;
+.animated.delay-7 {
+  -webkit-animation-delay: 1.4s;
+  animation-delay: 1.4s;
 }
 
-.animated.delay-5 {
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
+.animated.delay-8 {
+  -webkit-animation-delay: 1.6s;
+  animation-delay: 1.6s;
 }
 
-.animated.delay-6 {
-  -webkit-animation-delay: 1.2s;
-  animation-delay: 1.2s;
+.animated.delay-9 {
+  -webkit-animation-delay: 1.8s;
+  animation-delay: 1.8s;
+}
+
+.animated.delay-10 {
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+}
+
+.animated.delay-11 {
+  -webkit-animation-delay: 2.2s;
+  animation-delay: 2.2s;
+}
+
+.animated.delay-12 {
+  -webkit-animation-delay: 2.3s;
+  animation-delay: 2.3s;
+}
+
+.animated.delay-13 {
+  -webkit-animation-delay: 2.4s;
+  animation-delay: 2.4s;
+}
+
+.animated.delay-14 {
+  -webkit-animation-delay: 2.5s;
+  animation-delay: 2.5;
+}
+
+.animated.delay-15 {
+  -webkit-animation-delay: 2.6s;
+  animation-delay: 2.6s;
 }
 
 .badge-container {

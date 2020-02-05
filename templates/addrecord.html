@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="page-wrapper py-5">
+    <div class="login-wrapper p-0 d-flex justify-content-center container-fluid">
+        <div class="row m-0 p-0 d-flex justify-content-center container-fluid">
+            <div class="container-fluid">
+                <h3 class="text-center my-3">Add Record</h3>
+                <div class="row">
+
+                    <div class="col-12 px-3">
+
+                        <form action="{{ url_for('insert_session') }}" method="POST">
+                            <div class="row m-0 p-0">
+                                <div class="col-12 col-md-12 m-0 p-0">
+                                    <div class="container-fluid p-0">
+                                        <label class="mb-1" for="exampleFormControlSelect1">Date:</label>
+                                        <input type="date" class="form-control" value="" name="date" id="date" required>
+                                    </div>
+
+                                </div>
+                                <div class="col-6 col-md-6 m-0 p-0">
+                                    <div class="container-fluid p-0">
+                                        <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
+                                        <input type="number" class="form-control" placeholder="hour(s)"
+                                            name="length_hour" required>
+                                    </div>
+                                </div>
+                                <div class="col-6 p-0">
+                                    <div class="container-fluid p-0 pl-3">
+                                        <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
+                                        <input type="number" class="form-control" placeholder="Minute(s)"
+                                            name="length_min" required>
+                                    </div>
+                                </div>
+                           
+                                <div class="col-12 p-0 my-3 d-flex justify-content-around">
+                                    <div class="stats-container container-fluid">
+                                        <p class="text-center">Motivated:</p>
+                                        <div class="d-flex justify-content-center align-item-center">
+                                            <input type="number" min="0" max="10" class="number-input float-left"
+                                                name="motivated" required>
+                                            <p class="m-0"> / 10</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-1"></div>
+                                    <div class="stats-container container-fluid">
+                                        <p class="text-center">Difficulty:</p>
+                                        <div class="d-flex justify-content-center align-item-center">
+                                            <input type="number" min="0" max="10" class="number-input float-left"
+                                                name="difficulty" required>
+                                            <p class="m-0"> / 10</p>
+                                        </div>
+                                    </div>
+                                    <div class="p-1"></div>
+                                    <div class="stats-container container-fluid">
+                                        <p class="text-center">Effort:</p>
+                                        <div class="d-flex justify-content-center align-item-center">
+                                            <input type="number" min="0" max="10" class="number-input float-left"
+                                                name="effort" required>
+                                            <p class="m-0"> / 10</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 p-0">
+                                    <hr class="my-2">
+                                </div>
+                                <div class="col-12 p-0">
+                                    <label>Session Type:</label>
+                                    <select id="session-type-option" name="session_type"
+                                        class="form-control container-fluid" onclick="backToFormStartRecord()" required>
+                                        <option value="powerlifting">Powerlifting</option>
+                                        <option value="running">Running</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="walking">Walking</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 p-0" id="firstNextButtonContainer" >
+                                    <button id="firstNextButton" class="btn btn-dark unit-button my-3 container-fluid px-0"
+                                        name="unit" onclick="addSessionFirstNextRecord()" >Next</button>
+                                </div>
+                                <div class="col-12 p-0" id="unitOrDistance">
+
+                                </div>
+
+                              
+                                <div id="addSessionTable" class="col-12 mt-2 p-0">
+
+                                </div>                               
+                            </div>
+                         
+                         
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

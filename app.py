@@ -20,10 +20,13 @@ mongo = PyMongo(app)
 def index():
     return redirect(url_for('login_page'))
 
-
 @app.route('/login_page')
 def login_page():
-    return render_template('loginpage.html')
+    allUsers = mongo.db.users.find()
+    userCount = 0
+    for x in allUsers:
+        userCount += 1
+    return render_template('loginpage.html', userCount=userCount)
 
 @app.route('/home')
 def home():
@@ -43,12 +46,17 @@ def home():
                 filter_dictionary.update({'session_type': filter_session_type})
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-    #
+    # total session logged by all users
+    allSessions = mongo.db.sessions.find()
+    sessionCount = 0
+    for x in allSessions:
+        sessionCount += 1
+    # by running
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
-    allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'mile'})
-    allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'km'})
+    allDistanceByFootMiles = mongo.db.sessions.find({'session_type': 'running', 'session_unit': 'mile'})
+    allDistanceByFootKm = mongo.db.sessions.find({'session_type': 'running', 'session_unit': 'km'})
     # count the miles traveled on foot
     def countDistanceOnFootMiles():
         distanceCount = 0
@@ -70,19 +78,19 @@ def home():
     distanceUnit = currentUsersAccount.get('selected_distance')
     if distanceUnit == 'km':
         totalDistanceOnFootMiles = totalDistanceOnFootMiles * 1.6093
-    #
-    # The total distance the users has traveled by bike
+    # by walking
+     # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
-    allDistanceByFootMiles = mongo.db.sessions.find({'username': currentUser, 'session_type': 'cycling', 'session_unit': 'mile'})
-    allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'cycling', 'session_unit': 'km'})
-    # count the miles traveled on bike
+    allDistanceByFootMiles = mongo.db.sessions.find({'session_type': 'walking', 'session_unit': 'mile'})
+    allDistanceByFootKm = mongo.db.sessions.find({'session_type': 'walking', 'session_unit': 'km'})
+    # count the miles traveled on foot
     def countDistanceOnFootMiles():
         distanceCount = 0
         for distance in allDistanceByFootMiles:
             distanceCount = int(distance["training_session"]) + distanceCount
         return distanceCount
-    # count the km traveled on bike
+    # count the km traveled on foot
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
@@ -93,50 +101,41 @@ def home():
     distanceOnFootKm = countDistanceOnFootKm() 
     kmToMiles = distanceOnFootKm * 0.6213
     # convert the distance traveled to the users selected choice.
-    totalDistanceOnBikeMiles = kmToMiles + distanceOnFootMiles
+    totalDistanceByWalkingMiles = kmToMiles + distanceOnFootMiles
     distanceUnit = currentUsersAccount.get('selected_distance')
     if distanceUnit == 'km':
-        totalDistanceOnBikeMiles = totalDistanceOnBikeMiles * 1.6093
-    #
-    # average motivated option
-    def averageMotivation():
-        allSessions = mongo.db.sessions.find({'username': currentUser})
-        motivatedList = []
-        for session in allSessions:
-            motivatedValue = session.get('motivated')
-            motivatedList.append(motivatedValue)
-        totalNumber = 0
-        for num in motivatedList:
-            totalNumber = totalNumber + int(num)
-        averageNumber = totalNumber / len(motivatedList)
-        return averageNumber
-    # average difficulty option
-    def averageDifficulty():
-        allSessions = mongo.db.sessions.find({'username': currentUser})
-        difficultyList = []
-        for session in allSessions:
-            difficultyValue = session.get('difficulty')
-            difficultyList.append(difficultyValue)
-        totalNumber = 0
-        for num in difficultyList:
-            totalNumber = totalNumber + int(num)
-        averageNumber = totalNumber / len(difficultyList)
-        return averageNumber
-    # average effort option
-    def averageEffort():
-        allSessions = mongo.db.sessions.find({'username': currentUser})
-        effortList = []
-        for session in allSessions:
-            effortValue = session.get('effort')
-            effortList.append(effortValue)
-        totalNumber = 0
-        for num in effortList:
-            totalNumber = totalNumber + int(num)
-        averageNumber = totalNumber / len(effortList)
-        return averageNumber
-    average_motivation = averageMotivation()
-    average_difficulty = averageDifficulty()
-    average_effort = averageEffort()
+        totalDistanceByWalkingMiles = totalDistanceOnFootMiles * 1.6093
+    # by bike
+     # The total distance the users has traveled by foot
+    unitVar = currentUsersAccount.get('selected_unit')
+    currentUser = session['username']
+    allDistanceByFootMiles = mongo.db.sessions.find({'session_type': 'cycling', 'session_unit': 'mile'})
+    allDistanceByFootKm = mongo.db.sessions.find({'session_type': 'cycling', 'session_unit': 'km'})
+    # count the miles traveled on foot
+    def countDistanceOnFootMiles():
+        distanceCount = 0
+        for distance in allDistanceByFootMiles:
+            distanceCount = int(distance["training_session"]) + distanceCount
+        return distanceCount
+    # count the km traveled on foot
+    def countDistanceOnFootKm():
+        distanceCount = 0
+        for distance in allDistanceByFootKm:
+            distanceCount = int(distance["training_session"]) + distanceCount
+        return distanceCount
+    # convert the kms into miles then add them together
+    distanceOnFootMiles = countDistanceOnFootMiles()
+    distanceOnFootKm = countDistanceOnFootKm() 
+    kmToMiles = distanceOnFootKm * 0.6213
+    # convert the distance traveled to the users selected choice.
+    totalDistanceByCyclingMiles = kmToMiles + distanceOnFootMiles
+    distanceUnit = currentUsersAccount.get('selected_distance')
+    if distanceUnit == 'km':
+        totalDistanceByCyclingMiles = totalDistanceOnFootMiles * 1.6093
+    
+    totalDistanceTraveledTogether = totalDistanceByWalkingMiles + totalDistanceOnFootMiles + totalDistanceByCyclingMiles
+
+
     # count the time of the session taken into minutes
     def totalTimeSpentTrainingMins():
         allSessions = mongo.db.sessions.find({'username': currentUser})
@@ -183,7 +182,7 @@ def home():
     totalTimeHours = totalTimeList[1]
     totalTimeMins = totalTimeList[0]
 
-    return render_template("home.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, distanceUnit=distanceUnit, )
+    return render_template("home.html", totalDistance=round(totalDistanceTraveledTogether, 0), sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, distanceUnit=distanceUnit, sessionCount=sessionCount)
 
 @app.route('/register')
 def register():
@@ -207,7 +206,7 @@ def register_insert():
             location = request.form['location']
             users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': 0, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name,  'selected_unit': 'kg', 'selected_distance': 'mile',})
             session['username'] = request.form['username']
-            return redirect(url_for('home'))
+            return redirect(url_for('profile'))
 
         return render_template('index.html')
 
@@ -217,13 +216,13 @@ def register_insert():
 def login():
     users = mongo.db.users
     login_user = users.find_one({'username' : request.form['username']})
-
+ 
     if login_user:
         if sha256_crypt.verify(request.form['password'], login_user['password']):
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
         else:
-            return redirect(url_for('index'))
+            return redirect(url_for('login_page'))
 
 @app.route('/profile')
 def profile():
@@ -606,6 +605,15 @@ def insert_session():
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 
+# adding record to mongoDB.
+
+@app.route('/add_record')
+def add_record():
+    return render_template('addrecord.html')
+
+
+
+
 # add records to mongoDB and records page.
 
 @app.route('/records')
@@ -659,6 +667,16 @@ def settings():
     unit_distance = login_user.get('selected_distance')
     return render_template('settings.html', unit=unitVar, unit_distance=unit_distance)
 
+@app.route('/delete_account')
+def delete_account():
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    usersSession = mongo.db.sessions.find({'username': currentUser})
+    for s in usersSession:
+        mongo.db.sessions.remove(s)
+    mongo.db.users.remove(login_user)
+    return redirect('login_page')
 
 @app.route('/logout')
 def logout():

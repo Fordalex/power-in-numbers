@@ -102,4 +102,8 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+- https://www.w3schools.com/jsref/met_element_scrollintoview.asp
+This content was used to help implement the scroll to element function.
+
+- https://stackoverflow.com/questions/13266746/scroll-jump-to-id-without-jquery
+This was then using to add the smooth scroll to this function.

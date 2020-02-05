@@ -14,7 +14,7 @@
                     <p>I've built this page to try and help people stay motivated,
                         by
                         letting
-                        them know there not alone. Create or start one for the many training plan's we have available. So far together we have logged a total of XX sessions and traveled XXMiles!!
+                        them know there not alone. So far, together we have logged a total of {{ sessionCount }} sessions and traveled {{ totalDistance }}Miles!!
                         Think
                         your the best? Find out by adding your personal best's and comparing them with others.</p>
                 </div>
@@ -127,9 +127,6 @@
                                                 </div>
                                             </div>
                                             <div class="col-6 pr-0 border-left">
-                                                <i class="fas fa-edit float-right" data-toggle="collapse"
-                                                    href="#edit{{ loop.index }}" role="button" aria-expanded="false"
-                                                    aria-controls="collapseExample"></i>
                                                 <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
                                                 <p class="m-0"><b>Location:</b> {{ session.location }}</p>
                                                 <div class="collapse d-none" id="{{ session.first_name }}">
@@ -302,16 +299,6 @@
                                                                 </p>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row m-0 p-0">
-                                            <div class="col-12 p-0">
-                                                <div class="collapse" id="edit{{ loop.index }}">
-                                                    <div class="card card-body p-0 mt-2">
-                                                        <a href="{{url_for('delete_session', session_id=session._id)}}"><button
-                                                                class="btn btn-danger container-fluid">Delete</button></a>
                                                     </div>
                                                 </div>
                                             </div>
