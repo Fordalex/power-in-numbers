@@ -1,5 +1,10 @@
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Squada One', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Squada One", cursive;
 }
 
 h1 {
@@ -26,8 +31,26 @@ h6 {
   font-size: 22px;
 }
 
-p, a, td, th, option {
-  font-family: 'Raleway', sans-serif;
+p,
+a,
+td,
+th,
+option {
+  font-family: "Raleway", sans-serif;
+}
+
+.return-top-button {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: black;
+  display: none;
+  color: white;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  border: none;
+  z-index: 10;
 }
 
 .main-title {
@@ -127,6 +150,36 @@ p, a, td, th, option {
 
 .height-full {
   height: 100%;
+}
+
+.animated.delay-1 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.animated.delay-2 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.animated.delay-3 {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.animated.delay-4 {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.animated.delay-5 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.animated.delay-6 {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
 }
 
 .badge-container {

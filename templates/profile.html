@@ -8,6 +8,8 @@
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js">
 </script>
+<!-- Return to the top button -->
+<button class="return-top-button animated slideInUp faster" id="back-to-top">Top</button>
 
 <div class="title-container">
     <p class="m-0 p-0 text-center text-light animated fadeIn">Profile</p>
@@ -41,7 +43,7 @@
                     <div class="tab-content " id="myTabContent">
                         <!-- add sessions, training plans and personal records -->
                         <div class="tab-pane fade m-0 p-0" id="add" role="tabpanel" aria-labelledby="add-tab">
-                           
+
                             <div class="row m-0">
                                 <div class="col-12 p-0 m-0">
                                     <div class="row m-0 p-0 mb-3">
@@ -104,20 +106,24 @@
                         <!-- Section with all the sessions -->
                         <div class="tab-pane fade show active row m-0 p-0 " id="home" role="tabpanel"
                             aria-labelledby="home-tab">
-                            <div class="col-12">
+                            <div class="col-12 p-0">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item">
-                                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#sessions" role="tab" aria-controls="home" aria-selected="true">Sessions</a>
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#sessions"
+                                            role="tab" aria-controls="home" aria-selected="true">Sessions</a>
                                     </li>
                                     <li class="nav-item">
-                                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#records" role="tab" aria-controls="profile" aria-selected="false">Records</a>
+                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#records"
+                                            role="tab" aria-controls="profile" aria-selected="false">Records</a>
                                     </li>
                                     <li class="nav-item">
-                                      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#plans" role="tab" aria-controls="contact" aria-selected="false">Plans</a>
+                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#plans" role="tab"
+                                            aria-controls="contact" aria-selected="false">Plans</a>
                                     </li>
-                                  </ul>
-                                  <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="sessions" role="tabpanel" aria-labelledby="sessions-tab">
+                                </ul>
+                                <div class="tab-content p-0" id="myTabContent">
+                                    <div class="tab-pane fade show active p-0" id="sessions" role="tabpanel"
+                                        aria-labelledby="sessions-tab">
                                         <div class="col-12 p-0">
                                             <form action="{{ url_for('filter_profile') }}" method="POST">
                                                 <div class="row m-0 p-0">
@@ -158,29 +164,33 @@
                                                             {% endif %}
                                                         </select>
                                                     </div>
-                                                    <div class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
+                                                    <div
+                                                        class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
                                                         <div class="container-fluid">
                                                             <label>Date:</label>
-                                                            <input type="date" class="form-control" value="{{ filter_date }}"
-                                                                name="filter_date">
+                                                            <input type="date" class="form-control"
+                                                                value="{{ filter_date }}" name="filter_date">
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
-                                                        <button class="main-gradient btn container-fluid">Search</button>
+                                                    <div
+                                                        class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
+                                                        <button
+                                                            class="main-gradient btn container-fluid">Search</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                         <hr>
                                         <div class="row m-0 p-0" id="session_title">
-                                            <div class="col-12">
+                                            <div class="col-12 p-0">
                                                 <h4 class="text-center">Your Training Sessions</h4>
                                             </div>
                                         </div>
-                                        <div class="row m-0 p-0">
+                                        <div class="row m-0 p-0 p-lg-1">
                                             {% for session in sessions %}
-                                            <div class="col-12 col-lg-6 p-0 px-md-3 animated fadeInUp delay-{{ loop.index }}s">
-                                                <div class="session-card my-1 my-md-3 p-2">
+                                            <div
+                                                class="col-12 col-md-6 col-lg-4 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
+                                                <div class="session-card my-1 my-md-1 p-1">
                                                     <div class="row m-0 p-0">
                                                         <div class="col-6 pl-1 pr-2">
                                                             {% if session.session_type == 'powerlifting' %}
@@ -197,38 +207,45 @@
                                                             <h5><u>{{ loop.index }}. <span
                                                                         class="main-colour-text">{{ session.username }}
                                                                     </span></u></h5>
-            
+
                                                             <div class="row m-0 p-0">
                                                                 <div class="col-12 col-md-6 m-0 p-0">
                                                                     <div>
                                                                         {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
                                                                                 {{ session.body_weight }}</p>
                                                                             kg
                                                                         </p>
                                                                         {% endif %}
                                                                         {% if session.bw_unit == 'lb' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
-                                                                                {{ session.body_weight | int * 10 / 22 }}</p>kg
+                                                                                {{ session.body_weight | int * 10 / 22 }}
+                                                                            </p>kg
                                                                         </p>
                                                                         {% endif %}
                                                                         {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
                                                                                 {{ session.body_weight }}</p>
                                                                             lb
                                                                         </p>
                                                                         {% endif %}
                                                                         {% if session.bw_unit == 'kg' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
-                                                                                {{ session.body_weight | int * 22 / 10 }}</p>lb
+                                                                                {{ session.body_weight | int * 22 / 10 }}
+                                                                            </p>lb
                                                                         </p>
                                                                         {% endif %}
                                                                         {% else %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
                                                                                 {{ session.body_weight | int }}
                                                                             </p>
@@ -241,7 +258,8 @@
                                                         </div>
                                                         <div class="col-6 pr-0 border-left">
                                                             <i class="fas fa-edit float-right" data-toggle="collapse"
-                                                                href="#edit{{ loop.index }}" role="button" aria-expanded="false"
+                                                                href="#edit{{ loop.index }}" role="button"
+                                                                aria-expanded="false"
                                                                 aria-controls="collapseExample"></i>
                                                             <p class="m-0 p-0"><b>Date:</b> {{ session.date }}</p>
                                                             <p class="m-0"><b>Location:</b> {{ session.location }}</p>
@@ -258,7 +276,7 @@
                                                                     </div>
                                                                     <h5>Difficulty</h5>
                                                                     <div class="progress">
-            
+
                                                                         <div class="progress-bar progress-bar-striped bg-warning"
                                                                             role="progressbar"
                                                                             style="width: {{ session.difficulty | int * 10 }}%"
@@ -308,7 +326,7 @@
                                                                                 </td>
                                                                                 {% endif %}
                                                                                 {% endif %}
-            
+
                                                                                 {% if unit == 'lb' %}{% if session.session_unit == 'lb' %}
                                                                                 <td>{{ weight_lifted }}{{ unit }}
                                                                                 </td>
@@ -328,7 +346,8 @@
                                                                             <tr>
                                                                                 {% if distanceUnit == 'mile'%}{% if session.session_unit == 'mile' %}
                                                                                 {% set distance_traveled = session.training_session %}
-                                                                                <td>{{ distance_traveled }} {{ distanceUnit }}
+                                                                                <td>{{ distance_traveled }}
+                                                                                    {{ distanceUnit }}
                                                                                 </td>
                                                                                 {% endif %}
                                                                                 {% if session.session_unit == 'km' %}
@@ -340,7 +359,8 @@
                                                                                 {% endif %}
                                                                                 {% if distanceUnit == 'km' %}{% if session.session_unit == 'km' %}
                                                                                 {% set distance_traveled = session.training_session %}
-                                                                                <td>{{ distance_traveled }} {{ distanceUnit }}
+                                                                                <td>{{ distance_traveled }}
+                                                                                    {{ distanceUnit }}
                                                                                 </td>
                                                                                 {% endif %}
                                                                                 {% if session.session_unit == 'mile' %}
@@ -350,7 +370,7 @@
                                                                                     {{ distanceUnit }}</td>
                                                                                 {% endif %}
                                                                                 {% endif %}
-            
+
                                                                                 {% set hoursToMins = session.length_hour * 60 %}
                                                                                 {% set totalMins = hoursToMins | int + session.length_min | int %}
                                                                                 <td><span
@@ -390,16 +410,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <p class="m-0 mt-4"><b>Session Type:</b> {{ session.session_type }}
+                                                                <p class="m-0 mt-4"><b>Session Type:</b>
+                                                                    {{ session.session_type }}
                                                                 </p>
-                                                                <p class="m-0"><b>Length:</b> {{ session.length_hour }} Hour(s)
+                                                                <p class="m-0"><b>Length:</b> {{ session.length_hour }}
+                                                                    Hour(s)
                                                                     {{ session.length_min }}
                                                                     Min(s)
                                                                 </p>
                                                             </div>
                                                             <div class="row m-0 p-0">
                                                                 <div class="col-7 p-0">
-                                                                    <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
+                                                                    <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}
+                                                                    </p>
                                                                 </div>
                                                                 <div class="col-5 p-0">
                                                                     <div class="row m-0 p-0">
@@ -407,8 +430,8 @@
                                                                             <p>
                                                                                 <a class="btn main-colour expand-button text-dark py-1 border float-right"
                                                                                     data-toggle="collapse"
-                                                                                    href="#expand{{ loop.index }}" role="button"
-                                                                                    aria-expanded="false"
+                                                                                    href="#expand{{ loop.index }}"
+                                                                                    role="button" aria-expanded="false"
                                                                                     aria-controls="collapseExample">
                                                                                     Expand
                                                                                 </a>
@@ -423,7 +446,8 @@
                                                         <div class="col-12 p-0">
                                                             <div class="collapse" id="edit{{ loop.index }}">
                                                                 <div class="card card-body p-0 mt-2">
-                                                                    <a href="{{url_for('delete_session', session_id=session._id)}}"><button
+                                                                    <a
+                                                                        href="{{url_for('delete_session', session_id=session._id)}}"><button
                                                                             class="btn btn-danger container-fluid">Delete</button></a>
                                                                 </div>
                                                             </div>
@@ -432,18 +456,20 @@
                                                 </div>
                                             </div>
                                             {% if loop.last %}
-                                            <div class="col-12 animated fadeInUp">
+                                            <div class="col-12  p-0 animated fadeInUp">
                                                 <p class="text-secondary">Search Result: {{ loop.index }}</p>
                                             </div>
                                             {% endif %}
                                             {% endfor %}
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="records" role="tabpanel" aria-labelledby="records-tab">.2</div>
-                                    <div class="tab-pane fade" id="plans" role="tabpanel" aria-labelledby="plans-tab">.3</div>
-                                  </div>
+                                    <div class="tab-pane fade" id="records" role="tabpanel"
+                                        aria-labelledby="records-tab">.2</div>
+                                    <div class="tab-pane fade" id="plans" role="tabpanel" aria-labelledby="plans-tab">.3
+                                    </div>
+                                </div>
                             </div>
-                            
+
 
                         </div>
                         <!-- Stats section -->
@@ -478,7 +504,8 @@
                                             </div>
                                             <div
                                                 class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
-                                                <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i> </b><b>Weightlifting:
+                                                <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i>
+                                                    </b><b>Weightlifting:
                                                         {{ totalPowerliftingSessions }}</b></p>
                                             </div>
                                             <div
@@ -493,7 +520,9 @@
                                             </div>
                                             <div
                                                 class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
-                                                <p class="m-0 p-0"><i class="fas fa-shoe-prints mr-1"></i></b><b>Walking: {{ totalWalkingSessions }}
+                                                <p class="m-0 p-0"><i
+                                                        class="fas fa-shoe-prints mr-1"></i></b><b>Walking:
+                                                        {{ totalWalkingSessions }}
                                                     </b></p>
                                             </div>
 
@@ -523,14 +552,17 @@
                                                 <h3 class="text-center my-3">Total Distance Traveled ({{distanceUnit}}s)
                                                 </h3>
                                             </div>
+                                        </div>
+                                        <div class="row m-0 p-0 my-lg-4">
                                             <div class="col-6 col-md-4 p-0">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i
-                                                            class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b><span class="toFixed1">{{ totalDistanceByWalking }}</span>
-                                                        </p>
+                                                            class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b><span
+                                                            class="toFixed1">{{ totalDistanceByWalking }}</span>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div class="col-6 col-md-4 p-0">
+                                            <div class="col-6 col-md-4 p-0 ">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i>
                                                         </b><b>Ran:</b>
@@ -573,7 +605,7 @@
 
 
 
-                   
+
 
 
                                 <div class="row m-0 p-0">
@@ -585,10 +617,12 @@
                                             <div class="col-12 py-1 p-sm-0 d-flex justify-content-center">
                                                 <div>
                                                     <div class="d-flex align-items-center">
-                                                        <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total Time
+                                                        <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total
+                                                                Time
                                                                 Tracked:</b></p>
                                                     </div>
-                                                    <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }} </b> Hours
+                                                    <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }} </b>
+                                                        Hours
                                                         <b>{{totalTimeMins }}</b> Mins </p>
                                                 </div>
                                             </div>
@@ -597,8 +631,7 @@
                                     <div class="col-12 col-md-6">
 
                                         <div class="row m-0 p-0 pb-5 animated fadeIn">
-                                            <div
-                                                class="col-12   p-0 d-flex justify-content-center align-items-center">
+                                            <div class="col-12   p-0 d-flex justify-content-center align-items-center">
                                                 <h3 class="text-center my-3">Mental Stats</h3>
                                             </div>
                                             <div class="col-4 p-0 d-flex justify-content-center">
@@ -660,7 +693,7 @@
 
 
 
-                             
+
                                 <div class="row m-0">
                                     <div class="col-12 m-0 p-0">
                                         <hr class="mt-0">

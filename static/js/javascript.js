@@ -22,6 +22,19 @@ console.log(min_date)
 
 $('#greetingMessage').html(greeting);
 
+// shows the back to the top button on scroll
+
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  if (document.documentElement.scrollTop > 350) {
+    $('#back-to-top').show()
+  } else {
+    $('#back-to-top').hide()
+}
+}
+
+
 // Adds a row for the tables with changing name attribute
 var rowIndex = 1;
 

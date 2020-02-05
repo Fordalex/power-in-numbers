@@ -4,253 +4,303 @@ $aboveNav: rgb(73, 73, 73);
 $mainColour: rgb(105, 173, 214);
 $mainColourLight: rgb(163, 200, 245);
 $primaryBtn: rgb(77, 145, 241);
-$mainGradient: linear-gradient(rgb(137, 195, 231),rgb(105, 173, 214));
+$mainGradient: linear-gradient(rgb(137, 195, 231), rgb(105, 173, 214));
 $titleContainer: #fffeef;
 $pageContainer: rgb(253, 253, 253);
 $pageWrapper: #fafafa;
 
-// General 
+// General
 
-h1,h2,h3,h4,h5,h6 {
-    font-family: 'Squada One', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Squada One", cursive;
 }
 
 h1 {
-    font-size:40px;
+  font-size: 40px;
 }
 
 h2 {
-    font-size:35px;
+  font-size: 35px;
 }
 
 h3 {
-    font-size:30px;
+  font-size: 30px;
 }
 
 h4 {
-    font-size:28px;
+  font-size: 28px;
 }
 
 h5 {
-    font-size:25px;
+  font-size: 25px;
 }
 
 h6 {
-    font-size:22px;
+  font-size: 22px;
 }
 
-p,a,td,th,option {
-    font-family: 'Raleway', sans-serif;
+p,
+a,
+td,
+th,
+option {
+  font-family: "Raleway", sans-serif;
 }
 
+.return-top-button {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: black;
+  display: none;
+  color: white;
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  border: none;
+  z-index: 10;
+}
 
 .main-title {
-    font-size: 60px;
-    background: -webkit-linear-gradient(#eee, rgb(171, 171, 171));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  font-size: 60px;
+  background: -webkit-linear-gradient(#eee, rgb(171, 171, 171));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .page-wrapper {
-    display:flex;
-    justify-content:center;
-    background-image: url('../img/background.png');
-    .page-container {
-        background-color: $pageContainer;
-        width:100%;
-        padding-top:15px;
-        padding-bottom:15px;
-        max-width: 1000px;
-        border-right:solid rgb(196, 196, 196) 1px;
-        border-left:solid rgb(196, 196, 196) 1px;
-        display:flex;
-        justify-content:center;
-    }
+  display: flex;
+  justify-content: center;
+  background-image: url("../img/background.png");
+  .page-container {
+    background-color: $pageContainer;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    max-width: 1000px;
+    border-right: solid rgb(196, 196, 196) 1px;
+    border-left: solid rgb(196, 196, 196) 1px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .unit-button {
-    padding:0px 10px;
-    height:38px;
+  padding: 0px 10px;
+  height: 38px;
 }
 
 // colours
 
 .main-colour {
-    background-color:  $mainColour;
+  background-color: $mainColour;
 }
 
 .secondary-colour {
-    background-color:  $mainColourLight;
+  background-color: $mainColourLight;
 }
 
 .main-gradient {
-    background-image:  $mainGradient;
+  background-image: $mainGradient;
 }
 
 .main-colour-text {
-    color: $mainColour; 
+  color: $mainColour;
 }
 
 .left-border {
-    border-left:solid black 1px;
+  border-left: solid black 1px;
 }
 
 // session table
 
 .session-header th {
-    background-image:$mainGradient ;
-    border:solid rgb(107, 110, 154) 1px;
+  background-image: $mainGradient;
+  border: solid rgb(107, 110, 154) 1px;
 }
 
 .session-table td {
-    border:solid lightgray 1px;
+  border: solid lightgray 1px;
 }
 
 .session-table tr td input {
-    background-color: rgba(0,0,0,0);
-    border:none;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 
 // index.html
 
 .login-background {
-    background-color: rgb(250, 250, 250);
-    min-height: 85vh;
+  background-color: rgb(250, 250, 250);
+  min-height: 85vh;
 }
 
 .login-wrapper {
-    margin-top:20px;
-    max-width: 420px;
-    border:solid rgb(196, 196, 196) 1px;
-    border-radius:1px;
-    background-color: #ffffff;
+  margin-top: 20px;
+  max-width: 420px;
+  border: solid rgb(196, 196, 196) 1px;
+  border-radius: 1px;
+  background-color: #ffffff;
 }
 
 .login-container {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 // register.html
 
 .register-width {
-    max-width:500px;
+  max-width: 500px;
 }
 // profile.html
 
 .height-full {
-    height:100%;
+  height: 100%;
+}
+
+.animated.delay-1 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.animated.delay-2 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.animated.delay-3 {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.animated.delay-4 {
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.animated.delay-5 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.animated.delay-6 {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
 }
 
 .badge-container {
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    display:flex;
-    justify-content: center;
-    align-items:center;
-    border:solid black 1px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid black 1px;
 }
 .badge-locked {
-    background-color:white;
+  background-color: white;
 }
 .first-badge {
-    background-color:$mainColour;
-    border:none;
+  background-color: $mainColour;
+  border: none;
 }
 .second-badge {
-    background-image:linear-gradient(rgb(186, 225, 250),rgb(66, 172, 238));
-    border:none;
-    box-shadow:0px 0px 2px 2px rgba(123, 198, 245, 0.65);
+  background-image: linear-gradient(rgb(186, 225, 250), rgb(66, 172, 238));
+  border: none;
+  box-shadow: 0px 0px 2px 2px rgba(123, 198, 245, 0.65);
 }
 .third-badge {
-    background-image:linear-gradient(rgb(250, 228, 204),rgb(248, 190, 66),rgb(240, 221, 144));
-    border:none;
-    box-shadow:0px 0px 4px 4px rgba(255, 219, 58, 0.4);
+  background-image: linear-gradient(rgb(250, 228, 204), rgb(248, 190, 66), rgb(240, 221, 144));
+  border: none;
+  box-shadow: 0px 0px 4px 4px rgba(255, 219, 58, 0.4);
 }
 .forth-badge {
-    background-image:linear-gradient(rgb(218, 248, 253),rgb(190, 208, 220),rgb(209, 231, 245));
-    border:none;
-    box-shadow:0px 0px 6px 6px rgba(179, 223, 250, 0.65);
+  background-image: linear-gradient(rgb(218, 248, 253), rgb(190, 208, 220), rgb(209, 231, 245));
+  border: none;
+  box-shadow: 0px 0px 6px 6px rgba(179, 223, 250, 0.65);
 }
 .fifth-badge {
-    background-image:linear-gradient(rgb(255, 251, 239),rgb(241, 225, 131),rgb(250, 240, 95));
-    border:none;
-    box-shadow:0px 0px 8px 8px rgba(255, 241, 46, 0.612);
+  background-image: linear-gradient(rgb(255, 251, 239), rgb(241, 225, 131), rgb(250, 240, 95));
+  border: none;
+  box-shadow: 0px 0px 8px 8px rgba(255, 241, 46, 0.612);
 }
 .sixth-badge {
-    background-image:linear-gradient(rgb(249, 253, 255),rgb(136, 245, 232),rgb(180, 255, 246));
-    border:none;
-    box-shadow:0px 0px 10px 10px rgba(169, 255, 238, 0.612);
+  background-image: linear-gradient(rgb(249, 253, 255), rgb(136, 245, 232), rgb(180, 255, 246));
+  border: none;
+  box-shadow: 0px 0px 10px 10px rgba(169, 255, 238, 0.612);
 }
 
 // base.html
 
 .above-navigation {
-    background-color: $aboveNav ;
-    color: $mainColour;
+  background-color: $aboveNav;
+  color: $mainColour;
 }
 
 .navbar {
-    background-color: white;
+  background-color: white;
 }
 
 .title-container {
-    background-image: url('../img/bar-end-background.jpg');
-    background-position: center;
-    background-size: cover;
-    padding: 30px;
-    border-bottom:solid 1px gray;
-    z-index:5;
+  background-image: url("../img/bar-end-background.jpg");
+  background-position: center;
+  background-size: cover;
+  padding: 30px;
+  border-bottom: solid 1px gray;
+  z-index: 5;
 }
 
 // home.html
 
 .session-card {
-    background-color:rgb(255, 255, 255);
-    border:solid lightgray 1px;
-    border-radius:5px;
+  background-color: rgb(255, 255, 255);
+  border: solid lightgray 1px;
+  border-radius: 5px;
 }
 
 .fa-edit:hover {
-    color: $mainColourLight;
-    cursor: pointer;
+  color: $mainColourLight;
+  cursor: pointer;
 }
 
 .unit-td {
-    width:80px;
+  width: 80px;
 }
-
-
 
 // addsession.html
 
 .add-button {
-    background-color: rgb(255, 175, 101);
-    width: 100%;
-    height: 100%;
-    height: 38px;
-    font-size: 22px; 
-    border-radius: 5px;
-    border: solid lightgray 1px;
+  background-color: rgb(255, 175, 101);
+  width: 100%;
+  height: 100%;
+  height: 38px;
+  font-size: 22px;
+  border-radius: 5px;
+  border: solid lightgray 1px;
 }
 
 .number-input {
-    width: 50px;
-    background-color: rgb(255, 255, 255);
-    border:solid lightgray 1px;
-    border-radius: 5px;
-    margin-right: 3px;
+  width: 50px;
+  background-color: rgb(255, 255, 255);
+  border: solid lightgray 1px;
+  border-radius: 5px;
+  margin-right: 3px;
 }
 
 .stats-container {
-    padding: 10px;
-    background-color: rgb(255, 255, 255);
-    border: solid lightgray 1px;
-    border-radius:5px;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  border: solid lightgray 1px;
+  border-radius: 5px;
 }
 
 // footer
 
 footer {
-    background-color: rgb(250, 250, 250);
+  background-color: rgb(250, 250, 250);
 }

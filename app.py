@@ -439,7 +439,6 @@ def profile():
         listOfTheCount.append(minCount)
         listOfTheCount.append(hourCount)
         listOfTheCount.append(dayCount)
-        
         return listOfTheCount
 
     totalTimeList = formatTimeSpent()
