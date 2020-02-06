@@ -448,12 +448,14 @@ def profile():
         listOfTheCount.append(hourCount)
         listOfTheCount.append(dayCount)
         return listOfTheCount
-
     totalTimeList = formatTimeSpent()
     totalTimeDays = totalTimeList[2]
     totalTimeHours = totalTimeList[1]
     totalTimeMins = totalTimeList[0]
-    return render_template("profile.html", sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
+    # find all the records data
+    allRecords = mongo.db.records.find()
+
+    return render_template("profile.html", sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
 # save the users setting preferences to mongoDB
@@ -650,8 +652,12 @@ def record():
     # finding all the sessions and converting them into minutes, ready to sort.
     allRunningSessions = mongo.db.sessions.find({'session_type':'running'})
     sortRunning = allRunningSessions.sort('training_session', pymongo.DESCENDING)
+    recordCount = mongo.db.records.find({'username' : currentUser})
+    recordCountStore = 0
+    for record in recordCount:
+        recordCountStore += 1
 
-    return render_template('records.html',distanceUnit=unit_distance, sessions=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, sortRunning=sortRunning)
+    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, sessions=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, sortRunning=sortRunning)
 
 @app.route('/insert_record', methods=['POST'])
 def insert_record():

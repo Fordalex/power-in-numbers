@@ -9,14 +9,17 @@
     <div class="page-container p-0">
         <div class="container-fluid p-0">
             <div class="row m-0 my-3 px-3">
-                <h3 >PIN's Best </h3>
+                <div class="col-12 m-0 p-0 d-flex align-items-center">
+                    <h3 >PIN's Best </h3><p class="m-0 p-0 ml-2">Records Saved: <b>{{ recordCount }}</b></p>
+                </div>
+              
             </div>
             <div class="row m-0 px-3 mb-3">
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Longest Distance Ran In A Session</h6>
-                    <p class="m-0 p-0">Username: <b>{{ sortRunning[0].username }}</b></p>
+                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortRunning[0].username }}</b></p>
                     <p class="m-0 p-0">Distance: <b>{{ sortRunning[0].training_session }}{{ distanceUnit }}s</b></p>
-                    <p class="m-0 p-0">Time: <b>{{ sortRunning[0].length_hour }}:{{ sortRunning[0].length_min }}</b></p>
+                    <p class="m-0 p-0">Time: <b>{{ sortRunning[0].length_hour }}Hours {{ sortRunning[0].length_min }}Minutes</b></p>
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Longest Distance Cycled in a session</h6>
@@ -33,17 +36,17 @@
             <div class="row m-0 px-3">
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Bench Press</h6>
-                    <p class="m-0 p-0">Username: <b>{{ weightBenched[0].username }}</b></p>
+                    <p class="m-0 p-0">Username:  <b class="main-colour-text">{{ weightBenched[0].username }}</b></p>
                     <p class="m-0 p-0">Weight lifted: <b> {{ weightBenched[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Squat</h6>
-                    <p class="m-0 p-0">Username: <b>{{ sortedSquat[0].username }}</b></p>
+                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortedSquat[0].username }}</b></p>
                     <p class="m-0 p-0">Weight lifted: <b> {{ sortedSquat[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Deadlift</h6>
-                    <p class="m-0 p-0">Username: <b>{{ sortedDeadlift[0].username }}</b></p>
+                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortedDeadlift[0].username }}</b></p>
                     <p class="m-0 p-0">Weight lifted: <b> {{ sortedDeadlift[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
                 </div>
             </div>
