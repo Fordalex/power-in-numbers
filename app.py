@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, request, url_for, make_response, session
-from flask_pymongo import PyMongo
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 from os import path
 from passlib.hash import sha256_crypt
@@ -363,7 +363,10 @@ def profile():
         totalNumber = 0
         for num in motivatedList:
             totalNumber = totalNumber + int(num)
-        averageNumber = totalNumber / len(motivatedList)
+        if motivatedList:
+            averageNumber = totalNumber / len(motivatedList)
+        else: 
+            averageNumber = 0
         return averageNumber
     # total walking sessions
     totalWalkingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'walking'})
@@ -383,7 +386,10 @@ def profile():
         totalNumber = 0
         for num in difficultyList:
             totalNumber = totalNumber + int(num)
-        averageNumber = totalNumber / len(difficultyList)
+        if difficultyList:
+            averageNumber = totalNumber / len(difficultyList)
+        else:
+            averageNumber = 0
         return averageNumber
     # average effort option
     def averageEffort():
@@ -395,7 +401,10 @@ def profile():
         totalNumber = 0
         for num in effortList:
             totalNumber = totalNumber + int(num)
-        averageNumber = totalNumber / len(effortList)
+        if effortList:
+            averageNumber = totalNumber / len(effortList)
+        else:
+            averageNumber = 0
         return averageNumber
     average_motivation = averageMotivation()
     average_difficulty = averageDifficulty()
@@ -628,10 +637,21 @@ def record():
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
     unitVar = login_user.get('selected_unit')
+    unit_distance = login_user.get('selected_distance')
+    # finding all the bench press one rep max and sorting them with the height number to the start of the list
+    weightBenched = mongo.db.records.find({'training_session.session_exercise_1': 'Bench Press', 'training_session.session_sets_1': '1'})
+    sortedBench = weightBenched.sort('training_session.session_weight_1', pymongo.DESCENDING)
+    # finding all the Squat one rep max and sorting them with the height number to the start of the list
+    weightSquat = mongo.db.records.find({'training_session.session_exercise_1': 'Squat', 'training_session.session_sets_1': '1'})
+    sortedSquat = weightSquat.sort('training_session.session_weight_1', pymongo.DESCENDING)
+    # finding all the Deadlift one rep max and sorting them with the height number to the start of the list
+    weightDeadlift = mongo.db.records.find({'training_session.session_exercise_1': 'Deadlift', 'training_session.session_sets_1': '1'})
+    sortedDeadlift = weightDeadlift.sort('training_session.session_weight_1', pymongo.DESCENDING)
+    # finding all the sessions and converting them into minutes, ready to sort.
+    allRunningSessions = mongo.db.sessions.find({'session_type':'running'})
+    sortRunning = allRunningSessions.sort('training_session', pymongo.DESCENDING)
 
-    weightBenched = mongo.db.records.find({'training_session[0]': 'Bench Press'})
-
-    return render_template('records.html', sessions=records, unit=unitVar, weightBenched=weightBenched)
+    return render_template('records.html',distanceUnit=unit_distance, sessions=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, sortRunning=sortRunning)
 
 @app.route('/insert_record', methods=['POST'])
 def insert_record():
@@ -671,7 +691,7 @@ def insert_record():
 
  
 
-    return redirect('add_record')
+    return redirect('record')
 
 
 @app.route('/delete_session/<session_id>')
