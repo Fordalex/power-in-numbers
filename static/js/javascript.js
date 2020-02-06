@@ -36,8 +36,16 @@ function myFunction() {
 
 // After the user presses the seach button to filter the sesions, this will scroll them to the content.
 
-var title = document.getElementById("session_title");
-title.scrollIntoView({ behavior: 'smooth' });
+// var title = document.getElementById("session_title");
+// title.scrollIntoView({ behavior: 'smooth' });
+
+// back to the top function
+
+function backToTop() {
+    var top = document.getElementById("top");
+    top.scrollIntoView({ behavior: 'smooth' });
+}
+
 
 // Adds a row for the tables with changing name attribute
 var rowIndex = 1;
@@ -322,7 +330,15 @@ function addSessionTableRecord() {
                                             <th class="unit-td"><i class="fas fa-balance-scale"></i></th>
                                         </tr>
                                         <tr>
-                                            <td><input class="container-fluid" type="text" name="session_exercise_1" required></td>
+                                            <td>
+                                                <select name="session_exercise_1" required> 
+                                                    <option>Squat</option>
+                                                    <option>Bench Press</option>
+                                                    <option>Deadlift</option>
+                                                    <option>Overhead Press</option>
+                                                    <option>Row</option>
+                                                </select>
+                                            </td>
                                             <td><input class="container-fluid" type="type" name="session_sets_1" required></td>
                                             <td><input class="container-fluid" type="type" name="session_weight_1" required></td>
                                             <td class="unit-td">${unitSelectedRecord}</td>
@@ -331,9 +347,6 @@ function addSessionTableRecord() {
                                 </div>
                                 <div class="col-6 d-flex align-items-end">
                                     <p class="m-0 p-0">Notes:</p>
-                                </div>
-                                <div class="col-6 p-0">
-                                    <a class="btn btn-dark text-light border my-3 float-right" onclick="createRow()">Add Row +</a>
                                 </div>
                                 <div class="col-12 p-0">
                                     <textarea name="notes" class="container-fluid float-left form-control mb-3"></textarea>
@@ -444,7 +457,7 @@ function addSessionFirstNextRecord() {
                 <option value="lb">LB</option>
             </select>
             <div id="secondNextContainer">
-                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Continue</div>
+                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTableRecord()" id="continueTableButton">Continue</div>
             </div>
         </div>
         `)
@@ -457,7 +470,7 @@ function addSessionFirstNextRecord() {
                 <option value="km">km</option>
             </select>
             <div id="secondNextContainer">
-                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Continue</div>
+                <div class="btn btn-dark container-fluid my-3" onclick="addSessionTableRecord()" id="continueTableButton">Continue</div>
             </div>
         </div>
         `)

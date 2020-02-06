@@ -601,6 +601,16 @@ def insert_session():
     elif session_type == 'walking':
         training_session = request.form['distance']
 
+    date = request.form['date']
+    length_hour = request.form['length_hour']
+    length_min = request.form['length_min']
+    motivated = request.form['motivated']
+    effort = request.form['effort']
+    difficulty = request.form['difficulty']
+    session_type = request.form['session_type']
+    session_unit = request.form['session_unit']
+    notes = request.form['notes']
+
     sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
@@ -611,14 +621,57 @@ def insert_session():
 def add_record():
     return render_template('addrecord.html')
 
+@app.route('/record')
+def record():
+    records = mongo.db.records.find()
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    unitVar = login_user.get('selected_unit')
+
+    weightBenched = mongo.db.records.find({'training_session[0]': 'Bench Press'})
+
+    return render_template('records.html', sessions=records, unit=unitVar, weightBenched=weightBenched)
+
+@app.route('/insert_record', methods=['POST'])
+def insert_record():
+    currentUser = session['username']
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
+    username = login_user.get('username')
+    records = mongo.db.records
+    session_type = request.form['session_type']
+    location = login_user.get('location')
+    # current users data
+    gender = login_user.get('gender')
+    age = login_user.get('age')
+    body_weight = login_user.get('body_weight')
+    bw_unit = login_user.get('bw_unit')
+    # checking the session type
+    if session_type == 'powerlifting':
+        training_session = {'session_exercise_1': request.form['session_exercise_1'],'session_sets_1': request.form['session_sets_1'] , 'session_weight_1': request.form['session_weight_1']}
+    elif session_type == 'running':
+        training_session = request.form['distance']
+    elif session_type == 'cycling':
+        training_session = request.form['distance']
+    elif session_type == 'walking':
+        training_session = request.form['distance']
+    date = request.form['date']
+    length_hour = request.form['length_hour']
+    length_min = request.form['length_min']
+    motivated = request.form['motivated']
+    effort = request.form['effort']
+    difficulty = request.form['difficulty'] 
+    session_unit = request.form['session_unit']
+    notes = request.form['notes']
+    powerliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    records.insert_one(powerliftingDict)
 
 
 
-# add records to mongoDB and records page.
+ 
 
-@app.route('/records')
-def records():
-    return render_template('records.html')
+    return redirect('add_record')
 
 
 @app.route('/delete_session/<session_id>')

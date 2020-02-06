@@ -7,51 +7,51 @@
 </div>
 <div class="page-wrapper">
     <div class="page-container p-0">
-        <div class="container-fluid">
-            <div class="row m-0 my-3 p-0">
+        <div class="container-fluid p-0">
+            <div class="row m-0 my-3 px-3">
                 <h3 >PIN's Best </h3>
             </div>
-            <div class="row m-0 p-0 mb-3">
-                <div class="col-4 m-0 p-0">
+            <div class="row m-0 px-3 mb-3">
+                <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Longest session logged</h6>
                     <p class="m-0 p-0">Username:</p>
                     <p class="m-0 p-0">Session type:</p>
                     <p class="m-0 p-0">Total time:</p>
                 </div>
-                <div class="col-4 m-0 p-0">
+                <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Longest Distance Ran in a session</h6>
                     <p class="m-0 p-0">Username:</p>
                     <p class="m-0 p-0">Distance:</p>
                     <p class="m-0 p-0">Average speed:</p>
                 </div>
-                <div class="col-4 m-0 p-0">
+                <div class="col-12 col-md-4 m-0 p-0">
                     <h6>....</h6>
                     <p class="m-0 p-0">Username:</p>
                     <p class="m-0 p-0">Weight lifted:</p>
                 </div>
             </div>
-            <div class="row m-0 p-0">
-                <div class="col-4 m-0 p-0">
+            <div class="row m-0 px-3">
+                <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Most Weight Bench Pressed</h6>
-                    <p class="m-0 p-0">Username:</p>
+                    <p class="m-0 p-0">Username: {{ weightBenched }}</p>
                     <p class="m-0 p-0">Weight lifted:</p>
                 </div>
-                <div class="col-4 m-0 p-0">
+                <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Most Weight Squated</h6>
                     <p class="m-0 p-0">Username:</p>
                     <p class="m-0 p-0">Weight lifted:</p>
                 </div>
-                <div class="col-4 m-0 p-0">
+                <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Most Weight Deadlifted</h6>
                     <p class="m-0 p-0">Username:</p>
                     <p class="m-0 p-0">Weight lifted:</p>
                 </div>
             </div>
-            <hr>
+            <hr class="mb-0">
             <div class="row m-0 p-0">
                 <div class="col-12 p-0">
                     <form action="{{ url_for('filter_home') }}" method="POST">
-                        <div class="row m-0 p-0">
+                        <div class="row m-0 p-0 py-3 bg-gray">
                             <div class="col-6 col-md-4">
                                 <h6>Filter</h6>
                                 <label>Session Type:</label>
@@ -86,7 +86,7 @@
                     </form>
                 </div>
             </div>
-            <hr>
+            <hr class="mt-0">
             <div class="row m-0 p-0" id="session_title">
                 <div class="col-12">
                     <h4 class="text-center">All User's Training Sessions</h4>
@@ -196,14 +196,12 @@
                                                     <th>Sets / Reps</th>
                                                     <th>Weight</th>
                                                 </tr>
-                                                {% for row in range(session.session_rows | int) %}
-                                                {% set rowIndex = row + 1 %}
                                                 <tr>
-                                                    <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
+                                                    <td>{{ session.training_session['session_exercise_1'] }}
                                                     </td>
-                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
+                                                    <td>{{ session.training_session['session_sets_1'] }}
                                                     </td>
-                                                    {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | int %}
+                                                    {% set weight_lifted = session.training_session['session_weight_1'] | int %}
                                                     {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
                                                     <td>{{ weight_lifted }}{{ unit }}
                                                     </td>
@@ -224,7 +222,6 @@
                                                     {% endif %}
                                                     {% endif %}
                                                 </tr>
-                                                {% endfor %}
                                                 {% elif session.session_type == 'running' or session.session_type == 'cycling' or session.session_type == 'walking' %}
                                                 <tr>
                                                     <th>Distance ({{ distanceUnit }})</th>
