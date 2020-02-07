@@ -9,7 +9,8 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js">
 </script>
 <!-- Return to the top button -->
-<a onclick="backToTop()" class="justify-content-center align-items-center return-top-button animated slideInUp faster" id="back-to-top">
+<a onclick="backToTop()" class="justify-content-center align-items-center return-top-button animated slideInUp faster"
+    id="back-to-top">
     <i class="far fa-arrow-alt-circle-up text-light"></i>
 </a>
 
@@ -130,19 +131,19 @@
                                         <div class="col-12 p-0 bg-gray pb-3">
                                             <form action="{{ url_for('filter_profile') }}" method="POST">
                                                 <div class="row m-0 p-0">
-                                                    <div class="col-6 col-md-4 pt-3">
+                                                    <div class="col-6 col-md-3 pt-3">
                                                         <h6>Filter</h6>
                                                         <label>Session Type:</label>
                                                         <select class="form-control" name="filter_session_type">
-                                                            {% if filter_session_type == 'powerlifting' %}
-                                                            <option value="powerlifting">Powerlifting</option>
+                                                            {% if filter_session_type == 'weightlifting' %}
+                                                            <option value="weightlifting">Weightlifting</option>
                                                             <option value="running">Running</option>
                                                             <option value="walking">Walking</option>
                                                             <option value="cycling">Cycling</option>
                                                             <option value="all">All</option>
                                                             {% elif filter_session_type == 'running' %}
                                                             <option value="running">Running</option>
-                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="weightlifting">Weightlifting</option>
                                                             <option value="walking">Walking</option>
                                                             <option value="cycling">Cycling</option>
                                                             <option value="all">All</option>
@@ -150,17 +151,17 @@
                                                             <option value="cycling">Cycling</option>
                                                             <option value="running">Running</option>
                                                             <option value="walking">Walking</option>
-                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="weightlifting">Weightlifting</option>
                                                             <option value="all">All</option>
                                                             {% elif filter_session_type == 'walking' %}
                                                             <option value="walking">Walking</option>
                                                             <option value="cycling">Cycling</option>
                                                             <option value="running">Running</option>
-                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="weightlifting">Weightlifting</option>
                                                             <option value="all">All</option>
                                                             {% else %}
                                                             <option value="all">All</option>
-                                                            <option value="powerlifting">Powerlifting</option>
+                                                            <option value="weightlifting">Weightlifting</option>
                                                             <option value="running">Running</option>
                                                             <option value="cycling">Cycling</option>
                                                             <option value="walking">Walking</option>
@@ -168,7 +169,7 @@
                                                         </select>
                                                     </div>
                                                     <div
-                                                        class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
+                                                        class="col-6 p-0 col-md-3 d-flex justify-content-center align-items-end">
                                                         <div class="container-fluid">
                                                             <label>Date:</label>
                                                             <input type="date" class="form-control"
@@ -176,7 +177,7 @@
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
+                                                        class="col-6 col-md-3 mt-3 d-flex justify-content-end align-items-end">
                                                         <button
                                                             class="main-gradient btn container-fluid">Search</button>
                                                     </div>
@@ -196,7 +197,7 @@
                                                 <div class="session-card my-1 my-md-1 p-1">
                                                     <div class="row m-0 p-0">
                                                         <div class="col-6 pl-1 pr-2">
-                                                            {% if session.session_type == 'powerlifting' %}
+                                                            {% if session.session_type == 'weightlifting' %}
                                                             <i class="fas fa-dumbbell float-right"></i>
                                                             {% elif session.session_type == 'running' %}
                                                             <i class="fas fa-running float-right mr-1"></i>
@@ -217,7 +218,9 @@
                                                                         {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
                                                                         <p class="m-0 p-0"><b
                                                                                 class="float-left mr-1">BW: </b>
-                                                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight }}</p>kg</p>
+                                                                            <p class="toFixed1 m-0 float-left">
+                                                                                {{ session.body_weight }}</p>kg
+                                                                        </p>
                                                                         {% endif %}
                                                                         {% if session.bw_unit == 'lb' %}
                                                                         <p class="m-0 p-0"><b
@@ -533,11 +536,12 @@
                                         </div>
                                         <div class="row m-0 p-0 px-1">
                                             {% for Record in Records %}
-                                            <div class="col-12 col-md-6 col-lg-4 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
+                                            <div
+                                                class="col-12 col-md-6 col-lg-4 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                                                 <div class="session-card my-1 my-md-1 p-2">
                                                     <div class="row m-0 p-0">
                                                         <div class="col-6 pl-1 pr-2">
-                                                            {% if Record.session_type == 'powerlifting' %}
+                                                            {% if Record.session_type == 'weightlifting' %}
                                                             <i class="fas fa-dumbbell float-right"></i>
                                                             {% elif Record.session_type == 'running' %}
                                                             <i class="fas fa-running float-right mr-1"></i>
@@ -548,40 +552,48 @@
                                                             {% elif Record.session_type == 'walking' %}
                                                             <i class="fas fa-shoe-prints float-right"></i>
                                                             {% endif %}
-                                                            <h5><u>{{ loop.index }}. <span class="main-colour-text">{{ Record.username }}
+                                                            <h5><u>{{ loop.index }}. <span
+                                                                        class="main-colour-text">{{ Record.username }}
                                                                     </span></u></h5>
-                            
+
                                                             <div class="row m-0 p-0">
                                                                 <div class="col-12 col-md-6 m-0 p-0">
                                                                     <div>
                                                                         {% if unit == 'kg'  %}{% if Record.bw_unit == 'kg' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
                                                                                 {{ Record.body_weight }}</p>
                                                                             kg
                                                                         </p>
                                                                         {% endif %}
                                                                         {% if Record.bw_unit == 'lb' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
-                                                                                {{ Record.body_weight | int * 10 / 22 }}</p>kg
+                                                                                {{ Record.body_weight | int * 10 / 22 }}
+                                                                            </p>kg
                                                                         </p>
                                                                         {% endif %}
                                                                         {% elif unit == 'lb'  %}{% if Record.bw_unit == 'lb' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
                                                                                 {{ Record.body_weight }}</p>
                                                                             lb
                                                                         </p>
                                                                         {% endif %}
                                                                         {% if Record.bw_unit == 'kg' %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
-                                                                                {{ Record.body_weight | int * 22 / 10 }}</p>lb
+                                                                                {{ Record.body_weight | int * 22 / 10 }}
+                                                                            </p>lb
                                                                         </p>
                                                                         {% endif %}
                                                                         {% else %}
-                                                                        <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                        <p class="m-0 p-0"><b
+                                                                                class="float-left mr-1">BW: </b>
                                                                             <p class="toFixed1 m-0 float-left">
                                                                                 {{ Record.body_weight | int }}
                                                                             </p>
@@ -599,24 +611,30 @@
                                                                 <div class="card-body">
                                                                     <h5>Motivated</h5>
                                                                     <div class="progress">
-                                                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                                                            style="width: {{ Record.motivated | int * 10 }}%" aria-valuenow="75"
-                                                                            aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="progress-bar progress-bar-striped bg-info"
+                                                                            role="progressbar"
+                                                                            style="width: {{ Record.motivated | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
                                                                         </div>
                                                                     </div>
                                                                     <h5>Difficulty</h5>
                                                                     <div class="progress">
-                            
-                                                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                                            style="width: {{ Record.difficulty | int * 10 }}%" aria-valuenow="75"
-                                                                            aria-valuemin="0" aria-valuemax="100">
+
+                                                                        <div class="progress-bar progress-bar-striped bg-warning"
+                                                                            role="progressbar"
+                                                                            style="width: {{ Record.difficulty | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
                                                                         </div>
                                                                     </div>
                                                                     <h5>Effort</h5>
                                                                     <div class="progress">
-                                                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                                                            style="width: {{ Record.effort | int * 10 }}%" aria-valuenow="100"
-                                                                            aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="progress-bar progress-bar-striped bg-danger"
+                                                                            role="progressbar"
+                                                                            style="width: {{ Record.effort | int * 10 }}%"
+                                                                            aria-valuenow="100" aria-valuemin="0"
+                                                                            aria-valuemax="100">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -629,7 +647,7 @@
                                                                 <div class="card-body m-0 p-0">
                                                                     <div class="d-flex justify-content-center">
                                                                         <table class="session-table container-fluid">
-                                                                            {% if Record.session_type == 'powerlifting' %}
+                                                                            {% if Record.session_type == 'weightlifting' %}
                                                                             <tr>
                                                                                 <th>Exercise</th>
                                                                                 <th>Sets / Reps</th>
@@ -650,7 +668,7 @@
                                                                                 </td>
                                                                                 {% endif %}
                                                                                 {% endif %}
-                            
+
                                                                                 {% if unit == 'lb' %}{% if Record.session_unit == 'lb' %}
                                                                                 <td>{{ weight_lifted }}{{ unit }}
                                                                                 </td>
@@ -669,7 +687,8 @@
                                                                             <tr>
                                                                                 {% if distanceUnit == 'mile'%}{% if Record.session_unit == 'mile' %}
                                                                                 {% set distance_traveled = Record.training_session %}
-                                                                                <td>{{ distance_traveled }} {{ distanceUnit }}
+                                                                                <td>{{ distance_traveled }}
+                                                                                    {{ distanceUnit }}
                                                                                 </td>
                                                                                 {% endif %}
                                                                                 {% if Record.session_unit == 'km' %}
@@ -681,16 +700,18 @@
                                                                                 {% endif %}
                                                                                 {% if distanceUnit == 'km' %}{% if Record.session_unit == 'km' %}
                                                                                 {% set distance_traveled = Record.training_session %}
-                                                                                <td>{{ distance_traveled }} {{ distanceUnit }}
+                                                                                <td>{{ distance_traveled }}
+                                                                                    {{ distanceUnit }}
                                                                                 </td>
                                                                                 {% endif %}
                                                                                 {% if Record.session_unit == 'mile' %}
                                                                                 {% set distance_traveled = Record.training_session | int * 10 * 16 / 100 %}
-                                                                                <td><span class="toFixed1">{{ distance_traveled }}</span>
+                                                                                <td><span
+                                                                                        class="toFixed1">{{ distance_traveled }}</span>
                                                                                     {{ distanceUnit }}</td>
                                                                                 {% endif %}
                                                                                 {% endif %}
-                            
+
                                                                                 {% set hoursToMins = Record.length_hour * 60 %}
                                                                                 {% set totalMins = hoursToMins | int + Record.length_min | int %}
                                                                                 <td><span
@@ -704,43 +725,53 @@
                                                                 <div class="card-body m-0 p-0 mt-3">
                                                                     <h5>Motivated</h5>
                                                                     <div class="progress">
-                                                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                                                                            style="width: {{ Record.motivated | int * 10 }}%" aria-valuenow="75"
-                                                                            aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="progress-bar progress-bar-striped bg-info"
+                                                                            role="progressbar"
+                                                                            style="width: {{ Record.motivated | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
                                                                         </div>
                                                                     </div>
                                                                     <h5>Difficulty</h5>
                                                                     <div class="progress">
-                                                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                                                                            style="width: {{ Record.difficulty | int * 10 }}%" aria-valuenow="75"
-                                                                            aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="progress-bar progress-bar-striped bg-warning"
+                                                                            role="progressbar"
+                                                                            style="width: {{ Record.difficulty | int * 10 }}%"
+                                                                            aria-valuenow="75" aria-valuemin="0"
+                                                                            aria-valuemax="100">
                                                                         </div>
                                                                     </div>
                                                                     <h5>Effort</h5>
                                                                     <div class="progress">
-                                                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                                                                            style="width: {{ Record.effort | int * 10 }}%" aria-valuenow="100"
-                                                                            aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="progress-bar progress-bar-striped bg-danger"
+                                                                            role="progressbar"
+                                                                            style="width: {{ Record.effort | int * 10 }}%"
+                                                                            aria-valuenow="100" aria-valuemin="0"
+                                                                            aria-valuemax="100">
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <p class="m-0 mt-4"><b>Record Type:</b> {{ Record.session_type }}
+                                                                <p class="m-0 mt-4"><b>Record Type:</b>
+                                                                    {{ Record.session_type }}
                                                                 </p>
-                                                                <p class="m-0"><b>Length:</b> {{ Record.length_hour }} Hour(s)
+                                                                <p class="m-0"><b>Length:</b> {{ Record.length_hour }}
+                                                                    Hour(s)
                                                                     {{ Record.length_min }}
                                                                     Min(s)
                                                                 </p>
                                                             </div>
                                                             <div class="row m-0 p-0">
                                                                 <div class="col-7 p-0">
-                                                                    <p class="m-0 p-0"><b>Notes:</b> {{ Record.notes }}</p>
+                                                                    <p class="m-0 p-0"><b>Notes:</b> {{ Record.notes }}
+                                                                    </p>
                                                                 </div>
                                                                 <div class="col-5 p-0">
                                                                     <div class="row m-0 p-0">
                                                                         <div class="col-12 m-0 p-0">
                                                                             <p>
                                                                                 <a class="btn main-colour expand-button text-dark py-1 border float-right"
-                                                                                    data-toggle="collapse" href="#expand{{ loop.index }}"
+                                                                                    data-toggle="collapse"
+                                                                                    href="#expand{{ loop.index }}"
                                                                                     role="button" aria-expanded="false"
                                                                                     aria-controls="collapseExample">
                                                                                     Expand
@@ -803,7 +834,7 @@
                                                 class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i>
                                                     </b><b>Weightlifting:
-                                                        {{ totalPowerliftingSessions }}</b></p>
+                                                        {{ totalWeightliftingSessions }}</b></p>
                                             </div>
                                             <div
                                                 class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
@@ -909,18 +940,52 @@
                                     <div class="col-12 col-md-6 p-0 border">
                                         <div class="row m-0 p-0">
                                             <div class="col-12 p-0 d-flex justify-content-center">
-                                                <h3 class="text-center my-3">Achievements</h3>
+                                                <h3 class="text-center my-3">Records</h3>
                                             </div>
-                                            <div class="col-12 py-1 p-sm-0 d-flex justify-content-center">
-                                                <div>
-                                                    <div class="d-flex align-items-center">
-                                                        <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i> <b>Total
-                                                                Time
-                                                                Tracked:</b></p>
+                                            <div class="col-12 py-1 p-sm-0 p-1 d-flex justify-content-center">
+                                                <div class="container-fluid p-0">
+                                                    
+                                                    <div class="row m-0 p-0">
+                                                        <div class="col-12 p-0">
+                                                            <p>Total Records Saved:</p>
+                                                        </div>
+                                                        <div class="col-12 p-0">
+                                                            <table class="records-table">
+                                                                <tr>
+                                                                    <th>Squat 10 Reps:</th>
+                                                                    <td></td>
+                                                                    <th>Squat 1 Rep:</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Bench Press 10 Reps:</th>
+                                                                    <td></td>
+                                                                    <th>Bench Press 1 Rep:</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Deadlift 10 Reps:</th>
+                                                                    <td></td>
+                                                                    <th>Deadlift 1 Rep:</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Fastest Mile Ran:</th>
+                                                                    <td></td>
+                                                                    <th>Longest Walk:</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Longest Run:</th>
+                                                                    <td></td>
+                                                                    <th>Longest Cycle:</th>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                       
                                                     </div>
-                                                    <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }} </b>
-                                                        Hours
-                                                        <b>{{totalTimeMins }}</b> Mins </p>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -994,6 +1059,24 @@
                                 <div class="row m-0">
                                     <div class="col-12 m-0 p-0">
                                         <hr class="mt-0">
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <div>
+                                                <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i>
+                                                    <b>Total
+                                                        Time
+                                                        Tracked:</b></p>
+
+                                                <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }}
+                                                    </b>
+                                                    Hours
+                                                    <b>{{totalTimeMins }}</b> Mins </p>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0">
@@ -1388,7 +1471,7 @@
 
                                     // The pie and bar chart for the session logged.
                                     var Data = [
-                                        { "name": "Weightlifting", "label": "Total", "spend": {{ totalPowerliftingSessions }}},
+                                        { "name": "Weightlifting", "label": "Total", "spend": {{ totalWeightliftingSessions }}},
                                     { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }}},
                                     { "name": "Cycling", "label": "Total", "spend": {{ totalCyclingSessions }}},
                                     { "name": "Walking", "label": "Total", "spend": {{ totalWalkingSessions }}},

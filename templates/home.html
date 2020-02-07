@@ -14,9 +14,23 @@
                     <p>I've built this page to try and help people stay motivated,
                         by
                         letting
-                        them know there not alone. So far, together we have logged a total of {{ sessionCount }} sessions and traveled {{ totalDistance }}Miles!!
+                        them know there not alone. So far, together we have logged a total of <b>{{ sessionCount }}</b> sessions and traveled <b>{{ totalDistance }}</b> Miles!!
                         Think
                         your the best? Find out by adding your personal best's and comparing them with others.</p>
+                </div>
+            </div>
+            <div class="row m-0 px-3 mb-3">
+                <div class="col-12 col-md-6 m-0 p-0">
+                    <h6>Longest Distance Ran In A Session</h6>
+                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortRunning[0].username }}</b></p>
+                    <p class="m-0 p-0">Distance: <b>{{ sortRunning[0].training_session }}{{ distanceUnit }}s</b></p>
+                    <p class="m-0 p-0">Time: <b>{{ sortRunning[0].length_hour }}Hours {{ sortRunning[0].length_min }}Minutes</b></p>
+                </div>
+                <div class="col-12 col-md-6 m-0 p-0">
+                    <h6>Longest Distance Cycled In A Session</h6>
+                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortCycling[0].username }}</b></p>
+                    <p class="m-0 p-0">Distance: <b>{{ sortCycling[0].training_session }}{{ distanceUnit }}s</b></p>
+                    <p class="m-0 p-0">Time: <b>{{ sortCycling[0].length_hour }}Hours {{ sortCycling[0].length_min }}Minutes</b></p>
                 </div>
             </div>
             <hr class="mb-0">
@@ -28,18 +42,36 @@
                                 <h6>Filter</h6>
                                 <label>Session Type:</label>
                                 <select class="form-control" name="filter_session_type">
-                                    {% if filter_session_type == 'powerlifting' %}
-                                    <option value="powerlifting">Powerlifting</option>
+                                    {% if filter_session_type == 'weightlifting' %}
+                                    <option value="weightlifting">Weightlifting</option>
                                     <option value="running">Running</option>
+                                    <option value="walking">Walking</option>
+                                    <option value="cycling">Cycling</option>
                                     <option value="all">All</option>
                                     {% elif filter_session_type == 'running' %}
                                     <option value="running">Running</option>
-                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="weightlifting">Weightlifting</option>
+                                    <option value="walking">Walking</option>
+                                    <option value="cycling">Cycling</option>
+                                    <option value="all">All</option>
+                                    {% elif filter_session_type == 'cycling' %}
+                                    <option value="cycling">Cycling</option>
+                                    <option value="running">Running</option>
+                                    <option value="walking">Walking</option>
+                                    <option value="weightlifting">Weightlifting</option>
+                                    <option value="all">All</option>
+                                    {% elif filter_session_type == 'walking' %}
+                                    <option value="walking">Walking</option>
+                                    <option value="cycling">Cycling</option>
+                                    <option value="running">Running</option>
+                                    <option value="weightlifting">Weightlifting</option>
                                     <option value="all">All</option>
                                     {% else %}
                                     <option value="all">All</option>
-                                    <option value="powerlifting">Powerlifting</option>
+                                    <option value="weightlifting">Weightlifting</option>
                                     <option value="running">Running</option>
+                                    <option value="cycling">Cycling</option>
+                                    <option value="walking">Walking</option>
                                     {% endif %}
                                 </select>
                             </div>
@@ -70,7 +102,7 @@
                                     <div class="session-card my-1 my-md-1 p-2">
                                         <div class="row m-0 p-0">
                                             <div class="col-6 pl-1 pr-2">
-                                                {% if session.session_type == 'powerlifting' %}
+                                                {% if session.session_type == 'weightlifting' %}
                                                 <i class="fas fa-dumbbell float-right"></i>
                                                 {% elif session.session_type == 'running' %}
                                                 <i class="fas fa-running float-right mr-1"></i>

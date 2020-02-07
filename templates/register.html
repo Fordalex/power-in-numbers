@@ -21,36 +21,38 @@
                     <div class="col-12 d-flex justify-content-center">
                     </div>
                     <h4 class="text-center my-3">Register</h4>
-                    <form action="{{ url_for('register_insert') }}" method="POST" class="container-fluid">
-                        <div class="row my-2 p-0">
-                            <div class="col-12 col-lg-6">
+                    <form onsubmit="return checkForm(this);" action="{{ url_for('register_insert') }}" method="POST" class="container-fluid" >
+                        <div class="row my-2 p-0 pr-0">
+                            <div class="col-6 pr-0">
                                 <label class="mb-1">First Name:</label>
-                                <input type="text" class="form-control" placeholder="John" name="first_name">
+                                <input type="text" class="form-control" placeholder="John" name="first_name" required>
                             </div>
-                            <div class="col-12 pl-3 col-lg-6">
+                            <div class="col-6">
                                 <label class="mb-1">Last Name:</label>
-                                <input type="text" class="form-control" placeholder="Smith" name="last_name">
+                                <input type="text" class="form-control" placeholder="Smith" name="last_name" required>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
-                            <div class="col-2 p-0">
+                            <div class="col-6 p-0">
                                 <label class="mb-1" for="exampleFormControlSelect1">Age:</label>
-                                <input type="number" class="form-control" placeholder="23" name="age">
+                                <input type="number" class="form-control" placeholder="23" name="age" required>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6 pr-0">
                                 <label class="mb-1" for="exampleFormControlSelect1">Gender:</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="gender">
+                                <select class="form-control" id="exampleFormControlSelect1" name="gender" required>
                                     <option>Male</option>
                                     <option>Female</option>
                                 </select>
                             </div>
-                            <div class="col-3 p-0">
+                        </div>
+                        <div class="row m-0 p-0">
+                            <div class="col-6 p-0">
                                 <label class="mb-1" for="exampleFormControlSelect1">BW:</label>
-                                <input type="number" class="form-control" placeholder="body weight" name="body_weight">
+                                <input type="number" class="form-control" placeholder="body weight" name="body_weight" required>
                             </div>
-                            <div class="col-3 m-0 pl-3 pr-0">
+                            <div class="col-6 m-0 pl-3 pr-0">
                                 <label class="mb-1 p-0">Unit:</label>
-                                <select class="form-control" name="bw_unit">
+                                <select class="form-control" name="bw_unit" required>
                                     <option>lb</option>
                                     <option>kg</option>
                                 </select>
@@ -59,22 +61,23 @@
                         <div class="row my-2 p-0">
                             <div class="col-12">
                                 <label class="mb-1">Username:</label>
-                                <input type="text" class="form-control" placeholder="john23smith" name="username">
+                                <input type="text" class="form-control" placeholder="john23smith" name="username" required>
                             </div>
-                            <div class="col-12 col-lg-6 pl-3">
+                        
+                            <div class="col-6 pl-3 pr-0">
                                 <label class="mb-1">Password:</label>
-                                <input type="password" class="form-control" placeholder="********" name="password">
+                                <input type="password" class="form-control" placeholder="********" name="pwd1" required>
                             </div>
-                            <div class="col-12 col-lg-6 pl-3">
+                            <div class="col-6 pl-3">
                                 <label class="mb-1">Re-type Password:</label>
-                                <input type="password" class="form-control" placeholder="********" name="password">
+                                <input type="password" class="form-control" placeholder="********" name="pwd2" required>
                             </div>
                         </div>
                         <hr>
                         <div class="row m-0 p-0">
                             <div class="col-12 p-0">
                                 <label class="mb-1" for="exampleFormControlSelect1">Location:</label>
-                                <input class="form-control" placeholder="Location" name="location">
+                                <input class="form-control" placeholder="Location" name="location" required>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
@@ -102,6 +105,64 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
     <script src="{{url_for('static', filename='js/javascript.js')}}"></script>
+
+    <script type="text/javascript">
+
+        function checkForm(form)
+        {
+          if(form.username.value == "") {
+            alert("Error: Username cannot be blank!");
+            form.username.focus();
+            return false;
+          }
+          re = /^\w+$/;
+          if(!re.test(form.username.value)) {
+            alert("Error: Username must contain only letters, numbers and underscores!");
+            form.username.focus();
+            return false;
+          }
+      
+          if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+            if(form.pwd1.value.length < 6) {
+              alert("Error: Password must contain at least six characters!");
+              form.pwd1.focus();
+              return false;
+            }
+            if(form.pwd1.value == form.username.value) {
+              alert("Error: Password must be different from Username!");
+              form.pwd1.focus();
+              return false;
+            }
+            re = /[0-9]/;
+            if(!re.test(form.pwd1.value)) {
+              alert("Error: password must contain at least one number (0-9)!");
+              form.pwd1.focus();
+              return false;
+            }
+            re = /[a-z]/;
+            if(!re.test(form.pwd1.value)) {
+              alert("Error: password must contain at least one lowercase letter (a-z)!");
+              form.pwd1.focus();
+              return false;
+            }
+            re = /[A-Z]/;
+            if(!re.test(form.pwd1.value)) {
+              alert("Error: password must contain at least one uppercase letter (A-Z)!");
+              form.pwd1.focus();
+              return false;
+            }
+          } else {
+            alert("Error: Please check that you've entered and confirmed your password!");
+            form.pwd1.focus();
+            return false;
+          }
+      
+          return true;
+        }
+      
+      </script>
+
+
 </body>
 
 </html>

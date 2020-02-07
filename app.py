@@ -181,8 +181,14 @@ def home():
     totalTimeDays = totalTimeList[2]
     totalTimeHours = totalTimeList[1]
     totalTimeMins = totalTimeList[0]
+       # finding all the sessions and converting them into minutes, ready to sort.
+    allRunningSessions = mongo.db.sessions.find({'session_type':'running'})
+    sortRunning = allRunningSessions.sort('training_session', pymongo.DESCENDING)
+    # finding all the cycling sessions and converting them into minutes, ready to sort.
+    allCyclingSessions = mongo.db.sessions.find({'session_type':'cycling'})
+    sortCycling = allCyclingSessions.sort('training_session', pymongo.DESCENDING)
 
-    return render_template("home.html", totalDistance=round(totalDistanceTraveledTogether, 0), sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, distanceUnit=distanceUnit, sessionCount=sessionCount)
+    return render_template("home.html",sortRunning=sortRunning,sortCycling=sortCycling, totalDistance=round(totalDistanceTraveledTogether, 0), sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, distanceUnit=distanceUnit, sessionCount=sessionCount)
 
 @app.route('/register')
 def register():
@@ -195,7 +201,7 @@ def register_insert():
         existing_user = users.find_one({'username' : request.form['username']})
 
         if existing_user is None:
-            hashpass = sha256_crypt.encrypt(request.form['password'])
+            hashpass = sha256_crypt.encrypt(request.form['pwd1'])
             username = request.form['username']
             age = request.form['age']
             first_name = request.form['first_name']
@@ -208,9 +214,9 @@ def register_insert():
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
 
-        return render_template('index.html')
+        return redirect('login_page')
 
-    return render_template('index.html')
+    return redirect('login_page')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -246,7 +252,7 @@ def profile():
         
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-    #
+  
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
@@ -330,13 +336,13 @@ def profile():
         totalDistanceByWalkingMiles = totalDistanceByWalkingMiles * 1.6093
     #
     # total powerlifting sessions
-    totalPowerliftingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'powerlifting'})
+    totalWeightliftingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'weightlifting'})
     def powerliftingCount():
         count = 0
-        for session in totalPowerliftingSessions:
+        for session in totalWeightliftingSessions:
             count = count + 1
         return count
-    totalPowerliftingSessions = powerliftingCount()
+    totalWeightliftingSessions = powerliftingCount()
     # total running sessions
     totalRunningSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running'})
     def runningCount():
@@ -453,9 +459,11 @@ def profile():
     totalTimeHours = totalTimeList[1]
     totalTimeMins = totalTimeList[0]
     # find all the records data
-    allRecords = mongo.db.records.find()
+    allRecords = mongo.db.records.find({'username':currentUser})
 
-    return render_template("profile.html", sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalPowerliftingSessions=totalPowerliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
+
+
+    return render_template("profile.html", sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
 # save the users setting preferences to mongoDB
@@ -513,9 +521,11 @@ def filter_home():
 def filter_profile():
     filter_session_type = request.form["filter_session_type"]
     filter_date = request.form['filter_date']
+    sort = request.form['sort']
     res = make_response(redirect(url_for('profile')))
     res.set_cookie('filter_session_type_profile', filter_session_type)
     res.set_cookie('filter_date_profile', filter_date)
+    res.set_cookie('sort', sort)
     return res
 
 # adding session to mongoDB and the session page.
@@ -587,7 +597,7 @@ def insert_session():
                 break
         return row_count
     
-    def powerlifting_to_dict():    
+    def weightlifting_to_dict():    
         row_count = counting_rows()
         session_row_return = []
         for row in range(1, row_count + 1):
@@ -597,14 +607,14 @@ def insert_session():
             session_exercise = request.form[exercise]
             session_sets = request.form[sets]
             session_weight = request.form[weight]
-            sessionDict = { exercise: session_exercise, sets : session_sets, weight : session_weight }
+            sessionDict = { exercise: session_exercise, sets : session_sets, weight : int(session_weight) }
             session_row_return.append(sessionDict)
         return session_row_return
 
 
     row_count = counting_rows()
-    if session_type == 'powerlifting':
-        training_session = powerlifting_to_dict()
+    if session_type == 'weightlifting':
+        training_session = weightlifting_to_dict()
     elif session_type == 'running':
         training_session = request.form['distance']
     elif session_type == 'cycling':
@@ -649,15 +659,13 @@ def record():
     # finding all the Deadlift one rep max and sorting them with the height number to the start of the list
     weightDeadlift = mongo.db.records.find({'training_session.session_exercise_1': 'Deadlift', 'training_session.session_sets_1': '1'})
     sortedDeadlift = weightDeadlift.sort('training_session.session_weight_1', pymongo.DESCENDING)
-    # finding all the sessions and converting them into minutes, ready to sort.
-    allRunningSessions = mongo.db.sessions.find({'session_type':'running'})
-    sortRunning = allRunningSessions.sort('training_session', pymongo.DESCENDING)
-    recordCount = mongo.db.records.find({'username' : currentUser})
+    recordCount = mongo.db.records.find()
     recordCountStore = 0
     for record in recordCount:
         recordCountStore += 1
+    
 
-    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, sessions=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, sortRunning=sortRunning)
+    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, sessions=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift)
 
 @app.route('/insert_record', methods=['POST'])
 def insert_record():
@@ -674,7 +682,7 @@ def insert_record():
     body_weight = login_user.get('body_weight')
     bw_unit = login_user.get('bw_unit')
     # checking the session type
-    if session_type == 'powerlifting':
+    if session_type == 'weightlifting':
         training_session = {'session_exercise_1': request.form['session_exercise_1'],'session_sets_1': request.form['session_sets_1'] , 'session_weight_1': request.form['session_weight_1']}
     elif session_type == 'running':
         training_session = request.form['distance']

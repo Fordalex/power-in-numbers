@@ -135,7 +135,7 @@ function addSessionTable() {
     var powerliftingTable = `<div class="row p-0 m-0 animated fadeInUp faster"  id="sessionTable">
                                 <div class="col-12 d-flex align-items-end p-0">
                                     <h3 class="float-left mr-3">Training Session</h3>
-                                    <h5 class="main-colour-text">Powerlifting</h5>
+                                    <h5 class="main-colour-text">Weightlifting</h5>
                                 </div>
                                 <div class="col-12 p-0">
                                     <table class="session-table container-fluid mt-3" id="session_table">
@@ -243,7 +243,7 @@ function addSessionTable() {
             </div>`
     console.log(typeSelected)
     console.log(unitSelected)
-    if (typeSelected == 'Powerlifting') {
+    if (typeSelected == 'Weightlifting') {
         $('#addSessionTable').html(powerliftingTable)
     } else if (typeSelected == 'Running') {
         $('#addSessionTable').html(runningTable)
@@ -261,7 +261,7 @@ function addSessionTable() {
 
 function addSessionFirstNext() {
     usersChoice = $('#session-type-option').val();
-    if (usersChoice == 'powerlifting') {
+    if (usersChoice == 'weightlifting') {
         $('#unitOrDistance').html(`
         <div id="unitContainer" class="animated fadeIn faster">
             <label>Unit:</label>
@@ -319,7 +319,7 @@ function addSessionTableRecord() {
     var powerliftingTable = `<div class="row p-0 m-0 animated fadeInUp faster"  id="sessionTable">
                                 <div class="col-12 d-flex align-items-end p-0">
                                     <h3 class="float-left mr-3">Training Session</h3>
-                                    <h5 class="main-colour-text">Powerlifting</h5>
+                                    <h5 class="main-colour-text">Weightlifting</h5>
                                 </div>
                                 <div class="col-12 p-0">
                                     <table class="session-table container-fluid mt-3" id="session_table">
@@ -444,7 +444,7 @@ function addSessionTableRecord() {
             </div>`
     console.log(typeSelected)
     console.log(unitSelected)
-    if (typeSelected == 'Powerlifting') {
+    if (typeSelected == 'Weightlifting') {
         $('#addSessionTable').html(powerliftingTable)
     } else if (typeSelected == 'Running') {
         $('#addSessionTable').html(runningTable)
@@ -460,7 +460,7 @@ function addSessionTableRecord() {
 
 function addSessionFirstNextRecord() {
     usersChoice = $('#session-type-option').val();
-    if (usersChoice == 'powerlifting') {
+    if (usersChoice == 'weightlifting') {
         $('#unitOrDistance').html(`
         <div id="unitContainer" class="animated fadeIn faster">
             <label>Unit:</label>
