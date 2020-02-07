@@ -252,7 +252,8 @@ def profile():
         
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-  
+   
+    
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
@@ -461,8 +462,6 @@ def profile():
     # find all the records data
     allRecords = mongo.db.records.find({'username':currentUser})
 
-
-
     return render_template("profile.html", sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
@@ -576,6 +575,10 @@ def insert_session():
     })
     # the data from the form
     date = request.form['date']
+    dateYear = date[2: 4]
+    dateMonth = date[5:7]
+    dateDay = date[8:10]
+    date = dateDay + '-' + dateMonth + '-' + dateYear
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
     motivated = request.form['motivated']
@@ -622,7 +625,6 @@ def insert_session():
     elif session_type == 'walking':
         training_session = request.form['distance']
 
-    date = request.form['date']
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
     motivated = request.form['motivated']
