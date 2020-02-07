@@ -656,9 +656,9 @@
                                                                             <tr>
                                                                                 <td>{{ Record.training_session['session_exercise_1'] }}
                                                                                 </td>
-                                                                                <td>{{ Record.training_session['session_exercise_1'] }}
+                                                                                <td>{{ Record.training_session['session_sets_1'] }}
                                                                                 </td>
-                                                                                {% set weight_lifted = Record.training_session['session_exercise_1'] %}
+                                                                                {% set weight_lifted = Record.training_session['session_weight_1'] | int %}
                                                                                 {% if unit == 'kg' %}{% if Record.session_unit == 'kg' %}
                                                                                 <td>{{ weight_lifted }}{{ unit }}
                                                                                 </td>
@@ -1538,6 +1538,9 @@
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <p><b>Username:</b> {{ user.username }}</p>
+                                </div>
+                                <div class="col-6 m-0 p-0">
+                                    <p><b>Body Weight:</b> {{ user.body_weight }}{{ unit }}</p>
                                 </div>
                             </div>
                         </div>

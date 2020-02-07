@@ -104,7 +104,7 @@ def home():
     totalDistanceByWalkingMiles = kmToMiles + distanceOnFootMiles
     distanceUnit = currentUsersAccount.get('selected_distance')
     if distanceUnit == 'km':
-        totalDistanceByWalkingMiles = totalDistanceOnFootMiles * 1.6093
+        totalDistanceByWalkingMiles = totalDistanceByWalkingMiles * 1.6093
     # by bike
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
@@ -131,7 +131,7 @@ def home():
     totalDistanceByCyclingMiles = kmToMiles + distanceOnFootMiles
     distanceUnit = currentUsersAccount.get('selected_distance')
     if distanceUnit == 'km':
-        totalDistanceByCyclingMiles = totalDistanceOnFootMiles * 1.6093
+        totalDistanceByCyclingMiles = totalDistanceByCyclingMiles * 1.6093
     
     totalDistanceTraveledTogether = totalDistanceByWalkingMiles + totalDistanceOnFootMiles + totalDistanceByCyclingMiles
 
