@@ -21,18 +21,24 @@
             <div class="row m-0 px-3">
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Bench Press</h6>
+                    {% if weightBenched[0] | length >= 1 %}
                     <p class="m-0 p-0">Username:  <b class="main-colour-text">{{ weightBenched[0].username }}</b></p>
                     <p class="m-0 p-0">Weight lifted: <b> {{ weightBenched[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
+                    {% endif %}
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Squat</h6>
+                    {% if sortedSquat[0] | length >= 1 %}
                     <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortedSquat[0].username }}</b></p>
                     <p class="m-0 p-0">Weight lifted: <b> {{ sortedSquat[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
+                    {% endif %}
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Deadlift</h6>
+                    {% if sortedDeadlift[0] | length >= 1 %}
                     <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortedDeadlift[0].username }}</b></p>
                     <p class="m-0 p-0">Weight lifted: <b> {{ sortedDeadlift[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
+                    {% endif %}
                 </div>
             </div>
             <hr class="mb-0">

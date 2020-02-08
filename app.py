@@ -210,7 +210,7 @@ def register_insert():
             body_weight = request.form['body_weight']
             bw_unit = request.form['bw_unit']
             location = request.form['location']
-            users.insert_one({'username' : username, 'password' : hashpass, 'sessions_logged': 0, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name,  'selected_unit': 'kg', 'selected_distance': 'mile',})
+            users.insert_one({'username' : username, 'password' : hashpass, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name,  'selected_unit': 'kg', 'selected_distance': 'mile',})
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
 
@@ -461,8 +461,12 @@ def profile():
     totalTimeMins = totalTimeList[0]
     # find all the records data
     allRecords = mongo.db.records.find({'username':currentUser})
-
-    return render_template("profile.html", sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
+    # total sessions logged
+    allSessions = mongo.db.sessions.find({'username': currentUser})
+    totalSessionsLogged = 0
+    for ses in allSessions:
+        totalSessionsLogged = totalSessionsLogged + 1
+    return render_template("profile.html",totalSessionsLogged=totalSessionsLogged, sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
 # save the users setting preferences to mongoDB
@@ -556,8 +560,6 @@ def insert_session():
     unit_distance = login_user.get('selected_distance')
     sessions = mongo.db.sessions
     # add the amount of the sessions that the user has logged.
-    currentSessionsLogged = login_user.get('sessions_logged')
-    currentLogged = currentSessionsLogged + 1
     mongo.db.users.update({'username' : currentUser},
     {
         'username' : username, 
@@ -569,7 +571,6 @@ def insert_session():
         'location': location, 
         'first_name': first_name, 
         'last_name': last_name,
-        'sessions_logged': currentLogged,
         'selected_unit': str(unitValue),
         'selected_distance': str(unit_distance),
     })
@@ -702,49 +703,17 @@ def insert_record():
     notes = request.form['notes']
     powerliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     records.insert_one(powerliftingDict)
-
-
-
- 
-
     return redirect('record')
 
 
 @app.route('/delete_session/<session_id>')
 def delete_session(session_id):
     mongo.db.sessions.remove({'_id': ObjectId(session_id)})
-     # current users data
-    currentUser = session['username']
-    users = mongo.db.users
-    login_user = users.find_one({'username' : currentUser})
-    username = login_user.get('username')
-    gender = login_user.get('gender')
-    age = login_user.get('age')
-    location = login_user.get('location')
-    body_weight = login_user.get('body_weight')
-    bw_unit = login_user.get('bw_unit')
-    password = login_user.get('password')
-    first_name = login_user.get('first_name')
-    last_name = login_user.get('last_name')
-    currentSessionsLogged = login_user.get('sessions_logged')
-    unitValue = login_user.get('selected_unit')
-    unit_distance = login_user.get('selected_distance')
-    currentLogged = currentSessionsLogged - 1
-    mongo.db.users.update({'username' : currentUser},
-    {
-        'username' : username, 
-        'password' : password, 
-        'age': age, 
-        'gender': gender, 
-        'body_weight': body_weight, 
-        'bw_unit': bw_unit, 
-        'location': location, 
-        'first_name': first_name, 
-        'last_name': last_name,
-        'sessions_logged': currentLogged,
-        'selected_unit': str(unitValue),
-        'selected_distance': str(unit_distance),
-    })
+    return redirect(url_for('profile'))
+
+@app.route('/delete_record/<session_id>')
+def delete_record(session_id):
+    mongo.db.records.remove({'_id': ObjectId(session_id)})
     return redirect(url_for('profile'))
 
 @app.route('/settings')

@@ -614,6 +614,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-6 pr-0 border-left">
+                                                            <i class="fas fa-edit float-right" data-toggle="collapse"
+                                                            href="#edit{{ loop.index }}" role="button"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapseExample"></i>
                                                             <p class="m-0 p-0"><b>Date:</b> {{ Record.date }}</p>
                                                             <p class="m-0"><b>Location:</b> {{ Record.location }}</p>
                                                             <div class="collapse d-none" id="{{ Record.first_name }}">
@@ -792,6 +796,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row m-0 p-0">
+                                                        <div class="col-12 p-0">
+                                                            <div class="collapse" id="edit{{ loop.index }}">
+                                                                <div class="card card-body p-0 mt-2">
+                                                                    <a
+                                                                        href="{{url_for('delete_record', session_id=Record._id)}}"><button
+                                                                            class="btn btn-danger container-fluid">Delete</button></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             {% if loop.last %}
@@ -821,13 +836,13 @@
                                             </div>
                                             <div
                                                 class="col-12 py-1 p-sm-0 d-flex align-items-center justify-content-center mb-3 animated fadeIn">
-                                                {% if user.sessions_logged >= 100 %}
+                                                {% if totalSessionsLogged >= 100 %}
                                                 <p class="m-0 p-0 main-colour-text text-center"><b>Master</b></p>
-                                                {% elif user.sessions_logged >= 50 %}
+                                                {% elif totalSessionsLogged >= 50 %}
                                                 <p class="m-0 p-0 main-colour-text text-center"><b>Advanced</b></p>
-                                                {% elif user.sessions_logged >= 25 %}
+                                                {% elif totalSessionsLogged >= 25 %}
                                                 <p class="m-0 p-0 main-colour-text text-center"><b>Novice</b></p>
-                                                {% elif user.sessions_logged >= 10 %}
+                                                {% elif totalSessionsLogged >= 10 %}
                                                 <p class="m-0 p-0 main-colour-text text-center"><b>Rookie</b></p>
                                                 {% else %}
                                                 <p class="m-0 p-0 main-colour-text text-center"><b>Beginner</b></p>
@@ -836,7 +851,7 @@
                                             <div
                                                 class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Logged:</b>
-                                                    {{ user.sessions_logged }}
+                                                    {{ totalSessionsLogged }}
                                                 </p>
                                             </div>
                                             <div
@@ -953,7 +968,7 @@
                                             </div>
                                             <div class="col-12 py-1 p-sm-0 p-1 d-flex justify-content-center">
                                                 <div class="container-fluid p-0">
-                                                    
+
                                                     <div class="row m-0 p-0 px-3">
                                                         <div class="col-12 p-0">
                                                             <p>Total Records Saved:</p>
@@ -992,7 +1007,7 @@
                                                                 </tr>
                                                             </table>
                                                         </div>
-                                                       
+
                                                     </div>
 
                                                 </div>
@@ -1101,12 +1116,12 @@
                                 <div class="row m-0 p-0  ">
                                     <div class="col-12 m-0">
                                         <h6>Sessions Logged</h6>
-                                        <p><b>Total</b>: {{ user.sessions_logged }}</p>
+                                        <p><b>Total</b>: {{ totalSessionsLogged }}</p>
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-3">
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        {% if user.sessions_logged | int >= 10 %}
+                                        {% if totalSessionsLogged | int >= 10 %}
                                         <div class="badge-container first-badge">
                                             <p class="m-0">+ 10</p>
                                         </div>
@@ -1115,7 +1130,7 @@
                                             <p class="m-0">+ 10</p>
                                         </div>
                                         {% endif %}
-                                        {% if user.sessions_logged | int >= 25 %}
+                                        {% if totalSessionsLogged | int >= 25 %}
                                         <div class="badge-container second-badge">
                                             <p class="m-0">+ 25</p>
                                         </div>
@@ -1124,7 +1139,7 @@
                                             <p class="m-0">+ 25</p>
                                         </div>
                                         {% endif %}
-                                        {% if user.sessions_logged | int >= 50 %}
+                                        {% if totalSessionsLogged | int >= 50 %}
                                         <div class="badge-container third-badge">
                                             <p class="m-0">+ 50</p>
                                         </div>
@@ -1133,7 +1148,7 @@
                                             <p class="m-0">+ 50</p>
                                         </div>
                                         {% endif %}
-                                        {% if user.sessions_logged | int >= 75 %}
+                                        {% if totalSessionsLogged | int >= 75 %}
                                         <div class="badge-container forth-badge">
                                             <p class="m-0">+ 75</p>
                                         </div>
@@ -1142,7 +1157,7 @@
                                             <p class="m-0">+ 75</p>
                                         </div>
                                         {% endif %}
-                                        {% if user.sessions_logged | int >= 100 %}
+                                        {% if totalSessionsLogged | int >= 100 %}
                                         <div class="badge-container fifth-badge">
                                             <p class="m-0">+ 100</p>
                                         </div>
@@ -1151,7 +1166,7 @@
                                             <p class="m-0">+ 100</p>
                                         </div>
                                         {% endif %}
-                                        {% if user.sessions_logged | int >= 200 %}
+                                        {% if totalSessionsLogged | int >= 200 %}
                                         <div class="badge-container sixth-badge">
                                             <p class="m-0">+ 200</p>
                                         </div>
@@ -1449,8 +1464,8 @@
                                     // The pie and bar chart for the distance travelled
                                     var transactionsData = [
                                         { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
-                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }}},
-                                    { "name": "Walking", "label": "Total", "spend": {{ totalDistanceByWalking }}}
+                                    { "name": "Cycling", "label": "Total", "spend": { { totalDistanceOnBike } } },
+                                    { "name": "Walking", "label": "Total", "spend": { { totalDistanceByWalking } } }
                                     ];
                                     var ndx = crossfilter(transactionsData);
 
@@ -1481,9 +1496,9 @@
                                     // The pie and bar chart for the session logged.
                                     var Data = [
                                         { "name": "Weightlifting", "label": "Total", "spend": {{ totalWeightliftingSessions }}},
-                                    { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }}},
-                                    { "name": "Cycling", "label": "Total", "spend": {{ totalCyclingSessions }}},
-                                    { "name": "Walking", "label": "Total", "spend": {{ totalWalkingSessions }}},
+                                    { "name": "Running", "label": "Total", "spend": { { totalRunningSessions } } },
+                                    { "name": "Cycling", "label": "Total", "spend": { { totalCyclingSessions } } },
+                                    { "name": "Walking", "label": "Total", "spend": { { totalWalkingSessions } } },
                                     ];
                                     var ndx = crossfilter(Data);
 
