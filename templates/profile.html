@@ -1464,8 +1464,8 @@
                                     // The pie and bar chart for the distance travelled
                                     var transactionsData = [
                                         { "name": "Running", "label": "Total", "spend": {{ allDistanceByFoot }}},
-                                    { "name": "Cycling", "label": "Total", "spend": { { totalDistanceOnBike } } },
-                                    { "name": "Walking", "label": "Total", "spend": { { totalDistanceByWalking } } }
+                                    { "name": "Cycling", "label": "Total", "spend": {{ totalDistanceOnBike }}},
+                                    { "name": "Walking", "label": "Total", "spend": {{ totalDistanceByWalking }}}
                                     ];
                                     var ndx = crossfilter(transactionsData);
 
@@ -1496,9 +1496,9 @@
                                     // The pie and bar chart for the session logged.
                                     var Data = [
                                         { "name": "Weightlifting", "label": "Total", "spend": {{ totalWeightliftingSessions }}},
-                                    { "name": "Running", "label": "Total", "spend": { { totalRunningSessions } } },
-                                    { "name": "Cycling", "label": "Total", "spend": { { totalCyclingSessions } } },
-                                    { "name": "Walking", "label": "Total", "spend": { { totalWalkingSessions } } },
+                                    { "name": "Running", "label": "Total", "spend": {{ totalRunningSessions }}},
+                                    { "name": "Cycling", "label": "Total", "spend": {{ totalCyclingSessions }}},
+                                    { "name": "Walking", "label": "Total", "spend": {{ totalWalkingSessions }}},
                                     ];
                                     var ndx = crossfilter(Data);
 
