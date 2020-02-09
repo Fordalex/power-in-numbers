@@ -6,74 +6,87 @@ This web application was thought of because I'm always trying to find ways to tr
  
 This site is designed for people who like to stay active and need the motivation to keep going, also find new training plans to keep things interesting.
 
-I've tried to do most of the leg work for the user creating an easy and enjoyable experience for the user.
-- As a user that's just completed a training session your going to be tried and logging your session should be as quick and easy as possible.
-- The stats section on the profile page has been added so the user can watch their progress and easier workout the amount of workouts they have completed. Using d3 and crossfilter the user can see has many sessions they have done for each session type e.g. powerlifting, running...
+I've tried to do most of the leg work for the user, by creating an easy and enjoyable experience.
+- As a user that's just completed a training session, logging your session should be as quick and easy as possible.
+- The stats section on the profile page has been added so the user can watch their progress and easier work out the number of workouts they have completed. Using d3 and cross filter its clear to see how many session logged and the category of the sessions. Also, the distance the user has travelled by foot and bike is shown on a pie chart.
 
-This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login) Please feel free to create an account and start making progression as soon as possible.
+This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login_page) Please feel free to create an account and start making progression as soon as possible.
 
-The main theme of the site is blue, while and black. I have created a seamless background image and added this on most pages to make the site feel the same, as the user navigates thoughout. 
+The main theme of the site is blue, white and black. I have created a seamless background image and added this on most pages to make the site feel the same, as the user navigates throughout. 
+
+Trying to keep the feel of the site competitive but also motivating, by adding small bits of data on how many sessions have been logged that day, how far as a group the page has travelled and the best records on display, were to try and motivate people to fit in.
 
 ## Features
 
 - The first page the user will be faced with is the login page, the user can either create a new account or log in.
-- After the user logs in they will be taken to their profile, if the user has just created the profile.
-- User's can log a training session, personal record and training plans from their profile page.
-- The home page has an array of filters, so depending on the users goals they can see a collection of the session types, length and date they are interested in.
+- After the user logs in they will be taken to their profile.
+- User's can log a training session, personal record and create training plans from their profile page.
+- The home page has an array of filters, so depending on the users goals they can see a collection of the session types on the date they are interested in.
 - Record page will hold all the users personal records and also a filter function to help the user find the content they are after.
 - A settings page to change the weight/distance unit to fit different user types. 
  
 ### Existing Feature
-- I would like to create a tutioral that the user can follow so they can understand how to user the site.
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+The login page: 
+- I've added the custom made background image and a user count on first page the user is faced with.
+Register:
+- Tried to take as little information as posible from the user to speed up the process.
+Profile:
+- The sessions are shown first, there are four tabs that take you to differnt sections on the profile page. 
+- The page is loaded on 'log', 'add' is a section the user can save data for: training session, personal record and create a training plan.
+- 'stats' was created, again to try and keep people motivated by clearly and easily displaying their progress and hard work.
+- 'details' is the last tab and basically shows them information the user gave about themselves.
+Records:
+
+
+
 
 ### Features Left to Implement
-- 
+
+- I would like to create a tutioral that the user can follow so they can understand how to user the site.
 
 ## Technologies Used
 
 To create Power In Numbers i used the following:
 
-- [Adobe XD](https://jquery.com)
+- [Adobe XD](https://www.adobe.com/products/xd.html)
     - The project uses **Abode XD** to build the wireframes.
 
 - [Photoshop](https://jquery.com)
     - I used **Photoshop** to edit the header image and create the background image.
 
-- [Adobe Illustrator](https://jquery.com)
+- [Adobe Illustrator](https://www.adobe.com/uk/products/illustrator.html)
     - I used **Adobe Illustrator** to create the seamless background image.
 
-- [Font Awesome](https://jquery.com)
+- [Font Awesome](https://fontawesome.com/)
     - The project uses **Font Awesome** for the icons.
 
-- [Bootstrap4](https://jquery.com)
+- [Bootstrap4](https://getbootstrap.com/)
     - The project uses **Bootstrap4** to speed up the development process and keep the code easy to read.
 
-- [Pexels](https://jquery.com)
+- [Pexels](https://www.pexels.com/)
     - **Pexels** Was used for the stock images.
 
-- [Google Font](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+- [Google Font](https://fonts.google.com/)
+    - The project uses **Google font** to change the style of the text.
 
-- [HTML 5](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+- [HTML 5]()
+    - This project uses **HTML 5** for the mark up language.
 
-- [CSS](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+- [CSS]()
+    - **CSS** is used to syle the project.
 
-- [Javascript](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+- [Javascript]()
+    - **Javascript** is the programing language for this project.
 
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
 
-- [Python](https://jquery.com)
+- [Python]()
     - The project uses **JQuery** to simplify DOM manipulation.
 
 - [Flask](https://www.fullstackpython.com/flask.html)
-    - The project uses **Flask** to simplify DOM manipulation.
+    - **Flask** is a micro framework used.
 
 - [jinja](https://jquery.com)
     - The project uses **jinja** for the templating language.
@@ -81,24 +94,37 @@ To create Power In Numbers i used the following:
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+This project is hosted on heroku, I achieved this by:
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+1. Going to the heroku dashboard and create a new app.
+2. Then the Deploy section and down to 'deployment method' select github and link heroku to this repository.
+3. Still on the Deploy section, continue down to 'manual deploy' and press 'deploy branch'
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+### How to run locally:
 
+#### Download:
+
+1. Go to https://github.com/Fordalex/master-mind-project
+2. Click on 
+
+![clone or download](https://github.com/Fordalex/master-mind-project/blob/master/readme/clone-or-download.png "clone or download")
+
+3. Click download zip
+4. Extract zip file
+5. Import in to preferred IDE
+
+#### Using Git:
+
+1. Open terminal in preferred IDE
+2. Write "git clone https://github.com/Fordalex/master-mind-project"
+3. Press enter
 
 ## Credits
-
 
 ### Media
     The header image is taken from:
 - [Unsplash](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
-
 
 ### Acknowledgements
 

@@ -30,12 +30,17 @@ def login_page():
 
 @app.route('/home')
 def home():
-    currentUser = session['username']
+    # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
-    filter_date = request.cookies.get('filter_date')
-    filter_session_type = request.cookies.get('filter_session_type')
+    # filter cards
+    filter_date = request.cookies.get('filter_session_date_home')
+    filter_session_type = request.cookies.get('filter_session_type_home')
     unit_distance = currentUsersAccount.get('selected_distance')
     def filter():
         filter_dictionary = {}
@@ -236,7 +241,7 @@ def profile():
     try:
         currentUser = session['username']
     except:
-        return redirect(url_for('login'))
+        return redirect(url_for('login_page'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     # get filter info from cookies
@@ -252,8 +257,15 @@ def profile():
         
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-   
     
+    # sort the sessions by the date
+    sortCards = request.cookies.get('sort_profile')
+    if sortCards == 'Newest First':
+        sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)
+        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
+    elif sortCards == 'Oldest First':
+        sessions = sessions.sort("dateSortNo", pymongo.ASCENDING)
+        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
@@ -459,18 +471,50 @@ def profile():
     totalTimeDays = totalTimeList[2]
     totalTimeHours = totalTimeList[1]
     totalTimeMins = totalTimeList[0]
-    # find all the records data
-    allRecords = mongo.db.records.find({'username':currentUser})
     # total sessions logged
     allSessions = mongo.db.sessions.find({'username': currentUser})
     totalSessionsLogged = 0
     for ses in allSessions:
         totalSessionsLogged = totalSessionsLogged + 1
-    return render_template("profile.html",totalSessionsLogged=totalSessionsLogged, sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
+    return render_template("profile.html", sortCards=sortCards, totalSessionsLogged=totalSessionsLogged, sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
-# save the users setting preferences to mongoDB
+@app.route('/usersRecords')
+def usersRecords():
+        # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    # get filter info from cookies
+    filter_date = request.cookies.get('filter_date_profile')
+    filter_session_type = request.cookies.get('filter_session_type_profile')  
+    def filter():
+        filter_dictionary = {'username': currentUser}
+        if filter_date:
+            filter_dictionary.update({'date': filter_date})
+        if filter_session_type:
+            if filter_session_type != 'all':
+                filter_dictionary.update({'session_type': filter_session_type})
+        
+        return filter_dictionary
+    sessions = mongo.db.sessions.find(filter())
+    # sort the sessions by the date
+    sortCards = request.cookies.get('sort_profile')
+    if sortCards == 'Newest First':
+        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
+    elif sortCards == 'Oldest First':
+        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
 
+    return render_template('usersRecords.html' )
+
+
+
+
+
+# save the users setting preferences to mongoDB
 @app.route('/add_unit',  methods=['POST'])
 def add_unit():
     unitValue = request.form["unit"]
@@ -513,22 +557,24 @@ def add_unit():
 
 @app.route('/filter_home', methods=['POST'])
 def filter_home():
-    filter_session_type = request.form["filter_session_type"]
-    filter_date = request.form['filter_date']
+    filter_sort = request.form['sort_session_home']
+    filter_session_type = request.form["filter_session_type_home"]
+    filter_date = request.form['filter_session_date_home']
     res = make_response(redirect(url_for('home')))
-    res.set_cookie('filter_session_type', filter_session_type)
-    res.set_cookie('filter_date', filter_date)
+    res.set_cookie('filter_session_type_home', filter_session_type)
+    res.set_cookie('filter_session_date_home', filter_date)
+    res.set_cookie('sort_session_home', filter_sort)
     return res
 
 @app.route('/filter_profile', methods=['POST'])
 def filter_profile():
-    filter_session_type = request.form["filter_session_type"]
-    filter_date = request.form['filter_date']
-    sort = request.form['sort']
+    filter_session_type = request.form["filter_session_type_profile"]
+    filter_date = request.form['filter_session_date_profile']
+    sort = request.form['sort_session_profile']
     res = make_response(redirect(url_for('profile')))
     res.set_cookie('filter_session_type_profile', filter_session_type)
-    res.set_cookie('filter_date_profile', filter_date)
-    res.set_cookie('sort', sort)
+    res.set_cookie('filter_session_date_profile', filter_date)
+    res.set_cookie('sort_session_profile', sort)
     return res
 
 # adding session to mongoDB and the session page.
@@ -580,6 +626,7 @@ def insert_session():
     dateMonth = date[5:7]
     dateDay = date[8:10]
     date = dateDay + '-' + dateMonth + '-' + dateYear
+    dateSortNo = dateYear + dateMonth + dateDay
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
     motivated = request.form['motivated']
@@ -635,7 +682,7 @@ def insert_session():
     session_unit = request.form['session_unit']
     notes = request.form['notes']
 
-    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': int(dateSortNo), 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 
@@ -701,8 +748,8 @@ def insert_record():
     difficulty = request.form['difficulty'] 
     session_unit = request.form['session_unit']
     notes = request.form['notes']
-    powerliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
-    records.insert_one(powerliftingDict)
+    weightliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    records.insert_one(weightliftingDict)
     return redirect('record')
 
 
@@ -739,8 +786,11 @@ def delete_account():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
-
+    response = make_response(redirect(url_for('login_page')))
+    response.delete_cookie('sort_session_profile')
+    response.delete_cookie('filter_session_type_profile')
+    response.delete_cookie('filter_session_date_profile')
+    return response
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
     app.run(host=os.getenv("IP", "0.0.0.0"),

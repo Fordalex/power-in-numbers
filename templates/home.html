@@ -40,12 +40,13 @@
             <hr class="mb-0">
             <div class="row m-0 p-0">
                 <div class="col-12 p-0">
+                    <!-- Filter section for the session cards -->
                     <form action="{{ url_for('filter_home') }}" method="POST">
                         <div class="row m-0 p-0 py-3 bg-gray">
-                            <div class="col-6 col-md-4">
+                            <div class="col-6 col-md-3">
                                 <h6>Filter</h6>
                                 <label>Session Type:</label>
-                                <select class="form-control" name="filter_session_type">
+                                <select class="form-control" name="filter_session_type_home">
                                     {% if filter_session_type == 'weightlifting' %}
                                     <option value="weightlifting">Weightlifting</option>
                                     <option value="running">Running</option>
@@ -79,14 +80,31 @@
                                     {% endif %}
                                 </select>
                             </div>
-                            <div class="col-6 p-0 col-md-4 d-flex justify-content-center align-items-end">
+                            <div class="col-6 p-0 col-md-3 d-flex justify-content-center align-items-end">
                                 <div class="container-fluid">
                                     <label>Date:</label>
                                     <input type="date" class="form-control" value="{{ filter_date }}"
-                                        name="filter_date">
+                                        name="filter_session_date_home">
                                 </div>
                             </div>
-                            <div class="col-12 col-md-4 mt-3 d-flex justify-content-end align-items-end">
+                            <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
+                                <div class="container-fluid">
+                                    <label>Sort By:</label>
+                                    <select name="sort_session_home" class="form-control">
+                                        {% if sortCards == 'Newest First' %}
+                                        <option class="date">Newest First</option>
+                                        <option class="date">Oldest First</option>
+                                        {% elif sortCards == 'Oldest First' %}
+                                        <option class="date">Oldest First</option>
+                                        <option class="date">Newest First</option>
+                                        {% else %}
+                                        <option class="date">Newest First</option>
+                                        <option class="date">Oldest First</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
                                 <button class="main-gradient btn container-fluid">Search</button>
                             </div>
 
