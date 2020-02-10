@@ -8,7 +8,7 @@ This site is designed for people who like to stay active and need the motivation
 
 I've tried to do most of the leg work for the user, by creating an easy and enjoyable experience.
 - As a user that's just completed a training session, logging your session should be as quick and easy as possible.
-- The stats section on the profile page has been added so the user can watch their progress and easier work out the number of workouts they have completed. Using d3 and cross filter its clear to see how many session logged and the category of the sessions. Also, the distance the user has travelled by foot and bike is shown on a pie chart.
+- The stats section on the profile page has been added so the user can watch their progress and work out the number of training sessions they have completed. Using d3 and cross filter its clear to see how many session logged and the category of these sessions. Also, the distance the user has travelled by foot and bike is shown on a pie chart, so the user can compare data with ease.
 
 This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login_page) Please feel free to create an account and start making progression as soon as possible.
 

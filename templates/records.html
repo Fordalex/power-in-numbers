@@ -10,7 +10,8 @@
         <div class="container-fluid p-0">
             <div class="row m-0 mt-3 px-3">
                 <div class="col-12 m-0 p-0 d-flex align-items-center">
-                    <h3 >PIN's Best </h3><p class="m-0 p-0 ml-2">Records Saved: <b>{{ recordCount }}</b></p>
+                    <h3>PIN's Best </h3>
+                    <p class="m-0 p-0 ml-2">Records Saved: <b>{{ recordCount }}</b></p>
                 </div>
             </div>
             <div class="row m-0 p-0">
@@ -22,22 +23,25 @@
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Bench Press</h6>
                     {% if weightBenched[0] | length >= 1 %}
-                    <p class="m-0 p-0">Username:  <b class="main-colour-text">{{ weightBenched[0].username }}</b></p>
-                    <p class="m-0 p-0">Weight lifted: <b> {{ weightBenched[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
+                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ weightBenched[0].username }}</b></p>
+                    <p class="m-0 p-0">Weight lifted: <b>
+                            {{ weightBenched[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
                     {% endif %}
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Squat</h6>
                     {% if sortedSquat[0] | length >= 1 %}
                     <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortedSquat[0].username }}</b></p>
-                    <p class="m-0 p-0">Weight lifted: <b> {{ sortedSquat[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
+                    <p class="m-0 p-0">Weight lifted: <b>
+                            {{ sortedSquat[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
                     {% endif %}
                 </div>
                 <div class="col-12 col-md-4 m-0 p-0">
                     <h6>Record 1 Rep Deadlift</h6>
                     {% if sortedDeadlift[0] | length >= 1 %}
                     <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortedDeadlift[0].username }}</b></p>
-                    <p class="m-0 p-0">Weight lifted: <b> {{ sortedDeadlift[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
+                    <p class="m-0 p-0">Weight lifted: <b>
+                            {{ sortedDeadlift[0].training_session.session_weight_1 }}{{ unit }}</b> </p>
                     {% endif %}
                 </div>
             </div>
@@ -88,11 +92,11 @@
             </div>
             <div class="row m-0 p-0 px-1">
                 {% for session in sessions %}
-                <div class="col-12 col-md-6 col-lg-4 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
+                <div class="col-12 col-md-6 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                     <div class="session-card my-1 my-md-1 p-2">
                         <div class="row m-0 p-0">
                             <div class="col-6 pl-1 pr-2">
-                                {% if session.session_type == 'powerlifting' %}
+                                {% if session.session_type == 'weightlifting' %}
                                 <i class="fas fa-dumbbell float-right"></i>
                                 {% elif session.session_type == 'running' %}
                                 <i class="fas fa-running float-right mr-1"></i>
@@ -184,7 +188,7 @@
                                     <div class="card-body m-0 p-0">
                                         <div class="d-flex justify-content-center">
                                             <table class="session-table container-fluid">
-                                                {% if session.session_type == 'powerlifting' %}
+                                                {% if session.session_type == 'weightlifting' %}
                                                 <tr>
                                                     <th>Exercise</th>
                                                     <th>Sets / Reps</th>
@@ -245,7 +249,7 @@
                                                         {{ distanceUnit }}</td>
                                                     {% endif %}
                                                     {% endif %}
-                                              
+
                                                     {% set hoursToMins = session.length_hour * 60 %}
                                                     {% set totalMins = hoursToMins | int + session.length_min | int %}
                                                     <td><span
@@ -285,12 +289,15 @@
                                         {{ session.length_min }}
                                         Min(s)
                                     </p>
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 p-0">
+                                            <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row m-0 p-0">
-                                    <div class="col-7 p-0">
-                                        <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
-                                    </div>
-                                    <div class="col-5 p-0">
+
+                                    <div class="col-12 p-0">
                                         <div class="row m-0 p-0">
                                             <div class="col-12 m-0 p-0">
                                                 <p>

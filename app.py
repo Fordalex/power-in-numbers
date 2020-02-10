@@ -261,11 +261,12 @@ def profile():
     # sort the sessions by the date
     sortCards = request.cookies.get('sort_profile')
     if sortCards == 'Newest First':
-        sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)
-        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
+        sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)  
     elif sortCards == 'Oldest First':
         sessions = sessions.sort("dateSortNo", pymongo.ASCENDING)
-        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
+    else:
+        sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)
+  
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
@@ -476,7 +477,7 @@ def profile():
     totalSessionsLogged = 0
     for ses in allSessions:
         totalSessionsLogged = totalSessionsLogged + 1
-    return render_template("profile.html", sortCards=sortCards, totalSessionsLogged=totalSessionsLogged, sessions=sessions,Records=allRecords, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
+    return render_template("profile.html", sortCards=sortCards, totalSessionsLogged=totalSessionsLogged, sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
 @app.route('/usersRecords')
