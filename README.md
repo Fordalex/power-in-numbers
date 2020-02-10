@@ -96,15 +96,15 @@ To create Power In Numbers i used the following:
 
 This project is hosted on heroku, I achieved this by:
 
-1. Going to the heroku dashboard and create a new app.
-2. Then the Deploy section and down to 'deployment method' select github and link heroku to this repository.
-3. Still on the Deploy section, continue down to 'manual deploy' and press 'deploy branch'
+1. Going to the heroku dashboard and creating a new app.
+2. Then the 'Deploy' section and down to 'deployment method' select github and link heroku to this repository.
+3. Still on the Deploy section, continuing down to 'manual deploy' and pressing 'deploy branch'
 
 ### How to run locally:
 
 #### Download:
 
-1. Go to https://github.com/Fordalex/master-mind-project
+1. Go to https://github.com/Fordalex/power-in-numbers
 2. Click on 
 
 ![clone or download](https://github.com/Fordalex/master-mind-project/blob/master/readme/clone-or-download.png "clone or download")
@@ -112,6 +112,8 @@ This project is hosted on heroku, I achieved this by:
 3. Click download zip
 4. Extract zip file
 5. Import in to preferred IDE
+
+
 
 #### Using Git:
 
