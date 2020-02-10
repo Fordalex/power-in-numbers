@@ -51,6 +51,14 @@ def home():
                 filter_dictionary.update({'session_type': filter_session_type})
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
+    # sort the sessions by the date
+    sortCards = request.cookies.get('sort_session_home')
+    if sortCards == 'Newest First':
+        sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)  
+    elif sortCards == 'Oldest First':
+        sessions = sessions.sort("dateSortNo", pymongo.ASCENDING)
+    else:
+        sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)
     # total session logged by all users
     allSessions = mongo.db.sessions.find()
     sessionCount = 0
@@ -257,9 +265,8 @@ def profile():
         
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
-    
     # sort the sessions by the date
-    sortCards = request.cookies.get('sort_profile')
+    sortCards = request.cookies.get('sort_session_profile')
     if sortCards == 'Newest First':
         sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)  
     elif sortCards == 'Oldest First':
@@ -490,8 +497,8 @@ def usersRecords():
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     # get filter info from cookies
-    filter_date = request.cookies.get('filter_date_profile')
-    filter_session_type = request.cookies.get('filter_session_type_profile')  
+    filter_date = request.cookies.get('filter_date_user_records')
+    filter_session_type = request.cookies.get('filter_session_type_user_records')  
     def filter():
         filter_dictionary = {'username': currentUser}
         if filter_date:
@@ -501,15 +508,17 @@ def usersRecords():
                 filter_dictionary.update({'session_type': filter_session_type})
         
         return filter_dictionary
-    sessions = mongo.db.sessions.find(filter())
+    records = mongo.db.records.find(filter())
     # sort the sessions by the date
     sortCards = request.cookies.get('sort_profile')
     if sortCards == 'Newest First':
-        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
+        records = records.sort("dateSortNo", pymongo.DESCENDING)
     elif sortCards == 'Oldest First':
-        allRecords = allRecords.sort("dateSortNo", pymongo.DESCENDING)
+        records = records.sort("dateSortNo", pymongo.DESCENDING)
+    # all the records saved by the user
 
-    return render_template('usersRecords.html' )
+
+    return render_template('usersRecords.html', records=records)
 
 
 
@@ -741,7 +750,13 @@ def insert_record():
         training_session = request.form['distance']
     elif session_type == 'walking':
         training_session = request.form['distance']
+        # the data from the form
     date = request.form['date']
+    dateYear = date[2: 4]
+    dateMonth = date[5:7]
+    dateDay = date[8:10]
+    date = dateDay + '-' + dateMonth + '-' + dateYear
+    dateSortNo = dateYear + dateMonth + dateDay
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
     motivated = request.form['motivated']

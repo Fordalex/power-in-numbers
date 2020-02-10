@@ -40,81 +40,104 @@
                     {% endif %}
                 </div>
             </div>
-            <hr class="mb-0">
+            <div class="row">
+                <div class="col-12">
+                    <hr class="m-0">
+                </div>
+            </div>
+
             <div class="row m-0 p-0">
-                <div class="col-12 p-0">
-                    <!-- Filter section for the session cards -->
-                    <form action="{{ url_for('filter_home') }}" method="POST">
-                        <div class="row m-0 p-0 py-3 bg-gray">
-                            <div class="col-6 col-md-3">
-                                <h6>Filter</h6>
-                                <label>Session Type:</label>
-                                <select class="form-control" name="filter_session_type_home">
-                                    {% if filter_session_type == 'weightlifting' %}
-                                    <option value="weightlifting">Weightlifting</option>
-                                    <option value="running">Running</option>
-                                    <option value="walking">Walking</option>
-                                    <option value="cycling">Cycling</option>
-                                    <option value="all">All</option>
-                                    {% elif filter_session_type == 'running' %}
-                                    <option value="running">Running</option>
-                                    <option value="weightlifting">Weightlifting</option>
-                                    <option value="walking">Walking</option>
-                                    <option value="cycling">Cycling</option>
-                                    <option value="all">All</option>
-                                    {% elif filter_session_type == 'cycling' %}
-                                    <option value="cycling">Cycling</option>
-                                    <option value="running">Running</option>
-                                    <option value="walking">Walking</option>
-                                    <option value="weightlifting">Weightlifting</option>
-                                    <option value="all">All</option>
-                                    {% elif filter_session_type == 'walking' %}
-                                    <option value="walking">Walking</option>
-                                    <option value="cycling">Cycling</option>
-                                    <option value="running">Running</option>
-                                    <option value="weightlifting">Weightlifting</option>
-                                    <option value="all">All</option>
-                                    {% else %}
-                                    <option value="all">All</option>
-                                    <option value="weightlifting">Weightlifting</option>
-                                    <option value="running">Running</option>
-                                    <option value="cycling">Cycling</option>
-                                    <option value="walking">Walking</option>
-                                    {% endif %}
-                                </select>
-                            </div>
-                            <div class="col-6 p-0 col-md-3 d-flex justify-content-center align-items-end">
-                                <div class="container-fluid">
-                                    <label>Date:</label>
-                                    <input type="date" class="form-control" value="{{ filter_date }}"
-                                        name="filter_session_date_home">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
-                                <div class="container-fluid">
-                                    <label>Sort By:</label>
-                                    <select name="sort_session_home" class="form-control">
-                                        {% if sortCards == 'Newest First' %}
-                                        <option class="date">Newest First</option>
-                                        <option class="date">Oldest First</option>
-                                        {% elif sortCards == 'Oldest First' %}
-                                        <option class="date">Oldest First</option>
-                                        <option class="date">Newest First</option>
+                <div class="col-9 p-3 m-0">
+                    <p class="m-0">Morning, you have logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
+                </div>
+                <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
+                    <p>
+                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample" role="button"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            Filter
+                        </a>
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 p-0 m-0 ">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body  pb-3 pr-0 pl-0 pt-0">
+                        <!-- training sessions filter section -->
+                        <form action="{{ url_for('filter_home') }}" method="POST">
+                            <div class="row m-0 p-0">
+
+                                <div class="col-12 col-md-3 pt-3">
+                                    <h6>Filter</h6>
+                                    <label>Session Type:</label>
+                                    <select class="form-control" name="filter_session_type_home">
+                                        {% if filter_session_type == 'weightlifting' %}
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="running">Running</option>
+                                        <option value="walking">Walking</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="all">All</option>
+                                        {% elif filter_session_type == 'running' %}
+                                        <option value="running">Running</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="walking">Walking</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="all">All</option>
+                                        {% elif filter_session_type == 'cycling' %}
+                                        <option value="cycling">Cycling</option>
+                                        <option value="running">Running</option>
+                                        <option value="walking">Walking</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="all">All</option>
+                                        {% elif filter_session_type == 'walking' %}
+                                        <option value="walking">Walking</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="running">Running</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="all">All</option>
                                         {% else %}
-                                        <option class="date">Newest First</option>
-                                        <option class="date">Oldest First</option>
+                                        <option value="all">All</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="running">Running</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="walking">Walking</option>
                                         {% endif %}
                                     </select>
                                 </div>
+                                <div class="col-12 p-0 col-md-3 d-flex justify-content-center align-items-end">
+                                    <div class="container-fluid">
+                                        <label>Date:</label>
+                                        <input type="date" class="form-control" value="{{ filter_date }}"
+                                            name="filter_session_date_home">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
+                                    <div class="container-fluid">
+                                        <label>Sort By:</label>
+                                        <select name="sort_session_home" class="form-control">
+                                            {% if sortCards == 'Newest First' %}
+                                            <option class="date">Newest First</option>
+                                            <option class="date">Oldest First</option>
+                                            {% elif sortCards == 'Oldest First' %}
+                                            <option class="date">Oldest First</option>
+                                            <option class="date">Newest First</option>
+                                            {% else %}
+                                            <option class="date">Newest First</option>
+                                            <option class="date">Oldest First</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
+                                    <button class="main-gradient btn container-fluid">Search</button>
+                                </div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
-                                <button class="main-gradient btn container-fluid">Search</button>
-                            </div>
-
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+
+
             <hr class="mt-0">
             <div class="row m-0 p-0" id="session_title">
                 <div class="col-12">
