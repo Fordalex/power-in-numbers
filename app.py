@@ -487,8 +487,8 @@ def profile():
     return render_template("profile.html", sortCards=sortCards, totalSessionsLogged=totalSessionsLogged, sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
     
 
-@app.route('/usersRecords')
-def usersRecords():
+@app.route('/users_records')
+def users_records():
         # to find out if the user is already logged in
     try:
         currentUser = session['username']
@@ -570,6 +570,28 @@ def add_unit():
 
 # saving settings and filter in a session cookie
 
+@app.route('/filter_profile', methods=['POST'])
+def filter_profile():
+    filter_session_type = request.form["filter_session_type_profile"]
+    filter_date = request.form['filter_session_date_profile']
+    sort = request.form['sort_session_profile']
+    res = make_response(redirect(url_for('profile')))
+    res.set_cookie('filter_session_type_profile', filter_session_type)
+    res.set_cookie('filter_session_date_profile', filter_date)
+    res.set_cookie('sort_session_profile', sort)
+    return res
+
+@app.route('/filter_records', methods=['POST'])
+def filter_records():
+    filter_sort = request.form['sort_session_records']
+    filter_session_type = request.form["filter_session_type_records"]
+    filter_date = request.form['filter_session_date_records']
+    res = make_response(redirect(url_for('users_records')))
+    res.set_cookie('filter_session_type_records', filter_session_type)
+    res.set_cookie('filter_session_date_records', filter_date)
+    res.set_cookie('sort_session_records', filter_sort)
+    return res
+
 @app.route('/filter_home', methods=['POST'])
 def filter_home():
     filter_sort = request.form['sort_session_home']
@@ -581,16 +603,7 @@ def filter_home():
     res.set_cookie('sort_session_home', filter_sort)
     return res
 
-@app.route('/filter_profile', methods=['POST'])
-def filter_profile():
-    filter_session_type = request.form["filter_session_type_profile"]
-    filter_date = request.form['filter_session_date_profile']
-    sort = request.form['sort_session_profile']
-    res = make_response(redirect(url_for('profile')))
-    res.set_cookie('filter_session_type_profile', filter_session_type)
-    res.set_cookie('filter_session_date_profile', filter_date)
-    res.set_cookie('sort_session_profile', sort)
-    return res
+
 
 # adding session to mongoDB and the session page.
 

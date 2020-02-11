@@ -65,13 +65,13 @@
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body  pb-3 pr-0 pl-0 pt-0">
                             <!-- training sessions filter section -->
-                            <form action="{{ url_for('filter_profile') }}" method="POST">
+                            <form action="{{ url_for('filter_records') }}" method="POST">
                                 <div class="row m-0 p-0">
 
                                     <div class="col-12 col-md-3 pt-3">
                                         <h6>Filter</h6>
                                         <label>Session Type:</label>
-                                        <select class="form-control" name="filter_session_type_profile">
+                                        <select class="form-control" name="">
                                             {% if filter_session_type == 'weightlifting' %}
                                             <option value="weightlifting">Weightlifting</option>
                                             <option value="running">Running</option>
@@ -109,13 +109,13 @@
                                         <div class="container-fluid">
                                             <label>Date:</label>
                                             <input type="date" class="form-control" value="{{ filter_date }}"
-                                                name="filter_session_date_profile">
+                                                name="">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
                                         <div class="container-fluid">
                                             <label>Sort By:</label>
-                                            <select name="sort_session_profile" class="form-control">
+                                            <select name="sort_session_records" class="form-control">
                                                 {% if sortCards == 'Newest First' %}
                                                 <option class="date">Newest First</option>
                                                 <option class="date">Oldest First</option>

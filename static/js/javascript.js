@@ -333,6 +333,8 @@ function addSessionTableRecord() {
                                                     <option>Deadlift</option>
                                                     <option>Overhead Press</option>
                                                     <option>Row</option>
+                                                    <option>2 Inch Axle Grip Hold</option>
+                                                    <option>One Arm Dumbell Overhead</option>
                                                 </select>
                                             </td>
                                             <td>
