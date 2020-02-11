@@ -128,7 +128,7 @@ function addSessionTable() {
     var typeSelected = $('#session-type-option option:selected').text()
     unitSelected = $('#session-unit-option option:selected').text()
     distanceSelected = $('#session-distance-option option:selected').text()
-    var powerliftingTable = `<div class="row p-0 m-0 animated fadeInUp faster"  id="sessionTable">
+    var weightliftingTable = `<div class="row p-0 m-0 animated fadeInUp faster"  id="sessionTable">
                                 <div class="col-12 d-flex align-items-end p-0">
                                     <h3 class="float-left mr-3">Training Session</h3>
                                     <h5 class="main-colour-text">Weightlifting</h5>
@@ -144,7 +144,7 @@ function addSessionTable() {
                                         <tr>
                                             <td><input class="container-fluid" type="text" name="session_exercise_1" required></td>
                                             <td><input class="container-fluid" type="type" name="session_sets_1" required></td>
-                                            <td><input class="container-fluid" type="type" name="session_weight_1" required></td>
+                                            <td><input class="container-fluid" type="number" step="0.1" name="session_weight_1" required></td>
                                             <td class="unit-td">${unitSelected}</td>
                                         </tr>
                                     </table>
@@ -173,7 +173,7 @@ function addSessionTable() {
                                     <th>Distance (${distanceSelected}) :</th>
                                 </tr>
                                 <tr>
-                                    <td><input class="container-fluid" type="text" name="distance"></td>
+                                    <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
                                 </tr>
                             </table>
                         </div>
@@ -198,7 +198,7 @@ function addSessionTable() {
                                 <th>Distance (${distanceSelected}) :</th>
                             </tr>
                             <tr>
-                                <td><input class="container-fluid" type="text" name="distance"></td>
+                                <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
                             </tr>
                         </table>
                     </div>
@@ -223,7 +223,7 @@ function addSessionTable() {
                             <th>Distance (${distanceSelected}) :</th>
                         </tr>
                         <tr>
-                            <td><input class="container-fluid" type="text" name="distance"></td>
+                            <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
                         </tr>
                     </table>
                 </div>
@@ -240,7 +240,7 @@ function addSessionTable() {
     console.log(typeSelected)
     console.log(unitSelected)
     if (typeSelected == 'Weightlifting') {
-        $('#addSessionTable').html(powerliftingTable)
+        $('#addSessionTable').html(weightliftingTable)
     } else if (typeSelected == 'Running') {
         $('#addSessionTable').html(runningTable)
     } else if (typeSelected == 'Cycling') {
@@ -350,7 +350,7 @@ function addSessionTableRecord() {
                                                     <option>9</option>
                                                     <option>10</option>
                                                 </select></td>
-                                            <td><input class="container-fluid" type="type" name="session_weight_1" required></td>
+                                            <td><input class="container-fluid" type="number" step="0.1" name="session_weight_1" required></td>
                                             <td class="unit-td">${unitSelectedRecord}</td>
                                         </tr>
                                     </table>
@@ -376,7 +376,7 @@ function addSessionTableRecord() {
                                     <th>Distance (${distanceSelectedRecord}) :</th>
                                 </tr>
                                 <tr>
-                                    <td><input class="container-fluid" type="text" name="distance"></td>
+                                    <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
                                 </tr>
                             </table>
                         </div>
@@ -401,7 +401,7 @@ function addSessionTableRecord() {
                                 <th>Distance (${distanceSelectedRecord}) :</th>
                             </tr>
                             <tr>
-                                <td><input class="container-fluid" type="text" name="distance"></td>
+                                <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
                             </tr>
                         </table>
                     </div>
@@ -426,7 +426,7 @@ function addSessionTableRecord() {
                             <th>Distance (${distanceSelectedRecord}) :</th>
                         </tr>
                         <tr>
-                            <td><input class="container-fluid" type="text" name="distance"></td>
+                            <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
                         </tr>
                     </table>
                 </div>

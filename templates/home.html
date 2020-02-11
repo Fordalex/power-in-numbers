@@ -255,7 +255,7 @@
                                                     </td>
                                                     <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
                                                     </td>
-                                                    {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | int %}
+                                                    {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | float %}
                                                     {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
                                                     <td>{{ weight_lifted }}{{ unit }}
                                                     </td>
@@ -289,7 +289,7 @@
                                                     </td>
                                                     {% endif %}
                                                     {% if session.session_unit == 'km' %}
-                                                    {% set distance_traveled = session.training_session | int * 0.62 %}
+                                                    {% set distance_traveled = session.training_session | float * 0.62 %}
                                                     <td><span class="toFixed1">
                                                             {{ distance_traveled }}</span>
                                                         {{ distanceUnit }}</td>

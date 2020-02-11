@@ -14,7 +14,7 @@ This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.her
 
 The main theme of the site is blue, white and black. I have created a seamless background image and added this on most pages to make the site feel the same, as the user navigates throughout. 
 
-Trying to keep the feel of the site competitive but also motivating, by adding small bits of data on how many sessions have been logged that day, how far as a group the page has travelled and the best records on display, were to try and motivate people to fit in.
+Trying to keep the feel of the site competitive but also motivating, by adding small bits of data on how many sessions have been logged that day, how far as a group the page has travelled and the best records on display, these were added to try and motivate people by seeing other users working hard.
 
 ## Features
 
@@ -24,8 +24,6 @@ Trying to keep the feel of the site competitive but also motivating, by adding s
 - The home page has an array of filters, so depending on the users goals they can see a collection of the session types on the date they are interested in.
 - Record page will hold all the users personal records and also a filter function to help the user find the content they are after.
 - A settings page to change the weight/distance unit to fit different user types. 
- 
-### Existing Feature
 
 The login page: 
 - I've added the custom made background image and a user count on first page the user is faced with.
@@ -39,11 +37,10 @@ Profile:
 Records:
 
 
-
-
 ### Features Left to Implement
 
 - I would like to create a tutioral that the user can follow so they can understand how to user the site.
+- I would like a section were the user is able to store their bodyweight and track their progression with a line graph.
 
 ## Technologies Used
 
@@ -83,7 +80,7 @@ To create Power In Numbers i used the following:
     - The project uses **JQuery** to simplify DOM manipulation.
 
 - [Python]()
-    - The project uses **JQuery** to simplify DOM manipulation.
+    - This HLL **Python** was used for the backend of this project, dealing with pulling data from mongoDB and managing the routes.
 
 - [Flask](https://www.fullstackpython.com/flask.html)
     - **Flask** is a micro framework used.

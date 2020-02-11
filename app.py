@@ -74,13 +74,13 @@ def home():
     def countDistanceOnFootMiles():
         distanceCount = 0
         for distance in allDistanceByFootMiles:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # count the km traveled on foot
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # convert the kms into miles then add them together
     distanceOnFootMiles = countDistanceOnFootMiles()
@@ -101,13 +101,13 @@ def home():
     def countDistanceOnFootMiles():
         distanceCount = 0
         for distance in allDistanceByFootMiles:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # count the km traveled on foot
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # convert the kms into miles then add them together
     distanceOnFootMiles = countDistanceOnFootMiles()
@@ -128,13 +128,13 @@ def home():
     def countDistanceOnFootMiles():
         distanceCount = 0
         for distance in allDistanceByFootMiles:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # count the km traveled on foot
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # convert the kms into miles then add them together
     distanceOnFootMiles = countDistanceOnFootMiles()
@@ -281,15 +281,15 @@ def profile():
     allDistanceByFootKm = mongo.db.sessions.find({'username': currentUser, 'session_type': 'running', 'session_unit': 'km'})
     # count the miles traveled on foot
     def countDistanceOnFootMiles():
-        distanceCount = 0
+        distanceCount = 0.0
         for distance in allDistanceByFootMiles:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # count the km traveled on foot
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # convert the kms into miles then add them together
     distanceOnFootMiles = countDistanceOnFootMiles()
@@ -310,13 +310,13 @@ def profile():
     def countDistanceOnFootMiles():
         distanceCount = 0
         for distance in allDistanceByFootMiles:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # count the km traveled on bike
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # convert the kms into miles then add them together
     distanceOnFootMiles = countDistanceOnFootMiles()
@@ -338,13 +338,13 @@ def profile():
     def countDistanceOnFootMiles():
         distanceCount = 0
         for distance in allDistanceByFootMiles:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # count the km traveled by walking
     def countDistanceOnFootKm():
         distanceCount = 0
         for distance in allDistanceByFootKm:
-            distanceCount = int(distance["training_session"]) + distanceCount
+            distanceCount = float(distance["training_session"]) + distanceCount
         return distanceCount
     # convert the kms into miles then add them together
     distanceOnFootMiles = countDistanceOnFootMiles()
@@ -686,7 +686,7 @@ def insert_session():
             session_exercise = request.form[exercise]
             session_sets = request.form[sets]
             session_weight = request.form[weight]
-            sessionDict = { exercise: session_exercise, sets : session_sets, weight : int(session_weight) }
+            sessionDict = { exercise: session_exercise, sets : session_sets, weight : float(session_weight) }
             session_row_return.append(sessionDict)
         return session_row_return
 
@@ -710,7 +710,7 @@ def insert_session():
     session_unit = request.form['session_unit']
     notes = request.form['notes']
 
-    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': int(dateSortNo), 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': int(dateSortNo), 'length_hour': int(length_hour), 'length_min': float(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 
@@ -761,13 +761,13 @@ def insert_record():
     bw_unit = login_user.get('bw_unit')
     # checking the session type
     if session_type == 'weightlifting':
-        training_session = {'session_exercise_1': request.form['session_exercise_1'],'session_sets_1': request.form['session_sets_1'] , 'session_weight_1': request.form['session_weight_1']}
+        training_session = {'session_exercise_1': request.form['session_exercise_1'],'session_sets_1': request.form['session_sets_1'] , 'session_weight_1': float(request.form['session_weight_1'])}
     elif session_type == 'running':
-        training_session = request.form['distance']
+        training_session = float(request.form['distance'])
     elif session_type == 'cycling':
-        training_session = request.form['distance']
+        training_session = float(request.form['distance'])
     elif session_type == 'walking':
-        training_session = request.form['distance']
+        training_session = float(request.form['distance'])
         # the data from the form
     date = request.form['date']
     dateYear = date[2: 4]
