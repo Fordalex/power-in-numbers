@@ -514,11 +514,16 @@ def usersRecords():
     if sortCards == 'Newest First':
         records = records.sort("dateSortNo", pymongo.DESCENDING)
     elif sortCards == 'Oldest First':
+        records = records.sort("dateSortNo", pymongo.ASCENDING)
+    else:
         records = records.sort("dateSortNo", pymongo.DESCENDING)
     # all the records saved by the user
+    allRecords = mongo.db.records.find({'username': currentUser})
+    recordCount = 0
+    for record in allRecords:
+        recordCount += 1
 
-
-    return render_template('usersRecords.html', records=records)
+    return render_template('usersRecords.html', records=records, allRecords=recordCount)
 
 
 
@@ -725,7 +730,7 @@ def record():
         recordCountStore += 1
     
 
-    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, sessions=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift)
+    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift)
 
 @app.route('/insert_record', methods=['POST'])
 def insert_record():
@@ -764,7 +769,7 @@ def insert_record():
     difficulty = request.form['difficulty'] 
     session_unit = request.form['session_unit']
     notes = request.form['notes']
-    weightliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    weightliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': dateSortNo, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     records.insert_one(weightliftingDict)
     return redirect('record')
 
