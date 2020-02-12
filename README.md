@@ -40,7 +40,9 @@ Records:
 ### Features Left to Implement
 
 - I would like to create a tutioral that the user can follow so they can understand how to user the site.
-- I would like a section were the user is able to store their bodyweight and track their progression with a line graph.
+- A section were the user is able to store their bodyweight and track their progression with a line graph.
+- On the records page I would like a carasel showing the best records and the users information.
+- Another page to be able to track your training plans.
 
 ## Technologies Used
 

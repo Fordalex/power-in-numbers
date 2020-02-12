@@ -19,21 +19,37 @@
                                     </div>
 
                                 </div>
-                                <div class="col-6 col-md-6 m-0 p-0">
+                                <div class="col-2 pl-0 m-0 pr-2">
                                     <div class="container-fluid p-0">
                                         <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
-                                        <input type="number" class="form-control" placeholder="hour(s)"
+                                        <input type="number" class="form-control" placeholder="1"
                                             name="length_hour" required>
                                     </div>
                                 </div>
-                                <div class="col-6 p-0">
-                                    <div class="container-fluid p-0 pl-3">
-                                        <label class="mb-1" for="exampleFormControlSelect1">Minute:</label>
-                                        <input type="number" class="form-control" placeholder="Minute(s)"
+                                <div class="col-2 p-0 pr-2">
+                                    <div class="container-fluid p-0">
+                                        <label class="mb-1" for="exampleFormControlSelect1">Mins:</label>
+                                        <input type="number" class="form-control" placeholder="00"
                                             name="length_min" required>
                                     </div>
                                 </div>
-                           
+                                <div class="col-2 p-0">
+                                    <div class="container-fluid p-0">
+                                        <label class="mb-1" for="exampleFormControlSelect1">Secs:</label>
+                                        <input type="number" class="form-control" placeholder="00"
+                                            name="length_min" required>
+                                    </div>
+                                </div>
+                                <div class="col-6 pl-2 p-0">
+                                    <label class="mb-1">Session Type:</label>
+                                    <select id="session-type-option" name="session_type"
+                                        class="form-control container-fluid" onclick="backToFormStartRecord()" required>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="running">Running</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="walking">Walking</option>
+                                    </select>
+                                </div>
                                 <div class="col-12 p-0 my-3 d-flex justify-content-around">
                                     <div class="stats-container container-fluid">
                                         <p class="text-center">Motivated:</p>
@@ -65,16 +81,7 @@
                                 <div class="col-12 p-0">
                                     <hr class="my-2">
                                 </div>
-                                <div class="col-12 p-0">
-                                    <label>Session Type:</label>
-                                    <select id="session-type-option" name="session_type"
-                                        class="form-control container-fluid" onclick="backToFormStartRecord()" required>
-                                        <option value="weightlifting">Weightlifting</option>
-                                        <option value="running">Running</option>
-                                        <option value="cycling">Cycling</option>
-                                        <option value="walking">Walking</option>
-                                    </select>
-                                </div>
+                               
                                 <div class="col-12 p-0" id="firstNextButtonContainer" >
                                     <button id="firstNextButton" class="btn btn-dark unit-button my-3 container-fluid px-0"
                                         name="unit" onclick="addSessionFirstNextRecord()" >Next</button>
