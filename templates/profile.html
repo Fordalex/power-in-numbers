@@ -320,7 +320,7 @@
                                                                 {% if session.session_type == 'weightlifting' %}
                                                                 <tr>
                                                                     <th>Exercise</th>
-                                                                    <th>Sets / Reps</th>
+                                                                    <th>Sets X Reps</th>
                                                                     <th>Weight</th>
                                                                 </tr>
                                                                 {% for row in range(session.session_rows | int) %}
@@ -328,7 +328,9 @@
                                                                 <tr>
                                                                     <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
                                                                     </td>
-                                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
+                                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }} X {{ session.training_session[row]['session_reps_' + rowIndex | string] }}
+                                                                    
+                                                                    
                                                                     </td>
                                                                     {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | float %}
                                                                     {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
@@ -428,7 +430,7 @@
                                                     <p class="m-0 mt-4"><b>Session Type:</b>
                                                         {{ session.session_type }}
                                                     </p>
-                                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : {{ session.length_sec }}<small>s</small>
+                                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : <span class="m-0 toFixed0">{{ session.length_sec }}</span><small>s</small>
                                                         
                                                     </p>
                                                     <div class="row m-0 p-0">
@@ -682,23 +684,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-
-
-
-
-
-
-
-
-                                <div class="row m-0">
-                                    <div class="col-12 m-0 p-0">
-                                        <hr class="mt-0">
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12">
+                         
+                                    <div class="col-12 col-md-6">
                                         <div class="d-flex align-items-center justify-content-center">
                                             <div>
                                                 <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i>
@@ -714,24 +701,20 @@
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 d-flex justify-content-center">
+                          
+                                    <div class="col-12 col-md-6 d-flex justify-content-center">
                                         <h1>Badges</h1>
                                     </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
+                        
+                                    <div class="col-12 col-md-6 p-0">
                                         <hr>
                                     </div>
-                                </div>
-                                <div class="row m-0 p-0  ">
-                                    <div class="col-12 m-0">
+                        
+                                    <div class="col-12 col-md-6 m-0">
                                         <h6>Sessions Logged</h6>
                                         <p><b>Total</b>: {{ totalSessionsLogged }}</p>
                                     </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
+                          
                                     <div class="col-12 m-0 p-0 d-flex justify-content-around">
                                         {% if totalSessionsLogged | int >= 10 %}
                                         <div class="badge-container first-badge">
@@ -788,13 +771,7 @@
                                         </div>
                                         {% endif %}
                                     </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0  ">
+                         
                                     <div class="col-12 m-0">
                                         <h6>Distance By Foot</h6>
                                         <p><b>Total</b>: {{ allDistanceByFoot }} {{ distanceUnit }}s</p>

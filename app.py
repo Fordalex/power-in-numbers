@@ -657,6 +657,7 @@ def insert_session():
     dateSortNo = dateYear + dateMonth + dateDay
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
+    length_sec = request.form['length_sec']
     motivated = request.form['motivated']
     effort = request.form['effort']
     difficulty = request.form['difficulty']
@@ -682,11 +683,13 @@ def insert_session():
         for row in range(1, row_count + 1):
             exercise = 'session_exercise_' + str(row)
             sets = 'session_sets_' + str(row)
+            reps = 'session_reps_' + str(row)
             weight = 'session_weight_' + str(row)
             session_exercise = request.form[exercise]
             session_sets = request.form[sets]
+            session_reps = request.form[reps]
             session_weight = request.form[weight]
-            sessionDict = { exercise: session_exercise, sets : session_sets, weight : float(session_weight) }
+            sessionDict = { exercise: session_exercise, sets : session_sets, reps : session_reps, weight : float(session_weight) }
             session_row_return.append(sessionDict)
         return session_row_return
 
@@ -710,7 +713,7 @@ def insert_session():
     session_unit = request.form['session_unit']
     notes = request.form['notes']
 
-    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': int(dateSortNo), 'length_hour': int(length_hour), 'length_min': float(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': int(dateSortNo), 'length_hour': int(length_hour), 'length_min': float(length_min), 'length_sec': float(length_sec), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 

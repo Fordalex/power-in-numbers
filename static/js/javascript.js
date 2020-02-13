@@ -48,10 +48,12 @@ var rowIndex = 1;
 
 function createRow() {
     rowIndex++;
-    $('#session_table').append(` <tr>
+    $('#session_table').append(` <tr id="table_row_${rowIndex}">
     <td><input class="container-fluid" type="text" name="session_exercise_${rowIndex}" required></td>
-    <td><input class="container-fluid" type="type" name="session_sets_${rowIndex}" required></td>
-    <td><input class="container-fluid d-flex justify-content-end" type="type" name="session_weight_${rowIndex}" required></td>
+    <td class="d-flex justify-content-center">
+    <input class="container-fluid float-left" type="number" step="1" name="session_sets_${rowIndex}" required>X
+    <input class="container-fluid" type="number" step="1" name="session_reps_${rowIndex}" required></td>                              
+    <td><input class="container-fluid d-flex justify-content-end" type="number" step="0.25" name="session_weight_${rowIndex}" required></td>
     <td class="unit-td">${unitSelected}</td>
 </tr>`)
     console.log('working')
@@ -143,14 +145,15 @@ function addSessionTable() {
                                     <table class="session-table container-fluid mt-3" id="session_table">
                                         <tr>
                                             <th>Exercise:</th>
-                                            <th>Sets / Reps:</th>
+                                            <th>Sets X Reps:</th>
                                             <th>Weight:</th>
                                             <th class="unit-td"><i class="fas fa-balance-scale"></i></th>
                                         </tr>
                                         <tr>
                                             <td><input class="container-fluid" type="text" name="session_exercise_1" required></td>
-                                            <td><input class="container-fluid" type="type" name="session_sets_1" required></td>
-                                            <td><input class="container-fluid" type="number" step="0.1" name="session_weight_1" required></td>
+                                            <td class="d-flex justify-content-center"><input class="container-fluid float-left" type="number" step="1" name="session_sets_1" required>X
+                                            <input class="container-fluid" type="number" step="1" name="session_reps_1" required></td>
+                                            <td><input class="container-fluid" type="number" step="0.25" name="session_weight_1" required></td>
                                             <td class="unit-td">${unitSelected}</td>
                                         </tr>
                                     </table>
