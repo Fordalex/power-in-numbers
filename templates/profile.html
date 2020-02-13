@@ -112,7 +112,7 @@
                             <!-- Section with all the sessions -->
                             <div class="row m-0 p-0">
                                 <div class="col-9 p-3 m-0">
-                                    <p class="m-0">Morning, you have logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
+                                    <p class="m-0"><span id="greetingMessage" class="text-center"></span>, you have logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
                                 </div>
                                 <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
                                     <p>
@@ -361,27 +361,27 @@
                                                                     {% if distanceUnit == 'mile'%}{% if session.session_unit == 'mile' %}
                                                                     {% set distance_traveled = session.training_session %}
                                                                     <td>{{ distance_traveled }}
-                                                                        {{ distanceUnit }}
+                                                                        {{ distanceUnit }}s
                                                                     </td>
                                                                     {% endif %}
                                                                     {% if session.session_unit == 'km' %}
                                                                     {% set distance_traveled = session.training_session | int * 0.62 %}
                                                                     <td><span class="toFixed1">
                                                                             {{ distance_traveled }}</span>
-                                                                        {{ distanceUnit }}</td>
+                                                                        {{ distanceUnit }}s</td>
                                                                     {% endif %}
                                                                     {% endif %}
                                                                     {% if distanceUnit == 'km' %}{% if session.session_unit == 'km' %}
                                                                     {% set distance_traveled = session.training_session %}
                                                                     <td>{{ distance_traveled }}
-                                                                        {{ distanceUnit }}
+                                                                        {{ distanceUnit }}s
                                                                     </td>
                                                                     {% endif %}
                                                                     {% if session.session_unit == 'mile' %}
                                                                     {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
                                                                     <td><span
                                                                             class="toFixed1">{{ distance_traveled }}</span>
-                                                                        {{ distanceUnit }}</td>
+                                                                        {{ distanceUnit }}s</td>
                                                                     {% endif %}
                                                                     {% endif %}
 
@@ -428,7 +428,7 @@
                                                     <p class="m-0 mt-4"><b>Session Type:</b>
                                                         {{ session.session_type }}
                                                     </p>
-                                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }} : {{ session.length_min }} : {{ session.length_sec }}
+                                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : {{ session.length_sec }}<small>s</small>
                                                         
                                                     </p>
                                                     <div class="row m-0 p-0">
@@ -761,7 +761,7 @@
                                                 <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }}
                                                     </b>
                                                     Hours
-                                                    <b>{{totalTimeMins }}</b> Mins </p>
+                                                    <b class="toFixed0">{{totalTimeMins }}</b> Mins </p>
                                             </div>
 
                                         </div>

@@ -48,7 +48,7 @@
 
             <div class="row m-0 p-0">
                 <div class="col-9 p-3 m-0">
-                    <p class="m-0">Morning, you have logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
+                    <p class="m-0">, you have logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
                 </div>
                 <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
                     <p>
@@ -342,10 +342,7 @@
                                     </div>
                                     <p class="m-0 mt-4"><b>Session Type:</b> {{ session.session_type }}
                                     </p>
-                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }} Hour(s)
-                                        {{ session.length_min }}
-                                        Min(s)
-                                    </p>
+                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : {{ session.length_sec }}<small>s</small>
                                     <div class="row m-0 p-0">
                                         <div class="col-12 p-0">
                                             <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>

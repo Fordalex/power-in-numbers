@@ -100,10 +100,16 @@ $('#unit').on('click', function () {
 })
 
 // convert a float into an interger
+var toFixed0 = document.getElementsByClassName('toFixed0')
 var toFixed1 = document.getElementsByClassName('toFixed1')
 var toFixed2 = document.getElementsByClassName('toFixed2')
 
 function fixFloat() {
+    for (i = 0; i < toFixed0.length; i++) {
+        unitNum = toFixed0[i].textContent
+        unitNum = parseFloat(unitNum).toFixed(0)
+        toFixed0[i].innerHTML = unitNum;
+    }
     for (i = 0; i < toFixed1.length; i++) {
         unitNum = toFixed1[i].textContent
         unitNum = parseFloat(unitNum).toFixed(1)

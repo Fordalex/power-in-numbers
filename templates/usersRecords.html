@@ -325,11 +325,7 @@
                                     <p class="m-0 mt-4"><b>Record Type:</b>
                                         {{ record.session_type }}
                                     </p>
-                                    <p class="m-0"><b>Length:</b> {{ record.length_hour }}
-                                        Hour(s)
-                                        {{ record.length_min }}
-                                        Min(s)
-                                    </p>
+                                    <p class="m-0"><b>Length:</b> {{ record.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ record.length_min }}</span><small>m</small> : {{ record.length_sec }}<small>s</small>
                                     <div class="row m-0">
                                         <div class="col-12 p-0">
                                             <p class="m-0 p-0"><b>Notes:</b> {{ record.notes }}
