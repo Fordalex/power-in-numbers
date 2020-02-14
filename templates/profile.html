@@ -8,6 +8,8 @@
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js">
 </script>
+<!-- needed to overide DC styles -->
+<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
 <!-- Return to the top button -->
 <a onclick="backToTop()" class="justify-content-center align-items-center return-top-button animated slideInUp faster"
     id="back-to-top">
@@ -112,94 +114,99 @@
                             <!-- Section with all the sessions -->
                             <div class="row m-0 p-0">
                                 <div class="col-9 p-3 m-0">
-                                    <p class="m-0"><span id="greetingMessage" class="text-center"></span>, you have logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
+                                    <p class="m-0"><span id="greetingMessage" class="text-center"></span>, you have
+                                        logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
                                 </div>
                                 <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
                                     <p>
-                                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                          Filter
+                                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample"
+                                            role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            Filter
                                         </a>
-                              
-                                      </p>
+
+                                    </p>
                                 </div>
-                            </div> 
-                            <div class="col-12 p-0 m-0 ">
-                                  <div class="collapse" id="collapseExample">
-                                    <div class="card card-body  pb-3 pr-0 pl-0 pt-0">
-                                      <!-- training sessions filter section -->
-                                <form action="{{ url_for('filter_profile') }}" method="POST">
-                                    <div class="row m-0 p-0">
-                                   
-                                        <div class="col-12 col-md-3 pt-3">
-                                            <h6>Filter</h6>
-                                            <label>Session Type:</label>
-                                            <select class="form-control" name="filter_session_type_profile">
-                                                {% if filter_session_type == 'weightlifting' %}
-                                                <option value="weightlifting">Weightlifting</option>
-                                                <option value="running">Running</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="all">All</option>
-                                                {% elif filter_session_type == 'running' %}
-                                                <option value="running">Running</option>
-                                                <option value="weightlifting">Weightlifting</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="all">All</option>
-                                                {% elif filter_session_type == 'cycling' %}
-                                                <option value="cycling">Cycling</option>
-                                                <option value="running">Running</option>
-                                                <option value="walking">Walking</option>
-                                                <option value="weightlifting">Weightlifting</option>
-                                                <option value="all">All</option>
-                                                {% elif filter_session_type == 'walking' %}
-                                                <option value="walking">Walking</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="running">Running</option>
-                                                <option value="weightlifting">Weightlifting</option>
-                                                <option value="all">All</option>
-                                                {% else %}
-                                                <option value="all">All</option>
-                                                <option value="weightlifting">Weightlifting</option>
-                                                <option value="running">Running</option>
-                                                <option value="cycling">Cycling</option>
-                                                <option value="walking">Walking</option>
-                                                {% endif %}
-                                            </select>
-                                        </div>
-                                        <div class="col-12 p-0 col-md-3 d-flex justify-content-center align-items-end">
-                                            <div class="container-fluid">
-                                                <label>Date:</label>
-                                                <input type="date" class="form-control" value="{{ filter_date }}"
-                                                    name="filter_session_date_profile">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
-                                            <div class="container-fluid">
-                                                <label>Sort By:</label>
-                                                <select name="sort_session_profile" class="form-control">
-                                                    {% if sortCards == 'Newest First' %}
-                                                    <option class="date">Newest First</option>
-                                                    <option class="date">Oldest First</option>
-                                                    {% elif sortCards == 'Oldest First' %}
-                                                    <option class="date">Oldest First</option>
-                                                    <option class="date">Newest First</option>
-                                                    {% else %}
-                                                    <option class="date">Newest First</option>
-                                                    <option class="date">Oldest First</option>
-                                                    {% endif %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
-                                            <button class="main-gradient btn container-fluid">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                    </div>
-                                  </div>
                             </div>
-                     
+                            <div class="col-12 p-0 m-0 ">
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body  pb-3 pr-0 pl-0 pt-0">
+                                        <!-- training sessions filter section -->
+                                        <form action="{{ url_for('filter_profile') }}" method="POST">
+                                            <div class="row m-0 p-0">
+
+                                                <div class="col-12 col-md-3 pt-3">
+                                                    <h6>Filter</h6>
+                                                    <label>Session Type:</label>
+                                                    <select class="form-control" name="filter_session_type_profile">
+                                                        {% if filter_session_type == 'weightlifting' %}
+                                                        <option value="weightlifting">Weightlifting</option>
+                                                        <option value="running">Running</option>
+                                                        <option value="walking">Walking</option>
+                                                        <option value="cycling">Cycling</option>
+                                                        <option value="all">All</option>
+                                                        {% elif filter_session_type == 'running' %}
+                                                        <option value="running">Running</option>
+                                                        <option value="weightlifting">Weightlifting</option>
+                                                        <option value="walking">Walking</option>
+                                                        <option value="cycling">Cycling</option>
+                                                        <option value="all">All</option>
+                                                        {% elif filter_session_type == 'cycling' %}
+                                                        <option value="cycling">Cycling</option>
+                                                        <option value="running">Running</option>
+                                                        <option value="walking">Walking</option>
+                                                        <option value="weightlifting">Weightlifting</option>
+                                                        <option value="all">All</option>
+                                                        {% elif filter_session_type == 'walking' %}
+                                                        <option value="walking">Walking</option>
+                                                        <option value="cycling">Cycling</option>
+                                                        <option value="running">Running</option>
+                                                        <option value="weightlifting">Weightlifting</option>
+                                                        <option value="all">All</option>
+                                                        {% else %}
+                                                        <option value="all">All</option>
+                                                        <option value="weightlifting">Weightlifting</option>
+                                                        <option value="running">Running</option>
+                                                        <option value="cycling">Cycling</option>
+                                                        <option value="walking">Walking</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                                <div
+                                                    class="col-12 p-0 col-md-3 d-flex justify-content-center align-items-end">
+                                                    <div class="container-fluid">
+                                                        <label>Date:</label>
+                                                        <input type="date" class="form-control"
+                                                            value="{{ filter_date }}"
+                                                            name="filter_session_date_profile">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
+                                                    <div class="container-fluid">
+                                                        <label>Sort By:</label>
+                                                        <select name="sort_session_profile" class="form-control">
+                                                            {% if sortCards == 'Newest First' %}
+                                                            <option class="date">Newest First</option>
+                                                            <option class="date">Oldest First</option>
+                                                            {% elif sortCards == 'Oldest First' %}
+                                                            <option class="date">Oldest First</option>
+                                                            <option class="date">Newest First</option>
+                                                            {% else %}
+                                                            <option class="date">Newest First</option>
+                                                            <option class="date">Oldest First</option>
+                                                            {% endif %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
+                                                    <button class="main-gradient btn container-fluid">Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
                             <hr class="mt-0">
                             <!-- training session cards -->
                             <div class="row m-0 p-0" id="session_title">
@@ -209,8 +216,7 @@
                             </div>
                             <div class="row m-0 p-0 p-lg-1">
                                 {% for session in sessions %}
-                                <div
-                                    class="col-12 col-md-6 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
+                                <div class="col-12 col-md-6 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                                     <div class="session-card my-1 my-md-1 p-1">
                                         <div class="row m-0 p-0">
                                             <div class="col-6 pl-1 pr-2">
@@ -328,9 +334,11 @@
                                                                 <tr>
                                                                     <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
                                                                     </td>
-                                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }} X {{ session.training_session[row]['session_reps_' + rowIndex | string] }}
-                                                                    
-                                                                    
+                                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
+                                                                        X
+                                                                        {{ session.training_session[row]['session_reps_' + rowIndex | string] }}
+
+
                                                                     </td>
                                                                     {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | float %}
                                                                     {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
@@ -396,7 +404,7 @@
                                                                 {% endif %}
                                                             </table>
                                                         </div>
-                                                       
+
                                                     </div>
                                                     <div class="card-body m-0 p-0 mt-3">
                                                         <h5>Motivated</h5>
@@ -430,8 +438,12 @@
                                                     <p class="m-0 mt-4"><b>Session Type:</b>
                                                         {{ session.session_type }}
                                                     </p>
-                                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : <span class="m-0 toFixed0">{{ session.length_sec }}</span><small>s</small>
-                                                        
+                                                    <p class="m-0"><b>Length:</b>
+                                                        {{ session.length_hour }}<small>h</small> : <span
+                                                            class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small>
+                                                        : <span
+                                                            class="m-0 toFixed0">{{ session.length_sec }}</span><small>s</small>
+
                                                     </p>
                                                     <div class="row m-0 p-0">
                                                         <div class="col-12 p-0">
@@ -440,9 +452,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                              
+
                                                 <div class="row m-0 p-0">
-                                                  
+
                                                     <div class="col-12 p-0">
                                                         <div class="row m-0 p-0">
                                                             <div class="col-12 m-0 p-0">
@@ -486,7 +498,7 @@
                             aria-labelledby="profile-tab">
                             <div class="col-12 m-0 p-0">
                                 <div class="row m-0 p-0">
-                                    <div class="col-12 col-lg-6 m-0 p-3">
+                                    <div class="col-12 m-0 p-3">
                                         <div class="row m-0 p-0">
                                             <div class="col-12 p-0">
                                                 <h3 class="text-center my-3">Total sessions logged</h3>
@@ -511,30 +523,30 @@
                                                 {% endif %}
                                             </div>
                                             <div
-                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-book"></i> <b>Logged:</b>
                                                     {{ totalSessionsLogged }}
                                                 </p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-dumbbell"></i>
                                                     </b><b>Weightlifting:
                                                         {{ totalWeightliftingSessions }}</b></p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i>
                                                     </b><b>Running:
                                                         {{ totalRunningSessions }}</b></p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"><i class="fas fa-biking mr-1"></i></b><b>Cycling:
                                                         {{ totalCyclingSessions }}</b></p>
                                             </div>
                                             <div
-                                                class="col-6 col-sm-4 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
+                                                class="col-6 col-sm-2 py-1 p-sm-0 d-flex align-items-center animated fadeIn">
                                                 <p class="m-0 p-0"><i
                                                         class="fas fa-shoe-prints mr-1"></i></b><b>Walking:
                                                         {{ totalWalkingSessions }}
@@ -546,13 +558,13 @@
                                             </div>
 
 
-                                            <div class="col-6 col-md-6 d-flex justify-content-center animated fadeIn">
+                                            <div class="col-12 col-md-6 my-3 d-flex justify-content-center animated fadeIn">
                                                 <div>
                                                     <h6 class="text-center">Session Type</h6>
                                                     <div id="sessionTypePie"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6 col-md-6 d-flex justify-content-center animated fadeIn">
+                                            <div class="col-12 col-md-6 my-3  d-flex justify-content-center animated fadeIn">
                                                 <div>
                                                     <h6 class="text-center">Total Sessions</h6>
                                                     <div id="totalSessionBar"></div>
@@ -561,7 +573,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-12 col-lg-6 m-0 p-3 animated fadeIn border">
+                                    <div class="col-12 m-0 p-3 animated fadeIn border">
                                         <div class="row m-0 p-0 px-3">
                                             <div class="col-12 p-0">
                                                 <h3 class="text-center my-3">Total Distance Traveled
@@ -570,7 +582,7 @@
                                             </div>
                                         </div>
                                         <div class="row m-0 p-0 my-lg-4">
-                                            <div class="col-6 col-md-4 p-0">
+                                            <div class="col-6 col-md-2 p-0">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i
                                                             class="fas fa-shoe-prints mr-1"></i></b><b>Walked:</b><span
@@ -578,14 +590,14 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-6 col-md-4 p-0 ">
+                                            <div class="col-6 col-md-2 p-0 ">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i class="fas fa-running mr-1"></i>
                                                         </b><b>Ran:</b>
                                                         {{ allDistanceByFoot }}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-4 p-0">
+                                            <div class="col-12 col-md-2 p-0">
                                                 <div class="py-1 p-sm-0 d-flex align-items-center">
                                                     <p class="m-0 p-0"> <i class="fas fa-biking"></i>
                                                         </b><b>Cycled:
@@ -600,15 +612,15 @@
                                                 <hr>
                                             </div>
                                         </div>
-                                        <div class="row m-0 p-0 px-4">
-                                            <div id="bounceInLeft" class="col-6 col-md-6 d-flex justify-content-center">
+                                        <div class="row m-0 p-0 px-4 ">
+                                            <div class="col-12 col-md-6 d-flex justify-content-center my-3">
                                                 <div>
                                                     <h6 class="text-center">Total Distance ({{distanceUnit}}s)
                                                     </h6>
                                                     <div id="distanceBar"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-6  col-md-6 d-flex justify-content-center">
+                                            <div class="col-12 col-md-6 d-flex justify-content-center my-3">
                                                 <div>
                                                     <h6 class="text-center">Travel Type</h6>
                                                     <div id="distancePie"></div>
@@ -626,64 +638,64 @@
 
 
 
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 col-md-6 p-0 border">
+                                <div class="row m-0 p-0 mb-4">
+                                    <div class="col-12 col-md-6">
                                         <div class="row m-0 p-0">
-                                            <div class="col-12 p-0 d-flex justify-content-center">
-                                                <h3 class="text-center my-3">Records</h3>
-                                            </div>
-                                            <div class="col-12 py-1 p-sm-0 p-1 d-flex justify-content-center">
-                                                <div class="container-fluid p-0">
 
-                                                    <div class="row m-0 p-0 px-3">
-                                                        <div class="col-12 p-0">
-                                                            <p>Total Records Saved:</p>
-                                                        </div>
-                                                        <div class="col-12 p-0 d-flex justify-content-center">
-                                                            <table class="records-table mb-3">
-                                                                <tr>
-                                                                    <th>Squat 10 Reps:</th>
-                                                                    <td></td>
-                                                                    <th>Squat 1 Rep:</th>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Bench Press 10 Reps:</th>
-                                                                    <td></td>
-                                                                    <th>Bench Press 1 Rep:</th>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Deadlift 10 Reps:</th>
-                                                                    <td></td>
-                                                                    <th>Deadlift 1 Rep:</th>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Fastest Mile Ran:</th>
-                                                                    <td></td>
-                                                                    <th>Longest Walk:</th>
-                                                                    <td></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th>Longest Run:</th>
-                                                                    <td></td>
-                                                                    <th>Longest Cycle:</th>
-                                                                    <td></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-
+                                            <div class="col-12 p-0 border">
+                                                <div class="row m-0 p-0">
+                                                    <div class="col-12 p-0 d-flex justify-content-center">
+                                                        <h3 class="text-center my-3">Records</h3>
                                                     </div>
+                                                    <div class="col-12 py-1 p-sm-0 p-1 d-flex justify-content-center">
+                                                        <div class="container-fluid p-0">
 
+                                                            <div class="row m-0 p-0 px-3">
+                                                                <div class="col-12 p-0">
+                                                                    <p>Total Records Saved:</p>
+                                                                </div>
+                                                                <div class="col-12 p-0 d-flex justify-content-center">
+                                                                    <table class="records-table mb-3">
+                                                                        <tr>
+                                                                            <th>Squat 10 Reps:</th>
+                                                                            <td></td>
+                                                                            <th>Squat 1 Rep:</th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Bench Press 10 Reps:</th>
+                                                                            <td></td>
+                                                                            <th>Bench Press 1 Rep:</th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Deadlift 10 Reps:</th>
+                                                                            <td></td>
+                                                                            <th>Deadlift 1 Rep:</th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Fastest Mile Ran:</th>
+                                                                            <td></td>
+                                                                            <th>Longest Walk:</th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Longest Run:</th>
+                                                                            <td></td>
+                                                                            <th>Longest Cycle:</th>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-
-                                        <div class="row m-0 p-0 pb-5 animated fadeIn">
-                                            <div class="col-12   p-0 d-flex justify-content-center align-items-center">
+                                            <div class="col-12  p-0 d-flex justify-content-center align-items-center">
                                                 <h3 class="text-center my-3">Mental Stats</h3>
                                             </div>
                                             <div class="col-4 p-0 d-flex justify-content-center">
@@ -734,370 +746,294 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                              
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <div>
-                                                <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i>
-                                                    <b>Total
-                                                        Time
-                                                        Tracked:</b></p>
-
-                                                <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }}
-                                                    </b>
-                                                    Hours
-                                                    <b class="toFixed0">{{totalTimeMins }}</b> Mins </p>
+                                            <div class="col-12 my-4">
+        
+                                                <div class="container-fluid d-flex align-items-center justify-content-center">
+                                                    <div>
+                                                        <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i>
+                                                            <b>Total
+                                                                Time
+                                                                Tracked:</b></p>
+        
+                                                        <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }}
+                                                            </b>
+                                                            Hours
+                                                            <b class="toFixed0">{{totalTimeMins }}</b> Mins </p>
+                                                    </div>
+        
+                                                </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="row m-0 p-0">
+                                            
+        
+                                            <div
+                                                class="col-12  mt-3 d-flex justify-content-center">
+                                                <h1>Badges</h1>
+                                            </div>
+        
+                                            <div class="col-12  p-0">
+                                                <hr>
+                                            </div>
+        
+                                            <div class="col-12  mt-3 ">
+                                                <h6>Sessions Logged</h6>
+                                                <p><b>Total</b>: {{ totalSessionsLogged }}</p>
+                                            </div>
+        
+                                            <div class="col-12  d-flex justify-content-around">
+                                                {% if totalSessionsLogged | int >= 10 %}
+                                                <div class="badge-container first-badge">
+                                                    <p class="m-0">+ 10</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ 10</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if totalSessionsLogged | int >= 25 %}
+                                                <div class="badge-container second-badge">
+                                                    <p class="m-0">+ 25</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ 25</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if totalSessionsLogged | int >= 50 %}
+                                                <div class="badge-container third-badge">
+                                                    <p class="m-0">+ 50</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ 50</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if totalSessionsLogged | int >= 75 %}
+                                                <div class="badge-container forth-badge">
+                                                    <p class="m-0">+ 75</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ 75</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if totalSessionsLogged | int >= 100 %}
+                                                <div class="badge-container fifth-badge">
+                                                    <p class="m-0">+ 100</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ 100</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if totalSessionsLogged | int >= 200 %}
+                                                <div class="badge-container sixth-badge">
+                                                    <p class="m-0">+ 200</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ 200</p>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+        
+                                            <div class="col-12 mt-3">
+                                                <h6>Distance By Foot</h6>
+                                                <p><b>Total</b>: {{ allDistanceByFoot }} {{ distanceUnit }}s</p>
+                                            </div>
+        
+                                            <div class="col-12  d-flex justify-content-around">
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set firstValue = 20 %}
+                                                {% else %}
+                                                {% set firstValue = 32 %}
+                                                {% endif %}
+                                                {% if allDistanceByFoot | int >= firstValue %}
+                                                <div class="badge-container first-badge">
+                                                    <p class="m-0">+ {{ firstValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container  badge-locked">
+                                                    <p class="m-0">+ {{ firstValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set secondValue = 100 %}
+                                                {% else %}
+                                                {% set secondValue = 160 %}
+                                                {% endif %}
+                                                {% if allDistanceByFoot | int >= secondValue %}
+                                                <div class="badge-container second-badge">
+                                                    <p class="m-0">+ {{ secondValue }}</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container  badge-locked">
+                                                    <p class="m-0">+ {{ secondValue }}</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set thirdValue = 250 %}
+                                                {% else %}
+                                                {% set thirdValue = 402 %}
+                                                {% endif %}
+                                                {% if allDistanceByFoot | int >= thirdValue %}
+                                                <div class="badge-container third-badge">
+                                                    <p class="m-0">+ {{ thirdValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container  badge-locked">
+                                                    <p class="m-0">+ {{ thirdValue }}</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set forthValue = 500 %}
+                                                {% else %}
+                                                {% set forthValue = 804 %}
+                                                {% endif %}
+                                                {% if allDistanceByFoot | int >= forthValue %}
+                                                <div class="badge-container forth-badge">
+                                                    <p class="m-0">+ {{ forthValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container  badge-locked">
+                                                    <p class="m-0">+ {{ forthValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set fifthValue = 1000 %}
+                                                {% else %}
+                                                {% set fifthValue = 1609 %}
+                                                {% endif %}
+                                                {% if allDistanceByFoot | int >= fifthValue %}
+                                                <div class="badge-container fifth-badge">
+                                                    <p class="m-0">+ {{ fifthValue }}</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container  badge-locked">
+                                                    <p class="m-0">+ {{ fifthValue }}</p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set sixthValue = 2000 %}
+                                                {% else %}
+                                                {% set sixthValue = 3218 %}
+                                                {% endif %}
+                                                {% if allDistanceByFoot | int >= sixthValue %}
+                                                <div class="badge-container sixth-badge">
+                                                    <p class="m-0">+ {{ sixthValue }}</p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container  badge-locked">
+                                                    <p class="m-0">+ {{ sixthValue }}</p>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+        
+                                            <div class="col-12  p-0">
+                                                <hr>
+                                            </div>
+        
+                                            <div class="col-12 mt-3">
+                                                <h6>Distance Cycled</h6>
+                                                <p><b>Total</b>: <span class="toFixed1">{{ totalDistanceOnBike }}</span>
+                                                    {{ distanceUnit }}s</p>
+                                            </div>
+        
+                                            <div class="col-12  d-flex justify-content-around">
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set firstValue = 20 %}
+                                                {% else %}
+                                                {% set firstValue = 32 %}
+                                                {% endif %}
+                                                {% if totalDistanceOnBike | int >= firstValue %}
+                                                <div class="badge-container first-badge">
+                                                    <p class="m-0">+ {{ firstValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ {{ firstValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set secondValue = 100 %}
+                                                {% else %}
+                                                {% set secondValue = 160 %}
+                                                {% endif %}
+                                                {% if totalDistanceOnBike | int >= secondValue %}
+                                                <div class="badge-container second-badge">
+                                                    <p class="m-0">+ {{ secondValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ {{ secondValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set thirdValue = 200 %}
+                                                {% else %}
+                                                {% set thirdValue = 321 %}
+                                                {% endif %}
+                                                {% if totalDistanceOnBike | int >= thirdValue %}
+                                                <div class="badge-container third-badge">
+                                                    <p class="m-0">+ {{ thirdValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ {{ thirdValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set forthValue = 500 %}
+                                                {% else %}
+                                                {% set forthValue = 804 %}
+                                                {% endif %}
+                                                {% if totalDistanceOnBike | int >= forthValue %}
+                                                <div class="badge-container forth-badge">
+                                                    <p class="m-0">+ {{ forthValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ {{ forthValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set fifthValue = 1000 %}
+                                                {% else %}
+                                                {% set fifthValue = 1609 %}
+                                                {% endif %}
+                                                {% if totalDistanceOnBike | int >= fifthValue %}
+                                                <div class="badge-container fifth-badge">
+                                                    <p class="m-0">+ {{ fifthValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ {{ fifthValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                                {% if distanceUnit == 'mile' %}
+                                                {% set sixthValue = 2500 %}
+                                                {% else %}
+                                                {% set sixthValue = 4023 %}
+                                                {% endif %}
+                                                {% if totalDistanceOnBike | int >= sixthValue %}
+                                                <div class="badge-container sixth-badge">
+                                                    <p class="m-0">+ {{ sixthValue }} </p>
+                                                </div>
+                                                {% else %}
+                                                <div class="badge-container badge-locked">
+                                                    <p class="m-0">+ {{ sixthValue }} </p>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+        
+                                        </div>
+                                    </div>
 
-                                        </div>
-                                    </div>
-                          
-                                    <div class="col-12 mt-3 d-flex justify-content-center">
-                                        <h1>Badges</h1>
-                                    </div>
-                        
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                        
-                                    <div class="col-12 m-0">
-                                        <h6>Sessions Logged</h6>
-                                        <p><b>Total</b>: {{ totalSessionsLogged }}</p>
-                                    </div>
-                          
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        {% if totalSessionsLogged | int >= 10 %}
-                                        <div class="badge-container first-badge">
-                                            <p class="m-0">+ 10</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ 10</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if totalSessionsLogged | int >= 25 %}
-                                        <div class="badge-container second-badge">
-                                            <p class="m-0">+ 25</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ 25</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if totalSessionsLogged | int >= 50 %}
-                                        <div class="badge-container third-badge">
-                                            <p class="m-0">+ 50</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ 50</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if totalSessionsLogged | int >= 75 %}
-                                        <div class="badge-container forth-badge">
-                                            <p class="m-0">+ 75</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ 75</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if totalSessionsLogged | int >= 100 %}
-                                        <div class="badge-container fifth-badge">
-                                            <p class="m-0">+ 100</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ 100</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if totalSessionsLogged | int >= 200 %}
-                                        <div class="badge-container sixth-badge">
-                                            <p class="m-0">+ 200</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ 200</p>
-                                        </div>
-                                        {% endif %}
-                                    </div>
-                         
-                                    <div class="col-12 m-0">
-                                        <h6>Distance By Foot</h6>
-                                        <p><b>Total</b>: {{ allDistanceByFoot }} {{ distanceUnit }}s</p>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set firstValue = 20 %}
-                                        {% else %}
-                                        {% set firstValue = 32 %}
-                                        {% endif %}
-                                        {% if allDistanceByFoot | int >= firstValue %}
-                                        <div class="badge-container first-badge">
-                                            <p class="m-0">+ {{ firstValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container  badge-locked">
-                                            <p class="m-0">+ {{ firstValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set secondValue = 100 %}
-                                        {% else %}
-                                        {% set secondValue = 160 %}
-                                        {% endif %}
-                                        {% if allDistanceByFoot | int >= secondValue %}
-                                        <div class="badge-container second-badge">
-                                            <p class="m-0">+ {{ secondValue }}</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container  badge-locked">
-                                            <p class="m-0">+ {{ secondValue }}</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set thirdValue = 250 %}
-                                        {% else %}
-                                        {% set thirdValue = 402 %}
-                                        {% endif %}
-                                        {% if allDistanceByFoot | int >= thirdValue %}
-                                        <div class="badge-container third-badge">
-                                            <p class="m-0">+ {{ thirdValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container  badge-locked">
-                                            <p class="m-0">+ {{ thirdValue }}</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set forthValue = 500 %}
-                                        {% else %}
-                                        {% set forthValue = 804 %}
-                                        {% endif %}
-                                        {% if allDistanceByFoot | int >= forthValue %}
-                                        <div class="badge-container forth-badge">
-                                            <p class="m-0">+ {{ forthValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container  badge-locked">
-                                            <p class="m-0">+ {{ forthValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set fifthValue = 1000 %}
-                                        {% else %}
-                                        {% set fifthValue = 1609 %}
-                                        {% endif %}
-                                        {% if allDistanceByFoot | int >= fifthValue %}
-                                        <div class="badge-container fifth-badge">
-                                            <p class="m-0">+ {{ fifthValue }}</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container  badge-locked">
-                                            <p class="m-0">+ {{ fifthValue }}</p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set sixthValue = 2000 %}
-                                        {% else %}
-                                        {% set sixthValue = 3218 %}
-                                        {% endif %}
-                                        {% if allDistanceByFoot | int >= sixthValue %}
-                                        <div class="badge-container sixth-badge">
-                                            <p class="m-0">+ {{ sixthValue }}</p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container  badge-locked">
-                                            <p class="m-0">+ {{ sixthValue }}</p>
-                                        </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 m-0">
-                                        <h6>Distance Cycled</h6>
-                                        <p><b>Total</b>: <span class="toFixed1">{{ totalDistanceOnBike }}</span>
-                                            {{ distanceUnit }}s</p>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set firstValue = 20 %}
-                                        {% else %}
-                                        {% set firstValue = 32 %}
-                                        {% endif %}
-                                        {% if totalDistanceOnBike | int >= firstValue %}
-                                        <div class="badge-container first-badge">
-                                            <p class="m-0">+ {{ firstValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ {{ firstValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set secondValue = 100 %}
-                                        {% else %}
-                                        {% set secondValue = 160 %}
-                                        {% endif %}
-                                        {% if totalDistanceOnBike | int >= secondValue %}
-                                        <div class="badge-container second-badge">
-                                            <p class="m-0">+ {{ secondValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ {{ secondValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set thirdValue = 200 %}
-                                        {% else %}
-                                        {% set thirdValue = 321 %}
-                                        {% endif %}
-                                        {% if totalDistanceOnBike | int >= thirdValue %}
-                                        <div class="badge-container third-badge">
-                                            <p class="m-0">+ {{ thirdValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ {{ thirdValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set forthValue = 500 %}
-                                        {% else %}
-                                        {% set forthValue = 804 %}
-                                        {% endif %}
-                                        {% if totalDistanceOnBike | int >= forthValue %}
-                                        <div class="badge-container forth-badge">
-                                            <p class="m-0">+ {{ forthValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ {{ forthValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set fifthValue = 1000 %}
-                                        {% else %}
-                                        {% set fifthValue = 1609 %}
-                                        {% endif %}
-                                        {% if totalDistanceOnBike | int >= fifthValue %}
-                                        <div class="badge-container fifth-badge">
-                                            <p class="m-0">+ {{ fifthValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ {{ fifthValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                        {% if distanceUnit == 'mile' %}
-                                        {% set sixthValue = 2500 %}
-                                        {% else %}
-                                        {% set sixthValue = 4023 %}
-                                        {% endif %}
-                                        {% if totalDistanceOnBike | int >= sixthValue %}
-                                        <div class="badge-container sixth-badge">
-                                            <p class="m-0">+ {{ sixthValue }} </p>
-                                        </div>
-                                        {% else %}
-                                        <div class="badge-container badge-locked">
-                                            <p class="m-0">+ {{ sixthValue }} </p>
-                                        </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 ">
-                                    <div class="col-12 m-0">
-                                        <h6>Time Logged</h6>
-                                        <p><b>Total</b>:</p>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 ">
-                                    <div class="col-12 m-0">
-                                        <h6>Bench Press repetitions</h6>
-                                        <p><b>Total</b>:</p>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 ">
-                                    <div class="col-12 m-0">
-                                        <h6>Squat repetitions</h6>
-                                        <p><b>Total</b>:</p>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 p-0">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0">
-                                    <div class="col-12 m-0">
-                                        <h6>Deadlift repetitions</h6>
-                                        <p><b>Total</b>: </p>
-                                    </div>
-                                </div>
-                                <div class="row m-0 p-0 mb-3">
-                                    <div class="col-12 m-0 p-0 d-flex justify-content-around">
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                        <div class="badge-container"></div>
-                                    </div>
+                                    
+                                   
                                 </div>
                                 <script>
                                     // The pie and bar chart for the distance travelled
@@ -1112,7 +1048,8 @@
                                     var total_spend_per_store = store_dim.group().reduceSum(dc.pluck('spend'));
                                     dc.pieChart('#distancePie')
                                         .height(210)
-                                        .radius(90)
+                                        .width(300)
+                                        .radius(800)
                                         .innerRadius(40)
                                         .transitionDuration(1500)
                                         .dimension(store_dim)
@@ -1121,8 +1058,8 @@
                                     var total_dim = ndx.dimension(dc.pluck('label'));
                                     var total_spend_per_total = total_dim.group().reduceSum(dc.pluck('spend'));
                                     dc.barChart('#distanceBar')
-                                        .width(150)
-                                        .height(210)
+                                        .width(200)
+                                        .height(280)
                                         .margins({ top: 15, right: 50, bottom: 30, left: 50 })
                                         .dimension(total_dim)
                                         .group(total_spend_per_total)
@@ -1145,7 +1082,8 @@
                                     var total_spend_per_stor = store_di.group().reduceSum(dc.pluck('spend'));
                                     dc.pieChart('#sessionTypePie')
                                         .height(210)
-                                        .radius(90)
+                                        .width(300)
+                                        .radius(800)
                                         .innerRadius(40)
                                         .transitionDuration(1500)
                                         .dimension(store_di)
@@ -1154,8 +1092,8 @@
                                     var total_di = ndx.dimension(dc.pluck('label'));
                                     var total_spend_per_tota = total_di.group().reduceSum(dc.pluck('spend'));
                                     dc.barChart('#totalSessionBar')
-                                        .width(150)
-                                        .height(210)
+                                        .width(200)
+                                        .height(280)
                                         .margins({ top: 15, right: 50, bottom: 30, left: 50 })
                                         .dimension(total_di)
                                         .group(total_spend_per_tota)
@@ -1205,8 +1143,8 @@
                                 <div class="col-6 m-0 p-0">
                                     <p><b>Body Weight:</b> {{ user.body_weight }}{{ unit }}</p>
                                 </div>
-                                <div class="col-6">
-                                    <p><b>Account start date:</b></p>
+                                <div class="col-6 m-0 p-0">
+                                    <p><b>Account start date:</b> {{ user.start_date }}</p>
                                 </div>
                             </div>
                         </div>

@@ -134,3 +134,6 @@ This content was used to help implement the scroll to element function.
 
 - https://stackoverflow.com/questions/13266746/scroll-jump-to-id-without-jquery
 This was then using to add the smooth scroll to this function.
+
+- https://www.youtube.com/watch?v=_5OXmXvkU_E
+Organizing the app.py file.
