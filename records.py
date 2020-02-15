@@ -96,14 +96,14 @@ def users_records():
     return render_template('usersRecords.html', records=records, allRecords=recordCount)
 
 # filter the records for the users records page.
-@app.route('/filter_records', methods=['POST'])
-def filter_records():
+@app.route('/filter_usersrecords', methods=['POST'])
+def filter_usersrecords():
     filter_sort = request.form['sort_session_records']
     filter_session_type = request.form["filter_session_type_records"]
-    filter_date = request.form['filter_session_date_records']
+    filter_date = request.form['filter_date_user_records']
     res = make_response(redirect(url_for('users_records')))
     res.set_cookie('filter_session_type_records', filter_session_type)
-    res.set_cookie('filter_session_date_records', filter_date)
+    res.set_cookie('filter_date_user_records', filter_date)
     res.set_cookie('sort_session_records', filter_sort)
     return res
 
@@ -132,7 +132,16 @@ def record():
     return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift)
 
 # filter the records on the records page for all users
-
+@app.route('/filter_records', methods=['POST'])
+def filter_records():
+    filter_sort = request.form['sort_session_records']
+    filter_session_type = request.form["filter_session_type_records"]
+    filter_date = request.form['filter_session_date_records']
+    res = make_response(redirect(url_for('users_records')))
+    res.set_cookie('filter_session_type_records', filter_session_type)
+    res.set_cookie('filter_session_date_records', filter_date)
+    res.set_cookie('sort_session_records', filter_sort)
+    return res
 
 # delete a record from the DB
 @app.route('/delete_record/<session_id>')

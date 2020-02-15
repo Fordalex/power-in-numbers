@@ -41,22 +41,26 @@ def register_insert():
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
 
-        return redirect('login_page')
+        return redirect(url_for('login_page'))
 
-    return redirect('login_page')
+    return redirect(url_for('login_page'))
 
 # try and log the user in
 @app.route('/login', methods=['POST'])
 def login():
     users = mongo.db.users
     login_user = users.find_one({'username' : request.form['username']})
- 
-    if login_user:
-        if sha256_crypt.verify(request.form['password'], login_user['password']):
-            session['username'] = request.form['username']
-            return redirect(url_for('profile'))
-        else:
-            return redirect(url_for('login_page'))
+    try:
+        if login_user:
+            if sha256_crypt.verify(request.form['password'], login_user['password']):
+                session['username'] = request.form['username']
+                return redirect(url_for('profile'))
+            return redirect(url_for('incorrect_login'))
+
+# incorrect password or username message
+@app.route('/incorrect_login')
+def incorrect_login():
+    return render_template('incorrectpassword.html')
 
 # remove users account and sessions from the DB
 @app.route('/delete_account')
