@@ -770,20 +770,20 @@
                                             
         
                                             <div
-                                                class="col-12  mt-3 d-flex justify-content-center">
+                                                class="col-12 p-0 mt-3 d-flex justify-content-center">
                                                 <h1>Badges</h1>
                                             </div>
         
-                                            <div class="col-12  p-0">
+                                            <div class="col-12 p-0">
                                                 <hr>
                                             </div>
         
-                                            <div class="col-12  mt-3 ">
+                                            <div class="col-12 p-0 mt-3 ">
                                                 <h6>Sessions Logged</h6>
                                                 <p><b>Total</b>: {{ totalSessionsLogged }}</p>
                                             </div>
         
-                                            <div class="col-12  d-flex justify-content-around">
+                                            <div class="col-12 p-0 d-flex justify-content-around">
                                                 {% if totalSessionsLogged | int >= 10 %}
                                                 <div class="badge-container first-badge">
                                                     <p class="m-0">+ 10</p>
@@ -840,12 +840,12 @@
                                                 {% endif %}
                                             </div>
         
-                                            <div class="col-12 mt-3">
+                                            <div class="col-12 p-0 mt-3">
                                                 <h6>Distance By Foot</h6>
                                                 <p><b>Total</b>: {{ allDistanceByFoot }} {{ distanceUnit }}s</p>
                                             </div>
         
-                                            <div class="col-12  d-flex justify-content-around">
+                                            <div class="col-12 p-0 d-flex justify-content-around">
                                                 {% if distanceUnit == 'mile' %}
                                                 {% set firstValue = 20 %}
                                                 {% else %}
@@ -936,13 +936,13 @@
                                                 <hr>
                                             </div>
         
-                                            <div class="col-12 mt-3">
+                                            <div class="col-12 p-0 mt-3">
                                                 <h6>Distance Cycled</h6>
                                                 <p><b>Total</b>: <span class="toFixed1">{{ totalDistanceOnBike }}</span>
                                                     {{ distanceUnit }}s</p>
                                             </div>
         
-                                            <div class="col-12  d-flex justify-content-around">
+                                            <div class="col-12 p-0 d-flex justify-content-around">
                                                 {% if distanceUnit == 'mile' %}
                                                 {% set firstValue = 20 %}
                                                 {% else %}

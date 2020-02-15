@@ -301,16 +301,16 @@
                                                     </td>
                                                     {% endif %}
                                                     {% if session.session_unit == 'mile' %}
-                                                    {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
+                                                    {% set distance_traveled = session.training_session | float * 10 * 16 / 100 %}
                                                     <td><span class="toFixed1">{{ distance_traveled }}</span>
                                                         {{ distanceUnit }}</td>
                                                     {% endif %}
                                                     {% endif %}
 
                                                     {% set hoursToMins = session.length_hour * 60 %}
-                                                    {% set totalMins = hoursToMins | int + session.length_min | int %}
+                                                    {% set totalMins = hoursToMins | float + session.length_min | float %}
                                                     <td><span
-                                                            class="toFixed2">{{ totalMins / distance_traveled | int }}</span>
+                                                            class="toFixed2">{{ totalMins / distance_traveled | int  }}</span>
                                                         mins per {{ distanceUnit }}</td>
                                                 </tr>
                                                 {% endif %}

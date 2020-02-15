@@ -50,12 +50,11 @@ def register_insert():
 def login():
     users = mongo.db.users
     login_user = users.find_one({'username' : request.form['username']})
-    try:
-        if login_user:
-            if sha256_crypt.verify(request.form['password'], login_user['password']):
-                session['username'] = request.form['username']
-                return redirect(url_for('profile'))
-            return redirect(url_for('incorrect_login'))
+    if login_user:
+        if sha256_crypt.verify(request.form['password'], login_user['password']):
+            session['username'] = request.form['username']
+            return redirect(url_for('profile'))
+        return redirect(url_for('incorrect_login'))
 
 # incorrect password or username message
 @app.route('/incorrect_login')
