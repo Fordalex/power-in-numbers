@@ -143,6 +143,18 @@ def filter_records():
     res.set_cookie('sort_session_records', filter_sort)
     return res
 
+# filter the records on the public records page
+@app.route('/filter_pinrecords', methods=['POST'])
+def filter_pinrecords():
+    filter_sort = request.form['sort_session_pinrecords']
+    filter_session_type = request.form["filter_session_type_pinrecords"]
+    filter_date = request.form['filter_session_date_pinrecords']
+    res = make_response(redirect(url_for('record')))
+    res.set_cookie('filter_session_type_pinrecords', filter_session_type)
+    res.set_cookie('filter_session_date_pinrecords', filter_date)
+    res.set_cookie('sort_session_pinrecords', filter_sort)
+    return res
+
 # delete a record from the DB
 @app.route('/delete_record/<session_id>')
 def delete_record(session_id):
