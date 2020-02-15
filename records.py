@@ -68,7 +68,7 @@ def users_records():
     currentUsersAccount = user.find_one({'username': currentUser})
     # get filter info from cookies
     filter_date = request.cookies.get('filter_date_user_records')
-    filter_session_type = request.cookies.get('filter_session_type_user_records')  
+    filter_session_type = request.cookies.get('filter_session_type_records')  
     def filter():
         filter_dictionary = {'username': currentUser}
         if filter_date:
@@ -93,20 +93,20 @@ def users_records():
     for record in allRecords:
         recordCount += 1
 
-    return render_template('usersRecords.html', records=records, allRecords=recordCount)
+    return render_template('usersRecords.html', records=records, allRecords=recordCount, filter_session_type=filter_session_type)
 
 # filter the records for the users records page.
 @app.route('/filter_usersrecords', methods=['POST'])
 def filter_usersrecords():
     filter_sort = request.form['sort_session_records']
     filter_session_type = request.form["filter_session_type_records"]
-    filter_date = request.form['filter_date_user_records']
+    filter_date = request.form['filter_session_date_records']
     res = make_response(redirect(url_for('users_records')))
     res.set_cookie('filter_session_type_records', filter_session_type)
-    res.set_cookie('filter_date_user_records', filter_date)
+    res.set_cookie('filter_session_date_records', filter_date)
     res.set_cookie('sort_session_records', filter_sort)
     return res
-
+ 
 # the records logged by all users page
 @app.route('/record')
 def record():
