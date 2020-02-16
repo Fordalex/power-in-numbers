@@ -129,7 +129,28 @@ def record():
     recordCountStore = 0
     for record in recordCount:
         recordCountStore += 1
-    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift)
+     # get filter info from cookies
+    filter_date = request.cookies.get('filter_session_date_pinrecords')
+    filter_session_type = request.cookies.get('filter_session_type_pinrecords')  
+    def filter():
+        filter_dictionary = {}
+        if filter_date:
+            filter_dictionary.update({'date': filter_date})
+        if filter_session_type:
+            if filter_session_type != 'all':
+                filter_dictionary.update({'session_type': filter_session_type})
+        
+        return filter_dictionary
+    records = mongo.db.records.find(filter())
+    # sort the sessions by the date 
+    sortCards = request.cookies.get('sort_session_pinrecords')
+    if sortCards == 'Newest First':
+        records = records.sort("dateSortNo", pymongo.DESCENDING)
+    elif sortCards == 'Oldest First':
+        records = records.sort("dateSortNo", pymongo.ASCENDING)
+    else:
+        records = records.sort("dateSortNo", pymongo.DESCENDING)
+    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
 
 # filter the records on the records page for all users
 @app.route('/filter_records', methods=['POST'])

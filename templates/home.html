@@ -310,7 +310,7 @@
                                                     {% set hoursToMins = session.length_hour * 60 %}
                                                     {% set totalMins = hoursToMins | float + session.length_min | float %}
                                                     <td><span
-                                                            class="toFixed2">{{ totalMins / distance_traveled | int  }}</span>
+                                                            class="toFixed2">{{ totalMins / distance_traveled | float  }}</span>
                                                         mins per {{ distanceUnit }}</td>
                                                 </tr>
                                                 {% endif %}

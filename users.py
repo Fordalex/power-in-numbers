@@ -55,6 +55,7 @@ def login():
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
         return redirect(url_for('incorrect_login'))
+    return redirect(url_for('incorrect_login'))
 
 # incorrect password or username message
 @app.route('/incorrect_login')
