@@ -135,11 +135,15 @@ def profile():
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     # get filter info from cookies
-    filter_date = request.cookies.get('filter_date_profile')
+    filter_date_cookie = request.cookies.get('filter_session_date_profile')
     filter_session_type = request.cookies.get('filter_session_type_profile')
     def filter():
         filter_dictionary = {'username': currentUser}
-        if filter_date:
+        if filter_date_cookie:
+            dateYear = filter_date_cookie[2: 4]
+            dateMonth = filter_date_cookie[5:7]
+            dateDay = filter_date_cookie[8:10]
+            filter_date = dateDay + '-' + dateMonth + '-' + dateYear
             filter_dictionary.update({'date': filter_date})
         if filter_session_type:
             if filter_session_type != 'all':
@@ -147,6 +151,7 @@ def profile():
         
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
+    filter_date = request.cookies.get('filter_session_date_profile')
     # sort the sessions by the date
     sortCards = request.cookies.get('sort_session_profile')
     if sortCards == 'Newest First':
@@ -155,7 +160,7 @@ def profile():
         sessions = sessions.sort("dateSortNo", pymongo.ASCENDING)
     else:
         sessions = sessions.sort("dateSortNo", pymongo.DESCENDING)
-  
+    
      # The total distance the users has traveled by foot
     unitVar = currentUsersAccount.get('selected_unit')
     currentUser = session['username']
