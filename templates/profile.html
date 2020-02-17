@@ -842,7 +842,8 @@
         
                                             <div class="col-12 p-0 mt-3">
                                                 <h6>Distance By Foot</h6>
-                                                <p><b>Total</b>: {{ allDistanceByFoot }} {{ distanceUnit }}s</p>
+                                                {% set totalTravelByFoot = totalDistanceByWalking + allDistanceByFoot %}
+                                                <p><b>Total</b>: {{ totalTravelByFoot }} {{ distanceUnit }}s</p>
                                             </div>
         
                                             <div class="col-12 p-0 d-flex justify-content-around">
@@ -851,7 +852,7 @@
                                                 {% else %}
                                                 {% set firstValue = 32 %}
                                                 {% endif %}
-                                                {% if allDistanceByFoot | int >= firstValue %}
+                                                {% if totalTravelByFoot | int >= firstValue %}
                                                 <div class="badge-container first-badge">
                                                     <p class="m-0">+ {{ firstValue }} </p>
                                                 </div>
@@ -865,7 +866,7 @@
                                                 {% else %}
                                                 {% set secondValue = 160 %}
                                                 {% endif %}
-                                                {% if allDistanceByFoot | int >= secondValue %}
+                                                {% if totalTravelByFoot | int >= secondValue %}
                                                 <div class="badge-container second-badge">
                                                     <p class="m-0">+ {{ secondValue }}</p>
                                                 </div>
@@ -879,7 +880,7 @@
                                                 {% else %}
                                                 {% set thirdValue = 402 %}
                                                 {% endif %}
-                                                {% if allDistanceByFoot | int >= thirdValue %}
+                                                {% if totalTravelByFoot | int >= thirdValue %}
                                                 <div class="badge-container third-badge">
                                                     <p class="m-0">+ {{ thirdValue }} </p>
                                                 </div>
@@ -893,7 +894,7 @@
                                                 {% else %}
                                                 {% set forthValue = 804 %}
                                                 {% endif %}
-                                                {% if allDistanceByFoot | int >= forthValue %}
+                                                {% if totalTravelByFoot | int >= forthValue %}
                                                 <div class="badge-container forth-badge">
                                                     <p class="m-0">+ {{ forthValue }} </p>
                                                 </div>
@@ -907,7 +908,7 @@
                                                 {% else %}
                                                 {% set fifthValue = 1609 %}
                                                 {% endif %}
-                                                {% if allDistanceByFoot | int >= fifthValue %}
+                                                {% if totalTravelByFoot | int >= fifthValue %}
                                                 <div class="badge-container fifth-badge">
                                                     <p class="m-0">+ {{ fifthValue }}</p>
                                                 </div>
@@ -921,7 +922,7 @@
                                                 {% else %}
                                                 {% set sixthValue = 3218 %}
                                                 {% endif %}
-                                                {% if allDistanceByFoot | int >= sixthValue %}
+                                                {% if totalTravelByFoot | int >= sixthValue %}
                                                 <div class="badge-container sixth-badge">
                                                     <p class="m-0">+ {{ sixthValue }}</p>
                                                 </div>

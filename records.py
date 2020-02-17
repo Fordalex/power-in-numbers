@@ -150,7 +150,7 @@ def record():
         records = records.sort("dateSortNo", pymongo.ASCENDING)
     else:
         records = records.sort("dateSortNo", pymongo.DESCENDING)
-    return render_template('records.html', recordCount=recordCountStore, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
+    return render_template('records.html', recordCount=recordCountStore,filter_date=filter_date, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
 
 # filter the records on the records page for all users
 @app.route('/filter_records', methods=['POST'])

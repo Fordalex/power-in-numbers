@@ -233,7 +233,7 @@ def profile():
     distanceUnit = currentUsersAccount.get('selected_distance')
     if distanceUnit == 'km':
         totalDistanceByWalkingMiles = totalDistanceByWalkingMiles * 1.6093
-    #
+
     # total powerlifting sessions
     totalWeightliftingSessions = mongo.db.sessions.find({'username': currentUser, 'session_type': 'weightlifting'})
     def powerliftingCount():
