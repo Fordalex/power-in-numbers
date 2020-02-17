@@ -7,7 +7,7 @@ from os import path
 from passlib.hash import sha256_crypt
 from app import app
 
-mongo = PyMongo(app)
+mongo = PyMongo(app) 
 
 # add record page
 @app.route('/add_record')
@@ -72,11 +72,15 @@ def users_records():
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     # get filter info from cookies
-    filter_date = request.cookies.get('filter_date_user_records')
+    filter_date_cookie = request.cookies.get('filter_session_date_records')
     filter_session_type = request.cookies.get('filter_session_type_records')  
     def filter():
         filter_dictionary = {'username': currentUser}
-        if filter_date:
+        if filter_date_cookie:
+            dateYear = filter_date_cookie[2: 4]
+            dateMonth = filter_date_cookie[5:7]
+            dateDay = filter_date_cookie[8:10]
+            filter_date = dateDay + '-' + dateMonth + '-' + dateYear
             filter_dictionary.update({'date': filter_date})
         if filter_session_type:
             if filter_session_type != 'all':
@@ -84,6 +88,7 @@ def users_records():
         
         return filter_dictionary
     records = mongo.db.records.find(filter())
+    filter_date = request.cookies.get('filter_session_date_records')
     # sort the sessions by the date
     sortCards = request.cookies.get('sort_profile')
     if sortCards == 'Newest First':
@@ -98,7 +103,7 @@ def users_records():
     for record in allRecords:
         recordCount += 1
 
-    return render_template('usersRecords.html', records=records, allRecords=recordCount, filter_session_type=filter_session_type)
+    return render_template('usersRecords.html', filter_date=filter_date, records=records, allRecords=recordCount, filter_session_type=filter_session_type)
 
 # filter the records for the users records page.
 @app.route('/filter_usersrecords', methods=['POST'])
@@ -164,18 +169,6 @@ def record():
         records = records.sort("dateSortNo", pymongo.DESCENDING)
     filter_date = request.cookies.get('filter_session_date_pinrecords')
     return render_template('records.html', recordCount=recordCountStore,filter_date=filter_date, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
-
-# filter the records on the records page for all users
-@app.route('/filter_records', methods=['POST'])
-def filter_records():
-    filter_sort = request.form['sort_session_records']
-    filter_session_type = request.form["filter_session_type_records"]
-    filter_date = request.form['filter_session_date_records']
-    res = make_response(redirect(url_for('users_records')))
-    res.set_cookie('filter_session_type_records', filter_session_type)
-    res.set_cookie('filter_session_date_records', filter_date)
-    res.set_cookie('sort_session_records', filter_sort)
-    return res
 
 # filter the records on the public records page
 @app.route('/filter_pinrecords', methods=['POST'])

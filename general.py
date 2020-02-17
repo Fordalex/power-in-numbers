@@ -35,18 +35,23 @@ def home():
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
     # filter cards
-    filter_date = request.cookies.get('filter_session_date_home')
+    filter_date_cookie = request.cookies.get('filter_session_date_home')
     filter_session_type = request.cookies.get('filter_session_type_home')
     unit_distance = currentUsersAccount.get('selected_distance')
-    def filter():
+    def filter(): 
         filter_dictionary = {}
-        if filter_date:
+        if filter_date_cookie:
+            dateYear = filter_date_cookie[2: 4]
+            dateMonth = filter_date_cookie[5:7]
+            dateDay = filter_date_cookie[8:10]
+            filter_date = dateDay + '-' + dateMonth + '-' + dateYear
             filter_dictionary.update({'date': filter_date})
         if filter_session_type:
             if filter_session_type != 'all':
                 filter_dictionary.update({'session_type': filter_session_type})
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
+    filter_date = request.cookies.get('filter_session_date_home')
     # sort the sessions by the date
     sortCards = request.cookies.get('sort_session_home')
     if sortCards == 'Newest First':
