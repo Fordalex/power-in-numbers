@@ -12,7 +12,11 @@ mongo = PyMongo(app)
 # the form to add a new session
 @app.route('/add_session')
 def add_session():
-    currentUser = session['username']
+        # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
     return render_template('addsession.html', user=login_user)
@@ -30,27 +34,7 @@ def insert_session():
     location = login_user.get('location')
     body_weight = login_user.get('body_weight')
     bw_unit = login_user.get('bw_unit')
-    password = login_user.get('password')
-    first_name = login_user.get('first_name')
-    last_name = login_user.get('last_name')
-    unitValue = login_user.get('selected_unit')
-    unit_distance = login_user.get('selected_distance')
     sessions = mongo.db.sessions
-    # add the amount of the sessions that the user has logged.
-    mongo.db.users.update({'username' : currentUser},
-    {
-        'username' : username, 
-        'password' : password, 
-        'age': age, 
-        'gender': gender, 
-        'body_weight': body_weight, 
-        'bw_unit': bw_unit, 
-        'location': location, 
-        'first_name': first_name, 
-        'last_name': last_name,
-        'selected_unit': str(unitValue),
-        'selected_distance': str(unit_distance),
-    })
     # the data from the form
     date = request.form['date']
     dateYear = date[2: 4]
@@ -116,7 +100,27 @@ def insert_session():
     session_unit = request.form['session_unit']
     notes = request.form['notes']
 
-    sessionDict = {'session_unit': session_unit, 'session_rows': row_count,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': int(dateSortNo), 'length_hour': int(length_hour), 'length_min': float(length_min), 'length_sec': float(length_sec), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    sessionDict = {
+        'session_unit': session_unit, 
+        'session_rows': row_count,
+        'bw_unit': bw_unit, 
+        'body_weight': body_weight,
+        'session_type': session_type, 
+        'age': age, 
+        'gender': gender ,
+        'username':username, 
+        'notes': notes, 
+        'training_session': training_session, 
+        'location': location, 
+        'date': date, 
+        'dateSortNo': int(dateSortNo), 
+        'length_hour': int(length_hour), 
+        'length_min': float(length_min), 
+        'length_sec': float(length_sec), 
+        'motivated':motivated, 
+        'effort': effort,
+        'difficulty': difficulty
+        }
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
 

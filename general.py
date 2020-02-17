@@ -239,7 +239,7 @@ def add_unit():
     password = login_user.get('password')
     first_name = login_user.get('first_name')
     last_name = login_user.get('last_name')
-    login_user = users.find_one({'username' : currentUser})
+    start_date = login_user.get('start_date')
     currentSessionsLogged = login_user.get('sessions_logged')
     currentLogged = currentSessionsLogged
     mongo.db.users.update({'username' : currentUser},
@@ -256,6 +256,7 @@ def add_unit():
         'sessions_logged': currentLogged,
         'selected_unit': unitValue,
         'selected_distance': unit_distance,
+        'start_date': start_date
     })
     return res
 

@@ -12,6 +12,11 @@ mongo = PyMongo(app)
 # add record page
 @app.route('/add_record')
 def add_record():
+    # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
     return render_template('addrecord.html')
 
 # insert a record to the DB
@@ -110,8 +115,12 @@ def filter_usersrecords():
 # the records logged by all users page
 @app.route('/record')
 def record():
+          # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
     records = mongo.db.records.find()
-    currentUser = session['username']
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
     unitVar = login_user.get('selected_unit')
@@ -130,16 +139,19 @@ def record():
     for record in recordCount:
         recordCountStore += 1
      # get filter info from cookies
-    filter_date = request.cookies.get('filter_session_date_pinrecords')
+    filter_date_cookie = request.cookies.get('filter_session_date_pinrecords')
     filter_session_type = request.cookies.get('filter_session_type_pinrecords')  
     def filter():
         filter_dictionary = {}
-        if filter_date:
+        if filter_date_cookie:
+            dateYear = filter_date_cookie[2: 4]
+            dateMonth = filter_date_cookie[5:7]
+            dateDay = filter_date_cookie[8:10]
+            filter_date = dateDay + '-' + dateMonth + '-' + dateYear
             filter_dictionary.update({'date': filter_date})
         if filter_session_type:
             if filter_session_type != 'all':
                 filter_dictionary.update({'session_type': filter_session_type})
-        
         return filter_dictionary
     records = mongo.db.records.find(filter())
     # sort the sessions by the date 
@@ -150,6 +162,7 @@ def record():
         records = records.sort("dateSortNo", pymongo.ASCENDING)
     else:
         records = records.sort("dateSortNo", pymongo.DESCENDING)
+    filter_date = request.cookies.get('filter_session_date_pinrecords')
     return render_template('records.html', recordCount=recordCountStore,filter_date=filter_date, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
 
 # filter the records on the records page for all users

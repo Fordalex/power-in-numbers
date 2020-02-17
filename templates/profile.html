@@ -630,16 +630,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
-
                                 <div class="row m-0 p-0 mb-4">
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 p-0 col-md-6">
                                         <div class="row m-0 p-0">
 
                                             <div class="col-12 p-0 border">
@@ -765,10 +757,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 pb-4 col-md-6">
                                         <div class="row m-0 p-0">
-                                            
-        
                                             <div
                                                 class="col-12 p-0 mt-3 d-flex justify-content-center">
                                                 <h1>Badges</h1>
@@ -1107,24 +1097,6 @@
                                     dc.renderAll();
                                 </script>
 
-
-
-
-
-                                <!-- <div class="col-6 col-sm-2 d-flex justify-content-end justify-content-sm-start">
-                                        <p class="m-0 p-0"><b>Age:</b> {{ user.age }}</p>
-                                        
-                                    </div>
-                                    <div class="col-6 col-sm-2">
-                                        <p class="m-0 p-0"><b>Gender:</b> {{ user.gender }}</p>
-                                    </div>
-            
-                               
-                                    <div class="col-6 col-sm-2 d-flex justify-content-end justify-content-sm-start">
-                                        <p class="m-0 p-0"><b>BW:</b> {{ user.body_weight }}{{ user.bw_unit }}</p>
-                                    </div> -->
-
-
                             </div>
                         </div>
                         <div class="tab-pane fade p-3" id="info" role="tabpanel" aria-labelledby="info-tab">
@@ -1142,7 +1114,41 @@
                                     <p><b>Username:</b> {{ user.username }}</p>
                                 </div>
                                 <div class="col-6 m-0 p-0">
-                                    <p><b>Body Weight:</b> {{ user.body_weight }}{{ unit }}</p>
+                                    {% if unit == 'kg'  %}{% if user.bw_unit == 'kg' %}
+                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                <p class="toFixed1 m-0 float-left">
+                                                                    {{ user.body_weight }}</p>kg
+                                                            </p>
+                                                            {% endif %}
+                                                            {% if user.bw_unit == 'lb' %}
+                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                <p class="toFixed1 m-0 float-left">
+                                                                    {{ user.body_weight | int * 10 / 22 }}
+                                                                </p>kg
+                                                            </p>
+                                                            {% endif %}
+                                                            {% elif unit == 'lb'  %}{% if user.bw_unit == 'lb' %}
+                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                <p class="toFixed1 m-0 float-left">
+                                                                    {{ user.body_weight }}</p>
+                                                                lb
+                                                            </p>
+                                                            {% endif %}
+                                                            {% if user.bw_unit == 'kg' %}
+                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                <p class="toFixed1 m-0 float-left">
+                                                                    {{ user.body_weight | int * 22 / 10 }}
+                                                                </p>lb
+                                                            </p>
+                                                            {% endif %}
+                                                            {% else %}
+                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                                                <p class="toFixed1 m-0 float-left">
+                                                                    {{ user.body_weight | int }}
+                                                                </p>
+                                                                {{ user.bw_unit }}
+                                                            </p>
+                                                            {% endif %}
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <p><b>Account start date:</b> {{ user.start_date }}</p>
