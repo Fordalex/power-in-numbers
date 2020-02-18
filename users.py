@@ -32,12 +32,23 @@ def register_insert():
             bw_unit = request.form['bw_unit']
             location = request.form['location']
             start_date = str(date.today())
-
             dateYear = start_date[2: 4]
             dateMonth = start_date[5:7]
             dateDay = start_date[8:10]
             start_date = dateDay + '-' + dateMonth + '-' + dateYear
-            users.insert_one({'username' : username, 'start_date': str(start_date), 'password' : hashpass, 'age': age, 'gender': gender, 'body_weight': body_weight, 'bw_unit': bw_unit, 'location': location, 'first_name': first_name, 'last_name': last_name,  'selected_unit': 'kg', 'selected_distance': 'mile',})
+            users.insert_one({
+                'username' : username, 
+                'start_date': str(start_date), 
+                'password' : hashpass, 
+                'age': age, 
+                'gender': gender, 
+                'body_weight': body_weight, 
+                'bw_unit': bw_unit, 
+                'location': location, 
+                'first_name': first_name.capitalize(), 
+                'last_name': last_name.capitalize(),  
+                'selected_unit': 'kg', 
+                'selected_distance': 'mile',})
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
 

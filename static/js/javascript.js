@@ -151,9 +151,9 @@ function addSessionTable() {
                                         </tr>
                                         <tr>
                                             <td><input class="container-fluid" type="text" name="session_exercise_1" required></td>
-                                            <td class="d-flex justify-content-center"><input class="container-fluid float-left" type="number" step="1" name="session_sets_1" required>X
-                                            <input class="container-fluid" type="number" step="1" name="session_reps_1" required></td>
-                                            <td><input class="container-fluid" type="number" step="0.25" name="session_weight_1" required></td>
+                                            <td class="d-flex justify-content-center"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
+                                            <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                                            <td><input class="container-fluid" type="number" step="0.25" min="0" name="session_weight_1" required></td>
                                             <td class="unit-td">${unitSelected}</td>
                                         </tr>
                                     </table>
@@ -330,7 +330,7 @@ function addSessionTableRecord() {
                                     <table class="session-table container-fluid mt-3" id="session_table">
                                         <tr>
                                             <th>Exercise:</th>
-                                            <th>Sets / Reps:</th>
+                                            <th>Reps:</th>
                                             <th>Weight:</th>
                                             <th class="unit-td"><i class="fas fa-balance-scale"></i></th>
                                         </tr>
@@ -505,7 +505,7 @@ function unitContinueButtonRecord() {
 function backToFormStartRecord() {
     $('#firstNextButtonContainer').html(`
     <button id="firstNextButton" class="btn btn-dark unit-button my-3 container-fluid px-0"
-    name="unit" onclick="addSessionFirstNext()" >Next</button>
+    name="unit" onclick="addSessionFirstNextRecord()" >Next</button>
     `)
     $('#unitContainer').remove()
     $('#sessionTable').remove()

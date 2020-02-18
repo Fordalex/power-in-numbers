@@ -2,12 +2,64 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, make_response, session
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
-from datetime import date
+from datetime import date, datetime
 from os import path
 from passlib.hash import sha256_crypt
 from app import app
 
 mongo = PyMongo(app)
+
+# used to edit all the sessions
+# @app.route('/change_sessions')
+# def change_sessions():
+#     sessions = mongo.db.sessions.find()
+#     for ses in sessions:
+#         sessionId = ses.get('_id')
+#         dateSortNo = ses.get('dateSortNo')
+
+#         session_unit = ses.get('session_unit')
+#         session_rows = ses.get('session_rows')
+#         bw_unit = ses.get('bw_unit')
+#         body_weight = ses.get('body_weight')
+#         session_type = ses.get('session_type')
+#         age = ses.get('age')
+#         gender = ses.get('gender')
+#         username = ses.get('username')
+#         notes = ses.get('notes')
+#         training_session = ses.get('training_session')
+#         location = ses.get('location')
+#         date = ses.get('date')
+#         length_hour = ses.get('length_hour')
+#         length_min = ses.get('length_min')
+#         length_sec = ses.get('length_sec')
+#         motivated = ses.get('motivated')
+#         effort = ses.get('effort')
+#         difficulty = ses.get('difficulty')
+
+#         mongo.db.sessions.update({'_id': sessionId},{
+#             'session_unit' : session_unit,
+#             'session_rows' : session_rows,
+#             'bw_unit' : bw_unit,
+#             'body_weight' : body_weight,
+#             'session_type' : session_type,
+#             'age' : age,
+#             'gender': gender,
+#             'username' : username,
+#             'notes' : notes,
+#             'training_session' : training_session,
+#             'location' : location,
+#             'date' : date,
+#             'dateSortNo' : int(dateSortNo),
+#             'length_hour' : length_hour,
+#             'length_min' : length_min,
+#             'length_sec' : length_sec,
+#             'motivated' : motivated,
+#             'effort' : effort,
+#             'difficulty' : difficulty,
+#             'time' : '12:30:00'
+#         })
+#     return 
+
 
 # the form to add a new session
 @app.route('/add_session')
@@ -37,11 +89,12 @@ def insert_session():
     sessions = mongo.db.sessions
     # the data from the form
     date = request.form['date']
-    dateYear = date[2: 4]
+    dateYear = date[2: 4] 
     dateMonth = date[5:7]
     dateDay = date[8:10]
     date = dateDay + '-' + dateMonth + '-' + dateYear
-    dateSortNo = dateYear + dateMonth + dateDay
+    dateTime = str(datetime.now())
+    dateSortNo = dateYear + dateMonth + dateDay + dateTime[11:13] + dateTime[14:16] + dateTime[17:19]
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
     length_sec = request.form['length_sec']
@@ -119,7 +172,8 @@ def insert_session():
         'length_sec': float(length_sec), 
         'motivated':motivated, 
         'effort': effort,
-        'difficulty': difficulty
+        'difficulty': difficulty,
+        'time': dateTime[11:19]
         }
     sessions.insert_one(sessionDict)
     return redirect(url_for('profile'))
