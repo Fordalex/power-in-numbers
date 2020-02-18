@@ -375,7 +375,7 @@
                                                                     </td>
                                                                     {% endif %}
                                                                     {% if session.session_unit == 'km' %}
-                                                                    {% set distance_traveled = session.training_session | int * 0.62 %}
+                                                                    {% set distance_traveled = session.training_session | float * 0.62 %}
                                                                     <td><span class="toFixed1">
                                                                             {{ distance_traveled }}</span>
                                                                         {{ distanceUnit }}s</td>
@@ -388,7 +388,7 @@
                                                                     </td>
                                                                     {% endif %}
                                                                     {% if session.session_unit == 'mile' %}
-                                                                    {% set distance_traveled = session.training_session | int * 10 * 16 / 100 %}
+                                                                    {% set distance_traveled = session.training_session | float * 10 * 16 / 100 %}
                                                                     <td><span
                                                                             class="toFixed1">{{ distance_traveled }}</span>
                                                                         {{ distanceUnit }}s</td>
@@ -398,7 +398,7 @@
                                                                     {% set hoursToMins = session.length_hour * 60 %}
                                                                     {% set totalMins = hoursToMins | int + session.length_min | int %}
                                                                     <td><span
-                                                                            class="toFixed2">{{ totalMins / distance_traveled | int }}</span>
+                                                                            class="toFixed2">{{ totalMins / distance_traveled | float }}</span>
                                                                         mins per {{ distanceUnit }}</td>
                                                                 </tr>
                                                                 {% endif %}

@@ -210,7 +210,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row m-0 p-0 mx-2">
+                        <div class="row m-0 p-0">
                             <div class="col-12 p-0 m-0">
                                 <div class="collapse  mt-4" id="expand{{ loop.index }}">
                                     <div class="card-body m-0 p-0">
@@ -227,7 +227,7 @@
                                                     </td>
                                                     <td>{{ record.training_session['session_sets_1'] }}
                                                     </td>
-                                                    {% set weight_lifted = record.training_session['session_weight_1'] | int %}
+                                                    {% set weight_lifted = record.training_session['session_weight_1'] | float %}
                                                     {% if unit == 'kg' %}{% if record.session_unit == 'kg' %}
                                                     <td>{{ weight_lifted }}{{ unit }}
                                                     </td>
@@ -329,7 +329,10 @@
                                  
                                     <div class="col-12 p-0">
                                         <div class="row m-0 p-0">
-                                            <div class="col-12 m-0 p-0">
+                                            <div class="col-8 m-0 p-0 d-flex align-items-end">
+                                                <small><p class="m-0"><b>Time Logged:</b> {{ record.time }}</p></small> 
+                                             </div>
+                                            <div class="col-4 m-0 p-0">
                                                 <p>
                                                     <a class="btn main-colour expand-button text-dark py-1 border float-right"
                                                         data-toggle="collapse" href="#expand{{ loop.index }}"

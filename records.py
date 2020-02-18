@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, make_response, session
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
-from datetime import date
+from datetime import date, datetime
 from os import path
 from passlib.hash import sha256_crypt
 from app import app
@@ -36,7 +36,11 @@ def insert_record():
     bw_unit = login_user.get('bw_unit')
     # checking the session type
     if session_type == 'weightlifting':
-        training_session = {'session_exercise_1': request.form['session_exercise_1'],'session_sets_1': request.form['session_sets_1'] , 'session_weight_1': float(request.form['session_weight_1'])}
+        training_session = {
+            'session_exercise_1': request.form['session_exercise_1'],
+            'session_sets_1': request.form['session_sets_1'] ,
+             'session_weight_1': float(request.form['session_weight_1'])
+             }
     elif session_type == 'running':
         training_session = float(request.form['distance'])
     elif session_type == 'cycling':
@@ -48,16 +52,38 @@ def insert_record():
     dateYear = date[2: 4]
     dateMonth = date[5:7]
     dateDay = date[8:10]
+    dateTime = str(datetime.now())
     date = dateDay + '-' + dateMonth + '-' + dateYear
     dateSortNo = dateYear + dateMonth + dateDay
     length_hour = request.form['length_hour']
     length_min = request.form['length_min']
+    length_sec = request.form['length_sec']
     motivated = request.form['motivated']
     effort = request.form['effort']
     difficulty = request.form['difficulty'] 
     session_unit = request.form['session_unit']
     notes = request.form['notes']
-    weightliftingDict = {'session_unit': session_unit,'bw_unit': bw_unit, 'body_weight': body_weight,'session_type': session_type, 'age': age, 'gender': gender ,'username':username, 'notes': notes, 'training_session': training_session, 'location': location, 'date': date, 'dateSortNo': dateSortNo, 'length_hour': int(length_hour), 'length_min': int(length_min), 'motivated':motivated, 'effort': effort,'difficulty': difficulty}
+    weightliftingDict = {
+        'session_unit': session_unit,
+        'bw_unit': bw_unit, 
+        'body_weight': body_weight,
+        'session_type': session_type, 
+        'age': age, 
+        'gender': gender ,
+        'username':username, 
+        'notes': notes, 
+        'training_session': training_session, 
+        'location': location, 
+        'date': date, 
+        'dateSortNo': dateSortNo, 
+        'length_hour': int(length_hour), 
+        'length_min': int(length_min), 
+        'length_sec': int(length_sec),
+        'motivated':motivated, 
+        'effort': effort,
+        'difficulty': difficulty,
+        'time': dateTime[11:19]
+        }
     records.insert_one(weightliftingDict)
     return redirect('record')
 
@@ -71,6 +97,8 @@ def users_records():
         return redirect(url_for('login_page'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
+    # find the unit choice selected by the user
+    unitVar = currentUsersAccount.get('selected_unit')
     # get filter info from cookies
     filter_date_cookie = request.cookies.get('filter_session_date_records')
     filter_session_type = request.cookies.get('filter_session_type_records')  
@@ -103,7 +131,7 @@ def users_records():
     for record in allRecords:
         recordCount += 1
 
-    return render_template('usersRecords.html', filter_date=filter_date, records=records, allRecords=recordCount, filter_session_type=filter_session_type)
+    return render_template('usersRecords.html', filter_date=filter_date, unit=unitVar, records=records, allRecords=recordCount, filter_session_type=filter_session_type)
 
 # filter the records for the users records page.
 @app.route('/filter_usersrecords', methods=['POST'])
