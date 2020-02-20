@@ -26,6 +26,8 @@ from records import *
 from users import *
 # /, login_page, home, filter_home, settings, add_unit, logout
 from general import *
+# add_plan
+from trainingPlan import *
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
