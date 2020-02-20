@@ -1,22 +1,37 @@
 # Power in numbers
 
-This web application was thought of because I'm always trying to find ways to track my training plans and training session, but I always lose track or it takes to long to write up the workout. This will hopefuly save me time, help me be more organized and gain knowledge of others training session for better progression. Also collect an array of training plans from different users.
+This web application was thought of because I'm always trying to find ways to track my training plans and training session, but I always lose track or it takes too long to write up the workout. This will hopefuly save me time, help me be more organized and gain knowledge of others training sessions for better progression. Also collect an array of training plans from different users and see their progression.
  
 ## UX
  
-This site is designed for people who like to stay active and need the motivation to keep going, also find new training plans to keep things interesting.
+This site is designed for people of all ages, the goal for this site is to motivate people to train by tracking their progress. Also being able to see that other users are contributing to the site goals should hopfully influence people to train. I have added a section on the home page that will add up all the user's distance travelled and display this for everyone to see. I think this will help people because as they log a session, they can watch this amount grow and feel part of a team. 
 
-I've tried to do most of the leg work for the user, by creating an easy and enjoyable experience.
-- As a user that's just completed a training session, logging your session should be as quick and easy as possible.
-- The stats section on the profile page has been added so the user can watch their progress and work out the number of training sessions they have completed. Using d3 and cross filter its clear to see how many session logged and the category of these sessions. Also, the distance the user has travelled by foot and bike is shown on a pie chart, so the user can compare data with ease.
+Each user will have to create their account before gaining access to this site after they have completed the necessary steps, they will then be taken to their profile. The profile page will allow the user to: add a session, add a record, create a training plan, seeing all their sessions logged, watch their stats grow and see or edit their basic information.
+
+- When the user would like to add a session all they need to press is the 'add' tab on their profile and select 'Add Session' then fill out the form.
+
+The form the user will have to fill out, to add a session will change depending on what session type the user is adding, the required information from the user will change and be stored to the database differently. Walking, running, cycling these are pretty much the same as they are units of distance and the user's inputs will be used to calculate their average speed. The user can choose from two different options miles and km, this information will be used later on for the conversions. The Weightlifting session type is different because one session might consist of three exercises and the next workout might consist of forty-three so it was important to make sure the form could handle this type of scalability. After the form has been completed the user will be redirceted to their profile to view their sesssions.
+
+- To log a record is very similar to adding a session, a record is added by clicking on the 'Add' tab on the their profile and pressing 'Save Record' then filling out the form.
+
+This form had to be a little different becuase the user will be saving just one record so the table for 'weightlifting' doesn't have to scale the same way, but I have added a dropdown from the exercise, so that later on I can create a stats page for the records. After the form had been been saved the user will be redirected to the 'PRs' page. 
+
+- finally creating a training plan, again the user will need to be on their 'Profile' and press the 'Add' tab and select 'Create Program'.
+
+This form had to be a little more complicated becuase first I have to find out how many weeks the user wants to create the training plan over and also what days are going to be training days and rest days. After this infomration has been given the tables for the days can be appended to the page and filled in by the user, when completed this training plan will be saved to the 'Training Plans' page for all the users to use.
+
+- Setting up a training plan, When on the 'Training Plans' page the user can select one of the many training plans available on the page. After they have selected a training plan that suits their goals the user will need to add the weight that they would like to use and this will be saved to 'Your Training Plans' page.
 
 This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login_page) Please feel free to create an account and start making progression as soon as possible.
 
-The main theme of the site is blue, white and black. I have created a seamless background image and added this on most pages to make the site feel the same, as the user navigates throughout. 
-
-Trying to keep the feel of the site competitive but also motivating, by adding small bits of data on how many sessions have been logged that day, how far as a group the page has travelled and the best records on display, these were added to try and motivate people by seeing other users working hard.
-
 ## Features
+
+- On the 'Profile', 'PRs', 'Home' and records page the option to filter the sessions by there: 'date', 'session type' and also sort by the newest or oldest sessions first, is available to change by the user.
+
+This should help the user find the training sessions they are looking for or filter just the session types they are interested in to create a more personal and convenient viewing experience for the user.
+
+
+
 
 - The first page the user will be faced with is the login page, the user can either create a new account or log in.
 - After the user logs in they will be taken to their profile.

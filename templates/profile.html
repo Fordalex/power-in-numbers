@@ -399,7 +399,7 @@
                                                                     {% set totalMins = hoursToMins | int + session.length_min | int %}
                                                                     <td><span
                                                                             class="toFixed2">{{ totalMins / distance_traveled | float }}</span>
-                                                                        mins per {{ distanceUnit }}</td>
+                                                                        min/{{ distanceUnit }}</td>
                                                                 </tr>
                                                                 {% endif %}
                                                             </table>
@@ -768,7 +768,7 @@
                                             </div>
         
                                             <div class="col-12 p-0">
-                                                <hr>
+                                                <hr class="mb-0">
                                             </div>
         
                                             <div class="col-12 p-0 mt-3 ">
@@ -832,7 +832,9 @@
                                                 </div>
                                                 {% endif %}
                                             </div>
-        
+                                            <div class="col-12 m-0 p-0">
+                                                <hr class="mb-0">
+                                            </div>
                                             <div class="col-12 p-0 mt-3">
                                                 <h6>Distance By Foot</h6>
                                                 {% set totalTravelByFoot = totalDistanceByWalking + allDistanceByFoot %}
