@@ -19,10 +19,15 @@
                             <div class="col-12 my-3 m-0 p-0">
                                 <button class="main-colour btn float-right" onclick="addWeeks()">Continue</button>
                             </div>
+                            <div class="col-12 m-0 p-0">
+                                <div id="plan_training_days"  class="row m-0 p-0">
+                                   
+                                </div>
+                                <div id="plan_table" class="row m-0 p-0">
 
-                            <div id="plan_training_days">
-
+                                </div>
                             </div>
+                          
                         </div>
                     </div>
 
@@ -31,6 +36,5 @@
         </div>
     </div>
 </div>
-<scirpt src="{{ url_for('static', filename='js/trainingPlan.js') }}"></scirpt>
 
 {% endblock %}

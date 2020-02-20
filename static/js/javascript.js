@@ -510,4 +510,3 @@ function backToFormStartRecord() {
     $('#unitContainer').remove()
     $('#sessionTable').remove()
 }
-

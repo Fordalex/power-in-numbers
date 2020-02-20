@@ -376,6 +376,11 @@ option {
   border-radius: 5px;
 }
 
+.even-table-width {
+  table-layout: fixed;
+  width: 100%;
+}
+
 footer {
   background-color: #fafafa;
 }
