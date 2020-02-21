@@ -13,3 +13,10 @@ mongo = PyMongo(app)
 @app.route('/add_plan')
 def add_plan():
     return render_template('addplan.html')
+
+# insert training plan 
+@app.route('/insert_training_plan')
+def insert_training_plan():
+    weekDayList = ['mon','tue','wed','thur','fri','sat','sun']
+    for week in weekDayList:
+        print(week)

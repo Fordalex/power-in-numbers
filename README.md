@@ -152,3 +152,6 @@ This was then using to add the smooth scroll to this function.
 
 - https://www.youtube.com/watch?v=_5OXmXvkU_E
 Organizing the app.py file.
+
+- https://codepen.io/bbodine1/pen/novBm
+checkbox taken from codepen

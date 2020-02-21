@@ -21,39 +21,62 @@ function tableColour(num) {
 var userWeeks
 function addWeeks() {
     userWeeks = $('#plan_many_weeks').val()
-    $('#plan_training_days').append('<h5>Tick The Training Days</h5>')
+    $('#plan_training_days').append('<h5>Cross The Training Days</h5>')
     for (i = 0; i < userWeeks; i++) {
         $('#plan_training_days').append(`
                                         <h6 class="col-12 m-0 p-0">Week ${i + 1}</h6>
                                         <div class="col-12 m-0 p-0 d-flex justify-content-around">
                                             <div>
-                                                <label class="d-block">Mon</label>
-                                                <input type="checkbox" id="mon-${i + 1}">
+                                                <label class="d-block m-0">Mon</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="mon-${i + 1}"/>
+                                                    <label for="mon-${i + 1}"></label>
+                                                </div>
                                             </div>
                                             <div>
-                                                <label class="d-block">Tues</label>
-                                                <input type="checkbox" id="tue-${i + 1}">
+                                                <label class="d-block m-0">Tue</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="tue-${i + 1}"/>
+                                                    <label for="tue-${i + 1}"></label>
+                                                </div>
                                             </div>
                                             <div>
-                                                <label class="d-block">Wed</label>
-                                                <input type="checkbox" id="wed-${i + 1}">
+                                                <label class="d-block m-0">Wed</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="wed-${i + 1}"/>
+                                                    <label for="wed-${i + 1}"></label>
+                                                </div>
                                             </div>
                                             <div>
-                                                <label class="d-block">Thur</label>
-                                                <input type="checkbox" id="thur-${i + 1}">
+                                                <label class="d-block m-0">Thur</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="thur-${i + 1}"/>
+                                                    <label for="thur-${i + 1}"></label>
+                                                </div>
                                             </div>
                                             <div>
-                                                <label class="d-block">Fri</label>
-                                                <input type="checkbox" id="fri-${i + 1}">
+                                                <label class="d-block m-0">Fri</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="fri-${i + 1}"/>
+                                                    <label for="fri-${i + 1}"></label>
+                                                </div>
                                             </div>
                                             <div>
-                                                <label class="d-block">Sat</label>
-                                                <input type="checkbox" id="sat-${i + 1}">
+                                                <label class="d-block m-0">Sat</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="sat-${i + 1}"/>
+                                                    <label for="sat-${i + 1}"></label>
+                                                </div>
                                             </div>
                                             <div>
-                                                <label class="d-block">Sun</label>
-                                                <input type="checkbox" id="sun-${i + 1}">
+                                                <label class="d-block m-0">Sun</label>
+                                                <div class="roundedOne my-1">
+                                                    <input type="checkbox" value="None" id="sun-${i + 1}"/>
+                                                    <label for="sun-${i + 1}"></label>
+                                                </div>
                                             </div>
+                                         
+                                        
                                         </div>
         `)
     }
@@ -93,7 +116,7 @@ function createPlanTable() {
                             <th>Rest</th>
                         </tr>
                         <tr class="mon_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="mon_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="mon_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="mon_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1" name="mon_week_${i + 1}_reps_1" required></td>
                             <td>
@@ -133,7 +156,7 @@ function createPlanTable() {
                             <th>Rest</th>
                         </tr>
                         <tr class="tue_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="tue_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="tue_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="tue_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1"  name="tue_week_${i + 1}_reps_1" required></td>
                             <td>
@@ -173,7 +196,7 @@ function createPlanTable() {
                             <th>Rest</th>
                         </tr>
                         <tr class="wed_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="wed_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="wed_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="wed_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1" name="wed_week_${i + 1}_reps_1" required></td>
                             <td>
@@ -213,7 +236,7 @@ function createPlanTable() {
                             <th>Rest</th>
                         </tr>
                         <tr class="thur_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="thur_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="thur_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="thur_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1" name="thur_week_${i + 1}_reps_1" required></td>
                             <td>
@@ -253,7 +276,7 @@ function createPlanTable() {
                         <th>Rest</th>
                         </tr>
                         <tr class="fri_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="fri_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="fri_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="fri_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1" name="fri_week_${i + 1}_reps_1" required></td>
                             <td>
@@ -293,7 +316,7 @@ function createPlanTable() {
                         <th>Rest</th>
                         </tr>
                         <tr class="sat_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="sat_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="sat_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="sat_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1" name="sat_week_${i + 1}_reps_1" required></td>
                             <td>
@@ -333,7 +356,7 @@ function createPlanTable() {
                             <th>Rest</th>
                         </tr>
                         <tr class="sun_week_${i + 1}_row_count">
-                            <td><input type="text" class="container-fluid" name="sun_week_${i + 1}_exercise_1"></td>
+                            <td><input type="text" class="container-fluid" name="sun_week_${i + 1}_exercise_1" required></td>
                             <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="sat_week_${i + 1}_sets_1" required>X
                                 <input class="container-fluid" type="number" min="0" step="1" name="sat_week_${i + 1}_reps_1" required>
                             </td>
@@ -359,19 +382,18 @@ function createPlanTable() {
                 </div>
             `)
         }
-       
+
     }
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
     }
     $('#plan_table').append(`
     <div class="col-12 m-0 my-3 p-0">
-        <button class="btn main-gradient float-right">Done</button>
+        <a href=" {{ url_for('insert_training_plan') }} "><button class="btn main-gradient float-right">Done</button></a>
     </div>
     `)
     $('#plan_training_days').remove()
 }
-
 
 // add a new row on to the days training plan
 $('body').on('click', '.plan_add_row', function () {
@@ -411,7 +433,7 @@ $('body').on('click', '.plan_remove_row', function () {
         count++
     }
     console.log(rowCount)
-    var removeRowTarget = '#'.concat(this.id, '_row_',count)
+    var removeRowTarget = '#'.concat(this.id, '_row_', count)
     console.log(removeRowTarget)
     $(removeRowTarget).remove()
 });
