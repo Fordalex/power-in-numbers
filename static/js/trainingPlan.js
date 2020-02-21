@@ -62,6 +62,7 @@ function addWeeks() {
                                         <button class="btn main-colour my-3 float-right" onclick="createPlanTable()">Done</button>
                                     </div>
     `)
+    $('#plan_first_container').remove()
 }
 
 // create the table for the user to fill in the exercise and sets x reps.
@@ -85,19 +86,19 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Monday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="mon_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="mon_week_${i + 1}_table">
+                        <tr class="mon_week_${i + 1}_row_count">
                             <th>Exercise</th>
                             <th>Sets x Reps</th>
                             <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                        <tr class="mon_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="mon_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="mon_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="mon_week_${i + 1}_reps_1" required></td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid" name="mon_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -105,8 +106,15 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="mon_row_${i + 1}">Add Row +</a>
+                    <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row">Remove Row -</a>
+                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="mon_week_${i + 1}">Add Row +</a>
+                </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Monday</h6>
+                    <p>Rest Day</p>
                 </div>
             `)
         }
@@ -118,19 +126,19 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Tuesday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="tue_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="tue_week_${i + 1}_table">
+                        <tr class="tue_week_${i + 1}_row_count">
                             <th>Exercise</th>
                             <th>Sets x Reps</th>
                             <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                        <tr class="tue_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="tue_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="tue_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1"  name="tue_week_${i + 1}_reps_1" required></td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid"  name="tue_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -139,7 +147,14 @@ function createPlanTable() {
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
                     <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="tue_row_${i + 1}">Add Row +</a>
+                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="tue_week_${i + 1}">Add Row +</a>
+                </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Tuesday</h6>
+                    <p>Rest Day</p>
                 </div>
             `)
         }
@@ -151,19 +166,19 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Wednesday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="wed_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="wed_week_${i + 1}_table">
+                        <tr class="wed_week_${i + 1}_row_count">
                             <th>Exercise</th>
                             <th>Sets x Reps</th>
                             <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                        <tr class="wed_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="wed_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="wed_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="wed_week_${i + 1}_reps_1" required></td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid" name="wed_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -172,8 +187,15 @@ function createPlanTable() {
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
                 <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="wed_row_${i + 1}">Add Row +</a>
+                <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="wed_week_${i + 1}">Add Row +</a>
             </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Wednesday</h6>
+                    <p>Rest Day</p>
+                </div>
             `)
         }
         var thur = `#thur-${i + 1}`
@@ -184,19 +206,19 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Thursday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="thur_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="thur_week_${i + 1}_table">
+                        <tr class="thur_week_${i + 1}_row_count">
                             <th>Exercise</th>
                             <th>Sets x Reps</th>
                             <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                        <tr class="thur_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="thur_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="thur_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="thur_week_${i + 1}_reps_1" required></td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid" name="thur_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -205,7 +227,14 @@ function createPlanTable() {
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
                     <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="thur_row_${i + 1}">Add Row +</a>
+                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="thur_week_${i + 1}">Add Row +</a>
+                </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Thursday</h6>
+                    <p>Rest Day</p>
                 </div>
             `)
         }
@@ -217,19 +246,19 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Friday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="fri_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="fri_week_${i + 1}_table">
+                        <tr class="fri_week_${i + 1}_row_count">
                         <th>Exercise</th>
                         <th>Sets x Reps</th>
                         <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                        <tr class="fri_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="fri_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="fri_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="fri_week_${i + 1}_reps_1" required></td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid" name="fri_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -238,7 +267,14 @@ function createPlanTable() {
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
                     <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="fri_row_${i + 1}">Add Row +</a>
+                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="fri_week_${i + 1}">Add Row +</a>
+                </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Friday</h6>
+                    <p>Rest Day</p>
                 </div>
             `)
         }
@@ -250,19 +286,19 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Saturday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="sat_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="sat_week_${i + 1}_table">
+                        <tr class="sat_week_${i + 1}_row_count">
                         <th>Exercise</th>
                         <th>Sets x Reps</th>
                         <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required></td>
+                        <tr class="sat_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="sat_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="sat_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="sat_week_${i + 1}_reps_1" required></td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid" name="sat_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -271,7 +307,14 @@ function createPlanTable() {
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
                     <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sat_row_${i + 1}">Add Row +</a>
+                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sat_week_${i + 1}">Add Row +</a>
+                </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Saturday</h6>
+                    <p>Rest Day</p>
                 </div>
             `)
         }
@@ -283,20 +326,20 @@ function createPlanTable() {
                     <h6 class="m-0 mb-3 p-0">Sunday</h6>
                 </div>
                 <div class="col-12 p-0 m-0">
-                    <table class="session-table even-table-width" id="sun_row_${i + 1}_table">
-                        <tr>
+                    <table class="session-table even-table-width" id="sun_week_${i + 1}_table">
+                        <tr class="sun_week_${i + 1}_row_count">
                             <th>Exercise</th>
                             <th>Sets x Reps</th>
                             <th>Rest</th>
                         </tr>
-                        <tr>
-                            <td><input type="text" class="container-fluid"></td>
-                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required>
+                        <tr class="sun_week_${i + 1}_row_count">
+                            <td><input type="text" class="container-fluid" name="sun_week_${i + 1}_exercise_1"></td>
+                            <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="sat_week_${i + 1}_sets_1" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="sat_week_${i + 1}_reps_1" required>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-around">
-                                    <input type="number" min="0" class="container-fluid">
+                                    <input type="number" min="0" class="container-fluid" name="sat_week_${i + 1}_rest_1">
                                     <p class="m-0 p-0">Secs</p>
                                 </div>
                             </td>
@@ -305,33 +348,49 @@ function createPlanTable() {
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
                     <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
-                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sun_row_${i + 1}">Add Row +</a>
+                    <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sun_week_${i + 1}">Add Row +</a>
+                </div>
+            `)
+        } else {
+            $('#plan_table').append(`
+                <div class="col-12 p-0 m-0">
+                    <h6 class="m-0 mb-1 p-0">Sunday</h6>
+                    <p>Rest Day</p>
                 </div>
             `)
         }
-        $('#plan_table').append(`
-                        <div class="col-12 m-0 my-3 p-0">
-                            <button class="btn main-gradient float-right">Done</button>
-                        </div>
-        `)
+       
     }
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
     }
+    $('#plan_table').append(`
+    <div class="col-12 m-0 my-3 p-0">
+        <button class="btn main-gradient float-right">Done</button>
+    </div>
+    `)
+    $('#plan_training_days').remove()
 }
 
+
+// add a new row on to the days training plan
 $('body').on('click', '.plan_add_row', function () {
     var targetTable = '#'.concat(this.id, '_table')
-    console.log(targetTable)
+    var targetRow = '.'.concat(this.id, '_row_count')
+    var rowCount = $(targetRow)
+    var count = 0
+    for (i = 0; i < rowCount.length; i++) {
+        count++
+    }
     $(targetTable).append(`
-                            <tr>
-                                <td><input type="text"></td>
-                                <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="session_sets_1" required>X
-                                <input class="container-fluid" type="number" min="0" step="1" name="session_reps_1" required>
+                            <tr id="${this.id.concat('_row_', count)}" class="${this.id.concat('_row_count')}">
+                                <td><input type="text" class="container-fluid" name="${this.id.concat('_exercise_', count)}"></td>
+                                <td class="d-flex jusitfy-content-around"><input class="container-fluid float-left" min="0" type="number" step="1" name="${this.id.concat('_sets_', count)}" required>X
+                                <input class="container-fluid" type="number" min="0" step="1" name="${this.id.concat('_reps_', count)}" required>
                                 </td>
                                 <td>
                                     <div class="d-flex justify-content-around">
-                                        <input type="number" min="0" class="container-fluid">
+                                        <input type="number" min="0" class="container-fluid" name="${this.id.concat('_rest_', count)}"
                                         <p class="m-0 p-0">Secs</p>
                                     </div>
                                 </td>
@@ -341,5 +400,18 @@ $('body').on('click', '.plan_add_row', function () {
         tableColour(k);
     }
 });
-    
 
+// remove the last row on to the days training plan
+$('body').on('click', '.plan_remove_row', function () {
+    var targetTable = '#'.concat(this.id, '_table')
+    var targetRow = '.'.concat(this.id, '_row_count')
+    var rowCount = $(targetRow)
+    var count = 0
+    for (i = 0; i < rowCount.length; i++) {
+        count++
+    }
+    console.log(rowCount)
+    var removeRowTarget = '#'.concat(this.id, '_row_',count)
+    console.log(removeRowTarget)
+    $(removeRowTarget).remove()
+});

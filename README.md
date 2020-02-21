@@ -1,6 +1,6 @@
 # Power in numbers
 
-This web application was thought of because I'm always trying to find ways to track my training plans and training session, but I always lose track or it takes too long to write up the workout. This will hopefuly save me time, help me be more organized and gain knowledge of others training sessions for better progression. Also collect an array of training plans from different users and see their progression.
+This web application was thought of because I'm always trying to find ways to track my training plans and training sessions, but I always lose track or it takes too long to write up the workout. This will hopefuly save me time, help me be more organized and gain knowledge of others training sessions for better progression. Also collect an array of training plans from different users and see their progression.
  
 ## UX
  
@@ -10,15 +10,15 @@ Each user will have to create their account before gaining access to this site a
 
 - When the user would like to add a session all they need to press is the 'add' tab on their profile and select 'Add Session' then fill out the form.
 
-The form the user will have to fill out, to add a session will change depending on what session type the user is adding, the required information from the user will change and be stored to the database differently. Walking, running, cycling these are pretty much the same as they are units of distance and the user's inputs will be used to calculate their average speed. The user can choose from two different options miles and km, this information will be used later on for the conversions. The Weightlifting session type is different because one session might consist of three exercises and the next workout might consist of forty-three so it was important to make sure the form could handle this type of scalability. After the form has been completed the user will be redirceted to their profile to view their sesssions.
+The form the user will have to fill out, to add a session will change depending on what session type the user is adding, the required information from the user will change and be stored to the database differently. Walking, running, cycling these are pretty much the same as they are units of distance and the user's inputs will be used to calculate their average speed. The user can choose from two different options miles and km, this information will be saved to the DB and used later on for the conversions. The Weightlifting session type is different because one session might consist of three exercises and the next workout might consist of forty-three so it was important to make sure the form could handle this type of scalability. After the form has been completed the user will be redirceted to their profile to view their sesssions.
 
 - To log a record is very similar to adding a session, a record is added by clicking on the 'Add' tab on the their profile and pressing 'Save Record' then filling out the form.
 
-This form had to be a little different becuase the user will be saving just one record so the table for 'weightlifting' doesn't have to scale the same way, but I have added a dropdown from the exercise, so that later on I can create a stats page for the records. After the form had been been saved the user will be redirected to the 'PRs' page. 
+This form had to be a little different because the user will be saving just one record so the table for 'weightlifting' doesn't have to scale the same way, but I have added a dropdown from the exercise, so that later on I can create a stats page for the records. After the form had been been saved the user will be redirected to the 'PRs' page. 
 
 - finally creating a training plan, again the user will need to be on their 'Profile' and press the 'Add' tab and select 'Create Program'.
 
-This form had to be a little more complicated becuase first I have to find out how many weeks the user wants to create the training plan over and also what days are going to be training days and rest days. After this infomration has been given the tables for the days can be appended to the page and filled in by the user, when completed this training plan will be saved to the 'Training Plans' page for all the users to use.
+This form had to be a little more complicated because first I have to find out how many weeks the user wants to create the training plan over and also what days are going to be training days and rest days. After this infomration has been given the tables for the days can be appended to the page and filled in by the user. When completed, this training plan will be saved to the 'Training Plans' page for all the users to use.
 
 - Setting up a training plan, When on the 'Training Plans' page the user can select one of the many training plans available on the page. After they have selected a training plan that suits their goals the user will need to add the weight that they would like to use and this will be saved to 'Your Training Plans' page.
 
@@ -28,7 +28,7 @@ This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.her
 
 - On the 'Profile', 'PRs', 'Home' and records page the option to filter the sessions by there: 'date', 'session type' and also sort by the newest or oldest sessions first, is available to change by the user.
 
-This should help the user find the training sessions they are looking for or filter just the session types they are interested in to create a more personal and convenient viewing experience for the user.
+This should help the user find the training sessions they are looking for or filter just the session types they are interested in to create a more personal and convenient viewing experience.
 
 
 
