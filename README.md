@@ -155,3 +155,6 @@ Organizing the app.py file.
 
 - https://codepen.io/bbodine1/pen/novBm
 checkbox taken from codepen
+
+- https://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/
+for loop in python 

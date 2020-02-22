@@ -116,7 +116,6 @@ def insert_session():
             except:
                 break
         return row_count
-    
     def weightlifting_to_dict():    
         row_count = counting_rows()
         session_row_return = []
