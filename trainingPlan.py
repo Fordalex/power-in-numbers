@@ -19,7 +19,11 @@ def add_plan():
 def insert_training_plan():
     weekDayList = ['mon','tue','wed','thur','fri','sat','sun']
     weekCount = 1
-    training_plan_dict = {}
+    plan_name = request.form['plan_name']
+    session_type = request.form['session_type']
+    difficulty = request.form['difficulty']
+    enjoyment = request.form['enjoyment']
+    training_plan_dict = {'plan_name' : plan_name, 'session_type': session_type, 'difficulty' : difficulty , 'enjoyment' : enjoyment }
     weekTrue = True
     while weekTrue:
         weekTrue = False
@@ -72,3 +76,9 @@ def insert_training_plan():
             weekCount += 1
     mongo.db.trainingPlans.insert_one(training_plan_dict)
     return redirect(url_for('profile'))
+
+@app.route('/training_plans')
+def training_plans():
+    training_plans_DB = mongo.db.trainingPlans.find()
+
+    return render_template('trainingplans.html', trainingPlans=training_plans_DB)

@@ -1,0 +1,185 @@
+{% extends 'base.html' %} {% block content %}
+
+
+<div class="title-container">
+    <p class="m-0 p-0 text-center text-light">Plans</p>
+    <h1 class="text-center main-title">Training Plans</h1>
+</div>
+<div class="page-wrapper">
+    <div class="page-container p-0">
+        <div class="container-fluid">
+            <div class="row m-0 p-0 pt-3">
+
+                <div class="col-12 px-3">
+                    <p>Here we have a range of training plans from all our users!!<a href="{{ url_for('add_plan') }}">
+                            Create a plan</a></p>
+                </div>
+            </div>
+            <div class="row m-0 p-0">
+                <div class="col-12">
+                    <hr class="m-0">
+                </div>
+            </div>
+            <div class="row m-0 p-0">
+                <div class="col-9 p-3 m-0">
+
+                </div>
+                <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
+                    <p>
+                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample" role="button"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            Filter
+                        </a>
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 p-0 m-0 ">
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body  pb-3 pr-0 pl-0 pt-0">
+                        <!-- training sessions filter section -->
+                        <form action="{{ url_for('filter_home') }}" method="POST">
+                            <div class="row m-0 p-0">
+
+                                <div class="col-12 col-md-3 pt-3">
+                                    <h6>Filter</h6>
+                                    <label>Session Type:</label>
+                                    <select class="form-control" name="filter_session_type_home">
+                                        {% if filter_session_type == 'weightlifting' %}
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="running">Running</option>
+                                        <option value="walking">Walking</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="all">All</option>
+                                        {% elif filter_session_type == 'running' %}
+                                        <option value="running">Running</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="walking">Walking</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="all">All</option>
+                                        {% elif filter_session_type == 'cycling' %}
+                                        <option value="cycling">Cycling</option>
+                                        <option value="running">Running</option>
+                                        <option value="walking">Walking</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="all">All</option>
+                                        {% elif filter_session_type == 'walking' %}
+                                        <option value="walking">Walking</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="running">Running</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="all">All</option>
+                                        {% else %}
+                                        <option value="all">All</option>
+                                        <option value="weightlifting">Weightlifting</option>
+                                        <option value="running">Running</option>
+                                        <option value="cycling">Cycling</option>
+                                        <option value="walking">Walking</option>
+                                        {% endif %}
+                                    </select>
+                                </div>
+                                <div class="col-12 p-0 col-md-3 d-flex justify-content-center align-items-end">
+                                    <div class="container-fluid">
+                                        <label>Date:</label>
+                                        <input type="date" class="form-control" value="{{ filter_date }}"
+                                            name="filter_session_date_home">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
+                                    <div class="container-fluid">
+                                        <label>Sort By:</label>
+                                        <select name="sort_session_home" class="form-control">
+                                            {% if sortCards == 'Newest First' %}
+                                            <option class="date">Newest First</option>
+                                            <option class="date">Oldest First</option>
+                                            {% elif sortCards == 'Oldest First' %}
+                                            <option class="date">Oldest First</option>
+                                            <option class="date">Newest First</option>
+                                            {% else %}
+                                            <option class="date">Newest First</option>
+                                            <option class="date">Oldest First</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
+                                    <button class="main-gradient btn container-fluid">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr class="mt-0">
+            <div class="row m-0 p-0" id="session_title">
+                <div class="col-12">
+                    <h4 class="text-center">All User's Training Sessions</h4>
+                </div>
+            </div>
+            <div class="row m-0 p-0 px-1">
+                {% for plan in trainingPlans %}
+                <div class="col-12 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
+                    <div class="session-card my-1 my-md-1 p-2">
+                        <div class="row m-0 p-0">
+                            <div class="col-6 pl-1 pr-2">
+                                {% if plan.session_type == 'weightlifting' %}
+                                <i class="fas fa-dumbbell float-right"></i>
+                                {% elif plan.session_type == 'running' %}
+                                <i class="fas fa-running float-right mr-1"></i>
+                                {% elif plan.session_type == 'Body Weight' %}
+                                <i class="fas fa-child float-right"></i>
+                                {% elif plan.session_type == 'cycling' %}
+                                <i class="fas fa-biking float-right"></i>
+                                {% elif plan.session_type == 'walking' %}
+                                <i class="fas fa-shoe-prints float-right"></i>
+                                {% endif %}
+                                <h5><u>{{ loop.index }}. <span class="main-colour-text">{{ plan.plan_name }}</span></u>
+                                </h5>
+                                <p class="m-0 p-0"><b>Difficulty:</b> {{ plan.difficulty }}</p>
+                                <p class="m-0"><b>Enjoyment:</b> {{ plan.enjoyment }}</p>
+                            </div>
+                            <div class="col-6 pr-0 border-left">
+                                <p class="m-0 p-0 mb-1"><b>Things:</b> {{ session.date }}</p>
+                                <p class="m-0 mb-1"><b>Things:</b> {{ session.location }}</p>
+                                <p class="m-0 mb-1"><b>Things:</b> {{ session.location }}</p>
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0 m-0">
+                                <div class="collapse  mt-4" id="expand{{ loop.index }}">
+                                   
+                                    {{ plan.week_1[0] }}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+                              <div class="col-12">
+                                <p>
+                                    <a class="btn main-colour expand-button text-dark py-1 border float-right"
+                                        data-toggle="collapse" href="#expand{{ loop.index }}"
+                                        role="button" aria-expanded="false"
+                                        aria-controls="collapseExample">
+                                        Expand
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if loop.last %}
+                <div class="col-12 p-0 animated fadeInUp">
+                    <p class="text-secondary">Search Result: {{ loop.index }}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -90,12 +90,44 @@ function addWeeks() {
 
 // create the table for the user to fill in the exercise and sets x reps.
 function createPlanTable() {
+    $('#plan_table').append(`
+    <div class="col-12 m-0 p-0">
+        <hr>
+    </div>
+    `)
+    $('#plan_table').append(`
+    <div class="col-6 m-0 p-0 pr-2">
+        <label>Plan Name</label>
+        <input class="form-control mr-3" type="text" name="plan_name">
+    </div>
+    <div class="col-6 m-0 p-0">
+        <label>Plan Type</label>
+        <select class="form-control" name="session_type">
+            <option value="weightlifting">Weightlifting</option>
+        </select>
+    </div>
+    <div class="col-12 p-0 my-3 d-flex justify-content-around">
+        <div class="stats-container container-fluid">
+            <p class="text-center">Enjoyment:</p>
+            <div class="d-flex justify-content-center align-item-center">
+                <input type="number" min="0" max="10" class="number-input float-left"
+                    name="enjoyment" required>
+                <p class="m-0"> / 10</p>
+            </div>
+        </div>
+        <div class="p-1"></div>
+        <div class="stats-container container-fluid">
+            <p class="text-center">Difficulty:</p>
+            <div class="d-flex justify-content-center align-item-center">
+                <input type="number" min="0" max="10" class="number-input float-left"
+                    name="difficulty" required>
+                <p class="m-0"> / 10</p>
+            </div>
+        </div>
+    </div>
+    `)
     for (i = 0; i < userWeeks; i++) {
-        $('#plan_table').append(`
-                        <div class="col-12 m-0 p-0">
-                            <hr>
-                        </div>
-        `)
+
         $('#plan_table').append(`
                             <div class="col-12 m-0 p-0">
                                 <h4>Week ${i + 1}</h4>
