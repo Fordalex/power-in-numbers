@@ -23,7 +23,8 @@ def insert_training_plan():
     session_type = request.form['session_type']
     difficulty = request.form['difficulty']
     enjoyment = request.form['enjoyment']
-    training_plan_dict = {'plan_name' : plan_name, 'session_type': session_type, 'difficulty' : difficulty , 'enjoyment' : enjoyment }
+    training_plan_array_weeks = []
+    training_plan_dict = {'plan_name' : plan_name, 'session_type': session_type, 'difficulty' : difficulty , 'enjoyment' : enjoyment, 'weeks': training_plan_array_weeks}
     weekTrue = True
     while weekTrue:
         weekTrue = False
@@ -60,7 +61,11 @@ def insert_training_plan():
                             session_sets = request.form[sets]
                             session_reps = request.form[reps]
                             session_rest = request.form[rest]
-                            sessionDict = { exercise: session_exercise, sets : session_sets, reps : session_reps, rest : session_rest }
+                            store_name_exercise = 'exercise_' + str(row)
+                            store_name_sets = 'sets_' + str(row)
+                            store_name_reps = 'reps_' + str(row)
+                            store_name_rest = 'rest_' + str(row)
+                            sessionDict = { store_name_exercise: session_exercise, store_name_sets : session_sets, store_name_reps : session_reps, store_name_rest : session_rest }
                             session_row_return.append(sessionDict)
                         return session_row_return
 
@@ -72,10 +77,10 @@ def insert_training_plan():
             except:
                 continue
         if weekTrue:
-            training_plan_dict.update(weekDict)
+            training_plan_array_weeks.append(weekDict)
             weekCount += 1
     mongo.db.trainingPlans.insert_one(training_plan_dict)
-    return redirect(url_for('profile'))
+    return redirect(url_for('training_plans'))
 
 @app.route('/training_plans')
 def training_plans():

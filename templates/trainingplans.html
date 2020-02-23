@@ -7,118 +7,20 @@
 </div>
 <div class="page-wrapper">
     <div class="page-container p-0">
-        <div class="container-fluid">
+        <div class="container-fluid px-0">
             <div class="row m-0 p-0 pt-3">
-
                 <div class="col-12 px-3">
                     <p>Here we have a range of training plans from all our users!!<a href="{{ url_for('add_plan') }}">
                             Create a plan</a></p>
                 </div>
             </div>
-            <div class="row m-0 p-0">
-                <div class="col-12">
-                    <hr class="m-0">
-                </div>
-            </div>
-            <div class="row m-0 p-0">
-                <div class="col-9 p-3 m-0">
-
-                </div>
-                <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
-                    <p>
-                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample" role="button"
-                            aria-expanded="false" aria-controls="collapseExample">
-                            Filter
-                        </a>
-
-                    </p>
-                </div>
-            </div>
-            <div class="col-12 p-0 m-0 ">
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body  pb-3 pr-0 pl-0 pt-0">
-                        <!-- training sessions filter section -->
-                        <form action="{{ url_for('filter_home') }}" method="POST">
-                            <div class="row m-0 p-0">
-
-                                <div class="col-12 col-md-3 pt-3">
-                                    <h6>Filter</h6>
-                                    <label>Session Type:</label>
-                                    <select class="form-control" name="filter_session_type_home">
-                                        {% if filter_session_type == 'weightlifting' %}
-                                        <option value="weightlifting">Weightlifting</option>
-                                        <option value="running">Running</option>
-                                        <option value="walking">Walking</option>
-                                        <option value="cycling">Cycling</option>
-                                        <option value="all">All</option>
-                                        {% elif filter_session_type == 'running' %}
-                                        <option value="running">Running</option>
-                                        <option value="weightlifting">Weightlifting</option>
-                                        <option value="walking">Walking</option>
-                                        <option value="cycling">Cycling</option>
-                                        <option value="all">All</option>
-                                        {% elif filter_session_type == 'cycling' %}
-                                        <option value="cycling">Cycling</option>
-                                        <option value="running">Running</option>
-                                        <option value="walking">Walking</option>
-                                        <option value="weightlifting">Weightlifting</option>
-                                        <option value="all">All</option>
-                                        {% elif filter_session_type == 'walking' %}
-                                        <option value="walking">Walking</option>
-                                        <option value="cycling">Cycling</option>
-                                        <option value="running">Running</option>
-                                        <option value="weightlifting">Weightlifting</option>
-                                        <option value="all">All</option>
-                                        {% else %}
-                                        <option value="all">All</option>
-                                        <option value="weightlifting">Weightlifting</option>
-                                        <option value="running">Running</option>
-                                        <option value="cycling">Cycling</option>
-                                        <option value="walking">Walking</option>
-                                        {% endif %}
-                                    </select>
-                                </div>
-                                <div class="col-12 p-0 col-md-3 d-flex justify-content-center align-items-end">
-                                    <div class="container-fluid">
-                                        <label>Date:</label>
-                                        <input type="date" class="form-control" value="{{ filter_date }}"
-                                            name="filter_session_date_home">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3 p-0 m-0 d-flex align-items-end">
-                                    <div class="container-fluid">
-                                        <label>Sort By:</label>
-                                        <select name="sort_session_home" class="form-control">
-                                            {% if sortCards == 'Newest First' %}
-                                            <option class="date">Newest First</option>
-                                            <option class="date">Oldest First</option>
-                                            {% elif sortCards == 'Oldest First' %}
-                                            <option class="date">Oldest First</option>
-                                            <option class="date">Newest First</option>
-                                            {% else %}
-                                            <option class="date">Newest First</option>
-                                            <option class="date">Oldest First</option>
-                                            {% endif %}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
-                                    <button class="main-gradient btn container-fluid">Search</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-
             <hr class="mt-0">
             <div class="row m-0 p-0" id="session_title">
                 <div class="col-12">
                     <h4 class="text-center">All User's Training Sessions</h4>
                 </div>
             </div>
-            <div class="row m-0 p-0 px-1">
+            <form class="row m-0 p-0 px-1">
                 {% for plan in trainingPlans %}
                 <div class="col-12 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                     <div class="session-card my-1 my-md-1 p-2">
@@ -141,23 +43,76 @@
                                 <p class="m-0"><b>Enjoyment:</b> {{ plan.enjoyment }}</p>
                             </div>
                             <div class="col-6 pr-0 border-left">
-                                <p class="m-0 p-0 mb-1"><b>Things:</b> {{ session.date }}</p>
-                                <p class="m-0 mb-1"><b>Things:</b> {{ session.location }}</p>
-                                <p class="m-0 mb-1"><b>Things:</b> {{ session.location }}</p>
+                                <p class="m-0 p-0 mb-1"><b>Current Users:</b> 0</p>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
                             <div class="col-12 p-0 m-0">
                                 <div class="collapse  mt-4" id="expand{{ loop.index }}">
-                                   
-                                    {{ plan.week_1[0] }}
-                                    
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 m-0 p-0">
+                                            <p class="text-danger text-center m-0">Enter the weight you would like to use for this plan.</p>
+                                        </div>
+                                    </div>
+                                   {% for week in plan.weeks %}
+                                    <div class="row m-0 p-0 my-3">
+                                        <div class="col-12 m-0 p-0">
+                                            <h6 class="mt-3 ml-1">Week {{ loop.index }}</h6>
+                                        </div>
+                                        {% set weekInteration = 'week_' + loop.index | string %}
+                                        {% for table in week[weekInteration] %}
+                                        <div class="col-12 col-md-6 m-0 px-1">
+                                            {% set day = table['day'] %}
+                                            {% if day == 'mon' %}
+                                            <h6><u>Monday</u></h6> 
+                                            {% elif day == 'tue' %}
+                                            <h6><u>Tuesday</u></h6> 
+                                            {% elif day == 'wed' %}
+                                            <h6><u>Wednesday</u></h6> 
+                                            {% elif day == 'thur' %}
+                                            <h6><u>Thursday</u></h6> 
+                                            {% elif day == 'fri' %}
+                                            <h6><u>Friday</u></h6> 
+                                            {% elif day == 'sat' %}
+                                            <h6><u>Saturday</u></h6> 
+                                            {% elif day == 'sun' %}
+                                            <h6><u>Sunday</u></h6> 
+                                            {% endif %}
+                                            <table class="session-table container-fluid even-table-width">
+                                                <tr>
+                                                    <th>Exercise</th>
+                                                    <th>Sets X Reps</th>
+                                                    <th>Rest</th>
+                                                    <th>Weight</th>
+                                                </tr>
+                                                {% for row in table.training_plan %}
+                                                <tr>
+                                                    {% set exerciseInteration = 'exercise_' + loop.index | string %}
+                                                    {% set setsInteration = 'sets_' + loop.index | string %}
+                                                    {% set repsInteration = 'reps_' + loop.index | string %}
+                                                    {% set restInteration = 'rest_' + loop.index | string %}
+                                                    <td> {{ row[exerciseInteration] }} </td>
+                                                    <td> {{ row[setsInteration] }} X {{ row[repsInteration] }} </td>
+                                                    <td> {{ row[restInteration] }}Secs </td>
+                                                    <td><input class="form-control container-fluid"></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
+
+
+
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
-                              <div class="col-12">
-                                <p>
+     
+                              <div class="col-12 d-flex justify-content-end">
+                                <button class="btn btn-success p-0 px-2 text-dark mr-1" type="submit">Start</button>
+                                <p class="m-0">
                                     <a class="btn main-colour expand-button text-dark py-1 border float-right"
                                         data-toggle="collapse" href="#expand{{ loop.index }}"
                                         role="button" aria-expanded="false"
@@ -175,7 +130,7 @@
                 </div>
                 {% endif %}
                 {% endfor %}
-            </div>
+            </form>
         </div>
     </div>
 </div>
