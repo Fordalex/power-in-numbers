@@ -35,18 +35,21 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('users_records') }}"><span class="main-colour-text">PRs</span></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('personal_trainingplans')}}"><span class="main-colour-text">Your Training Plans</span></a>
+            </li>
           </ul>
         </div>
         <div class="col-12 col-lg-4  d-flex justify-content-start justify-content-lg-center">
           <ul class="navbar-nav">
             <div class="dropdown-divider"></div>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link text-dark" href="{{url_for('home')}}">Home</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link text-dark" href="{{url_for('record')}}">Records</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link text-dark" href="{{url_for('training_plans')}}">Training Plans</a>
             </li>
           </ul>

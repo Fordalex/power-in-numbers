@@ -84,6 +84,21 @@ def insert_training_plan():
 
 @app.route('/training_plans')
 def training_plans():
+        # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    unitVar = currentUsersAccount.get('selected_unit')
     training_plans_DB = mongo.db.trainingPlans.find()
+    return render_template('trainingplans.html', trainingPlans=training_plans_DB, unitVar=unitVar )
 
-    return render_template('trainingplans.html', trainingPlans=training_plans_DB)
+@app.route('/start_plan')
+def start_plan():
+    return redirect(url_for('personal_trainingplans'))
+
+@app.route('/personal_trainingplans')
+def personal_trainingplans():
+    return render_template('personalplans.html')

@@ -20,7 +20,7 @@
                     <h4 class="text-center">All User's Training Sessions</h4>
                 </div>
             </div>
-            <form class="row m-0 p-0 px-1">
+            <form class="row m-0 p-0 px-1" action="{{ url_for('start_plan') }}">
                 {% for plan in trainingPlans %}
                 <div class="col-12 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                     <div class="session-card my-1 my-md-1 p-2">
@@ -84,6 +84,7 @@
                                                     <th>Sets X Reps</th>
                                                     <th>Rest</th>
                                                     <th>Weight</th>
+                                                    <th>Unit</th>
                                                 </tr>
                                                 {% for row in table.training_plan %}
                                                 <tr>
@@ -94,7 +95,8 @@
                                                     <td> {{ row[exerciseInteration] }} </td>
                                                     <td> {{ row[setsInteration] }} X {{ row[repsInteration] }} </td>
                                                     <td> {{ row[restInteration] }}Secs </td>
-                                                    <td><input class="form-control container-fluid"></td>
+                                                    <td><input class="form-control container-fluid" required></td>
+                                                    <td title="edit in settings">{{ unitVar }}</td>
                                                 </tr>
                                                 {% endfor %}
                                             </table>
@@ -105,13 +107,17 @@
                                         {% endfor %}
                                     </div>
                                     {% endfor %}
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 m-0 p-0 pl-1">
+                                            <button class="btn btn-success p-0 px-2 text-dark mr-1" type="submit">Start Plan</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
      
                               <div class="col-12 d-flex justify-content-end">
-                                <button class="btn btn-success p-0 px-2 text-dark mr-1" type="submit">Start</button>
                                 <p class="m-0">
                                     <a class="btn main-colour expand-button text-dark py-1 border float-right"
                                         data-toggle="collapse" href="#expand{{ loop.index }}"
