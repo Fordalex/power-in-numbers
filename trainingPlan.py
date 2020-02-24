@@ -95,9 +95,14 @@ def training_plans():
     training_plans_DB = mongo.db.trainingPlans.find()
     return render_template('trainingplans.html', trainingPlans=training_plans_DB, unitVar=unitVar )
 
+@app.route('/add_weight/<plan_id>', methods=['POST'])
+def add_weight(plan_id):
+    plan = mongo.db.trainingPlans.find_one({'_id': ObjectId(plan_id)})
+    return render_template('addingweighttoplan.html', plan=plan)
+
 @app.route('/start_plan')
 def start_plan():
-    return redirect(url_for('personal_trainingplans'))
+    return render_template('')
 
 @app.route('/personal_trainingplans')
 def personal_trainingplans():
