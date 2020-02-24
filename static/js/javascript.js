@@ -510,3 +510,12 @@ function backToFormStartRecord() {
     $('#unitContainer').remove()
     $('#sessionTable').remove()
 }
+
+// opening all the session cards
+
+function openAllSessions() {
+    sessionCount = $('#searchResultCount').text()
+    for (i = 0; i < sessionCount; i++) {
+        $('#expand'.concat(i.toString())).collapse('toggle')
+    }
+}

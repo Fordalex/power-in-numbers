@@ -48,15 +48,18 @@
 
             <div class="row m-0 p-0">
                 <div class="col-9 p-3 m-0">
-                    
+
                 </div>
                 <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
+                    <p class="m-0">
+                        <a onclick="openAllSessions()" class="btn main-colour btn-sm mr-2">Open All</a>
+                    </p>
+
                     <p>
                         <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample" role="button"
                             aria-expanded="false" aria-controls="collapseExample">
                             Filter
                         </a>
-
                     </p>
                 </div>
             </div>
@@ -253,7 +256,9 @@
                                                 <tr>
                                                     <td>{{ session.training_session[row]['session_exercise_' + rowIndex | string ] }}
                                                     </td>
-                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }} X {{ session.training_session[row]['session_reps_' + rowIndex | string] }}
+                                                    <td>{{ session.training_session[row]['session_sets_' + rowIndex | string] }}
+                                                        X
+                                                        {{ session.training_session[row]['session_reps_' + rowIndex | string] }}
                                                     </td>
                                                     {% set weight_lifted = session.training_session[row]['session_weight_' + rowIndex | string ] | float %}
                                                     {% if unit == 'kg' %}{% if session.session_unit == 'kg' %}
@@ -342,19 +347,23 @@
                                     </div>
                                     <p class="m-0 mt-4"><b>Session Type:</b> {{ session.session_type }}
                                     </p>
-                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : <span class="m-0 toFixed0">{{ session.length_sec }}</span><small>s</small>
-                                    <div class="row m-0 p-0">
-                                        <div class="col-12 p-0">
-                                            <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
+                                    <p class="m-0"><b>Length:</b> {{ session.length_hour }}<small>h</small> : <span
+                                            class="m-0 toFixed0">{{ session.length_min }}</span><small>m</small> : <span
+                                            class="m-0 toFixed0">{{ session.length_sec }}</span><small>s</small>
+                                        <div class="row m-0 p-0">
+                                            <div class="col-12 p-0">
+                                                <p class="m-0 p-0"><b>Notes:</b> {{ session.notes }}</p>
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <div class="row m-0 p-0">
 
                                     <div class="col-12 p-0">
                                         <div class="row m-0 p-0">
                                             <div class="col-8 m-0 p-0 d-flex align-items-end">
-                                               <small><p class="m-0"><b>Time Logged:</b> {{session.time}}</p></small> 
+                                                <small>
+                                                    <p class="m-0"><b>Time Logged:</b> {{session.time}}</p>
+                                                </small>
                                             </div>
                                             <div class="col-4 m-0 p-0">
                                                 <p>
@@ -375,7 +384,7 @@
                 </div>
                 {% if loop.last %}
                 <div class="col-12 animated fadeInUp">
-                    <p class="text-secondary">Search Result: {{ loop.index }}</p>
+                    <p class="text-secondary">Search Result: <span id="searchResultCount">{{ loop.index }}</span></p>
                 </div>
                 {% endif %}
                 {% endfor %}
