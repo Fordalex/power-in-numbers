@@ -131,19 +131,41 @@
                         </div>
                     </div>
                 </form>
+                <!-- filling the training sessions with the users choosen weight values -->
+                <script>
+                    var weight_td = document.getElementsByClassName('weight_td')
+                    for (i = 0; i < weight_td.length; i++) {
+                        console.log(weight_td.length)
+                        id_name = 'weight_td_' + i.toString()
+                        weight_td[i].setAttribute('id' , id_name)
+                    }
+                    {% for weight in plan.users_weight %}
+                        console.log('how many times am I being ran')
+                        var tdTarget = 'weight_td_' + {{ loop.index - 1 }}
+                        var tdElement = document.getElementById(tdTarget)
+                        var content = document.createTextNode({{ weight }});
+                        tdElement.appendChild(content)
+                   {% endfor %}
+                   for (i = 0; i < weight_td.length; i++) {
+                        weight_td[i].removeAttribute('id')       
+                   }
+                   for (i = 0; i < weight_td.length; i++) {
+                        weight_td[i].removeAttribute('class')  
+                        weight_td[0].removeAttribute('class')       
+                   }
+                </script>
+
                 {% if loop.last %}
                 <div class="col-12 p-0 animated fadeInUp">
                     <p class="text-secondary">Search Result: {{ loop.index }}</p>
                 </div>
                 {% endif %}
-                {% endfor %
+                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    
-</script>
+
 
 {% endblock %}
