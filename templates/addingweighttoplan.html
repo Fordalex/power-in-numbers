@@ -83,7 +83,7 @@
                                                     {% set restInteration = 'rest_' + loop.index | string %}
                                                     <td> {{ row[exerciseInteration] }} </td>
                                                     <td> {{ row[setsInteration] }} X {{ row[repsInteration] }} </td>
-                                                    <td><input class="container-fluid form-control" name="weight_{{ day | string + '_' +  loop.index | string + '_'  + currentWeek }}" required></td>
+                                                    <td><input class="container-fluid form-control" name="weight_{{ day | string + '_' +  loop.index | string + '_' + currentWeek }}" required></td>
                                                     <td> {{ unitVar }}</td>
                                                     <td> {{ row[restInteration] }}Secs </td>
                                                    

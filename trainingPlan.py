@@ -149,7 +149,6 @@ def personal_trainingplans():
     unitVar = currentUsersAccount.get('selected_unit')
     # finding the users training plan
 
-    training_plans_DB = mongo.db.trainingPlansStarted.find_one({'username': currentUser})
-    training_plan_DB = training_plans_DB.get('training_plan')
+    training_plans_DB = mongo.db.trainingPlansStarted.find({'username': currentUser})
 
-    return render_template('personalplans.html', unitVar=unitVar, plan=training_plan_DB, usersWeight=)
+    return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB)
