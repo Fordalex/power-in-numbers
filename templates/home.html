@@ -20,26 +20,6 @@
                         your the best? Find out by adding your personal best's and comparing them with others.</p>
                 </div>
             </div>
-            <div class="row m-0 px-3 mb-3">
-                <div class="col-12 col-md-6 m-0 p-0">
-                    <h6>Longest Distance Ran In A Session</h6>
-                    {% if sortRunning == True %}
-                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortRunning[0].username }}</b></p>
-                    <p class="m-0 p-0">Distance: <b>{{ sortRunning[0].training_session }}{{ distanceUnit }}s</b></p>
-                    <p class="m-0 p-0">Time: <b>{{ sortRunning[0].length_hour }}Hours
-                            {{ sortRunning[0].length_min }}Minutes</b></p>
-                    {% endif %}
-                </div>
-                <div class="col-12 col-md-6 m-0 p-0">
-                    <h6>Longest Distance Cycled In A Session</h6>
-                    {% if sortCycling == True %}
-                    <p class="m-0 p-0">Username: <b class="main-colour-text">{{ sortCycling[0].username }}</b></p>
-                    <p class="m-0 p-0">Distance: <b>{{ sortCycling[0].training_session }}{{ distanceUnit }}s</b></p>
-                    <p class="m-0 p-0">Time: <b>{{ sortCycling[0].length_hour }}Hours
-                            {{ sortCycling[0].length_min }}Minutes</b></p>
-                    {% endif %}
-                </div>
-            </div>
             <div class="row m-0 p-0">
                 <div class="col-12">
                     <hr class="m-0">
@@ -48,10 +28,9 @@
             <!-- Section with all the sessions -->
             <div class="row m-0 p-0">
                 <div class="col-9 p-3 m-0">
-                    <p class="m-0"><span id="greetingMessage" class="text-center"></span>, you have
-                        logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
+                 
                 </div>
-                <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
+                <div class="col-3 m-0  p-0 d-flex justify-content-end pt-3 pr-3 mb-3">
                     <div class="d-none d-md-flex justify-content-around">
                         <p class="m-0">
                             <a onclick="openAllSessions()" class="btn main-colour btn-sm mr-2">Open All</a>
@@ -194,42 +173,30 @@
                                         </span></u></h5>
 
                                 <div class="row m-0 p-0">
-                                    <div class="col-12 col-md-6 m-0 p-0">
+                                    <div class="col-12 m-0 p-0">
                                         <div>
                                             {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                <p class="toFixed1 m-0 float-left">
-                                                    {{ session.body_weight }}</p>
-                                                kg
-                                            </p>
+                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
+                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight }}kg</p>
                                             {% endif %}
                                             {% if session.bw_unit == 'lb' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                <p class="toFixed1 m-0 float-left">
-                                                    {{ session.body_weight | int * 10 / 22 }}</p>kg
-                                            </p>
+                                            <p class="m-0 p-0"><b class="float-left mr-1">BW:</b></p>
+                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight | int * 10 / 22 }}kg</p>
                                             {% endif %}
                                             {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                <p class="toFixed1 m-0 float-left">
-                                                    {{ session.body_weight }}</p>
-                                                lb
-                                            </p>
+                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
+                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight }}lb</p>
                                             {% endif %}
                                             {% if session.bw_unit == 'kg' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                <p class="toFixed1 m-0 float-left">
-                                                    {{ session.body_weight | int * 22 / 10 }}</p>lb
-                                            </p>
+                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
+                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight | int * 22 / 10 }}lb</p>
                                             {% endif %}
                                             {% else %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                <p class="toFixed1 m-0 float-left">
-                                                    {{ session.body_weight | int }}
-                                                </p>
-                                                {{ session.bw_unit }}
-                                            </p>
+                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
+                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight | int }}{{ session.bw_unit }}</p>
+                                            
                                             {% endif %}
+                                            <p class="m-0 p-0"><b class="float-left mx-2">Gender:</b>  {{ session.gender }}</p>
                                         </div>
                                     </div>
                                 </div>
