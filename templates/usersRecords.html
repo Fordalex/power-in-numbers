@@ -35,7 +35,13 @@
                             <form action="{{ url_for('filter_usersrecords') }}" method="POST">
                                 <div class="row m-0 p-0">
                                     <div class="col-12 col-md-3 pt-3">
-                                        <h6>Filter</h6>
+                                        <div class="row m-0 p-0">
+                                            <div class="col-12 m-0 p-0">
+                                                <h6 class="float-left">Filter</h6>
+                                                <i class="fas fa-times float-right" data-toggle="collapse" href="#collapseExample"
+                                                role="button" aria-expanded="false" aria-controls="collapseExample"></i>
+                                            </div>
+                                        </div>
                                         <label>Session Type:</label>
                                         <select class="form-control" name="filter_session_type_records">
                                             {% if filter_session_type == 'weightlifting' %}

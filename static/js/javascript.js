@@ -516,6 +516,15 @@ function backToFormStartRecord() {
 function openAllSessions() {
     sessionCount = $('#searchResultCount').text()
     for (i = 0; i < sessionCount; i++) {
-        $('#expand'.concat(i.toString())).collapse('toggle')
+        $('#expand'.concat(i.toString())).collapse('show')
     }
+    var boxContent = $('.expand-button').text('Close')   
+}
+
+function closeAllSessions() {
+    sessionCount = $('#searchResultCount').text()
+    for (i = 0; i < sessionCount; i++) {
+        $('#expand'.concat(i.toString())).collapse('hide')
+    }
+    var boxContent = $('.expand-button').text('Expand')  
 }

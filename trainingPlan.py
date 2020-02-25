@@ -120,15 +120,20 @@ def start_plan(plan_id):
     # find the training plan choosen by the user
     plan = mongo.db.trainingPlans.find_one({'_id': ObjectId(plan_id)})
     # adding the weight column on the table
-    
+    week_count = len(plan['weeks'])
+    day_list = ['mon', 'tue', 'wed', 'thur','fri', 'sat', 'sun']
+    users_weight_choosen = []
+    for weekCount in range(week_count):
+        for count, day in enumerate(day_list):
+            for x in range(10):
+                form_weight = 'weight_' + str(day) + '_' +  str(x + 1) + '_week_' + str(weekCount + 1)
+                try:
+                    weight_value = request.form[form_weight]
+                    users_weight_choosen.append(int(weight_value))
+                except:
+                    continue
 
-
-
-
-
-
-
-    started_plan = {'username': currentUsersAccount.get('username'), 'training_plan': plan }
+    started_plan = {'username': currentUsersAccount.get('username'), 'training_plan': plan, 'users_weight': users_weight_choosen }
     mongo.db.trainingPlansStarted.insert_one(started_plan)
     return redirect(url_for('personal_trainingplans'))
 

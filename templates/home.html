@@ -45,22 +45,41 @@
                     <hr class="m-0">
                 </div>
             </div>
-
+            <!-- Section with all the sessions -->
             <div class="row m-0 p-0">
                 <div class="col-9 p-3 m-0">
-
+                    <p class="m-0"><span id="greetingMessage" class="text-center"></span>, you have
+                        logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
                 </div>
                 <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
-                    <p class="m-0">
-                        <a onclick="openAllSessions()" class="btn main-colour btn-sm mr-2">Open All</a>
-                    </p>
+                    <div class="d-none d-md-flex justify-content-around">
+                        <p class="m-0">
+                            <a onclick="openAllSessions()" class="btn main-colour btn-sm mr-2">Open All</a>
+                        </p>
+                        <p class="m-0">
+                            <a onclick="closeAllSessions()" class="btn main-colour btn-sm mr-2">Close All</a>
+                        </p>
+                        <p>
+                            <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample"
+                                role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Filter
+                            </a>
 
-                    <p>
-                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample" role="button"
-                            aria-expanded="false" aria-controls="collapseExample">
+                        </p>
+                    </div>
+
+                    <div class="dropdown d-md-none">
+                        <button class="btn main-colour dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Filter
-                        </a>
-                    </p>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" onclick="openAllSessions()">Open All</a>
+                            <a class="dropdown-item" onclick="closeAllSessions()">Close All</a>
+                            <a class="dropdown-item" data-toggle="collapse" href="#collapseExample" role="button"
+                                aria-expanded="false" aria-controls="collapseExample">Filter</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 p-0 m-0 ">
@@ -71,7 +90,14 @@
                             <div class="row m-0 p-0">
 
                                 <div class="col-12 col-md-3 pt-3">
-                                    <h6>Filter</h6>
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 m-0 p-0">
+                                            <h6 class="float-left">Filter</h6>
+                                            <i class="fas fa-times float-right" data-toggle="collapse"
+                                                href="#collapseExample" role="button" aria-expanded="false"
+                                                aria-controls="collapseExample"></i>
+                                        </div>
+                                    </div>
                                     <label>Session Type:</label>
                                     <select class="form-control" name="filter_session_type_home">
                                         {% if filter_session_type == 'weightlifting' %}
