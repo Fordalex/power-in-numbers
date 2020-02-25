@@ -125,14 +125,14 @@ def start_plan(plan_id):
     users_weight_choosen = []
     for weekCount in range(week_count):
         for count, day in enumerate(day_list):
-            for x in range(10):
+            # This will check for 100 rows on each day for each week.
+            for x in range(100):
                 form_weight = 'weight_' + str(day) + '_' +  str(x + 1) + '_week_' + str(weekCount + 1)
                 try:
                     weight_value = request.form[form_weight]
                     users_weight_choosen.append(int(weight_value))
                 except:
                     continue
-
     started_plan = {'username': currentUsersAccount.get('username'), 'training_plan': plan, 'users_weight': users_weight_choosen }
     mongo.db.trainingPlansStarted.insert_one(started_plan)
     return redirect(url_for('personal_trainingplans'))
@@ -147,4 +147,9 @@ def personal_trainingplans():
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
-    return render_template('personalplans.html', unitVar=unitVar)
+    # finding the users training plan
+
+    training_plans_DB = mongo.db.trainingPlansStarted.find_one({'username': currentUser})
+    training_plan_DB = training_plans_DB.get('training_plan')
+
+    return render_template('personalplans.html', unitVar=unitVar, plan=training_plan_DB, usersWeight=)

@@ -25,7 +25,115 @@
     <div class="page-container p-0">
         <div class="container-fluid p-0">
             <div class="row m-0 p-0 ">
-               
+  
+                <form action="" method="POST" class="col-12 p-0 px-md-1">
+                    <div class="session-card my-1 my-md-1 p-2">
+                        <div class="row m-0 p-0">
+                            <div class="col-6 pl-1 pr-2">
+                                {% if plan.session_type == 'weightlifting' %}
+                                <i class="fas fa-dumbbell float-right"></i>
+                                {% elif plan.session_type == 'running' %}
+                                <i class="fas fa-running float-right mr-1"></i>
+                                {% elif plan.session_type == 'Body Weight' %}
+                                <i class="fas fa-child float-right"></i>
+                                {% elif plan.session_type == 'cycling' %}
+                                <i class="fas fa-biking float-right"></i>
+                                {% elif plan.session_type == 'walking' %}
+                                <i class="fas fa-shoe-prints float-right"></i>
+                                {% endif %}
+                                <h5><u><span class="main-colour-text">{{ plan.plan_name }}</span></u>
+                                </h5>
+                                <p class="m-0 p-0"><b>Difficulty:</b> {{ plan.difficulty }}</p>
+                                <p class="m-0"><b>Enjoyment:</b> {{ plan.enjoyment }}</p>
+                            </div>
+                            <div class="col-6 pr-0 border-left">
+                                <p class="m-0 p-0 mb-1"><b>Current Users:</b> 0</p>
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0 m-0">
+                                <div class="collapse  mt-4" id="expand">
+                                   {% for week in plan.weeks %}
+                                   <div class="row m-0 p-0">
+                                    <div class="col-12 m-0 p-0">
+                                        <hr class="mb-0">
+                                    </div>
+                                   </div>
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 m-0 p-0">
+                                            <h6 class="mt-3 ml-1">Week </h6>
+                                        </div>
+                                        {% set weekInteration = 'week_' + loop.index | string %}
+                                        {% for table in week[weekInteration] %}
+                                        <div class="col-12 col-sm-6 col-md-4 m-0 px-1">
+                                            {% set day = table['day'] %}
+                                            {% if day == 'mon' %}
+                                            <h6><u>Monday</u></h6> 
+                                            {% elif day == 'tue' %}
+                                            <h6><u>Tuesday</u></h6> 
+                                            {% elif day == 'wed' %}
+                                            <h6><u>Wednesday</u></h6> 
+                                            {% elif day == 'thur' %}
+                                            <h6><u>Thursday</u></h6> 
+                                            {% elif day == 'fri' %}
+                                            <h6><u>Friday</u></h6> 
+                                            {% elif day == 'sat' %}
+                                            <h6><u>Saturday</u></h6> 
+                                            {% elif day == 'sun' %}
+                                            <h6><u>Sunday</u></h6> 
+                                            {% endif %}
+                                            <table class="session-table container-fluid even-table-width">
+                                                <tr>
+                                                    <th>Exercise</th>
+                                                    <th>Sets X Reps</th>
+                                                    <th>Weight</th>
+                                                    <th>Rest</th>
+                                                </tr>
+                                                {% for row in table.training_plan %}
+                                                <tr>
+                                                    {% set exerciseInteration = 'exercise_' + loop.index | string %}
+                                                    {% set setsInteration = 'sets_' + loop.index | string %}
+                                                    {% set repsInteration = 'reps_' + loop.index | string %}
+                                                    {% set restInteration = 'rest_' + loop.index | string %}
+                                                    <td> {{ row[exerciseInteration] }} </td>
+                                                    <td> {{ row[setsInteration] }} X {{ row[repsInteration] }} </td>
+                                                    <td> {{  }} </td>
+                                                    <td> {{ row[restInteration] }}Secs </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </table>
+
+
+
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endfor %}
+                                    <div class="row m-0 p-0 mt-3">
+                                        <div class="col-12 m-0 p-0 pl-1">
+                                            <button class="btn btn-success p-0 px-2 text-dark mr-1" type="submit">Start Plan</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-0 p-0">
+     
+                              <div class="col-12 p-0 d-flex justify-content-end">
+                                <p class="m-0">
+                                    <a class="btn main-colour expand-button text-dark py-1 border float-right"
+                                        data-toggle="collapse" href="#expand"
+                                        role="button" aria-expanded="false"
+                                        aria-controls="collapseExample">
+                                        Expand
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+         
+             
               
             </div>
 
