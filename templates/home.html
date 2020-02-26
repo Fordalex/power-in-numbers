@@ -72,7 +72,7 @@
                                     <div class="row m-0 p-0">
                                         <div class="col-12 m-0 p-0">
                                             <h6 class="float-left">Filter</h6>
-                                            <i class="fas fa-times float-right" data-toggle="collapse"
+                                            <i class="fas fa-times float-right d-block d-md-none" data-toggle="collapse"
                                                 href="#collapseExample" role="button" aria-expanded="false"
                                                 aria-controls="collapseExample"></i>
                                         </div>
@@ -135,9 +135,16 @@
                                             {% endif %}
                                         </select>
                                     </div>
+
                                 </div>
-                                <div class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
-                                    <button class="main-gradient btn container-fluid">Search</button>
+                                <div class="col-12 col-md-3 mt-3">
+                                    <i class="fas fa-times float-right d-none d-md-block" data-toggle="collapse"
+                                    href="#collapseExample" role="button" aria-expanded="false"
+                                    aria-controls="collapseExample"></i>
+                                    <div class="container-fluid d-flex align-items-end p-0" style="height:100%;">
+                                        <button class="main-gradient btn container-fluid mb-3">Search</button>
+                                    </div>
+                                   
                                 </div>
                             </div>
                         </form>
@@ -176,27 +183,21 @@
                                     <div class="col-12 m-0 p-0">
                                         <div>
                                             {% if unit == 'kg'  %}{% if session.bw_unit == 'kg' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
-                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight }}kg</p>
+                                            <p class="m-0 p-0"><b class=" mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight }}</span>kg</p>
                                             {% endif %}
                                             {% if session.bw_unit == 'lb' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW:</b></p>
-                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight | int * 10 / 22 }}kg</p>
+                                            <p class="m-0 p-0"><b class=" mr-1">BW:</b><span class="toFixed1 m-0 ">{{ session.body_weight | int * 10 / 22 }}</span>kg</p>
                                             {% endif %}
                                             {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
-                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight }}lb</p>
+                                            <p class="m-0 p-0"><b class="mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight }}lb</span></p>
                                             {% endif %}
                                             {% if session.bw_unit == 'kg' %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
-                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight | int * 22 / 10 }}lb</p>
+                                            <p class="m-0 p-0"><b class="mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight | int * 22 / 10 }}</span>lb</p>
                                             {% endif %}
                                             {% else %}
-                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b></p>
-                                            <p class="toFixed1 m-0 float-left">{{ session.body_weight | int }}{{ session.bw_unit }}</p>
-                                            
+                                            <p class="m-0 p-0"><b class="mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight | int }}</span>{{ session.bw_unit }}</p>
                                             {% endif %}
-                                            <p class="m-0 p-0"><b class="float-left mx-2">Gender:</b>  {{ session.gender }}</p>
+                                            <p class="m-0 p-0"><b>Gender:</b>  {{ session.gender }}</p>
                                         </div>
                                     </div>
                                 </div>

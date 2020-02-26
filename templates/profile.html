@@ -118,33 +118,39 @@
                                         logged <b>{{ totalSessionsLogged }}</b> Sessions!</p>
                                 </div>
                                 <div class="col-3 m-0 p-0 d-flex justify-content-end pt-3 pr-3 mb-0">
-                                    <div class="d-none d-md-flex justify-content-around">   
-                                         <p class="m-0">
-                                        <a onclick="openAllSessions()" class="btn main-colour btn-sm mr-2">Open All</a>
-                                    </p>
-                                    <p class="m-0">
-                                        <a onclick="closeAllSessions()" class="btn main-colour btn-sm mr-2">Close All</a>
-                                    </p>
-                                    <p>
-                                        <a class="btn main-colour btn-sm" data-toggle="collapse" href="#collapseExample"
-                                            role="button" aria-expanded="false" aria-controls="collapseExample">
-                                            Filter
-                                        </a>
+                                    <div class="d-none d-md-flex justify-content-around">
+                                        <p class="m-0">
+                                            <a onclick="openAllSessions()" class="btn main-colour btn-sm mr-2">Open
+                                                All</a>
+                                        </p>
+                                        <p class="m-0">
+                                            <a onclick="closeAllSessions()" class="btn main-colour btn-sm mr-2">Close
+                                                All</a>
+                                        </p>
+                                        <p>
+                                            <a class="btn main-colour btn-sm" data-toggle="collapse"
+                                                href="#collapseExample" role="button" aria-expanded="false"
+                                                aria-controls="collapseExample">
+                                                Filter
+                                            </a>
 
-                                    </p>
+                                        </p>
                                     </div>
-                                   
+
                                     <div class="dropdown d-md-none">
-                                        <button class="btn main-colour dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Filter
+                                        <button class="btn main-colour dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Filter
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item"onclick="openAllSessions()">Open All</a>
-                                          <a class="dropdown-item" onclick="closeAllSessions()">Close All</a>
-                                          <a class="dropdown-item"  data-toggle="collapse" href="#collapseExample"
-                                          role="button" aria-expanded="false" aria-controls="collapseExample">Filter</a>
+                                            <a class="dropdown-item" onclick="openAllSessions()">Open All</a>
+                                            <a class="dropdown-item" onclick="closeAllSessions()">Close All</a>
+                                            <a class="dropdown-item" data-toggle="collapse" href="#collapseExample"
+                                                role="button" aria-expanded="false"
+                                                aria-controls="collapseExample">Filter</a>
                                         </div>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 p-0 m-0 ">
@@ -158,11 +164,13 @@
                                                     <div class="row m-0 p-0">
                                                         <div class="col-12 m-0 p-0">
                                                             <h6 class="float-left">Filter</h6>
-                                                            <i class="fas fa-times float-right" data-toggle="collapse" href="#collapseExample"
-                                                            role="button" aria-expanded="false" aria-controls="collapseExample"></i>
+                                                            <i class="fas fa-times float-right d-block d-md-none"
+                                                                data-toggle="collapse" href="#collapseExample"
+                                                                role="button" aria-expanded="false"
+                                                                aria-controls="collapseExample"></i>
                                                         </div>
                                                     </div>
-                                                   
+
                                                     <label>Session Type:</label>
                                                     <select class="form-control" name="filter_session_type_profile">
                                                         {% if filter_session_type == 'weightlifting' %}
@@ -224,9 +232,16 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div
-                                                    class="col-12 col-md-3 mt-3 d-flex justify-content-end align-items-end">
-                                                    <button class="main-gradient btn container-fluid">Search</button>
+                                                <div class="col-12 col-md-3 mt-3">
+                                                    <i class="fas fa-times float-right d-none d-md-block"
+                                                        data-toggle="collapse" href="#collapseExample" role="button"
+                                                        aria-expanded="false" aria-controls="collapseExample"></i>
+                                                    <div class="container-fluid d-flex align-items-end p-0"
+                                                        style="height:100%;">
+                                                        <button
+                                                            class="main-gradient btn container-fluid mb-3">Search</button>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </form>
@@ -485,7 +500,10 @@
                                                     <div class="col-12 p-0">
                                                         <div class="row m-0 p-0">
                                                             <div class="col-8 m-0 p-0 d-flex align-items-end">
-                                                                <small><p class="m-0"><b>Time Logged:</b> {{session.time}}</p></small>
+                                                                <small>
+                                                                    <p class="m-0"><b>Time Logged:</b> {{session.time}}
+                                                                    </p>
+                                                                </small>
                                                             </div>
                                                             <div class="col-4 m-0 p-0">
                                                                 <p>
@@ -517,7 +535,8 @@
                                 </div>
                                 {% if loop.last %}
                                 <div class="col-12  p-0 animated fadeInUp">
-                                    <p class="text-secondary">Search Result:  <span id="searchResultCount">{{ loop.index }}</span></p>
+                                    <p class="text-secondary">Search Result: <span
+                                            id="searchResultCount">{{ loop.index }}</span></p>
                                 </div>
                                 {% endif %}
                                 {% endfor %}
@@ -588,13 +607,15 @@
                                             </div>
 
 
-                                            <div class="col-12 col-md-6 my-3 d-flex justify-content-center animated fadeIn">
+                                            <div
+                                                class="col-12 col-md-6 my-3 d-flex justify-content-center animated fadeIn">
                                                 <div>
                                                     <h6 class="text-center">Session Type</h6>
                                                     <div id="sessionTypePie"></div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6 my-3  d-flex justify-content-center animated fadeIn">
+                                            <div
+                                                class="col-12 col-md-6 my-3  d-flex justify-content-center animated fadeIn">
                                                 <div>
                                                     <h6 class="text-center">Total Sessions</h6>
                                                     <div id="totalSessionBar"></div>
@@ -661,10 +682,10 @@
                                     </div>
                                 </div>
                                 <div class="row m-0 p-0 mb-4">
-                                    <div class="col-12 p-0 col-md-6">
+                                    <div class="col-12 p-0">
                                         <div class="row m-0 p-0">
 
-                                            <div class="col-12 p-0 border">
+                                            <div class="col-12 col-md-6 p-0 ">
                                                 <div class="row m-0 p-0">
                                                     <div class="col-12 p-0 d-flex justify-content-center">
                                                         <h3 class="text-center my-3">Records</h3>
@@ -717,92 +738,102 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12  p-0 d-flex justify-content-center align-items-center">
-                                                <h3 class="text-center my-3">Mental Stats</h3>
-                                            </div>
-                                            <div class="col-4 p-0 d-flex justify-content-center">
-                                                <div class="container-fluid">
-                                                    <h6>Motivated</h6>
-                                                    <div class="d-flex justify-content-center">
-                                                        <i class="far mr-2 text-primary fa-smile-beam"></i>
-                                                        <p class="m-0 toFixed1">{{ average_motivation }}</p>
+                                            <div class="col-12 col-md-6 m-0 p-0">
+                                                <div class="row m-0 p-0">
+                                                    <div
+                                                        class="col-12  p-0 d-flex justify-content-center align-items-center">
+                                                        <h3 class="text-center my-3">Mental Stats</h3>
                                                     </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped bg-info"
-                                                            role="progressbar"
-                                                            style="width: {{ average_motivation | int * 10 }}%"
-                                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                                        <div class="container-fluid">
+                                                            <h6>Motivated</h6>
+                                                            <div class="d-flex justify-content-center">
+                                                                <i class="far mr-2 text-primary fa-smile-beam"></i>
+                                                                <p class="m-0 toFixed1">{{ average_motivation }}</p>
+                                                            </div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-striped bg-info"
+                                                                    role="progressbar"
+                                                                    style="width: {{ average_motivation | int * 10 }}%"
+                                                                    aria-valuenow="100" aria-valuemin="0"
+                                                                    aria-valuemax="100">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4 p-0 d-flex justify-content-center">
-                                                <div class="container-fluid">
-                                                    <h6>Difficulty</h6>
-                                                    <div class="d-flex justify-content-center">
-                                                        <i class="far mr-2 text-warning fa-tired"></i>
-                                                        <p class="m-0 toFixed1">{{ average_difficulty }}</p>
-                                                    </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped bg-warning"
-                                                            role="progressbar"
-                                                            style="width: {{ average_difficulty | int * 10 }}%"
-                                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                                        <div class="container-fluid">
+                                                            <h6>Difficulty</h6>
+                                                            <div class="d-flex justify-content-center">
+                                                                <i class="far mr-2 text-warning fa-tired"></i>
+                                                                <p class="m-0 toFixed1">{{ average_difficulty }}</p>
+                                                            </div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-striped bg-warning"
+                                                                    role="progressbar"
+                                                                    style="width: {{ average_difficulty | int * 10 }}%"
+                                                                    aria-valuenow="100" aria-valuemin="0"
+                                                                    aria-valuemax="100">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4 p-0 d-flex justify-content-center">
-                                                <div class="container-fluid">
-                                                    <h6>Effort</h6>
-                                                    <div class="d-flex justify-content-center">
-                                                        <i class="fas fa-fist-raised mr-2 text-danger"></i>
-                                                        <p class="m-0 toFixed1">{{ average_effort }}</p>
-                                                    </div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-striped bg-danger"
-                                                            role="progressbar"
-                                                            style="width: {{ average_effort | int * 10 }}%"
-                                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="col-4 p-0 d-flex justify-content-center">
+                                                        <div class="container-fluid">
+                                                            <h6>Effort</h6>
+                                                            <div class="d-flex justify-content-center">
+                                                                <i class="fas fa-fist-raised mr-2 text-danger"></i>
+                                                                <p class="m-0 toFixed1">{{ average_effort }}</p>
+                                                            </div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar progress-bar-striped bg-danger"
+                                                                    role="progressbar"
+                                                                    style="width: {{ average_effort | int * 10 }}%"
+                                                                    aria-valuenow="100" aria-valuemin="0"
+                                                                    aria-valuemax="100">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 my-4">
-        
-                                                <div class="container-fluid d-flex align-items-center justify-content-center">
-                                                    <div>
-                                                        <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i>
-                                                            <b>Total
-                                                                Time
-                                                                Tracked:</b></p>
-        
-                                                        <p><b>{{ totalTimeDays }}</b> Days <b>{{ totalTimeHours }}
-                                                            </b>
-                                                            Hours
-                                                            <b class="toFixed0">{{totalTimeMins }}</b> Mins </p>
+                                                    <div class="col-12 my-4">
+
+                                                        <div
+                                                            class="container-fluid d-flex align-items-center justify-content-center">
+                                                            <div>
+                                                                <p class="m-0 p-0"> <i class="far fa-clock mr-2"></i>
+                                                                    <b>Total
+                                                                        Time
+                                                                        Tracked:</b></p>
+
+                                                                <p><b>{{ totalTimeDays }}</b> Days
+                                                                    <b>{{ totalTimeHours }}
+                                                                    </b>
+                                                                    Hours
+                                                                    <b class="toFixed0">{{totalTimeMins }}</b> Mins </p>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-        
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 pb-4 col-md-6">
+
+                                    <div class="col-12 pb-4 col-md-6 offset-0 offset-md-3">
                                         <div class="row m-0 p-0">
-                                            <div
-                                                class="col-12 p-0 mt-3 d-flex justify-content-center">
+                                            <div class="col-12 p-0 mt-3 d-flex justify-content-center">
                                                 <h1>Badges</h1>
                                             </div>
-        
+
                                             <div class="col-12 p-0">
                                                 <hr class="mb-0">
                                             </div>
-        
+
                                             <div class="col-12 p-0 mt-3 ">
                                                 <h6>Sessions Logged</h6>
                                                 <p><b>Total</b>: {{ totalSessionsLogged }}</p>
                                             </div>
-        
+
                                             <div class="col-12 p-0 d-flex justify-content-around">
                                                 {% if totalSessionsLogged | int >= 10 %}
                                                 <div class="badge-container first-badge">
@@ -865,9 +896,10 @@
                                             <div class="col-12 p-0 mt-3">
                                                 <h6>Distance By Foot</h6>
                                                 {% set totalTravelByFoot = totalDistanceByWalking + allDistanceByFoot %}
-                                                <p><b>Total</b>: {{ totalTravelByFoot }} {{ distanceUnit }}s</p>
+                                                <p><b>Total</b>: <span class="toFixed1">{{ totalTravelByFoot }}</span>
+                                                    {{ distanceUnit }}s</p>
                                             </div>
-        
+
                                             <div class="col-12 p-0 d-flex justify-content-around">
                                                 {% if distanceUnit == 'mile' %}
                                                 {% set firstValue = 20 %}
@@ -954,17 +986,17 @@
                                                 </div>
                                                 {% endif %}
                                             </div>
-        
+
                                             <div class="col-12  p-0">
                                                 <hr>
                                             </div>
-        
+
                                             <div class="col-12 p-0 mt-3">
                                                 <h6>Distance Cycled</h6>
                                                 <p><b>Total</b>: <span class="toFixed1">{{ totalDistanceOnBike }}</span>
                                                     {{ distanceUnit }}s</p>
                                             </div>
-        
+
                                             <div class="col-12 p-0 d-flex justify-content-around">
                                                 {% if distanceUnit == 'mile' %}
                                                 {% set firstValue = 20 %}
@@ -1051,12 +1083,12 @@
                                                 </div>
                                                 {% endif %}
                                             </div>
-        
+
                                         </div>
                                     </div>
 
-                                    
-                                   
+
+
                                 </div>
                                 <script>
                                     // The pie and bar chart for the distance travelled
@@ -1147,40 +1179,40 @@
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     {% if unit == 'kg'  %}{% if user.bw_unit == 'kg' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ user.body_weight }}</p>kg
-                                                            </p>
-                                                            {% endif %}
-                                                            {% if user.bw_unit == 'lb' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ user.body_weight | int * 10 / 22 }}
-                                                                </p>kg
-                                                            </p>
-                                                            {% endif %}
-                                                            {% elif unit == 'lb'  %}{% if user.bw_unit == 'lb' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ user.body_weight }}</p>
-                                                                lb
-                                                            </p>
-                                                            {% endif %}
-                                                            {% if user.bw_unit == 'kg' %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ user.body_weight | int * 22 / 10 }}
-                                                                </p>lb
-                                                            </p>
-                                                            {% endif %}
-                                                            {% else %}
-                                                            <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
-                                                                <p class="toFixed1 m-0 float-left">
-                                                                    {{ user.body_weight | int }}
-                                                                </p>
-                                                                {{ user.bw_unit }}
-                                                            </p>
-                                                            {% endif %}
+                                    <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                        <p class="toFixed1 m-0 float-left">
+                                            {{ user.body_weight }}</p>kg
+                                    </p>
+                                    {% endif %}
+                                    {% if user.bw_unit == 'lb' %}
+                                    <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                        <p class="toFixed1 m-0 float-left">
+                                            {{ user.body_weight | int * 10 / 22 }}
+                                        </p>kg
+                                    </p>
+                                    {% endif %}
+                                    {% elif unit == 'lb'  %}{% if user.bw_unit == 'lb' %}
+                                    <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                        <p class="toFixed1 m-0 float-left">
+                                            {{ user.body_weight }}</p>
+                                        lb
+                                    </p>
+                                    {% endif %}
+                                    {% if user.bw_unit == 'kg' %}
+                                    <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                        <p class="toFixed1 m-0 float-left">
+                                            {{ user.body_weight | int * 22 / 10 }}
+                                        </p>lb
+                                    </p>
+                                    {% endif %}
+                                    {% else %}
+                                    <p class="m-0 p-0"><b class="float-left mr-1">BW: </b>
+                                        <p class="toFixed1 m-0 float-left">
+                                            {{ user.body_weight | int }}
+                                        </p>
+                                        {{ user.bw_unit }}
+                                    </p>
+                                    {% endif %}
                                 </div>
                                 <div class="col-6 m-0 p-0">
                                     <p><b>Account start date:</b> {{ user.start_date }}</p>
