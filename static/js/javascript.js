@@ -182,7 +182,7 @@ function addSessionTable() {
                                     <th>Distance (${distanceSelected}) :</th>
                                 </tr>
                                 <tr>
-                                    <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
+                                    <td><input class="container-fluid" type="number" step="0.01" name="distance" required></td>
                                 </tr>
                             </table>
                         </div>
@@ -207,7 +207,7 @@ function addSessionTable() {
                                 <th>Distance (${distanceSelected}) :</th>
                             </tr>
                             <tr>
-                                <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
+                                <td><input class="container-fluid" type="number" step="0.01" name="distance" required></td>
                             </tr>
                         </table>
                     </div>
@@ -232,7 +232,7 @@ function addSessionTable() {
                             <th>Distance (${distanceSelected}) :</th>
                         </tr>
                         <tr>
-                            <td><input class="container-fluid" type="number" step="0.01" name="distance"></td>
+                            <td><input class="container-fluid" type="number" step="0.01" name="distance" required></td>
                         </tr>
                     </table>
                 </div>
@@ -515,7 +515,7 @@ function backToFormStartRecord() {
 
 function openAllSessions() {
     sessionCount = $('#searchResultCount').text()
-    for (i = 0; i < sessionCount; i++) {
+    for (i = 0; i < sessionCount + 1; i++) {
         $('#expand'.concat(i.toString())).collapse('show')
     }
     var boxContent = $('.expand-button').text('Close')   
@@ -523,7 +523,7 @@ function openAllSessions() {
 
 function closeAllSessions() {
     sessionCount = $('#searchResultCount').text()
-    for (i = 0; i < sessionCount; i++) {
+    for (i = 0; i < sessionCount + 1; i++) {
         $('#expand'.concat(i.toString())).collapse('hide')
     }
     var boxContent = $('.expand-button').text('Expand')  

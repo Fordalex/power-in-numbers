@@ -149,7 +149,6 @@ def profile():
         if filter_session_type:
             if filter_session_type != 'all':
                 filter_dictionary.update({'session_type': filter_session_type})
-        
         return filter_dictionary
     sessions = mongo.db.sessions.find(filter())
     filter_date = request.cookies.get('filter_session_date_profile')

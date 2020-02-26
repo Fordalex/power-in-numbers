@@ -258,7 +258,6 @@ def add_unit():
         'location': location, 
         'first_name': first_name, 
         'last_name': last_name,
-        'sessions_logged': currentLogged,
         'selected_unit': unitValue,
         'selected_distance': unit_distance,
         'start_date': start_date
@@ -274,3 +273,53 @@ def logout():
     response.delete_cookie('filter_session_type_profile')
     response.delete_cookie('filter_session_date_profile')
     return response
+
+# pulling the currect users information and displaying it on the page ready to edit.
+@app.route('/update_details')
+def update_details():
+       # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    return render_template('updatedetails.html', user=currentUsersAccount)
+
+# update the users details to mongoDB
+@app.route('/insert_change_details', methods=['POST'])
+def insert_change_details():
+    currentUser = session['username']
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    
+    username = currentUsersAccount.get('username')
+    password = currentUsersAccount.get('password')
+    first_name = currentUsersAccount.get('first_name')
+    last_name = currentUsersAccount.get('last_name')
+    age = request.form['age']
+    gender = currentUsersAccount.get('gender')
+    body_weight = request.form['body_weight']
+    bw_unit = currentUsersAccount.get('bw_unit')
+    location = currentUsersAccount.get('location')
+    selected_unit = currentUsersAccount.get('selected_unit')
+    selected_distance = currentUsersAccount.get('selected_distance')
+    start_date = currentUsersAccount.get('start_date')
+
+    mongo.db.users.update({'username' : currentUser},
+    {
+        'username' : username, 
+        'password' : password, 
+        'age': age, 
+        'gender': gender, 
+        'body_weight': body_weight, 
+        'bw_unit': bw_unit, 
+        'location': location, 
+        'first_name': first_name, 
+        'last_name': last_name,
+        'selected_unit': selected_unit,
+        'selected_distance': selected_distance,
+        'start_date': start_date
+    })
+    
+    return redirect(url_for('profile'))

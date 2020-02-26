@@ -152,3 +152,9 @@ def personal_trainingplans():
     training_plans_DB = mongo.db.trainingPlansStarted.find({'username': currentUser})
 
     return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB)
+
+# delete a training plan
+@app.route('/delete_trainingplan/<plan_id>')
+def delete_trainingplan(plan_id): 
+    mongo.db.trainingPlansStarted.remove({'_id': ObjectId(plan_id)})
+    return redirect(url_for('personal_trainingplans'))
