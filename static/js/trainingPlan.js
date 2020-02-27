@@ -106,25 +106,6 @@ function createPlanTable() {
             <option value="weightlifting">Weightlifting</option>
         </select>
     </div>
-    <div class="col-12 p-0 my-3 d-flex justify-content-around">
-        <div class="stats-container container-fluid">
-            <p class="text-center">Enjoyment:</p>
-            <div class="d-flex justify-content-center align-item-center">
-                <input type="number" min="0" max="10" class="number-input float-left"
-                    name="enjoyment" required>
-                <p class="m-0"> / 10</p>
-            </div>
-        </div>
-        <div class="p-1"></div>
-        <div class="stats-container container-fluid">
-            <p class="text-center">Difficulty:</p>
-            <div class="d-flex justify-content-center align-item-center">
-                <input type="number" min="0" max="10" class="number-input float-left"
-                    name="difficulty" required>
-                <p class="m-0"> / 10</p>
-            </div>
-        </div>
-    </div>
     `)
     for (i = 0; i < userWeeks; i++) {
 
@@ -161,7 +142,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row">Remove Row -</a>
+                <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="mon_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="mon_week_${i + 1}">Add Row +</a>
                 </div>
             `)
@@ -201,7 +182,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
+                <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="tue_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="tue_week_${i + 1}">Add Row +</a>
                 </div>
             `)
@@ -241,7 +222,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
+                <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="wed_week_${i + 1}_remove">Remove Row -</a>
                 <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="wed_week_${i + 1}">Add Row +</a>
             </div>
             `)
@@ -281,7 +262,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
+                <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="thur_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="thur_week_${i + 1}">Add Row +</a>
                 </div>
             `)
@@ -321,7 +302,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
+                <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="fri_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="fri_week_${i + 1}">Add Row +</a>
                 </div>
             `)
@@ -361,7 +342,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
+                <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="sat_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sat_week_${i + 1}">Add Row +</a>
                 </div>
             `)
@@ -402,7 +383,7 @@ function createPlanTable() {
                     </table>
                 </div>
                 <div class="col-12 p-0 m-0 mb-1 mt-3  d-flex justify-content-around">
-                    <a class="btn btn-danger text-light container-fluid mr-2">Remove Row -</a>
+                    <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="sun_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sun_week_${i + 1}">Add Row +</a>
                 </div>
             `)
@@ -436,6 +417,7 @@ $('body').on('click', '.plan_add_row', function () {
     for (i = 0; i < rowCount.length; i++) {
         count++
     }
+    console.log(targetRow, count, targetTable)
     $(targetTable).append(`
                             <tr id="${this.id.concat('_row_', count)}" class="${this.id.concat('_row_count')}">
                                 <td><input type="text" class="container-fluid" name="${this.id.concat('_exercise_', count)}"></td>
@@ -455,17 +437,18 @@ $('body').on('click', '.plan_add_row', function () {
     }
 });
 
-// remove the last row on to the days training plan
+// remove the last row on the training plan day
 $('body').on('click', '.plan_remove_row', function () {
-    var targetTable = '#'.concat(this.id, '_table')
-    var targetRow = '.'.concat(this.id, '_row_count')
+    var targetTable = '#'.concat(this.id.slice(0, 10), '_table')
+    var targetRow = '.'.concat(this.id.slice(0, 10), '_row_count')
     var rowCount = $(targetRow)
-    var count = 0
+    var count = -1;
     for (i = 0; i < rowCount.length; i++) {
         count++
     }
-    console.log(rowCount)
-    var removeRowTarget = '#'.concat(this.id, '_row_', count)
-    console.log(removeRowTarget)
-    $(removeRowTarget).remove()
+    targetRow = '#' + targetRow.slice(1 , 16) + count.toString()
+    $(targetRow).remove()
+
+    
 });
+
