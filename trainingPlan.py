@@ -17,14 +17,19 @@ def add_plan():
 # insert training plan 
 @app.route('/insert_training_plan', methods=["POST"])
 def insert_training_plan():
+        # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
+    users = mongo.db.users
+    login_user = users.find_one({'username' : currentUser})
     weekDayList = ['mon','tue','wed','thur','fri','sat','sun']
     weekCount = 1
     plan_name = request.form['plan_name']
     session_type = request.form['session_type']
-    difficulty = request.form['difficulty']
-    enjoyment = request.form['enjoyment']
     training_plan_array_weeks = []
-    training_plan_dict = {'plan_name' : plan_name, 'session_type': session_type, 'difficulty' : difficulty , 'enjoyment' : enjoyment, 'weeks': training_plan_array_weeks}
+    training_plan_dict = {'plan_name' : plan_name, 'session_type': session_type,'creator': login_user.get('username'),  'weeks': training_plan_array_weeks}
     weekTrue = True
     while weekTrue:
         weekTrue = False
@@ -75,6 +80,9 @@ def insert_training_plan():
                     weekArray.append(dayDict)                   
                     weekTrue = True
             except:
+                training_plan = 'Rest Day'
+                dayDict = {'day': day, 'training_plan': training_plan}  
+                weekArray.append(dayDict)
                 continue
         if weekTrue:
             training_plan_array_weeks.append(weekDict)
@@ -93,7 +101,7 @@ def training_plans():
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
     training_plans_DB = mongo.db.trainingPlans.find()
-    return render_template('trainingplans.html', trainingPlans=training_plans_DB )
+    return render_template('trainingplans.html', trainingPlans=training_plans_DB ,  currentUsersAccount=currentUsersAccount)
 
 @app.route('/add_weight/<plan_id>', methods=['POST'])
 def add_weight(plan_id):
@@ -151,7 +159,7 @@ def personal_trainingplans():
 
     training_plans_DB = mongo.db.trainingPlansStarted.find({'username': currentUser})
 
-    return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB)
+    return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB, currentUsersAccount=currentUsersAccount)
 
 # delete a training plan
 @app.route('/delete_trainingplan/<plan_id>')

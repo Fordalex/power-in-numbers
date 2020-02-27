@@ -39,12 +39,17 @@
                                 {% endif %}
                                 <h5><u>{{ loop.index }}. <span class="main-colour-text">{{ plan.plan_name }}</span></u>
                                 </h5>
-                                <p class="m-0 p-0"><b>Difficulty:</b> {{ plan.difficulty }}</p>
-                                <p class="m-0"><b>Enjoyment:</b> {{ plan.enjoyment }}</p>
-
+                                {% for week in plan.weeks %}
+                                {% if loop.last %}
+                                <p class="m-0 p-0 mb-1"><b>Weeks:</b> {{ loop.index }}</p>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                             <div class="col-6 pr-0 border-left">
-                                <p class="m-0 p-0 mb-1"><b>Current Users:</b> 0</p>
+                                <p class="m-0 p-0 mb-1 float-left"><b>Creator:</b> {{ plan.creator }}</p>
+                                {% if plan.creator == currentUsersAccount.username %}
+                                <i class="fas fa-edit float-right"></i>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row m-0 p-0">
@@ -79,6 +84,7 @@
                                             {% elif day == 'sun' %}
                                             <h6><u>Sunday</u></h6> 
                                             {% endif %}
+                                            {% if table.training_plan != 'Rest Day' %}
                                             <table class="session-table container-fluid even-table-width">
                                                 <tr>
                                                     <th>Exercise</th>
@@ -97,7 +103,10 @@
                                                 </tr>
                                                 {% endfor %}
                                             </table>
-
+                                            {% else %}
+                                            <p>Rest Day</p>
+                                            {% endif %}
+                                            
 
 
                                         </div>

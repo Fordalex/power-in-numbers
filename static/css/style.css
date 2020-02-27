@@ -442,6 +442,11 @@ option {
   width: 100%;
 }
 
+.training-plan-session-card:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
 footer {
   background-color: #fafafa;
 }

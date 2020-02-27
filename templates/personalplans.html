@@ -44,15 +44,18 @@
                                 {% endif %}
                                 <h5><u>{{ loop.index }}. <span class="main-colour-text">{{ plan['training_plan'].plan_name }}</span></u>
                                 </h5>
-                                <p class="m-0 p-0"><b>Difficulty:</b> {{ plan['training_plan'].difficulty }}</p>
-                                <p class="m-0"><b>Enjoyment:</b> {{ plan['training_plan'].enjoyment }}</p>
+                                {% for week in plan['training_plan'].weeks %}
+                                {% if loop.last %}
+                                <p class="m-0 p-0 mb-1"><b>Weeks:</b> {{ loop.index }}</p>
+                                {% endif %}
+                                {% endfor %}
 
                             </div>
                             <div class="col-6 pr-0 border-left">
+                                <p class="m-0 p-0 mb-1 float-left"><b>Creator:</b> {{ plan['training_plan'].creator }}</p>
                                 <i class="fas fa-edit float-right" data-toggle="collapse"
                                                     href="#edit{{ loop.index }}" role="button" aria-expanded="false"
                                                     aria-controls="collapseExample"></i>
-                                <p class="m-0 p-0 mb-1"><b>Current Users:</b> 0</p>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
@@ -70,7 +73,9 @@
                                         </div>
                                         {% set weekInteration = 'week_' + loop.index | string %}
                                         {% for table in week[weekInteration] %}
-                                        <div class="col-12 col-sm-6 col-md-4 m-0 px-1">
+                                        
+                                        <div class="col-12 col-sm-6  col-md-4 m-0 px-1 pb-1 {% if table.training_plan != 'Rest Day' %}training-plan-session-card border{% endif %}">
+                                            {% if table.training_plan != 'Rest Day' %} <a href="{{ url_for('add_session') }}" class="text-dark">     {% endif %}
                                             {% set day = table['day'] %}
                                             {% if day == 'mon' %}
                                             <h6><u>Monday</u></h6> 
@@ -87,6 +92,7 @@
                                             {% elif day == 'sun' %}
                                             <h6><u>Sunday</u></h6> 
                                             {% endif %}
+                                            {% if table.training_plan != 'Rest Day' %}
                                             <table class="session-table container-fluid even-table-width">
                                                 <tr>
                                                     <th>Exercise</th>
@@ -107,7 +113,12 @@
                                                 </tr>
                                                 {% endfor %}
                                             </table>
+                                            {% else %}
+                                            <p>Rest Day</p>
+                                            {% endif %}
+                                            {% if table.training_plan != 'Rest Day' %} </a>    {% endif %}
                                         </div>
+                                       
                                         {% endfor %}
                                     </div>
                                     {% endfor %}

@@ -67,6 +67,7 @@
                                             {% elif day == 'sun' %}
                                             <h6><u>Sunday</u></h6> 
                                             {% endif %}
+                                            {% if table.training_plan != 'Rest Day' %}
                                             <table class="session-table container-fluid even-table-width">
                                                 <tr>
                                                     <th>Exercise</th>
@@ -90,6 +91,9 @@
                                                 </tr>
                                                 {% endfor %}
                                             </table>
+                                            {% else %}
+                                            <p>Rest Day</p>
+                                            {% endif %}
 
 
 
