@@ -62,6 +62,14 @@ function createRow() {
     }
 };
 
+// Removes the table row for the tables with changing name attribute
+
+function removeRow() {
+    var targetRow = `#table_row_${rowIndex}`
+    $(targetRow).remove()
+    rowIndex--;
+};
+
 // Styles the session table
 var sessionTable = document.getElementsByClassName('session-table');
 var mainColour = 'rgb(136, 227, 255)';
@@ -158,8 +166,8 @@ function addSessionTable() {
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="col-6 d-flex align-items-end">
-                                    <p class="m-0 p-0">Notes:</p>
+                                <div class="col-6 d-flex align-items-end p-0">
+                                    <a class="btn btn-danger text-light border my-3 float-right" onclick="removeRow()">Remove Row -</a>
                                 </div>
                                 <div class="col-6 p-0">
                                     <a class="btn btn-dark text-light border my-3 float-right" onclick="createRow()">Add Row +</a>
