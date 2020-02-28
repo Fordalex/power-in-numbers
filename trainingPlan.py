@@ -166,3 +166,16 @@ def personal_trainingplans():
 def delete_trainingplan(plan_id): 
     mongo.db.trainingPlansStarted.remove({'_id': ObjectId(plan_id)})
     return redirect(url_for('personal_trainingplans'))
+
+# adding a session from a training plan
+@app.route('/add_session_from_plan/<exercise_1>/<sets_1>/<reps_1>/<weight_1>')
+def add_session_from_plan(exercise_1, sets_1, reps_1, weight_1):
+       # to find out if the user is already logged in
+    try:
+        currentUser = session['username']
+    except:
+        return redirect(url_for('login_page'))
+    user = mongo.db.users
+    currentUsersAccount = user.find_one({'username': currentUser})
+    unitVar = currentUsersAccount.get('selected_unit')
+    return render_template('addsessionfromplan.html', unitVar=unitVar, exercise_1=exercise_1, sets_1=sets_1, reps_1=reps_1, weight_1=weight_1)

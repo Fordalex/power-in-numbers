@@ -75,7 +75,22 @@
                                         {% for table in week[weekInteration] %}
                                         
                                         <div class="col-12 col-sm-6  col-md-4 m-0 px-1 pb-1 {% if table.training_plan != 'Rest Day' %}training-plan-session-card border{% endif %}">
-                                            {% if table.training_plan != 'Rest Day' %} <a href="{{ url_for('add_session') }}" class="text-dark">     {% endif %}
+                                            {% if table.training_plan != 'Rest Day' %} 
+                                                {% for row in table.training_plan %}
+
+                                                    {% set exerciseIteration = 'exercise_' + loop.index | string %}
+                                                    {% set exercise_1 = row[exerciseIteration] %}
+
+                                                    {% set setsIteration = 'sets_' + loop.index | string %}
+                                                    {% set sets_1 = row[setsIteration] %}
+
+                                                    {% set repsIteration = 'sets_' + loop.index | string %}
+                                                    {% set reps_1 = row[repsIteration] %}
+                                                    
+                                                    <a href="{{ url_for('add_session_from_plan', exercise_1=exercise_1, sets_1=sets_1, reps_1=reps_1, weight_1=plan.users_weight[0] )}}" class="text-dark">  
+                                                {% endfor %}
+                                                
+                                            {% endif %} 
                                             {% set day = table['day'] %}
                                             {% if day == 'mon' %}
                                             <h6><u>Monday</u></h6> 
@@ -106,10 +121,10 @@
                                                     {% set setsInteration = 'sets_' + loop.index | string %}
                                                     {% set repsInteration = 'reps_' + loop.index | string %}
                                                     {% set restInteration = 'rest_' + loop.index | string %}
-                                                    <td> {{ row[exerciseInteration] }} </td>
-                                                    <td> {{ row[setsInteration] }} X {{ row[repsInteration] }} </td>
+                                                    <td> <input value="{{ row[exerciseInteration] }}"> </td>
+                                                    <td class="d-flex justify-content-center"> <input value="{{ row[setsInteration] }}" class="container-fluid p-0"> <p class="m-0 p-0">X</p> <input value="{{ row[repsInteration] }}" class="container-fluid"> </td>
                                                     <td><span class="weight_td"></span> {{ unitVar }}</td>
-                                                    <td> {{ row[restInteration] }}Secs </td>
+                                                    <td class="d-flex justify-content-start"> <input value="{{ row[restInteration] }}" class="container-fluid p-0"><p class="m-0 p-0">Secs</p> </td>
                                                 </tr>
                                                 {% endfor %}
                                             </table>
@@ -126,8 +141,12 @@
                             </div>
                         </div>
                         <div class="row m-0 p-0">
-     
-                              <div class="col-12 p-0 d-flex justify-content-end">
+                            <div class="col-7 p-0 m-0 d-flex align-items-end">
+                                <small>
+                                    <p class="m-0 p-0 pl-1"><b>Start Date:</b> {{ plan.start_date }} </p>
+                                </small>
+                            </div>
+                              <div class="col-5 p-0 d-flex justify-content-end">
                                 <p class="m-0">
                                     <a class="btn main-colour expand-button text-dark py-1 border float-right"
                                         data-toggle="collapse" href="#expand{{ loop.index }}"
@@ -163,6 +182,7 @@
                         var tdTarget = 'weight_td_' + {{ loop.index - 1 }}
                         var tdElement = document.getElementById(tdTarget)
                         var content = document.createTextNode({{ weight }});
+                        //
                         tdElement.appendChild(content)
                    {% endfor %}
                    for (i = 0; i < weight_td.length; i++) {
