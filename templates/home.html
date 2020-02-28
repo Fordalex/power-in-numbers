@@ -205,14 +205,14 @@
                                 <p class="m-0"><b>Location:</b> {{ session.location }}</p>
                                 <div class="collapse d-none" id="{{ session.first_name }}">
                                     <div class="card-body">
-                                        <h5>Motivated</h5>
+                                        <h6>Motivated</h6>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
                                                 style="width: {{ session.motivated | int * 10 }}%" aria-valuenow="75"
                                                 aria-valuemin="0" aria-valuemax="100">
                                             </div>
                                         </div>
-                                        <h5>Difficulty</h5>
+                                        <h6>Difficulty</h6>
                                         <div class="progress">
 
                                             <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
@@ -220,7 +220,7 @@
                                                 aria-valuemin="0" aria-valuemax="100">
                                             </div>
                                         </div>
-                                        <h5>Effort</h5>
+                                        <h6>Effort</h6>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
                                                 style="width: {{ session.effort | int * 10 }}%" aria-valuenow="100"

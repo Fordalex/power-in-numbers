@@ -114,6 +114,10 @@ This project is hosted on heroku, I achieved this by:
 2. Then the 'Deploy' section and down to 'deployment method' select github and link heroku to this repository.
 3. Still on the Deploy section, continuing down to 'manual deploy' and pressing 'deploy branch'
 
+## Testing and bugs
+
+[Testing and bugs]()
+
 ### How to run locally:
 
 #### Download:

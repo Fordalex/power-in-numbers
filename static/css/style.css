@@ -1,3 +1,7 @@
+.progress {
+  height: 0.7em;
+}
+
 .dc-chart .pie-slice {
   fill: black;
   font-size: 16px;

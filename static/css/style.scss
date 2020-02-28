@@ -9,6 +9,12 @@ $titleContainer: #fffeef;
 $pageContainer: rgb(253, 253, 253);
 $pageWrapper: #fafafa;
 
+// bootstrap progression bar
+
+.progress {
+  height: 0.7em;
+}
+
 // DC custom
 
 .dc-chart .pie-slice {
@@ -69,13 +75,6 @@ $background: #3498db;
   }    
 }
 /* end .roundedOne */
-
-
-
-
-
-
-
 
 // General
 
