@@ -14,7 +14,7 @@
                                 <h6>How many weeks?</h6>
                             </div>
                             <div class="col-2 m-0 p-0">
-                                <input id="plan_many_weeks" type="number" min="0" class="container-fluid">
+                                <input id="plan_many_weeks" type="number" value="1" min="1" class="container-fluid">
                             </div>
                             <div class="col-12 my-3 m-0 p-0">
                                 <button class="main-colour btn float-right" onclick="addWeeks()">Continue</button>
@@ -29,7 +29,8 @@
 
                         </div>
 
-                        <form action="{{ url_for('insert_training_plan') }}" method="POST" id="plan_table" class="row m-0 p-0">
+                        <form action="{{ url_for('insert_training_plan') }}" method="POST" id="plan_table"
+                            class="row m-0 p-0">
 
                         </form>
                     </div>
@@ -41,4 +42,15 @@
 </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+<script>
+    // warn the user that if they leave the page the data will not be saved.
+    $(function() {
+        $(window).on('beforeunload', function() {
+            return '';
+        })
+    })
+</script>
 {% endblock %}

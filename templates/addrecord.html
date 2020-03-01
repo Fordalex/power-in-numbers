@@ -105,4 +105,15 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
+<script>
+    // warn the user that if they leave the page the data will not be saved.
+    $(function() {
+        $(window).on('beforeunload', function() {
+            return '';
+        })
+    })
+</script>
 {% endblock %}

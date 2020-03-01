@@ -11,8 +11,8 @@
                     <p>
                         <a class="btn main-colour" data-toggle="collapse" href="#multiCollapseExample1" role="button"
                             aria-expanded="false" aria-controls="multiCollapseExample1">Log In</a>
-                            <a class="btn secondary-colour" data-toggle="collapse" href="#multiCollapseExample2" role="button"
-                            aria-expanded="false" aria-controls="multiCollapseExample1">Create User</a>
+                        <a class="btn secondary-colour" data-toggle="collapse" href="#multiCollapseExample2"
+                            role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Create User</a>
 
                     </p>
                 </div>
@@ -103,5 +103,16 @@
             </div>
         </div>
     </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
 
-    {% endblock %}
+<script>
+    // warn the user that if they leave the page the data will not be saved.
+    $(function () {
+        $(window).on('beforeunload', function () {
+            return '';
+        })
+    })
+</script>
+{% endblock %}

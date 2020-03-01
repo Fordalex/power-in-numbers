@@ -3,7 +3,6 @@ $(document).ready(function () {
     $('#date').attr('value', min_date)
 })
 
-
 // Welcome message
 var today = new Date();
 var hourNow = today.getHours();
