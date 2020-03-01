@@ -1,5 +1,9 @@
 # Testing
 
+If you don't want to create the new training session to run these test then please use the following account:
+Username: DavidSmith55
+Password: Password123
+
 ## register
 
 Creating a new account:
@@ -35,7 +39,7 @@ When on the login page the user will need their username and password to gain ac
 
 For each of these scenarios the user will be redirected to another page telling them there details were incorrect.
 
-## adding a session
+## Adding a session
 
 This page is found on the users profile click the 'add' tab and click 'add session'.
 Adding a new session:
@@ -48,7 +52,7 @@ Make sure the form dosen't submit.
 
 Adding a row:
 
-- click 'add row' make sure the row is appended to the table and the name attributes are as shown:
+- click 'add row' make sure the row is appended to the table and the name attributes are, for row:
     1. session_exercise_1, session_sets_1, reps_exercise_1, session_weight_1
     2. session_exercise_2, session_sets_2, reps_exercise_2, session_weight_2
     3. session_exercise_3, session_sets_3, reps_exercise_3, session_weight_3
@@ -62,7 +66,7 @@ Each row should have a name attribute with the count of the row at the end of th
 
 On the profile page there are four different sections:
 Checking the session data has been sorted correctly:
-Delete all sessions then, create four sessions:
+Delete all sessions if any have been created, then create four sessions:
  1. Session type: 'running', length 1 hour, motivated 10, difficulty 10, effort 10, distance 10 miles.
  2. Session type: 'weightlifting', length 30 mins, motivated 5, difficulty 5, effort 5, and in the weightlifting table. Exercise: Bench Press, Sets: 5, Reps: 5, Weight: 50kg, add another row. Exercise: Skull Crushers, Sets: 5, Reps: 5, Weight: 10kg.
  3. Session type: 'walking', length 45 mins, motivated 10, difficulty 10, effort 10, distance 10 miles.
@@ -71,7 +75,6 @@ Delete all sessions then, create four sessions:
 ### log (tab)
 
 After a session is logged the user will be taken to this page.
-Create
 
 Checking that the 'weightlifting' sessions have logged correctly:
 - view the session card and check the following:
@@ -88,10 +91,46 @@ Checking that the 'weightlifting' sessions have logged correctly:
     11. The notes have pulled from the DB
 
 Checking the 'running' sessions have logged correctly:
+- view the session card and check the following:
+    1. The date is the same as when entered into the add session form.
+    2. The location has been taken from the users account.
+    3. The body weight has been taken from the users account.
+    4. The distance travelled should be '10' miles
+    5. The distance should workout to 10 miles / 60 mins =  6 mins / mile
+    6. The motivated progression bar has filled to the length specified by the user.
+    7. The difficulty progression bar has also filled to the value given.
+    8. The effort progression bar has worked as planned.
+    9. The session type is as chosen on the form
+    10. The length value shouldn't be blank and should show the length of the workout.
+    11. The notes have pulled from the DB
 
 Checking the 'walking' sessions have logged correctly:
+- view the session card and check the following:
+    1. The date is the same as when entered into the add session form.
+    2. The location has been taken from the users account.
+    3. The body weight has been taken from the users account.
+    4. The distance travelled should be '10' miles
+    5. The distance should workout to 10 miles / 45 mins =  4.5 mins / mile
+    6. The motivated progression bar has filled to the length specified by the user.
+    7. The difficulty progression bar has also filled to the value given.
+    8. The effort progression bar has worked as planned.
+    9. The session type is as chosen on the form
+    10. The length value shouldn't be blank and should show the length of the workout.
+    11. The notes have pulled from the DB
 
 Checking the 'cycling' sessions have logged correctly:
+- view the session card and check the following:
+    1. The date is the same as when entered into the add session form.
+    2. The location has been taken from the users account.
+    3. The body weight has been taken from the users account.
+    4. The distance travelled should be '10' miles
+    5. The distance should workout to 10 miles / 60 mins =  4.5 mins / mile
+    6. The motivated progression bar has filled to the length specified by the user.
+    7. The difficulty progression bar has also filled to the value given.
+    8. The effort progression bar has worked as planned.
+    9. The session type is as chosen on the form
+    10. The length value shouldn't be blank and should show the length of the workout.
+    11. The notes have pulled from the DB
 
 Filtering the training cards:
  - First make sure that the session cards are shown on the page.
@@ -104,7 +143,7 @@ Filtering the training cards:
 
 ### add (tab)
 
-Three links all take the user to the correct page.
+Three links all take the user to the correct pages.
 
 - click 'add sessions', make sure that the url shows /add_session
 - click 'add record', make sure that the url shows /add_record
@@ -116,7 +155,7 @@ This page is found on the profile page under the 'stats' tab.
 
 Checking the total session logged:
 - logged count should be: 4
-- weightlifting: 3
+- weightlifting: 1
 - Running: 1
 - Cycling: 1
 - Walking: 1
@@ -127,26 +166,118 @@ Checking the distance travelled:
 - Ran: 10
 - Cycled: 10
 - The pie chart should be split into three and the bar chart should change to one when a sesion is selected.
+- The bar chart should show a total of 30
 
+Checking the mental stats section:
+The only four sesssions that have been logged, have had the motivated difficulty and effort value of three 10s and one 5 total 35 divided by the amount of session logged which is 4. 35 / 4 = 8.75 rounded up = 8.8
+- Each the motivated the difficulty and the effort should show the value of 8.8
+- Sessions logged = 60mins + 30mins + 45mins + 45mins. Time logged should show 3 hours. 
 
+Badges section:
+- The total session should show 4
+- The distance travelled by foot should equal 20.
+- And the distance travlled by bike should equal 10.
+- The distance travelled by foot the first badge should by lit up.
+Checking the badges light up correctly:
+- Add a running session and add the distance to 2000miles
+- Add a cycling session and add the distance to 2500miles
 
 ### details (tab)
 
+When you created the account this page should show your personal information.
+- The name should show you first and last name created.
+- The age should show the users age.
+- The bw should show the correct BW for the user, aswell this should be converted to the users specified unit.(More on convertions at the bottom)
+- The gender should show the correct gender the user entered when creating the account.
+- username should be correct.
+- The account start date should be today if creating the account on the same day as running these tests.
 
-## records
+#### Update details (page)
 
+The edit details button on the profile page and under the tab 'details' will bring you to this page.
 
-## personal training plans
+- The age inside the age input should show the value of the users age.
+- The body weight should show their body weight and the unit should be the one specified by the user on the settings page.
 
+Checking to see if the form works:
+
+- Change the users age to '100'
+- Change the body weight to '180'
+- And change the the unit to 'lb'
+
+After you have pressed 'change details' the user will be directed back to their profile page.
+Go back to the tab 'details' And make sure these changes have happened.
+
+## Personal Records
+
+This page won't show any records if creating this from a new account, and should tell the user that. "you don't have any records saved yet..." and they will also have a button relocating them on to the add records page.
+- Click on 'save record' This page can also be found on the profile, then on the 'add' tab under 'save record'.
+
+Creating a record:
+- Add the length on the record to: 
+Hour: 0, Mins: 1, Secs: 0. 
+Session type: weightlifting.
+Motivated: 10   
+Difficulty: 10
+Effort: 10
+Squat / 1 Rep / 160kg
+notes: 'Good session!'
+
+After this record has been saved the user will be take to their record page.
+
+Checking the record saved:
+- The name on the record is the username of the user currently logged in.
+- The body weight is what has been set on the users account.
+- Date should be today.
+- location as set on the usres account.
+- sets 1
+- weight lifted 160kg
+- motivated, difficulty and effort should be full
+- record type: 'weightlifting'
+- length: 0h 1m 0s
+- Notes should say 'Good session!'
+- The time logged should be a time stamp of when the user saved the record.
 
 ## home
+
+I have been using this site to save my current training sessions so this should be getting full by now...
 
 
 ## pin records
 
+On the home page there are two values that will change when a user saved a session. First will count the total amount of sessions logged and the Second will add up all the distance travelled by all users.
+
+Checking the filtering:
+ - Click filter, change the session type dropdown to 'weightlifting' make sure that only session card with the session type weightligting are shown.
+ - change the session type to 'running' make sure only running sessions are shown.
+ - change the session type to 'cycling' make sure only the cycling sessions are shown
+ - change the session type to 'walking' make sure only the walking session are on the page.
+ - change the session type back to 'All', change the date to a random date, make sure that the sessions on the page are only from the days filted.
+ - change the session type to 'All', date to none and sort by oldest first, make sure that the first session shown is older than the one below.
+
+Run checks on each of the session to make sure all the data is being pulled from the DB correctly.
 
 ## training plans
 
 
+## started training plans
+
+
 ## settings
 
+
+## Convertions
+
+
+# Existing Bugs / problems
+
+
+## Register
+
+If the username the user is trying to create has already been taken, they will be redirected to another page to give them this information. But when the user goes back to the register form the user will have to start from scratch again. I would like to fix this so that it checks to see if the username has been taken before the user submits the form.
+
+## Average speed
+
+Currently the average speed will show 0.5 for 30 seconds.
+
+## 

@@ -85,7 +85,7 @@ def insert_record():
         'time': dateTime[11:19]
         }
     records.insert_one(weightliftingDict)
-    return redirect('record')
+    return redirect('users_records')
 
 # just the records logged by the user
 @app.route('/users_records')
@@ -214,4 +214,4 @@ def filter_pinrecords():
 @app.route('/delete_record/<session_id>')
 def delete_record(session_id):
     mongo.db.records.remove({'_id': ObjectId(session_id)})
-    return redirect(url_for('profile'))
+    return redirect(url_for('users_records'))
