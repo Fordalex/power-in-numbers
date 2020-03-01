@@ -24,7 +24,7 @@ from sessions import *
 from records import *
 # register, register_insert, login, delete_account
 from users import *
-# /, login_page, home, filter_home, settings, add_unit, logout
+# /, login_page, home, filter_home, settings, add_unit, logout, update details.
 from general import *
 # add_plan
 from trainingPlan import *

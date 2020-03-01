@@ -284,7 +284,10 @@ def update_details():
         return redirect(url_for('login_page'))
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
-    return render_template('updatedetails.html', user=currentUsersAccount)
+    unitVar = currentUsersAccount.get('selected_unit')
+
+
+    return render_template('updatedetails.html', user=currentUsersAccount , unitVar=unitVar)
 
 # update the users details to mongoDB
 @app.route('/insert_change_details', methods=['POST'])
@@ -300,7 +303,7 @@ def insert_change_details():
     age = request.form['age']
     gender = currentUsersAccount.get('gender')
     body_weight = request.form['body_weight']
-    bw_unit = currentUsersAccount.get('bw_unit')
+    bw_unit = request.form['bw_unit']
     location = currentUsersAccount.get('location')
     selected_unit = currentUsersAccount.get('selected_unit')
     selected_distance = currentUsersAccount.get('selected_distance')
