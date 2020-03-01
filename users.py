@@ -51,7 +51,7 @@ def register_insert():
                 'selected_distance': 'mile',})
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
-        return redirect(url_for('register'))
+        return render_template('usernametaken.html')
     return redirect(url_for('login_page'))
 
 # try and log the user in

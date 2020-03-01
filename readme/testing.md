@@ -8,8 +8,8 @@ Creating a new account:
 
 Testing if the form works correctly:
 
-All inputs have been given a required attribute so that that user can not leave any fields empty.
-I found a password validation js script online at [Password Validation]().
+All inputs have been given a required attribute so that the user can not leave any fields empty.
+I found a password validation js script online at [Password Validation](https://www.the-art-of-web.com/javascript/validate-password/).
 
 -Try and create an account with unmatching passwords.
 -Try and create an account with passwords that are the same but contains no numbers.

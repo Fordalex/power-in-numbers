@@ -116,7 +116,7 @@ This project is hosted on heroku, I achieved this by:
 
 ## Testing and bugs
 
-[Testing and bugs]()
+[Testing and bugs](https://github.com/Fordalex/power-in-numbers/blob/master/readme/testing.md)
 
 ### How to run locally:
 
