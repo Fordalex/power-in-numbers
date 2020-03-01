@@ -109,7 +109,7 @@ def delete_plan(plan_id):
     mongo.db.trainingPlans.remove({'_id': ObjectId(plan_id)})
     return redirect(url_for('training_plans'))
 
-@app.route('/add_weight/<plan_id>', methods=['POST'])
+@app.route('/add_weight/<plan_id>')
 def add_weight(plan_id):
     # to find out if the user is already logged in
     try:
