@@ -22,7 +22,7 @@
             </div>
             <div class="row m-0 p-0 px-1">
                 {% for plan in trainingPlans %}
-                <form action="{{ url_for('add_weight' , plan_id=plan._id ) }}" method="POST" class="col-12 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
+                <div class="col-12 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                     <div class="session-card my-1 my-md-1 p-2">
                         <div class="row m-0 p-0">
                             <div class="col-6 pl-1 pr-2">
@@ -48,19 +48,20 @@
                             <div class="col-6 pr-0 border-left">
                                 <p class="m-0 p-0 mb-1 float-left"><b>Creator:</b> {{ plan.creator }}</p>
                                 {% if plan.creator == currentUsersAccount.username %}
-                                <i class="fas fa-edit float-right"></i>
+                                <i class="fas fa-edit float-right" data-toggle="collapse" href="#edit{{ loop.index }}"
+                                    role="button" aria-expanded="false" aria-controls="collapseExample"></i>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="row m-0 p-0">
                             <div class="col-12 p-0 m-0">
                                 <div class="collapse  mt-4" id="expand{{ loop.index }}">
-                                   {% for week in plan.weeks %}
-                                   <div class="row m-0 p-0">
-                                    <div class="col-12 m-0 p-0">
-                                        <hr class="mb-0">
+                                    {% for week in plan.weeks %}
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 m-0 p-0">
+                                            <hr class="mb-0">
+                                        </div>
                                     </div>
-                                   </div>
                                     <div class="row m-0 p-0">
                                         <div class="col-12 m-0 p-0">
                                             <h6 class="mt-3 ml-1">Week {{ loop.index }}</h6>
@@ -70,19 +71,19 @@
                                         <div class="col-12 col-sm-6 col-md-4 m-0 px-1">
                                             {% set day = table['day'] %}
                                             {% if day == 'mon' %}
-                                            <h6><u>Monday</u></h6> 
+                                            <h6><u>Monday</u></h6>
                                             {% elif day == 'tue' %}
-                                            <h6><u>Tuesday</u></h6> 
+                                            <h6><u>Tuesday</u></h6>
                                             {% elif day == 'wed' %}
-                                            <h6><u>Wednesday</u></h6> 
+                                            <h6><u>Wednesday</u></h6>
                                             {% elif day == 'thur' %}
-                                            <h6><u>Thursday</u></h6> 
+                                            <h6><u>Thursday</u></h6>
                                             {% elif day == 'fri' %}
-                                            <h6><u>Friday</u></h6> 
+                                            <h6><u>Friday</u></h6>
                                             {% elif day == 'sat' %}
-                                            <h6><u>Saturday</u></h6> 
+                                            <h6><u>Saturday</u></h6>
                                             {% elif day == 'sun' %}
-                                            <h6><u>Sunday</u></h6> 
+                                            <h6><u>Sunday</u></h6>
                                             {% endif %}
                                             {% if table.training_plan != 'Rest Day' %}
                                             <table class="session-table container-fluid even-table-width">
@@ -106,7 +107,7 @@
                                             {% else %}
                                             <p>Rest Day</p>
                                             {% endif %}
-                                            
+
 
 
                                         </div>
@@ -115,27 +116,43 @@
                                     {% endfor %}
                                     <div class="row m-0 p-0 mt-3">
                                         <div class="col-12 m-0 p-0 pl-1">
-                                            <button class="btn btn-success p-0 px-2 text-dark mr-1" type="submit">Start Plan</button>
+                                            <a href="{{ url_for('add_weight' , plan_id=plan._id ) }}" method="POST"
+                                                class="btn btn-success p-0 px-2 text-dark mr-1" type="submit">Start
+                                                Plan</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
-     
-                              <div class="col-12 p-0 d-flex justify-content-end">
+
+                            <div class="col-12 p-0 d-flex justify-content-end">
                                 <p class="m-0">
                                     <a class="btn main-colour expand-button text-dark py-1 border float-right"
-                                        data-toggle="collapse" href="#expand{{ loop.index }}"
-                                        role="button" aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        data-toggle="collapse" href="#expand{{ loop.index }}" role="button"
+                                        aria-expanded="false" aria-controls="collapseExample">
                                         Expand
                                     </a>
                                 </p>
                             </div>
                         </div>
+                        {% if plan.creator == currentUsersAccount.username %}
+                        <div class="row m-0 p-0">
+                            <div class="col-12 p-0">
+                                <div class="collapse" id="edit{{ loop.index }}">
+                            
+                                        <div class="card card-body p-0 mt-2">
+                                            <a href="{{url_for('delete_plan', plan_id=plan._id)}}"><button
+                                                class="btn btn-danger container-fluid">Delete</button></a>
+                                        </div>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
                     </div>
-                </form>
+                </div>
                 {% if loop.last %}
                 <div class="col-12 p-0 animated fadeInUp">
                     <p class="text-secondary">Search Result: {{ loop.index }}</p>

@@ -103,6 +103,12 @@ def training_plans():
     training_plans_DB = mongo.db.trainingPlans.find()
     return render_template('trainingplans.html', trainingPlans=training_plans_DB ,  currentUsersAccount=currentUsersAccount)
 
+# delete a training plan from the main training plan page
+@app.route('/delete_plan/<plan_id>')
+def delete_plan(plan_id): 
+    mongo.db.trainingPlans.remove({'_id': ObjectId(plan_id)})
+    return redirect(url_for('training_plans'))
+
 @app.route('/add_weight/<plan_id>', methods=['POST'])
 def add_weight(plan_id):
     # to find out if the user is already logged in
