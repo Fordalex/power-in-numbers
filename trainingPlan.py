@@ -101,7 +101,8 @@ def training_plans():
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
     training_plans_DB = mongo.db.trainingPlans.find()
-    return render_template('trainingplans.html', trainingPlans=training_plans_DB ,  currentUsersAccount=currentUsersAccount)
+
+    return render_template('trainingplans.html', trainingPlans=training_plans_DB,  currentUsersAccount=currentUsersAccount)
 
 # delete a training plan from the main training plan page
 @app.route('/delete_plan/<plan_id>')
@@ -164,8 +165,11 @@ def personal_trainingplans():
     # finding the users training plan
 
     training_plans_DB = mongo.db.trainingPlansStarted.find({'username': currentUser})
-
-    return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB, currentUsersAccount=currentUsersAccount)
+    plan_count = 0
+    for x in training_plans_DB:
+        plan_count += 1
+    training_plans_DB = mongo.db.trainingPlansStarted.find({'username': currentUser})
+    return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB, plan_count=plan_count, currentUsersAccount=currentUsersAccount)
 
 # delete a training plan
 @app.route('/delete_trainingplan/<plan_id>')

@@ -257,6 +257,12 @@
                                 </div>
                             </div>
                             <div class="row m-0 p-0 p-lg-1">
+                                {% if totalSessionsLogged == 0 %}
+                                <div class="col-12 p-3">
+                                    <p>You don't have any sessions saved yet...</p>
+                                    <a href="{{ url_for('add_record') }}" class="btn main-colour">Log Session</a>
+                                </div>
+                                {% endif %}
                                 {% for session in sessions %}
                                 <div class="col-12 col-md-6 p-0 px-md-1 delay-{{ loop.index }} animated fadeInUp ">
                                     <div class="session-card my-1 my-md-1 p-1">

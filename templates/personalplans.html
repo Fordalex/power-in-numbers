@@ -19,13 +19,26 @@
 
 
 <div class="title-container" id="top">
-    <p class="m-0 p-0 text-center text-light animated fadeIn">Your Training Plans</p>
+    <p class="m-0 p-0 text-center text-light animated fadeIn">Plans</p>
     <h1 class="text-center main-title">Personal Training Plans</h1>
 </div>
 <div class="page-wrapper">
     <div class="page-container p-0">
         <div class="container-fluid p-0">
             <div class="row m-0 p-0 ">
+                <div class="col-12 m-0 p-0">
+                    <p class="m-0 py-3 pl-3">You have <b>{{ plan_count }}</b> training plans started!</p>
+                    <hr class="mt-0">
+                </div>
+                <div class="col-12 m-0 p-0">
+                    <h4 class="text-center">Your Training Plans</h4>
+                </div>
+                {% if plan_count == 0 %}
+                <div class="col-12 p-3">
+                    <p>You haven't started a training plan yet..</p>
+                    <a href="{{ url_for('training_plans') }}" class="btn main-colour">Training Plans</a>
+                </div>
+                {% endif %}
                 {% for plan in trainingPlans %}
                 <div class="col-12 p-0 px-md-2 pt-2 delay-{{ loop.index }} animated fadeInUp ">
                     <div class="session-card my-1 my-md-1 p-2">
@@ -42,7 +55,8 @@
                                 {% elif plan['training_plan'].session_type == 'walking' %}
                                 <i class="fas fa-shoe-prints float-right"></i>
                                 {% endif %}
-                                <h5><u>{{ loop.index }}. <span class="main-colour-text">{{ plan['training_plan'].plan_name }}</span></u>
+                                <h5><u>{{ loop.index }}. <span
+                                            class="main-colour-text">{{ plan['training_plan'].plan_name }}</span></u>
                                 </h5>
                                 {% for week in plan['training_plan'].weeks %}
                                 {% if loop.last %}
@@ -52,88 +66,100 @@
 
                             </div>
                             <div class="col-6 pr-0 border-left">
-                                <p class="m-0 p-0 mb-1 float-left"><b>Creator:</b> {{ plan['training_plan'].creator }}</p>
-                                <i class="fas fa-edit float-right" data-toggle="collapse"
-                                                    href="#edit{{ loop.index }}" role="button" aria-expanded="false"
-                                                    aria-controls="collapseExample"></i>
+                                <p class="m-0 p-0 mb-1 float-left"><b>Creator:</b> {{ plan['training_plan'].creator }}
+                                </p>
+                                <i class="fas fa-edit float-right" data-toggle="collapse" href="#edit{{ loop.index }}"
+                                    role="button" aria-expanded="false" aria-controls="collapseExample"></i>
                             </div>
                         </div>
                         <div class="row m-0 p-0">
                             <div class="col-12 p-0 m-0">
                                 <div class="collapse  mt-4" id="expand{{ loop.index }}">
-                                   {% for week in plan['training_plan'].weeks %}
-                                   <div class="row m-0 p-0">
-                                    <div class="col-12 m-0 p-0">
-                                        <hr class="mb-0">
+                                    {% for week in plan['training_plan'].weeks %}
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 m-0 p-0">
+                                            <hr class="mb-0">
+                                        </div>
                                     </div>
-                                   </div>
                                     <div class="row m-0 p-0">
                                         <div class="col-12 m-0 p-0">
                                             <h6 class="mt-3 ml-1">Week {{ loop.index }}</h6>
                                         </div>
                                         {% set weekInteration = 'week_' + loop.index | string %}
                                         {% for table in week[weekInteration] %}
-                                        
-                                        <div class="col-12 col-sm-6  col-md-4 m-0 px-1 pb-1 {% if table.training_plan != 'Rest Day' %}training-plan-session-card border{% endif %}">
-                                            {% if table.training_plan != 'Rest Day' %} 
-                                                {% for row in table.training_plan %}
 
-                                                    {% set exerciseIteration = 'exercise_' + loop.index | string %}
-                                                    {% set exercise_1 = row[exerciseIteration] %}
-
-                                                    {% set setsIteration = 'sets_' + loop.index | string %}
-                                                    {% set sets_1 = row[setsIteration] %}
-
-                                                    {% set repsIteration = 'sets_' + loop.index | string %}
-                                                    {% set reps_1 = row[repsIteration] %}
-                                                    
-                                                    <a href="{{ url_for('add_session_from_plan', workout_id=plan._id )}}" class="text-dark">  
-                                                {% endfor %}
-                                                
-                                            {% endif %} 
-                                            {% set day = table['day'] %}
-                                            {% if day == 'mon' %}
-                                            <h6><u>Monday</u></h6> 
-                                            {% elif day == 'tue' %}
-                                            <h6><u>Tuesday</u></h6> 
-                                            {% elif day == 'wed' %}
-                                            <h6><u>Wednesday</u></h6> 
-                                            {% elif day == 'thur' %}
-                                            <h6><u>Thursday</u></h6> 
-                                            {% elif day == 'fri' %}
-                                            <h6><u>Friday</u></h6> 
-                                            {% elif day == 'sat' %}
-                                            <h6><u>Saturday</u></h6> 
-                                            {% elif day == 'sun' %}
-                                            <h6><u>Sunday</u></h6> 
-                                            {% endif %}
+                                        <div
+                                            class="col-12 col-sm-6  col-md-4 m-0 px-1 pb-1 {% if table.training_plan != 'Rest Day' %}training-plan-session-card border{% endif %}">
                                             {% if table.training_plan != 'Rest Day' %}
-                                            <table class="session-table container-fluid even-table-width">
-                                                <tr>
-                                                    <th>Exercise</th>
-                                                    <th>Sets X Reps</th>
-                                                    <th>Weight</th>
-                                                    <th>Rest</th>
-                                                </tr>
-                                                {% for row in table.training_plan %}
-                                                <tr>
-                                                    {% set exerciseInteration = 'exercise_' + loop.index | string %}
-                                                    {% set setsInteration = 'sets_' + loop.index | string %}
-                                                    {% set repsInteration = 'reps_' + loop.index | string %}
-                                                    {% set restInteration = 'rest_' + loop.index | string %}
-                                                    <td> <input value="{{ row[exerciseInteration] }}"> </td>
-                                                    <td class="d-flex justify-content-center"> <input value="{{ row[setsInteration] }}" class="container-fluid p-0"> <p class="m-0 p-0">X</p> <input value="{{ row[repsInteration] }}" class="container-fluid"> </td>
-                                                    <td><span class="weight_td"></span> {{ unitVar }}</td>
-                                                    <td class="d-flex justify-content-start"> <input value="{{ row[restInteration] }}" class="container-fluid p-0"><p class="m-0 p-0">Secs</p> </td>
-                                                </tr>
+                                            {% for row in table.training_plan %}
+
+                                            {% set exerciseIteration = 'exercise_' + loop.index | string %}
+                                            {% set exercise_1 = row[exerciseIteration] %}
+
+                                            {% set setsIteration = 'sets_' + loop.index | string %}
+                                            {% set sets_1 = row[setsIteration] %}
+
+                                            {% set repsIteration = 'sets_' + loop.index | string %}
+                                            {% set reps_1 = row[repsIteration] %}
+
+                                            <a href="{{ url_for('add_session_from_plan', workout_id=plan._id )}}"
+                                                class="text-dark">
                                                 {% endfor %}
-                                            </table>
-                                            {% else %}
-                                            <p>Rest Day</p>
-                                            {% endif %}
-                                            {% if table.training_plan != 'Rest Day' %} </a>    {% endif %}
+
+                                                {% endif %}
+                                                {% set day = table['day'] %}
+                                                {% if day == 'mon' %}
+                                                <h6><u>Monday</u></h6>
+                                                {% elif day == 'tue' %}
+                                                <h6><u>Tuesday</u></h6>
+                                                {% elif day == 'wed' %}
+                                                <h6><u>Wednesday</u></h6>
+                                                {% elif day == 'thur' %}
+                                                <h6><u>Thursday</u></h6>
+                                                {% elif day == 'fri' %}
+                                                <h6><u>Friday</u></h6>
+                                                {% elif day == 'sat' %}
+                                                <h6><u>Saturday</u></h6>
+                                                {% elif day == 'sun' %}
+                                                <h6><u>Sunday</u></h6>
+                                                {% endif %}
+                                                {% if table.training_plan != 'Rest Day' %}
+                                                <table class="session-table container-fluid even-table-width">
+                                                    <tr>
+                                                        <th>Exercise</th>
+                                                        <th>Sets X Reps</th>
+                                                        <th>Weight</th>
+                                                        <th>Rest</th>
+                                                    </tr>
+                                                    {% for row in table.training_plan %}
+                                                    <tr>
+                                                        {% set exerciseInteration = 'exercise_' + loop.index | string %}
+                                                        {% set setsInteration = 'sets_' + loop.index | string %}
+                                                        {% set repsInteration = 'reps_' + loop.index | string %}
+                                                        {% set restInteration = 'rest_' + loop.index | string %}
+                                                        <td> <input value="{{ row[exerciseInteration] }}"> </td>
+                                                        <td class="d-flex justify-content-center"> <input
+                                                                value="{{ row[setsInteration] }}"
+                                                                class="container-fluid p-0">
+                                                            <p class="m-0 p-0">X</p> <input
+                                                                value="{{ row[repsInteration] }}"
+                                                                class="container-fluid">
+                                                        </td>
+                                                        <td><span class="weight_td"></span> {{ unitVar }}</td>
+                                                        <td class="d-flex justify-content-start"> <input
+                                                                value="{{ row[restInteration] }}"
+                                                                class="container-fluid p-0">
+                                                            <p class="m-0 p-0">Secs</p>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </table>
+                                                {% else %}
+                                                <p>Rest Day</p>
+                                                {% endif %}
+                                                {% if table.training_plan != 'Rest Day' %} </a> {% endif %}
                                         </div>
-                                       
+
                                         {% endfor %}
                                     </div>
                                     {% endfor %}
@@ -146,12 +172,11 @@
                                     <p class="m-0 p-0 pl-1"><b>Start Date:</b> {{ plan.start_date }} </p>
                                 </small>
                             </div>
-                              <div class="col-5 p-0 d-flex justify-content-end">
+                            <div class="col-5 p-0 d-flex justify-content-end">
                                 <p class="m-0">
                                     <a class="btn main-colour expand-button text-dark py-1 border float-right"
-                                        data-toggle="collapse" href="#expand{{ loop.index }}"
-                                        role="button" aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        data-toggle="collapse" href="#expand{{ loop.index }}" role="button"
+                                        aria-expanded="false" aria-controls="collapseExample">
                                         Expand
                                     </a>
                                 </p>
@@ -175,23 +200,23 @@
                     for (i = 0; i < weight_td.length; i++) {
                         console.log(weight_td.length)
                         id_name = 'weight_td_' + i.toString()
-                        weight_td[i].setAttribute('id' , id_name)
+                        weight_td[i].setAttribute('id', id_name)
                     }
                     {% for weight in plan.users_weight %}
-                        console.log('how many times am I being ran')
-                        var tdTarget = 'weight_td_' + {{ loop.index - 1 }}
-                        var tdElement = document.getElementById(tdTarget)
-                        var content = document.createTextNode({{ weight }});
-                        //
-                        tdElement.appendChild(content)
-                   {% endfor %}
-                   for (i = 0; i < weight_td.length; i++) {
-                        weight_td[i].removeAttribute('id')       
-                   }
-                   for (i = 0; i < weight_td.length; i++) {
-                        weight_td[i].removeAttribute('class')  
-                        weight_td[0].removeAttribute('class')       
-                   }
+                    console.log('how many times am I being ran')
+                    var tdTarget = 'weight_td_' + {{ loop.index - 1 }}
+                    var tdElement = document.getElementById(tdTarget)
+                    var content = document.createTextNode({{ weight }});
+                    //
+                    tdElement.appendChild(content)
+                    {% endfor %}
+                    for (i = 0; i < weight_td.length; i++) {
+                        weight_td[i].removeAttribute('id')
+                    }
+                    for (i = 0; i < weight_td.length; i++) {
+                        weight_td[i].removeAttribute('class')
+                        weight_td[0].removeAttribute('class')
+                    }
                 </script>
 
                 {% if loop.last %}

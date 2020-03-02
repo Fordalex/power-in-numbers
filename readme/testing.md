@@ -1,10 +1,10 @@
 # Testing
 
-If you don't want to create the new training session to run these test then please use the following account:
-Username: DavidSmith55
-Password: Password123
+If you don't want to create the new account to run these test then please use the following account:
+- Username: DavidSmith55
+- Password: Password123
 
-## register
+## Register
 
 Creating a new account:
 - When on the login page if the user clicks 'sign up here' they will be taken to the register page where the user can create a new account.
@@ -15,10 +15,10 @@ Testing if the form works correctly:
 All inputs have been given a required attribute so that the user can not leave any fields empty.
 I found a password validation js script online at [Password Validation](https://www.the-art-of-web.com/javascript/validate-password/).
 
--Try and create an account with unmatching passwords.
--Try and create an account with passwords that are the same but contains no numbers.
--Try and create an account with passwords that are the same but no capitals.
--Try and create an account with passwords that are the same but less than six characters.
+- Try and create an account with unmatching passwords.
+- Try and create an account with passwords that are the same but contains no numbers.
+- Try and create an account with passwords that are the same but no capitals.
+- Try and create an account with passwords that are the same but less than six characters.
 
 The form shouldn't send and should also return the appropriate error message to the user.
 
@@ -26,20 +26,20 @@ If the users details have been entered correctly but the username has already be
 
 Create a new account to continue with the following tests.
 
-## login
+## Login
 
 Logging in for exsisting users:
 
 When on the login page the user will need their username and password to gain access to the site.
 
-- Try loggin in with both the fields empty
-- Try loggin in with a registered username but no password
-- Try loggin in with a registered username and the incorrect password
-- Try loggin in with a non registered username but a registered password
+- Try logging in with both the fields empty
+- Try logging in with a registered username but no password
+- Try logging in with a registered username and the incorrect password
+- Try logging in with a non registered username but a registered password
 
 For each of these scenarios the user will be redirected to another page telling them there details were incorrect.
 
-## Adding a session
+## Adding A Session
 
 This page is found on the users profile click the 'add' tab and click 'add session'.
 Adding a new session:
@@ -62,7 +62,7 @@ Each row should have a name attribute with the count of the row at the end of th
 - click 'remove row' make sure the row is removed from the table.
 - click 'add row' make sure the value of the name attribute is still the value of the row count.
 
-## profile (page)
+## Profile (page)
 
 On the profile page there are four different sections:
 Checking the session data has been sorted correctly:
@@ -72,7 +72,7 @@ Delete all sessions if any have been created, then create four sessions:
  3. Session type: 'walking', length 45 mins, motivated 10, difficulty 10, effort 10, distance 10 miles.
  4. Session type: 'cycling', length 45 mins, motivated 10, difficulty 10, effort 10, distance 10 miles.
 
-### log (tab)
+### Log (tab)
 
 After a session is logged the user will be taken to this page.
 
@@ -141,7 +141,7 @@ Filtering the training cards:
  - change the session type back to 'All', change the date to a random date, make sure that the sessions on the page are only from the days filted.
  - change the session type to 'All', date to none and sort by oldest first, make sure that the first session shown is older than the one below.
 
-### add (tab)
+### Add (tab)
 
 Three links all take the user to the correct pages.
 
@@ -149,7 +149,7 @@ Three links all take the user to the correct pages.
 - click 'add record', make sure that the url shows /add_record
 - click 'create training plan', make sure the url shows /add_plan
 
-### stats (tab)
+### Stats (tab)
 
 This page is found on the profile page under the 'stats' tab.
 
@@ -179,10 +179,10 @@ Badges section:
 - And the distance travlled by bike should equal 10.
 - The distance travelled by foot the first badge should by lit up.
 Checking the badges light up correctly:
-- Add a running session and add the distance to 2000miles
-- Add a cycling session and add the distance to 2500miles
+- Add a running session and add the distance to 2000miles, make sure that all the running badges lit up.
+- Add a cycling session and add the distance to 2500miles, make sure all the cycling badges lit up.
 
-### details (tab)
+### Details (tab)
 
 When you created the account this page should show your personal information.
 - The name should show you first and last name created.
@@ -192,7 +192,7 @@ When you created the account this page should show your personal information.
 - username should be correct.
 - The account start date should be today if creating the account on the same day as running these tests.
 
-#### Update details (page)
+#### Update Details (page)
 
 The edit details button on the profile page and under the tab 'details' will bring you to this page.
 
@@ -238,12 +238,12 @@ Checking the record saved:
 - Notes should say 'Good session!'
 - The time logged should be a time stamp of when the user saved the record.
 
-## home
+## Home
 
 I have been using this site to save my current training sessions so this should be getting full by now...
 
 
-## pin records
+## Pin Records
 
 On the home page there are two values that will change when a user saved a session. First will count the total amount of sessions logged and the Second will add up all the distance travelled by all users.
 
@@ -257,26 +257,26 @@ Checking the filtering:
 
 Run checks on each of the session to make sure all the data is being pulled from the DB correctly.
 
-## training plans
+## Training p#Plans
 
 
-## started training plans
+## Started Training Plans
 
 
-## settings
+## Settings
 
 
 ## Convertions
 
 
-# Existing Bugs / problems
+# Existing Bugs / Problems
 
 
 ## Register
 
 If the username the user is trying to create has already been taken, they will be redirected to another page to give them this information. But when the user goes back to the register form the user will have to start from scratch again. I would like to fix this so that it checks to see if the username has been taken before the user submits the form.
 
-## Average speed
+## Average Speed
 
 Currently the average speed will show 0.5 for 30 seconds.
 
