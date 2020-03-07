@@ -161,4 +161,7 @@ Organizing the app.py file.
 checkbox taken from codepen
 
 - https://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/
+
+- navigation bar
+https://www.youtube.com/watch?v=gXkqy0b4M5g
 for loop in python 
