@@ -31,12 +31,12 @@
                 <li><a href="{{ url_for('users_records') }}"><b>Personal Records</b></a></li>
                 <li><a href="{{url_for('personal_trainingplans')}}"><b>Your Training Plans</b></a></li>
                 <li class="nav-list-title"><h5>Shared Online</h5></li>
-                <li><a href="#"><b>Home</b></a></li>
-                <li><a href="#"><b>PIN Records</b></a></li>
-                <li><a href="#"><b>Training Plans</b></a></li>
-                <li  class="nav-list-title"><a href="#"><h5>Other</h5></a></li>
-                <li><a><b>Settings</b></a></li>
-                <li><a class="text-danger"><b>Log Out</b></a></li>
+                <li><a href="#" href="{{url_for('home')}}"><b>Home</b></a></li>
+                <li><a href="#" href="{{url_for('record')}}"><b>PIN Records</b></a></li>
+                <li><a href="#" href="{{url_for('training_plans')}}"><b>Training Plans</b></a></li>
+                <li  class="nav-list-title"><a href="#"><h5>Account</h5></a></li>
+                <li><a href="{{ url_for('settings') }}"><b>Settings</b></a></li>
+                <li><a class="text-danger" href="{{ url_for('logout') }}"><b>Log Out</b></a></li>
             </ul>
             <ul class="nav-list-desktop">
                 <li><a href="{{ url_for('profile') }}">Profile</a></li>

@@ -15,8 +15,8 @@ nav {
   position: fixed;
   height: 8vh;
   min-height: 55px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ebebeb));
-  background-image: linear-gradient(#fafafa, #ebebeb);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#f2f2f2));
+  background-image: linear-gradient(#fafafa, #f2f2f2);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
