@@ -257,7 +257,8 @@ Checking the filtering:
 
 Run checks on each of the session to make sure all the data is being pulled from the DB correctly.
 
-## Training p#Plans
+## Training Plans
+
 
 
 ## Started Training Plans
@@ -272,12 +273,22 @@ Run checks on each of the session to make sure all the data is being pulled from
 # Existing Bugs / Problems
 
 
-## Register
+### Register
 
 If the username the user is trying to create has already been taken, they will be redirected to another page to give them this information. But when the user goes back to the register form the user will have to start from scratch again. I would like to fix this so that it checks to see if the username has been taken before the user submits the form.
 
-## Average Speed
+### Average Speed
 
 Currently the average speed will show 0.5 for 30 seconds.
 
-## 
+### Changes you made might not be changed
+
+This message will pop up when the user trys to leave the page, the only problem is when the user is ready to submit the form this message is still be shown.
+
+### Scroll After Filter
+
+When the user filters the sessiosn I would like the page to scroll down to the sessions shown. I have got the js for this but I don't know how to get the page to only scroll down when the user has filtered the sessions.
+
+### Training Plans
+
+The training plan can be created by the user and sorted on the online training plans page, when the user would like to 'start plan' this works and the user can add their chosen weight. Then this does work I would like the user to be able to save time by selecting the chosen training day and being reloaded to the add session page with all the plan information already filled in.

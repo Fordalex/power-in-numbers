@@ -19,7 +19,7 @@ def add_session():
         return redirect(url_for('login_page'))
     users = mongo.db.users
     login_user = users.find_one({'username' : currentUser})
-    return render_template('addsession.html', user=login_user)
+    return render_template('add-to-db/addsession.html', user=login_user)
 
 # sending the completed form to the DB
 @app.route('/insert_session', methods=['POST'])
@@ -389,7 +389,7 @@ def profile():
     totalSessionsLogged = 0
     for ses in allSessions:
         totalSessionsLogged = totalSessionsLogged + 1
-    return render_template("profile.html", sortCards=sortCards, totalSessionsLogged=totalSessionsLogged, sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
+    return render_template("users-profile/profile.html", sortCards=sortCards, totalSessionsLogged=totalSessionsLogged, sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, allDistanceByFoot=round(totalDistanceOnFootMiles,1), distanceUnit=distanceUnit, totalWeightliftingSessions=totalWeightliftingSessions, totalRunningSessions=totalRunningSessions, totalCyclingSessions=totalCyclingSessions, totalDistanceOnBike=totalDistanceOnBikeMiles, totalDistanceByWalking=totalDistanceByWalkingMiles, average_motivation=average_motivation,average_difficulty=average_difficulty, average_effort=average_effort, totalTimeDays=totalTimeDays, totalTimeHours=totalTimeHours, totalTimeMins=totalTimeMins, totalWalkingSessions=totalWalkingSessions)
 
 # filtering the session on the profile page
 @app.route('/filter_profile', methods=['POST'])

@@ -5,12 +5,12 @@
     <div class="login-wrapper p-0 d-flex justify-content-center container-fluid">
         <div class="row m-0 p-0 d-flex justify-content-center container-fluid">
             <div class="container-fluid">
-                <h3 class="text-center my-3">Add Record</h3>
+                <h3 class="text-center my-3">Add Session</h3>
                 <div class="row">
 
                     <div class="col-12 px-3">
 
-                        <form action="{{ url_for('insert_record') }}" method="POST">
+                        <form action="{{ url_for('insert_session') }}" method="POST">
                             <div class="row m-0 p-0">
                                 <div class="col-12 col-md-12 m-0 p-0">
                                     <div class="container-fluid p-0">
@@ -19,31 +19,31 @@
                                     </div>
 
                                 </div>
-                                <div class="col-2 pl-0 m-0 pr-2">
-                                    <div class="container-fluid p-0">
+                                <div class="col-2 m-0 p-0">
+                                    <div class="container-fluid p-0 pr-2">
                                         <label class="mb-1" for="exampleFormControlSelect1">Hour:</label>
                                         <input type="number" class="form-control" placeholder="1"
-                                            name="length_hour" required>
+                                            name="length_hour" min="0" required>
                                     </div>
                                 </div>
-                                <div class="col-2 p-0 pr-2">
-                                    <div class="container-fluid p-0">
+                                <div class="col-2 p-0">
+                                    <div class="container-fluid p-0 pr-2">
                                         <label class="mb-1" for="exampleFormControlSelect1">Mins:</label>
-                                        <input type="number" class="form-control" placeholder="00"
-                                            name="length_min" required>
+                                        <input type="number" class="form-control" placeholder="0"
+                                            name="length_min" min="0" required>
                                     </div>
                                 </div>
                                 <div class="col-2 p-0">
                                     <div class="container-fluid p-0">
-                                        <label class="mb-1" for="exampleFormControlSelect1">Secs:</label>
-                                        <input type="number" class="form-control" placeholder="00"
-                                            name="length_sec" required>
+                                        <label class="mb-1 pl-2" for="exampleFormControlSelect1">Secs:</label>
+                                        <input type="number" class="form-control" placeholder="0"
+                                            name="length_sec" min="0" required>
                                     </div>
                                 </div>
-                                <div class="col-6 pl-2 p-0">
+                                <div class="col-6 p-0 pl-2">
                                     <label class="mb-1">Session Type:</label>
                                     <select id="session-type-option" name="session_type"
-                                        class="form-control container-fluid" onclick="backToFormStartRecord()" required>
+                                        class="form-control container-fluid" onclick="backToFormStart()" required>
                                         <option value="weightlifting">Weightlifting</option>
                                         <option value="running">Running</option>
                                         <option value="cycling">Cycling</option>
@@ -81,10 +81,10 @@
                                 <div class="col-12 p-0">
                                     <hr class="my-2">
                                 </div>
-                               
+                              
                                 <div class="col-12 p-0" id="firstNextButtonContainer" >
                                     <button id="firstNextButton" class="btn btn-dark unit-button my-3 container-fluid px-0"
-                                        name="unit" onclick="addSessionFirstNextRecord()" >Next</button>
+                                        name="unit" onclick="addSessionFirstNext()" >Next</button>
                                 </div>
                                 <div class="col-12 p-0" id="unitOrDistance">
 
@@ -107,7 +107,7 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-
+        <script src="{{ url_for('static', filename='js/addsession.js' ) }}"></script>
 <script>
     // warn the user that if they leave the page the data will not be saved.
     $(function() {

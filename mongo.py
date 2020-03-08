@@ -9,7 +9,7 @@ from app import app
 
 mongo = PyMongo(app)
 
-# used to edit all the sessions
+# used to edit all the sessions if adding a new key value pair.
 # @app.route('/update_sessions')
 # def change_sessions():
 #     sessions = mongo.db.sessions.find()

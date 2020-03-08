@@ -12,7 +12,7 @@ mongo = PyMongo(app)
 # create a new training plan page.
 @app.route('/add_plan')
 def add_plan():
-    return render_template('addplan.html')
+    return render_template('add-to-db/addplan.html')
 
 # insert training plan 
 @app.route('/insert_training_plan', methods=["POST"])
@@ -102,7 +102,7 @@ def training_plans():
     unitVar = currentUsersAccount.get('selected_unit')
     training_plans_DB = mongo.db.trainingPlans.find()
 
-    return render_template('trainingplans.html', trainingPlans=training_plans_DB,  currentUsersAccount=currentUsersAccount)
+    return render_template('shared-online/trainingplans.html', trainingPlans=training_plans_DB,  currentUsersAccount=currentUsersAccount)
 
 # delete a training plan from the main training plan page
 @app.route('/delete_plan/<plan_id>')
@@ -121,7 +121,7 @@ def add_weight(plan_id):
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
     plan = mongo.db.trainingPlans.find_one({'_id': ObjectId(plan_id)})
-    return render_template('addingweighttoplan.html', plan=plan, unitVar=unitVar)
+    return render_template('add-to-db/addingweighttoplan.html', plan=plan, unitVar=unitVar)
 
 @app.route('/start_plan/<plan_id>', methods=['POST'])
 def start_plan(plan_id):
@@ -169,7 +169,7 @@ def personal_trainingplans():
     for x in training_plans_DB:
         plan_count += 1
     training_plans_DB = mongo.db.trainingPlansStarted.find({'username': currentUser})
-    return render_template('personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB, plan_count=plan_count, currentUsersAccount=currentUsersAccount)
+    return render_template('users-profile/personalplans.html', unitVar=unitVar, trainingPlans=training_plans_DB, plan_count=plan_count, currentUsersAccount=currentUsersAccount)
 
 # delete a training plan
 @app.route('/delete_trainingplan/<plan_id>')

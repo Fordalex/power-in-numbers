@@ -417,7 +417,6 @@ $('body').on('click', '.plan_add_row', function () {
     for (i = 0; i < rowCount.length; i++) {
         count++
     }
-    console.log(targetRow, count, targetTable)
     $(targetTable).append(`
                             <tr id="${this.id.concat('_row_', count)}" class="${this.id.concat('_row_count')}">
                                 <td><input type="text" class="container-fluid" name="${this.id.concat('_exercise_', count)}"></td>

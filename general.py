@@ -21,7 +21,7 @@ def login_page():
     userCount = 0
     for x in allUsers:
         userCount += 1
-    return render_template('loginpage.html', userCount=userCount)
+    return render_template('account/loginpage.html', userCount=userCount)
 
 # home page
 @app.route('/home')
@@ -201,7 +201,7 @@ def home():
     # finding all the cycling sessions and converting them into minutes, ready to sort.
     allCyclingSessions = mongo.db.sessions.find({'session_type':'cycling'})
     sortCycling = allCyclingSessions.sort('training_session', pymongo.DESCENDING)
-    return render_template("home.html",sortRunning=sortRunning,sortCycling=sortCycling, totalDistance=round(totalDistanceTraveledTogether, 0), sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, distanceUnit=distanceUnit, sessionCount=sessionCount)
+    return render_template("shared-online/home.html",sortRunning=sortRunning,sortCycling=sortCycling, totalDistance=round(totalDistanceTraveledTogether, 0), sessions=sessions, unit=unitVar, user=currentUsersAccount, filter_session_type=filter_session_type, filter_date=filter_date, distanceUnit=distanceUnit, sessionCount=sessionCount)
 
 # filtering the session on the home page
 @app.route('/filter_home', methods=['POST'])
@@ -223,7 +223,7 @@ def settings():
     login_user = users.find_one({'username' : currentUser})
     unitVar = login_user.get('selected_unit')
     unit_distance = login_user.get('selected_distance')
-    return render_template('settings.html', unit=unitVar, unit_distance=unit_distance)
+    return render_template('account/settings.html', unit=unitVar, unit_distance=unit_distance)
 
 # save the users setting preferences to mongoDB
 @app.route('/add_unit',  methods=['POST'])
@@ -287,7 +287,7 @@ def update_details():
     unitVar = currentUsersAccount.get('selected_unit')
 
 
-    return render_template('updatedetails.html', user=currentUsersAccount , unitVar=unitVar)
+    return render_template('add-to-DB/updatedetails.html', user=currentUsersAccount , unitVar=unitVar)
 
 # update the users details to mongoDB
 @app.route('/insert_change_details', methods=['POST'])

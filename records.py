@@ -17,7 +17,7 @@ def add_record():
         currentUser = session['username']
     except:
         return redirect(url_for('login_page'))
-    return render_template('addrecord.html')
+    return render_template('add-to-db/addrecord.html')
 
 # insert a record to the DB
 @app.route('/insert_record', methods=['POST'])
@@ -131,7 +131,7 @@ def users_records():
     for record in allRecords:
         recordCount += 1
 
-    return render_template('usersRecords.html', filter_date=filter_date, unit=unitVar, records=records, allRecords=recordCount, filter_session_type=filter_session_type)
+    return render_template('users-profile/usersRecords.html', filter_date=filter_date, unit=unitVar, records=records, allRecords=recordCount, filter_session_type=filter_session_type)
 
 # filter the records for the users records page.
 @app.route('/filter_usersrecords', methods=['POST'])
@@ -196,7 +196,7 @@ def record():
     else:
         records = records.sort("dateSortNo", pymongo.DESCENDING)
     filter_date = request.cookies.get('filter_session_date_pinrecords')
-    return render_template('records.html', recordCount=recordCountStore,filter_date=filter_date, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
+    return render_template('shared-online/records.html', recordCount=recordCountStore,filter_date=filter_date, distanceUnit=unit_distance, records=records, unit=unitVar, weightBenched=sortedBench, sortedSquat=sortedSquat, sortedDeadlift=sortedDeadlift, filter_session_type=filter_session_type)
 
 # filter the records on the public records page
 @app.route('/filter_pinrecords', methods=['POST'])
