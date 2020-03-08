@@ -12,6 +12,8 @@ $('.burger').click(function() {
 
         $('.nav-list-mobile').removeClass('nav-open')
         $('.nav-list-mobile').addClass('nav-close')
+
+        $('.page-wrapper').removeClass('overlay')
     } else {
         // Navigation open
         $('.burger-one').removeClass('nav-close-one')
@@ -25,5 +27,7 @@ $('.burger').click(function() {
 
         $('.nav-list-mobile').removeClass('nav-close')
         $('.nav-list-mobile').addClass('nav-open')
+
+        $('.page-wrapper').addClass('overlay')
     }
 });
