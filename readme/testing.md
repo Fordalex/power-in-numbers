@@ -302,4 +302,6 @@ When the user filters the sessiosn I would like the page to scroll down to the s
 
 The convertions need completing on the records page for the top records shown at the top on the page.
 
-### 
+### Navigation
+
+If the user is on mobile view with the navigation bar open and then scale to desktop view the alpha overlay is still being shown.

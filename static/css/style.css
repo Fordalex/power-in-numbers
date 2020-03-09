@@ -185,8 +185,8 @@ nav {
 
 /* Navigation burger */
 .nav-open-one {
-  -webkit-animation: nav-open-one .8s linear forwards;
-          animation: nav-open-one .8s linear forwards;
+  -webkit-animation: nav-open-one .7s linear forwards;
+          animation: nav-open-one .7s linear forwards;
 }
 
 .nav-close-one {
@@ -195,8 +195,8 @@ nav {
 }
 
 .nav-open-two {
-  -webkit-animation: nav-open-two .8s ease-in-out forwards;
-          animation: nav-open-two .8s ease-in-out forwards;
+  -webkit-animation: nav-open-two .7s ease-in-out forwards;
+          animation: nav-open-two .7s ease-in-out forwards;
 }
 
 .nav-close-two {
@@ -205,8 +205,8 @@ nav {
 }
 
 .nav-open-three {
-  -webkit-animation: nav-open-three .8s linear forwards;
-          animation: nav-open-three .8s linear forwards;
+  -webkit-animation: nav-open-three .7s linear forwards;
+          animation: nav-open-three .7s linear forwards;
 }
 
 .nav-close-three {
@@ -245,11 +245,11 @@ nav {
     top: 6px;
     width: 3px;
   }
-  80% {
+  70% {
     left: 0px;
     width: 30px;
   }
-  90% {
+  80% {
     top: 6px;
     left: 0px;
     width: 30px;
@@ -281,11 +281,11 @@ nav {
     top: 6px;
     width: 3px;
   }
-  80% {
+  70% {
     left: 0px;
     width: 30px;
   }
-  90% {
+  80% {
     top: 6px;
     left: 0px;
     width: 30px;
@@ -334,10 +334,22 @@ nav {
   0% {
     height: 3px;
     top: 8px;
+    left: 0px;
+  }
+  40% {
+    top: 8px;
+    width: 3px;
+    left: 14px;
+  }
+  60% {
+    top: 22px;
+    width: 3px;
+    left: 14px;
   }
   100% {
     top: 22px;
     height: 1px;
+    left: 0px;
   }
 }
 
@@ -345,10 +357,22 @@ nav {
   0% {
     height: 3px;
     top: 8px;
+    left: 0px;
+  }
+  40% {
+    top: 8px;
+    width: 3px;
+    left: 14px;
+  }
+  60% {
+    top: 22px;
+    width: 3px;
+    left: 14px;
   }
   100% {
     top: 22px;
     height: 1px;
+    left: 0px;
   }
 }
 
@@ -392,11 +416,11 @@ nav {
     top: 6px;
     width: 3px;
   }
-  80% {
+  70% {
     left: 0px;
     width: 30px;
   }
-  90% {
+  80% {
     -webkit-transform: rotateZ(0deg);
             transform: rotateZ(0deg);
     left: 0px;
@@ -428,11 +452,11 @@ nav {
     top: 6px;
     width: 3px;
   }
-  80% {
+  70% {
     left: 0px;
     width: 30px;
   }
-  90% {
+  80% {
     -webkit-transform: rotateZ(0deg);
             transform: rotateZ(0deg);
     left: 0px;
@@ -455,7 +479,7 @@ nav {
   100% {
     -webkit-transform: rotateZ(0deg);
             transform: rotateZ(0deg);
-    top: 18px;
+    top: 16px;
   }
 }
 
@@ -468,7 +492,7 @@ nav {
   100% {
     -webkit-transform: rotateZ(0deg);
             transform: rotateZ(0deg);
-    top: 18px;
+    top: 16px;
   }
 }
 

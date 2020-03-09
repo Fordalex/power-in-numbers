@@ -16,7 +16,7 @@ function addSessionTable() {
                                     <table class="session-table container-fluid mt-3" id="session_table">
                                         <tr>
                                             <th>Exercise:</th>
-                                            <th style="width: 95px;">Sets X Reps:</th>
+                                            <th style="width: 100px;">Sets X Reps:</th>
                                             <th style="width: 70px;">Weight:</th>
                                             <th class="unit-td" style="width: 35px;"><i class="fas fa-balance-scale"></i></th>
                                         </tr>
