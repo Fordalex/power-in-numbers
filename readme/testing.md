@@ -292,9 +292,7 @@ When the user filters the sessiosn I would like the page to scroll down to the s
 
 ### Training Plans
 
-- There is currently a bug that allows the training plan weeks value to be lower than one.
-
--
+- 
 
 
 

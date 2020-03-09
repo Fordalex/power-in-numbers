@@ -4,7 +4,9 @@ This web application was thought of because I'm always trying to find ways to tr
  
 ## UX
  
-This site is designed for people of all ages, the goal for this site is to motivate people to train by tracking their progress. Also being able to see that other users are contributing to the site goals should hopfully influence people to train. I have added a section on the home page that will add up all the user's distance travelled and display this for everyone to see. I think this will help people because as they log a session, they can watch this amount grow and feel part of a team. 
+This site is designed for people of all ages, the goal for this site is to motivate people to train by tracking their progress. Also being able to see that other users are contributing to the site goals should hopfully influence people to continue. I have added a section on the home page that will add up all the user's distance travelled and display this for everyone to see. I think this will help people because as they log a session, they can watch this amount grow and feel part of a team. 
+
+This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login_page) Please feel free to create an account and start making progression as soon as possible.
 
 Each user will have to create their account before gaining access to this site after they have completed the necessary steps, they will then be taken to their profile. The profile page will allow the user to: add a session, add a record, create a training plan, seeing all their sessions logged, watch their stats grow and see or edit their basic information.
 
@@ -22,16 +24,11 @@ This form had to be a little more complicated because first I have to find out h
 
 - Setting up a training plan, When on the 'Training Plans' page the user can select one of the many training plans available on the page. After they have selected a training plan that suits their goals the user will need to add the weight that they would like to use and this will be saved to 'Your Training Plans' page.
 
-This project is hosted on heroku [Power-in-numbers](https://power-in-numbers.herokuapp.com/login_page) Please feel free to create an account and start making progression as soon as possible.
-
 ## Features
 
-- On the 'Profile', 'PRs', 'Home' and records page the option to filter the sessions by there: 'date', 'session type' and also sort by the newest or oldest sessions first, is available to change by the user.
+- On the 'Profile', 'Personal Records', 'Home' and pin records page the option to filter the sessions by there: 'date', 'session type' and also sort by the newest or oldest sessions first, is available to change by the user.
 
 This should help the user find the training sessions they are looking for or filter just the session types they are interested in to create a more personal and convenient viewing experience.
-
-
-
 
 - The first page the user will be faced with is the login page, the user can either create a new account or log in.
 - After the user logs in they will be taken to their profile.
@@ -49,14 +46,30 @@ Profile:
 - The page is loaded on 'log', 'add' is a section the user can save data for: training session, personal record and create a training plan.
 - 'stats' was created, again to try and keep people motivated by clearly and easily displaying their progress and hard work.
 - 'details' is the last tab and basically shows them information the user gave about themselves.
-Records:
+Personal Records:
+- All their records will be shown on the page and available to filter.
+Training Plans:
+- The users training plans they have started will be located on this page. 
 
 
 ### Features Left to Implement
 
+Personal Records:
+- When the user presses the day session on the plan I would like them to be redirected to the 'add session' page with the details already filled in.
+
+After registering:
 - I would like to create a tutioral that the user can follow so they can understand how to user the site.
+
+Profile:
 - A section were the user is able to store their bodyweight and track their progression with a line graph.
+
+Add Sessions:
+- When you keep filling out the form it starts getting a bit repetative, I would like a button to be added on the exercise input so the user has a choose to add a custom input or from a dropdown box.
+
+Pins Records:
 - On the records page I would like a carasel showing the best records and the users information.
+
+Track Plans (New Page)
 - Another page to be able to track your training plans.
 
 ## Technologies Used
@@ -130,38 +143,43 @@ This project is hosted on heroku, I achieved this by:
 3. Click download zip
 4. Extract zip file
 5. Import in to preferred IDE
-
-
+6. In the terminal write 'pyhton app.py' to run the application.
 
 #### Using Git:
 
 1. Open terminal in preferred IDE
 2. Write "git clone https://github.com/Fordalex/master-mind-project"
 3. Press enter
+4. In the terminal write 'pyhton app.py' to run the application.
 
 ## Credits
 
 ### Media
     The header image is taken from:
 - [Unsplash](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
 
 ### Acknowledgements
 
 - https://www.w3schools.com/jsref/met_element_scrollintoview.asp
+
 This content was used to help implement the scroll to element function.
 
 - https://stackoverflow.com/questions/13266746/scroll-jump-to-id-without-jquery
+
 This was then using to add the smooth scroll to this function.
 
 - https://www.youtube.com/watch?v=_5OXmXvkU_E
+
 Organizing the app.py file.
 
 - https://codepen.io/bbodine1/pen/novBm
-checkbox taken from codepen
+
+checkbox taken from codepen and then edited by me.
 
 - https://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/
 
-- navigation bar
-https://www.youtube.com/watch?v=gXkqy0b4M5g
-for loop in python 
+Helped when using a for loop with an array.
+
+- https://www.youtube.com/watch?v=gXkqy0b4M5g
+
+navigation bar
