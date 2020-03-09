@@ -242,7 +242,6 @@ Checking the record saved:
 
 I have been using this site to save my current training sessions so this should be getting full by now...
 
-
 ## Pin Records
 
 On the home page there are two values that will change when a user saved a session. First will count the total amount of sessions logged and the Second will add up all the distance travelled by all users.
@@ -259,7 +258,9 @@ Run checks on each of the session to make sure all the data is being pulled from
 
 ## Training Plans
 
+This page is found on the profile page under the tab 'add' then click on create program.
 
+- 
 
 ## Started Training Plans
 
@@ -291,4 +292,14 @@ When the user filters the sessiosn I would like the page to scroll down to the s
 
 ### Training Plans
 
-The training plan can be created by the user and sorted on the online training plans page, when the user would like to 'start plan' this works and the user can add their chosen weight. Then this does work I would like the user to be able to save time by selecting the chosen training day and being reloaded to the add session page with all the plan information already filled in.
+- There is currently a bug that allows the training plan weeks value to be lower than one.
+
+-
+
+
+
+### convertions on the pin records page.
+
+The convertions need completing on the records page for the top records shown at the top on the page.
+
+### 

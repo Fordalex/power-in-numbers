@@ -12,7 +12,7 @@ mongo = PyMongo(app)
 # register page
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('add-to-db/register.html')
 
 # send the register form to mongoDB
 @app.route('/register_insert', methods=['POST', 'GET'])
@@ -51,7 +51,7 @@ def register_insert():
                 'selected_distance': 'mile',})
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
-        return render_template('usernametaken.html')
+        return render_template('informational/usernametaken.html')
     return redirect(url_for('login_page'))
 
 # try and log the user in
@@ -69,7 +69,7 @@ def login():
 # incorrect password or username message
 @app.route('/incorrect_login')
 def incorrect_login():
-    return render_template('incorrectpassword.html')
+    return render_template('informational/incorrectpassword.html')
 
 # remove users account and sessions from the DB
 @app.route('/delete_account')

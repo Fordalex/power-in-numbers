@@ -1,4 +1,4 @@
-$('.burger').click(function() {
+$('.burger').click(function () {
     if ($('.burger-one').hasClass('nav-open-one')) {
         // Navigation closed
         $('.burger-one').removeClass('nav-open-one')
@@ -31,3 +31,7 @@ $('.burger').click(function() {
         $('.page-wrapper').addClass('overlay')
     }
 });
+
+function addTabFix() {
+    $('body').css('overflow-x','hidden')
+}

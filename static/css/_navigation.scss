@@ -3,6 +3,8 @@ $theme-colour-two: #edd060;
 // variables
 
 body {
+  position: absolute;
+  width:100vw;
   overflow-x: hidden;
 }
 
@@ -41,6 +43,7 @@ nav {
   display: flex;
   align-items: center;
   border-bottom: solid black 1px;
+  padding-right: 10px;
 }
 
 .nav-list-desktop {
@@ -48,7 +51,7 @@ nav {
   transition: 0.5s;
   margin: 0;
   padding: 0;
-  width: 50%;
+  width: 30%;
   display: flex;
   justify-content: space-around;
   float: right;
@@ -173,6 +176,7 @@ nav {
 
 .nav-close {
   transform: translateX(100%);
+  display: none;
 }
 
 /* animations */
@@ -227,6 +231,18 @@ nav {
 
 /* media quires */
 
+@media only screen and (max-width: 1100px) {
+  .nav-list-desktop {
+    width:45%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .nav-list-desktop {
+    width:60%;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .nav-list-mobile {
     border-left: solid black 1px;
@@ -249,5 +265,3 @@ nav {
     display: none;
   }
 }
-
-/* darkens the behind navigation content */

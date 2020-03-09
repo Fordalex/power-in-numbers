@@ -21,9 +21,11 @@ function tableColour(num) {
 var userWeeks
 function addWeeks() {
     userWeeks = $('#plan_many_weeks').val()
-    $('#plan_training_days').append('<h5>Cross The Training Days</h5>')
-    for (i = 0; i < userWeeks; i++) {
-        $('#plan_training_days').append(`
+    console.log(userWeeks)
+    if (userWeeks >= 1) {
+        $('#plan_training_days').append('<h5>Cross The Training Days</h5>')
+        for (i = 0; i < userWeeks; i++) {
+            $('#plan_training_days').append(`
                                         <h6 class="col-12 m-0 p-0">Week ${i + 1}</h6>
                                         <div class="col-12 m-0 p-0 d-flex justify-content-around">
                                             <div>
@@ -79,13 +81,16 @@ function addWeeks() {
                                         
                                         </div>
         `)
-    }
-    $('#plan_training_days').append(`
+        }
+        $('#plan_training_days').append(`
                                     <div class="col-12 m-0 p-0">
                                         <button class="btn main-colour my-3 float-right" onclick="createPlanTable()">Done</button>
                                     </div>
     `)
-    $('#plan_first_container').remove()
+        $('#plan_first_container').remove()
+    } else {
+        $('#weeks-error-message').html('<p class="m-0 text-danger">Value has to be larger than zero.</p>')
+    }
 }
 
 // create the table for the user to fill in the exercise and sets x reps.
@@ -445,9 +450,9 @@ $('body').on('click', '.plan_remove_row', function () {
     for (i = 0; i < rowCount.length; i++) {
         count++
     }
-    targetRow = '#' + targetRow.slice(1 , 16) + count.toString()
+    targetRow = '#' + targetRow.slice(1, 16) + count.toString()
     $(targetRow).remove()
 
-    
+
 });
 
