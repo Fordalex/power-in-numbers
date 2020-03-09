@@ -21,7 +21,6 @@ function tableColour(num) {
 var userWeeks
 function addWeeks() {
     userWeeks = $('#plan_many_weeks').val()
-    console.log(userWeeks)
     if (userWeeks >= 1) {
         $('#plan_training_days').append('<h5>Cross The Training Days</h5>')
         for (i = 0; i < userWeeks; i++) {
@@ -103,7 +102,7 @@ function createPlanTable() {
     $('#plan_table').append(`
     <div class="col-6 m-0 p-0 pr-2">
         <label>Plan Name</label>
-        <input class="form-control mr-3" type="text" name="plan_name">
+        <input class="form-control mr-3" type="text" name="plan_name" required>
     </div>
     <div class="col-6 m-0 p-0">
         <label>Plan Type</label>
