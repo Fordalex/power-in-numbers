@@ -33,5 +33,5 @@ $('.burger').click(function () {
 });
 
 function addTabFix() {
-    $('body').css('overflow-x','hidden')
+    
 }
