@@ -143,6 +143,7 @@ option {
   z-index: 10;
   box-shadow:5px 5px 1px 1px rgba(0,0,0,0.1);
   opacity:70%;
+  cursor: pointer;
 }
 
 .bg-gray {
@@ -453,4 +454,15 @@ option {
 
 footer {
   background-color: rgb(250, 250, 250);
+}
+
+footer div .fab {
+  font-size: 25px;
+  transition: 0.5s;
+  color: black;
+  &:hover {
+    color: lightgray;
+    cursor: pointer;
+    color: $mainColour;
+  }
 }

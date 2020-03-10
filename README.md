@@ -69,8 +69,11 @@ Add Sessions:
 Pins Records:
 - On the records page I would like a carasel showing the best records and the users information.
 
-Track Plans (New Page)
+Track Plans (New Page):
 - Another page to be able to track your training plans.
+
+I would like the user to be able to add a session type and select the table that needs showing for that category. I feel this would attract more users because there not restriced to only pre-set categories.
+
 
 ## Technologies Used
 
@@ -89,7 +92,7 @@ To create Power In Numbers i used the following:
     - The project uses **Font Awesome** for the icons.
 
 - [Bootstrap4](https://getbootstrap.com/)
-    - The project uses **Bootstrap4** to speed up the development process and keep the code easy to read.
+    - The project uses **Bootstrap4** which is a front-end framework, to speed up the development process and keep the code easy to read.
 
 - [Pexels](https://www.pexels.com/)
     - **Pexels** Was used for the stock images.
@@ -113,7 +116,7 @@ To create Power In Numbers i used the following:
     - This HLL **Python** was used for the backend of this project, dealing with pulling data from mongoDB and managing the routes.
 
 - [Flask](https://www.fullstackpython.com/flask.html)
-    - **Flask** is a micro framework used.
+    - **Flask** is a back-end micro framework and is used in this project.
 
 - [jinja](https://jquery.com)
     - The project uses **jinja** for the templating language.

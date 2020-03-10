@@ -287,7 +287,7 @@ def update_details():
     unitVar = currentUsersAccount.get('selected_unit')
 
 
-    return render_template('add-to-DB/updatedetails.html', user=currentUsersAccount , unitVar=unitVar)
+    return render_template('add-to-db/updatedetails.html', user=currentUsersAccount , unitVar=unitVar)
 
 # update the users details to mongoDB
 @app.route('/insert_change_details', methods=['POST'])
