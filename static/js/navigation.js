@@ -14,6 +14,8 @@ $('.burger').click(function () {
         $('.nav-list-mobile').addClass('nav-close')
 
         $('.page-wrapper').removeClass('overlay')
+        $('.page-wrapper').css('filter', 'blur(0px)')
+        $('.title-container').css('filter', 'blur(0px)')
     } else {
         // Navigation open
         $('.burger-one').removeClass('nav-close-one')
@@ -29,6 +31,8 @@ $('.burger').click(function () {
         $('.nav-list-mobile').addClass('nav-open')
 
         $('.page-wrapper').addClass('overlay')
+        $('.page-wrapper').css('filter', 'blur(5px)')
+        $('.title-container').css('filter', 'blur(5px)')
     }
 });
 
