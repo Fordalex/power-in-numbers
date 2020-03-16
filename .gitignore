@@ -120,6 +120,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+env.py
 
 # Spyder project settings
 .spyderproject
@@ -141,3 +142,6 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+
+# wireframe
+pin.xd

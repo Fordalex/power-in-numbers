@@ -190,4 +190,4 @@ def add_session_from_plan(workout_id):
     unitVar = currentUsersAccount.get('selected_unit')
 
 
-    return render_template('addsessionfromplan.html', unitVar=unitVar, workout_id=workout_id)
+    return render_template('add-to-db/addsessionfromplan.html', unitVar=unitVar, workout_id=workout_id)
