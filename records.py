@@ -39,7 +39,7 @@ def insert_record():
         training_session = {
             'session_exercise_1': request.form['session_exercise_1'],
             'session_sets_1': request.form['session_sets_1'] ,
-             'session_weight_1': float(request.form['session_weight_1'])
+             'session_weight_1': int(request.form['session_weight_1'])
              }
     elif session_type == 'running':
         training_session = float(request.form['distance'])
