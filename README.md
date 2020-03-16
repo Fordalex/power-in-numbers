@@ -26,57 +26,6 @@ This form had to be a little more complicated because first I have to find out h
 
 - Setting up a training plan, When on the 'Training Plans' page the user can select one of the many training plans available on the page. After they have selected a training plan that suits their goals the user will need to add the weight that they would like to use and this will be saved to 'Your Training Plans' page.
 
-## Features
-
-- On the 'Profile', 'Personal Records', 'Home' and pin records page the option to filter the sessions by there: 'date', 'session type' and also sort by the newest or oldest sessions first, is available to change by the user.
-
-This should help the user find the training sessions they are looking for or filter just the session types they are interested in to create a more personal and convenient viewing experience.
-
-- The first page the user will be faced with is the login page, the user can either create a new account or log in.
-- After the user logs in they will be taken to their profile.
-- User's can log a training session, personal record and create training plans from their profile page.
-- The home page has an array of filters, so depending on the users goals they can see a collection of the session types on the date they are interested in.
-- Record page will hold all the users personal records and also a filter function to help the user find the content they are after.
-- A settings page to change the weight/distance unit to fit different user types. 
-
-The login page: 
-- I've added the custom made background image and a user count on first page the user is faced with.
-Register:
-- Tried to take as little information as posible from the user to speed up the process.
-Profile:
-- The sessions are shown first, there are four tabs that take you to differnt sections on the profile page. 
-- The page is loaded on 'log', 'add' is a section the user can save data for: training session, personal record and create a training plan.
-- 'stats' was created, again to try and keep people motivated by clearly and easily displaying their progress and hard work.
-- 'details' is the last tab and basically shows them information the user gave about themselves.
-Personal Records:
-- All their records will be shown on the page and available to filter.
-Training Plans:
-- The users training plans they have started will be located on this page. 
-
-
-### Features Left to Implement
-
-Personal Records:
-- When the user presses the day session on the plan I would like them to be redirected to the 'add session' page with the details already filled in.
-
-After registering:
-- I would like to create a tutioral that the user can follow so they can understand how to user the site.
-
-Profile:
-- A section were the user is able to store their bodyweight and track their progression with a line graph.
-
-Add Sessions:
-- When you keep filling out the form it starts getting a bit repetative, I would like a button to be added on the exercise input so the user has a choose to add a custom input or from a dropdown box.
-
-Pins Records:
-- On the records page I would like a carasel showing the best records and the users information.
-
-Track Plans (New Page):
-- Another page to be able to track your training plans.
-
-I would like the user to be able to add a session type and select the table that needs showing for that category. I feel this would attract more users because there not restriced to only pre-set categories.
-
-
 ## Technologies Used
 
 To create Power In Numbers i used the following:
