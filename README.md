@@ -81,6 +81,8 @@ I would like the user to be able to add a session type and select the table that
 
 To create Power In Numbers i used the following:
 
+#### Programs
+
 - [Adobe XD](https://www.adobe.com/products/xd.html)
     - The project uses **Abode XD** to build the wireframes.
 
@@ -90,17 +92,20 @@ To create Power In Numbers i used the following:
 - [Adobe Illustrator](https://www.adobe.com/uk/products/illustrator.html)
     - I used **Adobe Illustrator** to create the seamless background image.
 
+#### CDNs
+
 - [Font Awesome](https://fontawesome.com/)
     - The project uses **Font Awesome** for the icons.
+
+- [Google Font](https://fonts.google.com/)
+    - The project uses **Google font** to change the style of the text.
+
+#### Frontend framework
 
 - [Bootstrap4](https://getbootstrap.com/)
     - The project uses **Bootstrap4** which is a front-end framework, to speed up the development process and keep the code easy to read.
 
-- [Pexels](https://www.pexels.com/)
-    - **Pexels** Was used for the stock images.
-
-- [Google Font](https://fonts.google.com/)
-    - The project uses **Google font** to change the style of the text.
+#### Languages
 
 - [HTML 5]()
     - This project uses **HTML 5** for the mark up language.
@@ -117,6 +122,8 @@ To create Power In Numbers i used the following:
 - [Python]()
     - This HLL **Python** was used for the backend of this project, dealing with pulling data from mongoDB and managing the routes.
 
+#### Backend Framework
+
 - [Flask](https://www.fullstackpython.com/flask.html)
     - **Flask** is a back-end micro framework and is used in this project.
 
@@ -130,7 +137,7 @@ This project is hosted on heroku, I achieved this by:
 
 1. Going to the heroku dashboard and creating a new app.
 2. Then the 'Deploy' section and down to 'deployment method' select github and link heroku to this repository.
-3. Still on the Deploy section, continuing down to 'manual deploy' and pressing 'deploy branch'
+3. Still on the Deploy section, continuing down to 'manual deploy' and pressing 'deploy branch'.
 
 ## Testing and bugs
 
@@ -139,6 +146,10 @@ This project is hosted on heroku, I achieved this by:
 ## Features
 
 [Features](https://github.com/Fordalex/power-in-numbers/blob/master/readme/features.md)
+
+## Features incomplete
+
+[Features](https://github.com/Fordalex/power-in-numbers/blob/master/readme/features_incomplete.md)
 
 ## Database Schema
 
