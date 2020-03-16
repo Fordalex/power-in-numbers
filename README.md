@@ -111,7 +111,10 @@ To create Power In Numbers i used the following:
     - This project uses **HTML 5** for the mark up language.
 
 - [CSS]()
-    - **CSS** is used to syle the project.
+    - **CSS** is used for the syle and the layout.
+
+- [SCSS]()
+    - **SCSS** was used to speed up the development process and to save time when change theme colours and more.
 
 - [Javascript]()
     - **Javascript** is the programing language for this project.
@@ -147,9 +150,9 @@ This project is hosted on heroku, I achieved this by:
 
 [Features](https://github.com/Fordalex/power-in-numbers/blob/master/readme/features.md)
 
-## Features incomplete
+## Features Not Implement Yet
 
-[Features](https://github.com/Fordalex/power-in-numbers/blob/master/readme/features_incomplete.md)
+[Features Not Implemented](https://github.com/Fordalex/power-in-numbers/blob/master/readme/features_not_implemented.md)
 
 ## Database Schema
 
@@ -176,7 +179,7 @@ This project is hosted on heroku, I achieved this by:
 3. Press enter
 4. In the terminal write 'pyhton app.py' to run the application.
 
-#### hosting on heroku
+#### Hosting On Heroku
 
 adding an environment variable.
 

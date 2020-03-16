@@ -37,9 +37,12 @@ Also, the age and the body weight of the user can be changed by selecting 'edit 
 ### Filter
 
 ![details](https://github.com/Fordalex/power-in-numbers/blob/master/readme/filter_feature.jpg)
-The user can open all of the sessions with one click and then close them when finsihed reviewing their sessions. The user can also easily find the sessions they are looking for with the filter section, the user can filter from three different dropdowns. Session type: weightlifting, running, walking and cycling. Date: any. Sort By: Newest First or Oldest First.
+The user can open all of the sessions with one click and then close them when finished reviewing their sessions. The user can also easily find the sessions they are looking for with the filter section, the user can filter from three different dropdowns. Session type: weightlifting, running, walking and cycling. Date: any. Sort By: Newest First or Oldest First.
 
-### records best lifts
+### Records Best Lifts
+
+![details](https://github.com/Fordalex/power-in-numbers/blob/master/readme/pin_records.jpg)
+On the records page the user can view the top best lifters, when a user saves a record the best 'Bench Press' 'Squat' and 'Deadlift' will be shown at the top of this page. 
 
 ### Profile
 
@@ -47,4 +50,4 @@ The users session will save on their profile page, the records will save under p
 
 ### Online
 
-On the home sessions from every user will be shown in order from newest to oldest.
+On the home page the sessions from every user will be shown in order from newest to oldest.
