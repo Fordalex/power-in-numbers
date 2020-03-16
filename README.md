@@ -1,6 +1,8 @@
 # Power in numbers
 
 This web application was thought of because I'm always trying to find ways to track my training plans and training sessions, but I always lose track or it takes too long to write up the workout. This will hopefuly save me time, help me be more organized and gain knowledge of others training sessions for better progression. Also collect an array of training plans from different users and see their progression.
+
+Also I have changed my database password as the env.py got uploaded to github.
  
 ## UX
  

@@ -187,7 +187,7 @@
                                             <p class="m-0 p-0"><b class=" mr-1">BW:</b><span class="toFixed1 m-0 ">{{ session.body_weight | int * 10 / 22 }}</span>kg</p>
                                             {% endif %}
                                             {% elif unit == 'lb'  %}{% if session.bw_unit == 'lb' %}
-                                            <p class="m-0 p-0"><b class="mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight }}lb</span></p>
+                                            <p class="m-0 p-0"><b class="mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight }}</span>lb</p>
                                             {% endif %}
                                             {% if session.bw_unit == 'kg' %}
                                             <p class="m-0 p-0"><b class="mr-1">BW: </b><span class="toFixed1 m-0 ">{{ session.body_weight | int * 22 / 10 }}</span>lb</p>
