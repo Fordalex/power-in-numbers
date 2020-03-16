@@ -136,6 +136,14 @@ This project is hosted on heroku, I achieved this by:
 
 [Testing and bugs](https://github.com/Fordalex/power-in-numbers/blob/master/readme/testing.md)
 
+## Features
+
+[Features](https://github.com/Fordalex/power-in-numbers/blob/master/readme/features.md)
+
+## Database Schema
+
+[Database schema](https://github.com/Fordalex/power-in-numbers/blob/master/readme/database.md)
+
 ### How to run locally:
 
 #### Download:
@@ -156,6 +164,10 @@ This project is hosted on heroku, I achieved this by:
 2. Write "git clone https://github.com/Fordalex/master-mind-project"
 3. Press enter
 4. In the terminal write 'pyhton app.py' to run the application.
+
+#### hosting on heroku
+
+adding an environment variable.
 
 ## Credits
 
