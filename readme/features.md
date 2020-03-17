@@ -44,6 +44,10 @@ The user can open all of the sessions with one click and then close them when fi
 ![details](https://github.com/Fordalex/power-in-numbers/blob/master/readme/pin_records.jpg)
 On the records page the user can view the top best lifters, when a user saves a record the best 'Bench Press' 'Squat' and 'Deadlift' will be shown at the top of this page. 
 
+### Stats Page
+
+The stats page has been created so that the user can easily view which type of workouts they do most so they can see what areas they need to work on. Also they can earn badges to try and keep people motivated the more badges you earn and the more sessions the users logs their account will upgrade from 'Rookie' to 'Novice' and more.
+
 ### Profile
 
 The users session will save on their profile page, the records will save under personal records and the training plans will save on the public page under 'Training Plans'.
