@@ -45,8 +45,9 @@ nav {
 }
 
 .nav-list-desktop a {
-  padding: 5px;
-  margin-right: 2px;
+  padding: 6px;
+  margin-right: 3px;
+  margin-left: 3px;
 }
 
 .nav-list-desktop a:hover {

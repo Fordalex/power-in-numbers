@@ -14,7 +14,7 @@ Each user will have to create their account before gaining access to this site a
 
 - When the user would like to add a session all they need to press is the 'add' tab on their profile and select 'Add Session' then fill out the form.
 
-The form the user will have to fill out, to add a session will change depending on what session type the user is adding, the required information from the user will change and be stored to the database differently. Walking, running, cycling these are pretty much the same as they are units of distance and the user's inputs will be used to calculate their average speed. The user can choose from two different options miles and km, this information will be saved to the DB and used later on for the conversions. The Weightlifting session type is different because one session might consist of three exercises and the next workout might consist of forty-three so it was important to make sure the form could handle this type of scalability. After the form has been completed the user will be redirceted to their profile to view their sesssions.
+The form the user will have to fill out, to add a session will change depending on what session type the user is adding, the required information from the user will change and be stored to the database differently. Walking, running, cycling these are pretty much the same as they are units of distance and the user's inputs will be used to calculate their average speed. The user can choose from two different options miles and km, this information will be saved to the DB and used later on for the conversions. The Weightlifting session type is different because one session might consist of three exercises and the next workout might consist of forty-three so it was important to make sure the form could handle this type of scalability. After the form has been completed the user will be redirected to their profile to view their sessions.
 
 - To log a record is very similar to adding a session, a record is added by clicking on the 'Add' tab on the their profile and pressing 'Save Record' then filling out the form.
 
@@ -82,15 +82,6 @@ To create Power In Numbers i used the following:
 - [jinja](https://jquery.com)
     - The project uses **jinja** for the templating language.
 
-
-## Deployment
-
-This project is hosted on heroku, I achieved this by:
-
-1. Going to the heroku dashboard and creating a new app.
-2. Then the 'Deploy' section and down to 'deployment method' select github and link heroku to this repository.
-3. Still on the Deploy section, continuing down to 'manual deploy' and pressing 'deploy branch'.
-
 ## Testing and bugs
 
 [Testing and bugs](https://github.com/Fordalex/power-in-numbers/blob/master/readme/testing.md)
@@ -107,7 +98,7 @@ This project is hosted on heroku, I achieved this by:
 
 [Database schema](https://github.com/Fordalex/power-in-numbers/blob/master/readme/database.md)
 
-### How to run locally:
+## How to run locally:
 
 #### Download:
 
@@ -119,23 +110,31 @@ This project is hosted on heroku, I achieved this by:
 3. Click download zip
 4. Extract zip file
 5. Import in to preferred IDE
-6. In the terminal write 'pyhton app.py' to run the application.
+6. you will need to add a file call 'env.py' containing 'os.environ["pinDB"] = "withTheLinkToTheDataBase"'
+7. In the terminal write 'pyhton app.py' to run the application.
 
 #### Using Git:
 
 1. Open terminal in preferred IDE
-2. Write "git clone https://github.com/Fordalex/master-mind-project"
+2. Write "git clone https://github.com/Fordalex/power-in-numbers"
 3. Press enter
-4. In the terminal write 'pyhton app.py' to run the application.
+4. you will need to add a file call 'env.py' containing 'os.environ["pinDB"] = "withTheLinkToTheDataBase"'
+5. In the terminal write 'pyhton app.py' to run the application.
 
-#### Hosting On Heroku
+## Deployment
 
-adding an environment variable.
+This project is hosted on heroku, I achieved this by:
+
+1. Going to the heroku dashboard and creating a new app.
+2. Then the 'Deploy' section and down to 'deployment method' select github and link heroku to this repository.
+3. Create a 'config vars' under the 'setttings' tab and add the variable 'pinDB' with the link and password to the database.
+4. Back to the 'Deploy' tab, continuing down to 'manual deploy' and pressing 'deploy branch'.
 
 ## Credits
 
 ### Media
-    The header image is taken from:
+
+The header image is taken from:
 - [Unsplash](https://jquery.com)
 
 ### Acknowledgements

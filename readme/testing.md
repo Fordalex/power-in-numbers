@@ -64,12 +64,10 @@ Each row should have a name attribute with the count of the row at the end of th
 
 ## Profile (page)
 
-On the profile page there are four different sections:
-Checking the session data has been sorted correctly:
-Delete all sessions if any have been created, then create four sessions:
+If you have created a new profile please logg the following session if logging in using DavidSmith55 you should see the following:
  1. Session type: 'running', length 1 hour, motivated 10, difficulty 10, effort 10, distance 10 miles.
- 2. Session type: 'weightlifting', length 30 mins, motivated 5, difficulty 5, effort 5, and in the weightlifting table. Exercise: Bench Press, Sets: 5, Reps: 5, Weight: 50kg, add another row. Exercise: Skull Crushers, Sets: 5, Reps: 5, Weight: 10kg.
- 3. Session type: 'walking', length 45 mins, motivated 10, difficulty 10, effort 10, distance 10 miles.
+ 2. Session type: 'walking', length 45 mins, motivated 10, difficulty 10, effort 10, distance 10 miles.
+ 3. Session type: 'weightlifting', length 30 mins, motivated 5, difficulty 5, effort 5, and in the weightlifting table. Exercise: Bench Press, Sets: 5, Reps: 5, Weight: 50kg, add another row. Exercise: Skull Crushers, Sets: 5, Reps: 5, Weight: 10kg.
  4. Session type: 'cycling', length 45 mins, motivated 10, difficulty 10, effort 10, distance 10 miles.
 
 ### Log (tab)
@@ -185,7 +183,7 @@ Checking the badges light up correctly:
 ### Details (tab)
 
 When you created the account this page should show your personal information.
-- The name should show you first and last name created.
+- The name should show your first and last name created.
 - The age should show the users age.
 - The bw should show the correct BW for the user, aswell this should be converted to the users specified unit.(More on convertions at the bottom)
 - The gender should show the correct gender the user entered when creating the account.
@@ -220,18 +218,18 @@ Session type: weightlifting.
 Motivated: 10   
 Difficulty: 10
 Effort: 10
-Squat / 1 Rep / 160kg
+Squat / 1 Rep / 180kg
 notes: 'Good session!'
 
-After this record has been saved the user will be take to their record page.
+After this record has been saved the user will be take to their record page, or if you are using DavidSmith55 this record has already been saved and should show the following:
 
 Checking the record saved:
 - The name on the record is the username of the user currently logged in.
 - The body weight is what has been set on the users account.
 - Date should be today.
-- location as set on the usres account.
+- location as set on the users account.
 - sets 1
-- weight lifted 160kg
+- weight lifted 180kg
 - motivated, difficulty and effort should be full
 - record type: 'weightlifting'
 - length: 0h 1m 0s
@@ -256,14 +254,6 @@ Checking the filtering:
 
 Run checks on each of the session to make sure all the data is being pulled from the DB correctly.
 
-## Training Plans
-
-This page is found on the profile page under the tab 'add' then click on create program.
-
-- 
-
-## Started Training Plans
-
 
 ## Settings
 
@@ -272,7 +262,6 @@ This page is found on the profile page under the tab 'add' then click on create 
 
 
 # Existing Bugs / Problems
-
 
 ### Register
 
@@ -288,12 +277,6 @@ This message will pop up when the user trys to leave the page, the only problem 
 ### Scroll After Filter
 
 When the user filters the sessiosn I would like the page to scroll down to the sessions shown. I have got the js for this but I don't know how to get the page to only scroll down when the user has filtered the sessions.
-
-### Training Plans
-
-- 
-
-
 
 ### convertions on the pin records page.
 
