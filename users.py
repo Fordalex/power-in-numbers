@@ -19,7 +19,7 @@ def register():
 def register_insert():
     if request.method == 'POST':
         users = mongo.db.users
-        existing_user = users.find_one({'username' : request.form['username']})
+        existing_user = users.find_one({'username': request.form['username']})
 
         if existing_user is None:
             hashpass = sha256_crypt.encrypt(request.form['pwd1'])
@@ -37,9 +37,9 @@ def register_insert():
             dateDay = start_date[8:10]
             start_date = dateDay + '-' + dateMonth + '-' + dateYear
             users.insert_one({
-                'username' : username, 
+                'username': username, 
                 'start_date': str(start_date), 
-                'password' : hashpass, 
+                'password': hashpass, 
                 'age': age, 
                 'gender': gender, 
                 'body_weight': body_weight, 
@@ -48,7 +48,7 @@ def register_insert():
                 'first_name': first_name.capitalize(), 
                 'last_name': last_name.capitalize(),  
                 'selected_unit': 'kg', 
-                'selected_distance': 'mile',})
+                'selected_distance': 'mile', })
             session['username'] = request.form['username']
             return redirect(url_for('profile'))
         return render_template('informational/usernametaken.html')
@@ -58,7 +58,7 @@ def register_insert():
 @app.route('/login', methods=['POST'])
 def login():
     users = mongo.db.users
-    login_user = users.find_one({'username' : request.form['username']})
+    login_user = users.find_one({'username': request.form['username']})
     if login_user:
         if sha256_crypt.verify(request.form['password'], login_user['password']):
             session['username'] = request.form['username']
@@ -76,7 +76,7 @@ def incorrect_login():
 def delete_account():
     currentUser = session['username']
     users = mongo.db.users
-    login_user = users.find_one({'username' : currentUser})
+    login_user = users.find_one({'username': currentUser})
     usersSession = mongo.db.sessions.find({'username': currentUser})
     for s in usersSession:
         mongo.db.sessions.remove(s)

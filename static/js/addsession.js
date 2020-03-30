@@ -3,10 +3,10 @@ var unitSelected;
 var distanceSelected;
 
 function addSessionTable() {
-    $('#continueTableButton').remove()
-    var typeSelected = $('#session-type-option option:selected').text()
-    unitSelected = $('#session-unit-option option:selected').text()
-    distanceSelected = $('#session-distance-option option:selected').text()
+    $('#continueTableButton').remove();
+    var typeSelected = $('#session-type-option option:selected').text();
+    unitSelected = $('#session-unit-option option:selected').text();
+    distanceSelected = $('#session-distance-option option:selected').text();
     var weightliftingTable = `<div class="row p-0 m-0 animated fadeInUp faster"  id="sessionTable">
                                 <div class="col-12 d-flex align-items-end p-0">
                                     <h3 class="float-left mr-3">Training Session</h3>
@@ -41,7 +41,7 @@ function addSessionTable() {
                                 <div class="col-12 p-0">
                                     <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                                 </div>
-                            </div>`
+                            </div>`;
     var runningTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
                         <div class="col-12 d-flex align-items-end p-0">
                             <h3 class="float-left mr-3">Training Session</h3>
@@ -66,7 +66,7 @@ function addSessionTable() {
                         <div class="col-12 p-0">
                             <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                         </div>
-                    </div>`
+                    </div>`;
     var walkingTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
                     <div class="col-12 d-flex align-items-end p-0">
                         <h3 class="float-left mr-3">Training Session</h3>
@@ -91,7 +91,7 @@ function addSessionTable() {
                     <div class="col-12 p-0">
                         <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                     </div>
-                </div>`
+                </div>`;
     var cyclingTable = `<div class="row p-0 m-0 animated fadeInUp faster" id="sessionTable">
                 <div class="col-12 d-flex align-items-end p-0">
                     <h3 class="float-left mr-3">Training Session</h3>
@@ -116,15 +116,15 @@ function addSessionTable() {
                 <div class="col-12 p-0">
                     <button class="btn main-colour container-fluid text-dark border float-right mb-3" type="submit" name="action">Done</button>
                 </div>
-            </div>`
+            </div>`;
     if (typeSelected == 'Weightlifting') {
-        $('#addSessionTable').html(weightliftingTable)
+        $('#addSessionTable').html(weightliftingTable);
     } else if (typeSelected == 'Running') {
-        $('#addSessionTable').html(runningTable)
+        $('#addSessionTable').html(runningTable);
     } else if (typeSelected == 'Cycling') {
-        $('#addSessionTable').html(cyclingTable)
+        $('#addSessionTable').html(cyclingTable);
     } else if (typeSelected == 'Walking') {
-        $('#addSessionTable').html(walkingTable)
+        $('#addSessionTable').html(walkingTable);
     }
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
@@ -147,7 +147,7 @@ function addSessionFirstNext() {
                 <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Continue</div>
             </div>
         </div>
-        `)
+        `);
     } else if (usersChoice == 'running' || usersChoice == 'cycling' || usersChoice == 'walking') {
         $('#unitOrDistance').html(`
         <div id="unitContainer" class="animated fadeIn faster">
@@ -160,13 +160,13 @@ function addSessionFirstNext() {
                 <div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Continue</div>
             </div>
         </div>
-        `)
+        `);
     }
     $('#firstNextButton').remove()
 }
 
 function unitContinueButton() {
-    $('#secondNextContainer').html(`<div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Next</div>`)
+    $('#secondNextContainer').html(`<div class="btn btn-dark container-fluid my-3" onclick="addSessionTable()" id="continueTableButton">Next</div>`);
 
 }
 
@@ -174,7 +174,7 @@ function backToFormStart() {
     $('#firstNextButtonContainer').html(`
     <button id="firstNextButton" class="btn btn-dark unit-button my-3 container-fluid px-0"
     name="unit" onclick="addSessionFirstNext()" >Next</button>
-    `)
-    $('#unitContainer').remove()
-    $('#sessionTable').remove()
+    `);
+    $('#unitContainer').remove();
+    $('#sessionTable').remove();
 }

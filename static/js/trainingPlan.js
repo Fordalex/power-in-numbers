@@ -6,7 +6,7 @@ var secondaryColour = 'rgb(240,240,240)';
 
 function tableColour(num) {
     var newYearTableRow = sessionTable[num].getElementsByTagName('tr');
-    for (i = 0; i < newYearTableRow.length; i++) {
+    for (let i = 0; i < newYearTableRow.length; i++) {
         if (i == 0) {
             newYearTableRow[i].classList.add('session-header');
         } else if (i % 2 == 0) {
@@ -14,15 +14,16 @@ function tableColour(num) {
         } else {
             newYearTableRow[i].style.backgroundColor = secondaryColour;
         }
-    };
-};
+    }
+}
 
 // create the week
-var userWeeks
+var userWeeks;
+
 function addWeeks() {
-    userWeeks = $('#plan_many_weeks').val()
+    userWeeks = $('#plan_many_weeks').val();
     if (userWeeks >= 1) {
-        $('#plan_training_days').append('<h5>Cross The Training Days</h5>')
+        $('#plan_training_days').append('<h5>Cross The Training Days</h5>');
         for (i = 0; i < userWeeks; i++) {
             $('#plan_training_days').append(`
                                         <h6 class="col-12 m-0 p-0">Week ${i + 1}</h6>
@@ -79,16 +80,16 @@ function addWeeks() {
                                          
                                         
                                         </div>
-        `)
+        `);
         }
         $('#plan_training_days').append(`
                                     <div class="col-12 m-0 p-0">
                                         <button class="btn main-colour my-3 float-right" onclick="createPlanTable()">Done</button>
                                     </div>
-    `)
-        $('#plan_first_container').remove()
+    `);
+        $('#plan_first_container').remove();
     } else {
-        $('#weeks-error-message').html('<p class="m-0 text-danger">Value has to be larger than zero.</p>')
+        $('#weeks-error-message').html('<p class="m-0 text-danger">Value has to be larger than zero.</p>');
     }
 }
 
@@ -98,7 +99,7 @@ function createPlanTable() {
     <div class="col-12 m-0 p-0">
         <hr>
     </div>
-    `)
+    `);
     $('#plan_table').append(`
     <div class="col-6 m-0 p-0 pr-2">
         <label>Plan Name</label>
@@ -110,15 +111,15 @@ function createPlanTable() {
             <option value="weightlifting">Weightlifting</option>
         </select>
     </div>
-    `)
+    `);
     for (i = 0; i < userWeeks; i++) {
 
         $('#plan_table').append(`
                             <div class="col-12 m-0 p-0">
                                 <h4>Week ${i + 1}</h4>
                             </div>
-        `)
-        var mon = `#mon-${i + 1}`
+        `);
+        var mon = `#mon-${i + 1}`;
         if ($(mon).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -149,16 +150,16 @@ function createPlanTable() {
                 <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="mon_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="mon_week_${i + 1}">Add Row +</a>
                 </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Monday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
-        var tue = `#tue-${i + 1}`
+        var tue = `#tue-${i + 1}`;
         if ($(tue).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -189,16 +190,16 @@ function createPlanTable() {
                 <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="tue_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="tue_week_${i + 1}">Add Row +</a>
                 </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Tuesday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
-        var wed = `#wed-${i + 1}`
+        var wed = `#wed-${i + 1}`;
         if ($(wed).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -229,16 +230,16 @@ function createPlanTable() {
                 <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="wed_week_${i + 1}_remove">Remove Row -</a>
                 <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="wed_week_${i + 1}">Add Row +</a>
             </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Wednesday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
-        var thur = `#thur-${i + 1}`
+        var thur = `#thur-${i + 1}`;
         if ($(thur).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -269,16 +270,16 @@ function createPlanTable() {
                 <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="thur_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="thur_week_${i + 1}">Add Row +</a>
                 </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Thursday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
-        var fri = `#fri-${i + 1}`
+        var fri = `#fri-${i + 1}`;
         if ($(fri).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -309,16 +310,16 @@ function createPlanTable() {
                 <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="fri_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="fri_week_${i + 1}">Add Row +</a>
                 </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Friday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
-        var sat = `#sat-${i + 1}`
+        var sat = `#sat-${i + 1}`;
         if ($(sat).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -349,16 +350,16 @@ function createPlanTable() {
                 <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="sat_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sat_week_${i + 1}">Add Row +</a>
                 </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Saturday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
-        var sun = `#sun-${i + 1}`
+        var sun = `#sun-${i + 1}`;
         if ($(sun).is(":checked")) {
             $('#plan_table').append(
                 `
@@ -390,14 +391,14 @@ function createPlanTable() {
                     <a class="btn btn-danger text-light container-fluid mr-2 plan_remove_row" id="sun_week_${i + 1}_remove">Remove Row -</a>
                     <a class="btn btn-dark text-light  container-fluid border float-right plan_add_row" id="sun_week_${i + 1}">Add Row +</a>
                 </div>
-            `)
+            `);
         } else {
             $('#plan_table').append(`
                 <div class="col-12 p-0 m-0">
                     <h6 class="m-0 mb-1 p-0">Sunday</h6>
                     <p>Rest Day</p>
                 </div>
-            `)
+            `);
         }
 
     }
@@ -408,18 +409,18 @@ function createPlanTable() {
     <div class="col-12 m-0 my-3 p-0">
         <a href=" {{ url_for('insert_training_plan') }} "><button class="btn main-gradient float-right">Done</button></a>
     </div>
-    `)
-    $('#plan_training_days').remove()
+    `);
+    $('#plan_training_days').remove();
 }
 
 // add a new row on to the days training plan
-$('body').on('click', '.plan_add_row', function () {
-    var targetTable = '#'.concat(this.id, '_table')
-    var targetRow = '.'.concat(this.id, '_row_count')
-    var rowCount = $(targetRow)
-    var count = 0
+$('body').on('click', '.plan_add_row', function() {
+    var targetTable = '#'.concat(this.id, '_table');
+    var targetRow = '.'.concat(this.id, '_row_count');
+    var rowCount = $(targetRow);
+    var count = 0;
     for (i = 0; i < rowCount.length; i++) {
-        count++
+        count++;
     }
     $(targetTable).append(`
                             <tr id="${this.id.concat('_row_', count)}" class="${this.id.concat('_row_count')}">
@@ -434,24 +435,21 @@ $('body').on('click', '.plan_add_row', function () {
                                     </div>
                                 </td>
                             </tr>
-    `)
+    `);
     for (k = 0; k < sessionTable.length; k++) {
         tableColour(k);
     }
 });
 
 // remove the last row on the training plan day
-$('body').on('click', '.plan_remove_row', function () {
-    var targetTable = '#'.concat(this.id.slice(0, 10), '_table')
-    var targetRow = '.'.concat(this.id.slice(0, 10), '_row_count')
-    var rowCount = $(targetRow)
+$('body').on('click', '.plan_remove_row', function() {
+    var targetTable = '#'.concat(this.id.slice(0, 10), '_table');
+    var targetRow = '.'.concat(this.id.slice(0, 10), '_row_count');
+    var rowCount = $(targetRow);
     var count = -1;
     for (i = 0; i < rowCount.length; i++) {
-        count++
+        count++;
     }
-    targetRow = '#' + targetRow.slice(1, 16) + count.toString()
-    $(targetRow).remove()
-
-
+    targetRow = '#' + targetRow.slice(1, 16) + count.toString();
+    $(targetRow).remove();
 });
-

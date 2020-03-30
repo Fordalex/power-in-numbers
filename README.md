@@ -111,7 +111,8 @@ To create Power In Numbers i used the following:
 4. Extract zip file
 5. Import in to preferred IDE
 6. you will need to add a file call 'env.py' containing 'os.environ["pinDB"] = "withTheLinkToTheDataBase"'
-7. In the terminal write 'pyhton app.py' to run the application.
+7. This command will install the dependencies for this project: pip install -r requirements.txt
+8. In the terminal write 'pyhton app.py' to run the application.
 
 #### Using Git:
 
@@ -119,9 +120,15 @@ To create Power In Numbers i used the following:
 2. Write "git clone https://github.com/Fordalex/power-in-numbers"
 3. Press enter
 4. you will need to add a file call 'env.py' containing 'os.environ["pinDB"] = "withTheLinkToTheDataBase"'
-5. In the terminal write 'pyhton app.py' to run the application.
+5. This command will install the dependencies for this project: pip install -r requirements.txt
+6. In the terminal write 'pyhton app.py' to run the application.
 
 ## Deployment
+
+This python project is dependent on a few packages.
+
+First these need to be installed, we can achieve this with the following command:
+    pip install -r requirements.txt
 
 This project is hosted on heroku, I achieved this by:
 

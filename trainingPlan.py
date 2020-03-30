@@ -14,30 +14,30 @@ mongo = PyMongo(app)
 def add_plan():
     return render_template('add-to-db/addplan.html')
 
-# insert training plan 
+# insert training plan
 @app.route('/insert_training_plan', methods=["POST"])
 def insert_training_plan():
-        # to find out if the user is already logged in
+    # to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
         return redirect(url_for('login_page'))
     users = mongo.db.users
-    login_user = users.find_one({'username' : currentUser})
-    weekDayList = ['mon','tue','wed','thur','fri','sat','sun']
+    login_user = users.find_one({'username': currentUser})
+    weekDayList = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun']
     weekCount = 1
     plan_name = request.form['plan_name']
     session_type = request.form['session_type']
     training_plan_array_weeks = []
-    training_plan_dict = {'plan_name' : plan_name, 'session_type': session_type,'creator': login_user.get('username'),  'weeks': training_plan_array_weeks}
+    training_plan_dict = {'plan_name': plan_name, 'session_type': session_type, 'creator': login_user.get('username'),  'weeks': training_plan_array_weeks}
     weekTrue = True
     while weekTrue:
         weekTrue = False
         week_label = 'week_' + str(weekCount)
         weekArray = []
-        weekDict = { week_label : weekArray }
+        weekDict = {week_label: weekArray}
         for day in weekDayList:
-            dayCheck = str(day) + '_week_' + str(weekCount) +  '_exercise_1'
+            dayCheck = str(day) + '_week_' + str(weekCount) + '_exercise_1'
             sets_target = str(day) + '_week_' + str(weekCount) + '_sets_1'
             reps_target = str(day) + '_week_' + str(weekCount) + '_reps_1'
             rest_target = str(day) + '_week_' + str(weekCount) + '_rest_1'
@@ -46,7 +46,7 @@ def insert_training_plan():
                     def counting_rows():
                             row_count = 1
                             while True:
-                                sessionExercise = str(day) + '_week_' + str(weekCount) +  '_exercise_' + str(row_count)
+                                sessionExercise = str(day) + '_week_' + str(weekCount) + '_exercise_' + str(row_count)
                                 try:
                                     if request.form[sessionExercise]:
                                         row_count += 1
@@ -54,7 +54,7 @@ def insert_training_plan():
                                 except:
                                     break
                             return row_count
-                    def day_to_dict():    
+                    def day_to_dict():
                         row_count = counting_rows()
                         session_row_return = []
                         for row in range(1, row_count):
@@ -70,18 +70,18 @@ def insert_training_plan():
                             store_name_sets = 'sets_' + str(row)
                             store_name_reps = 'reps_' + str(row)
                             store_name_rest = 'rest_' + str(row)
-                            sessionDict = { store_name_exercise: session_exercise, store_name_sets : session_sets, store_name_reps : session_reps, store_name_rest : session_rest }
+                            sessionDict = {store_name_exercise: session_exercise, store_name_sets: session_sets, store_name_reps: session_reps, store_name_rest: session_rest}
                             session_row_return.append(sessionDict)
                         return session_row_return
 
                     row_count = counting_rows()
                     training_plan = day_to_dict()
-                    dayDict = {'day': day, 'training_plan': training_plan}  
-                    weekArray.append(dayDict)                   
+                    dayDict = {'day': day, 'training_plan': training_plan}
+                    weekArray.append(dayDict)
                     weekTrue = True
             except:
                 training_plan = 'Rest Day'
-                dayDict = {'day': day, 'training_plan': training_plan}  
+                dayDict = {'day': day, 'training_plan': training_plan}
                 weekArray.append(dayDict)
                 continue
         if weekTrue:
@@ -92,7 +92,7 @@ def insert_training_plan():
 
 @app.route('/training_plans')
 def training_plans():
-        # to find out if the user is already logged in
+    # to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
@@ -106,13 +106,13 @@ def training_plans():
 
 # delete a training plan from the main training plan page
 @app.route('/delete_plan/<plan_id>')
-def delete_plan(plan_id): 
+def delete_plan(plan_id):
     mongo.db.trainingPlans.remove({'_id': ObjectId(plan_id)})
     return redirect(url_for('training_plans'))
 
 @app.route('/add_weight/<plan_id>')
 def add_weight(plan_id):
-    # to find out if the user is already logged in
+    #to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
@@ -125,7 +125,7 @@ def add_weight(plan_id):
 
 @app.route('/start_plan/<plan_id>', methods=['POST'])
 def start_plan(plan_id):
-     # to find out if the user is already logged in
+    #to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
@@ -136,25 +136,25 @@ def start_plan(plan_id):
     plan = mongo.db.trainingPlans.find_one({'_id': ObjectId(plan_id)})
     # adding the weight column on the table
     week_count = len(plan['weeks'])
-    day_list = ['mon', 'tue', 'wed', 'thur','fri', 'sat', 'sun']
+    day_list = ['mon', 'tue', 'wed', 'thur', 'fri', 'sat', 'sun']
     users_weight_choosen = []
     for weekCount in range(week_count):
         for count, day in enumerate(day_list):
             # This will check for 100 rows on each day for each week.
             for x in range(100):
-                form_weight = 'weight_' + str(day) + '_' +  str(x + 1) + '_week_' + str(weekCount + 1)
+                form_weight = 'weight_' + str(day) + '_' + str(x + 1) + '_week_' + str(weekCount + 1)
                 try:
                     weight_value = request.form[form_weight]
                     users_weight_choosen.append(int(weight_value))
                 except:
                     continue
-    started_plan = {'username': currentUsersAccount.get('username'), 'training_plan': plan, 'users_weight': users_weight_choosen }
+    started_plan = {'username': currentUsersAccount.get('username'), 'training_plan': plan, 'users_weight': users_weight_choosen}
     mongo.db.trainingPlansStarted.insert_one(started_plan)
     return redirect(url_for('personal_trainingplans'))
 
 @app.route('/personal_trainingplans')
 def personal_trainingplans():
-           # to find out if the user is already logged in
+    # to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
@@ -173,14 +173,14 @@ def personal_trainingplans():
 
 # delete a training plan
 @app.route('/delete_trainingplan/<plan_id>')
-def delete_trainingplan(plan_id): 
+def delete_trainingplan(plan_id):
     mongo.db.trainingPlansStarted.remove({'_id': ObjectId(plan_id)})
     return redirect(url_for('personal_trainingplans'))
 
 # adding a session from a training plan
 @app.route('/add_session_from_plan/<workout_id>')
 def add_session_from_plan(workout_id):
-       # to find out if the user is already logged in
+    # to find out if the user is already logged in
     try:
         currentUser = session['username']
     except:
@@ -188,6 +188,4 @@ def add_session_from_plan(workout_id):
     user = mongo.db.users
     currentUsersAccount = user.find_one({'username': currentUser})
     unitVar = currentUsersAccount.get('selected_unit')
-
-
     return render_template('add-to-db/addsessionfromplan.html', unitVar=unitVar, workout_id=workout_id)

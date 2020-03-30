@@ -257,9 +257,9 @@ Run checks on each of the session to make sure all the data is being pulled from
 
 ## Settings
 
-
-## Convertions
-
+Checking the convertion for the unit section, first check the bodyweight that is on the profile you have created. e.g. 50kg. Then change the unit in the settings to 'lb' and the body weight should now show 110lb.
+Repeat this for the distance, the total distance travelled on the stats section on the profile page for e.g. 10 miles (if zero logging a running session with the distance of 10 miles) change the unit of distance to 'km' and this should now show '16 km'.
+The last button on the setting section is the 'Delete Account' press this and your account will be removed. After pressing the button and then being redirected to the login page, try and log in and you shouldn't be able to gain access to the removed account.
 
 # Existing Bugs / Problems
 
