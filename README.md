@@ -168,4 +168,8 @@ Helped when using a for loop with an array.
 
 - https://www.youtube.com/watch?v=gXkqy0b4M5g
 
-navigation bar
+navigation bar.
+
+- https://www.youtube.com/watch?v=UtF58KqcHWU&t=444s
+
+This video was used to help understand passlib and hashing sensitive information.
